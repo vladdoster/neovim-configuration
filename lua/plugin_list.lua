@@ -68,6 +68,7 @@ return packer.startup(function()
         event = "BufRead",
         config = conf('lspkind'),
     }
+    use { "ray-x/lsp_signature.nvim" }
 
     use {
         "hrsh7th/nvim-compe",

@@ -1,16 +1,13 @@
 local present1, lspconfig = pcall(require, "lspconfig")
 local present2, lspinstall = pcall(require, "lspinstall")
-if not (present1 or present2) then
-    return
-end
+if not (present1 or present2) then return end
+
 local on_attach = function(client, bufnr)
     -- LSP Signature
     require"lsp_signature".on_attach({
         bind = true,
         handler_opts = {border = "single"}
     })
-    -- Lsp based folding
-    require('folding').on_attach()
 
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -29,7 +26,7 @@ local on_attach = function(client, bufnr)
                    opts)
     buf_set_keymap('n', '<space>wa',
                    '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-   buf_set_keymap('n', '<space>wr',
+    buf_set_keymap('n', '<space>wr',
                    '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wl',
                    '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
@@ -79,16 +76,26 @@ end
 -- Enable Snippet Support in Lsp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport =
-    {properties = {'documentation', 'detail', 'additionalTextEdits'}}
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {'documentation', 'detail', 'additionalTextEdits'}
+}
 
 -- List LSP Servers here
-local servers = {
-    "gopls", "clangd", "pyright", "rust_analyzer", "tsserver", "vuels"
-}
-for _, lsp in ipairs(servers) do
-    require('lspconfig')[lsp].setup {
-        on_attach = on_attach,
-        capabilities = capabilities
-    }
+local function setup_servers()
+    require'lspinstall'.setup()
+    local servers = require'lspinstall'.installed_servers()
+    for _, server in pairs(servers) do
+        require'lspconfig'[server].setup {
+            on_attach = on_attach,
+            capabilities = capabilities
+        }
+    end
+end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function()
+    setup_servers() -- reload installed servers
+    vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
