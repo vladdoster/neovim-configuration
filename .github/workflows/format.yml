@@ -2,9 +2,9 @@ name: "format"
 
 on:
   push:
-    branches: [master]
+    branches: [mac-os]
   pull_request:
-    branches: [master]
+    branches: [mac-os]
 
 jobs:
 
@@ -13,20 +13,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Clone repository
-        uses: actions/checkout@v2
+      - name: checkout latest changes
+        uses: actions/checkout@v2.3.1
         with:
-          fetch-depth: 0
+          token: ${{ secrets.GH_ACTIONS_TOKEN }}
+          fetch-depth: 2
+          persist-credentials: true
 
-      - name: Run stylua
+      - name: format lua
         uses: JohnnyMorganz/stylua-action@1.0.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_ACTIONS_TOKEN }}
           args: -g *.lua -- .
 
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Get last commit message
+        id: last-commit-message
+        run: |
+          echo "::set-output name=msg::$(git log -1 --pretty=%s)"
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: (linting) formatting
-          commit_options: "--cleanup=default --no-verify --signoff"
-          skip_dirty_check: false
+          commit_message: ${{ steps.last-commit-message.outputs.msg }}
+          commit_options: '--amend --no-edit'
+          commit_user_email: mvdoster@gmail.com
+          commit_user_name: vladdoster
+          push_options: '--force'
+          skip_fetch: true
