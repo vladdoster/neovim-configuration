@@ -1,14 +1,19 @@
-local present1, lspconfig = pcall(require, "lspconfig")
-local present2, lspinstall = pcall(require, "lspinstall")
-if not (present1 or present2) then return end
+local dep_0, lspconfig = pcall(require, "lspconfig")
+local dep_1, lspinstall = pcall(require, "lspinstall")
+local dep_2, lsp_signature = pcall(require, "lsp_signature")
+if not (dep_0 or dep_1 or dep_2) then return end
 
 local on_attach = function(client, bufnr)
     -- LSP Signature
-    require"lsp_signature".on_attach({
+    lsp_signature.on_attach({
         bind = true,
-        handler_opts = {border = "single"}
+        use_lspsaga = false,
+        floating_window = true,
+        fix_pos = true,
+        hint_enable = true,
+        hi_parameter = "Search",
+        handler_opts = {"shadow"}
     })
-
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
