@@ -2,9 +2,9 @@ name: "format"
 
 on:
   push:
-    branches: [mac-os]
+    branches: [master]
   pull_request:
-    branches: [mac-os]
+    branches: [master]
 
 jobs:
 
