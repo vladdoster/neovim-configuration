@@ -1,5 +1,5 @@
 local modules = {
---	"startup",
+	--	"startup",
 	"bootstrap",
 	"options",
 	"mappings",

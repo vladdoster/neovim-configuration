@@ -4,11 +4,14 @@
 
 - BREAKING CHANGE(new structure); overheaul of config [`17a2ba3`](https://github.com/vladdoster/neovim-configuration/commit/17a2ba3abb12d07dfd1727cff609078ee7e485d3)
 - (linting) formatting [`5d8da64`](https://github.com/vladdoster/neovim-configuration/commit/5d8da64728bc331bc3e0cac04588feeec1d2c3e5)
+- (linting) formatting [`429ab94`](https://github.com/vladdoster/neovim-configuration/commit/429ab9479f4aba1b6414dcfee2dc215e52264638)
+- maint(formatting): clean stuff up [`0c9bb2f`](https://github.com/vladdoster/neovim-configuration/commit/0c9bb2f1ba4dabdc54541c2201f331cd6e626e6f)
 - feat(bootstrap packer): bootstrap packer & install plugins [`cc31876`](https://github.com/vladdoster/neovim-configuration/commit/cc318768f72eb10cda9aabe9fc068dcb8ce61d56)
 - (linting) formatting [`1c21041`](https://github.com/vladdoster/neovim-configuration/commit/1c2104161ae3ae53b8f60785a1fabfdacb3333fc)
 - feat(lsp-signature): detailed function signature documentation [`4218c28`](https://github.com/vladdoster/neovim-configuration/commit/4218c28134a620d04eb4ce2ba85454c3d2abe0c0)
 - wip(lsp): inconsistent auto-attaching for lua [`53efd69`](https://github.com/vladdoster/neovim-configuration/commit/53efd694427c41236e8236f069a3478cf247b2dd)
 - (release): v0.1.0 [`911711c`](https://github.com/vladdoster/neovim-configuration/commit/911711c0d8862d3ab17935787aecc2b40386e4c2)
+- (release): v0.1.0 [`b921b9b`](https://github.com/vladdoster/neovim-configuration/commit/b921b9b671aeb5f72797091cdf880e8775b5842c)
 
 ## v0.1.0 (2021-07-12)
 
