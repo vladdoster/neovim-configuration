@@ -1,6 +1,6 @@
 local modules = {
-	"startup",
-	"bootstrap_plugins",
+--	"startup",
+	"bootstrap",
 	"options",
 	"mappings",
 	"utils",
