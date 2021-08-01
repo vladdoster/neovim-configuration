@@ -70,6 +70,4 @@ for _, plugin in pairs(disabled_built_ins) do
 	vim.g["loaded_" .. plugin] = 1
 end
 
---neovide
-g.neovide_fullscreen = true
 vim.o.guifont = "JetBrains Mono Font:h15"

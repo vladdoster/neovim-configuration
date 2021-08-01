@@ -1,9 +1,12 @@
-local doom_modules = {
-	"options",
-	"mappings",
-	"utils",
+local modules = {
+    "startup",
+    "bootstrap_plugins",
+    "options",
+    "mappings",
+    "utils",
+    "auto_commands"
 }
 
-for i = 1, #doom_modules, 1 do
-	pcall(require, doom_modules[i])
+for i = 1, #modules, 1 do
+    pcall(require, modules[i])
 end
