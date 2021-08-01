@@ -1,2 +1,2 @@
 vim.g.material_style = "darker"
-require('material').set()
+require("material").set()
