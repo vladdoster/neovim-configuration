@@ -110,6 +110,14 @@ function M.gitgutter()
     map("x", "ah", "<Plug>(GitGutterTextObjectOuterVisual)", {})
 end
 
+function M.file_tree()
+    vim.g.rnvimr_ex_enable = 1
+    vim.g.rnvimr_draw_border = 1
+    vim.g.rnvimr_pick_enable = 1
+    vim.g.rnvimr_bw_enable = 1
+    vim.cmd("nmap <leader>r :RnvimrToggle<CR>")
+end
+
 function M.rnvimr()
     vim.g.rnvimr_ex_enable = 1
     vim.g.rnvimr_draw_border = 1

@@ -52,18 +52,17 @@ packer.init({
 
 packer.startup({
 	function(use)
-		use("wbthomason/packer.nvim")
-		use({ "marko-cerovac/material.nvim", config = conf("colorscheme") })
-		use({ "kyazdani42/nvim-web-devicons" })
-		use({ "akinsho/nvim-bufferline.lua", config = module("bufferline") })
-		use({ "glepnir/galaxyline.nvim", config = module("statusline") })
+		use "wbthomason/packer.nvim"
+		use{ "marko-cerovac/material.nvim", config = conf("colorscheme") }
+		use "kyazdani42/nvim-web-devicons"
+		use{ "akinsho/nvim-bufferline.lua", config = module("bufferline") }
+		use{ "glepnir/galaxyline.nvim", config = module("statusline") }
+                use{'kyazdani42/nvim-tree.lua', config = conf('file_tree') }
+		use{ "kevinhwang91/rnvimr", config = conf("rnvimr") }
+		use{ "nvim-lua/plenary.nvim" }
+		use{ "nvim-lua/popup.nvim" }
 
-		use({ "kevinhwang91/rnvimr", config = conf("rnvimr") })
-
-		use({ "nvim-lua/plenary.nvim" })
-		use({ "nvim-lua/popup.nvim" })
-
-		use({
+		use{
 			"tpope/vim-surround",
 			setup = [[vim.g.surround_no_mappings = 1]],
 			keys = {
@@ -78,7 +77,7 @@ packer.startup({
 				{ "x", "gS" },
 			},
 			config = conf("surround"),
-		})
+		}
 
 		use({ "andymass/vim-matchup", config = conf("matchup") })
 		use({ "sbdchd/neoformat", cmd = "Neoformat", config = conf("neoformat") })
