@@ -21,7 +21,7 @@ map("n", "<Esc>", ":noh<CR>", opt)
 map("t", "jk", "<C-\\><C-n>", opt)
 
 -- NvimTree
-map("n", "<c-n>", ":RnvimrToggle<CR>", opt)
+map("n", "<leader>n", [[ <Cmd> NvimTreeToggle <CR>]], opt)
 
 map("", "j", 'v:count ? "j" : "gj"', { expr = true })
 map("", "k", 'v:count ? "k" : "gk"', { expr = true })
@@ -86,7 +86,7 @@ function _G.completions()
 	return npairs.check_break_line_char()
 end
 
---  compe mappings
+-- compe mappings
 map("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
 map("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
 map("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
@@ -104,11 +104,3 @@ map("n", "<Leader>fr", [[<Cmd>Telescope oldfiles<CR>]], opt)
 -- move between tabs
 map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
 map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
-
--- Packer commands till because we are not loading it at startup
--- vim.cmd("silent! command PackerClean lua require 'plugin_list' require('packer').clean()")
--- vim.cmd("silent! command PackerCompile lua require 'plugin_list' require('packer').compile()")
--- vim.cmd("silent! command PackerInstall lua require 'plugin_list' require('packer').install()")
--- vim.cmd("silent! command PackerStatus lua require 'plugin_list' require('packer').status()")
--- vim.cmd("silent! command PackerSync lua require 'plugin_list' require('packer').sync()")
--- vim.cmd("silent! command PackerUpdate lua require 'plugin_list' require('packer').update()")
