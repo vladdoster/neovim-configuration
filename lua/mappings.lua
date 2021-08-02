@@ -113,7 +113,7 @@ local keymaps = {
         {"<C-Right>", ":vertical resize +2<CR>"},
 
         {"<Leader>fm", ":Neoformat<CR>"}, -- Tab switch buffer
-        {"<TAB>", ":BufferLineCycleNextnull<CR>"}, {"<S-TAB>", ":Buffnull<CR>"},
+        {"<TAB>", ":BufferLineCycleNext<CR>"}, {"<S-TAB>", ":BufferLineCycleNext<CR>"},
 
         -- NvimTree
         {"<C-n>", ":NvimTreeToggle<CR>"},
@@ -134,14 +134,8 @@ local keymaps = {
             "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })<CR>"
         }, {"gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>"},
         {"gp", "<cmd>lua require'lsp.peek'.Peek('definition')<CR>"},
-        {"K", "<cmd>lua vim.lsp.buf.hover()<CR>"}, {
-            "<C-p>",
-            "<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = lvim.lsp.popup_border}})<CR>"
-        }, {
-            "<C-n>",
-            "<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<CR>"
-        }
-    },
+        {"K", "<cmd>lua vim.lsp.buf.hover()<CR>"},
+	},
 
     term_mode = {
         -- Terminal window navigation
