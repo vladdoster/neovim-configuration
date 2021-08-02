@@ -39,7 +39,7 @@ packer.startup({
             reqires = {'kyazdani42/nvim-web-devicons'}
         }
 
-        use {"kyazdani42/nvim-tree.lua", config = conf("file_tree")}
+        use {"kyazdani42/nvim-tree.lua", config = module("nvimtree")}
 
         use {"nvim-lua/plenary.nvim"}
         use {"nvim-lua/popup.nvim"}

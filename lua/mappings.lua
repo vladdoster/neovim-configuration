@@ -104,3 +104,9 @@ map("n", "<Leader>fr", [[<Cmd>Telescope oldfiles<CR>]], opt)
 -- move between tabs
 map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
 map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
+
+-- nvimtree
+map("n", "<C-n>", ":NvimTreeToggle<CR>", opt)
+
+-- format code
+map("n", "<Leader>fm", ":Neoformat<CR>", opt)

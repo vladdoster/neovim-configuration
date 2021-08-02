@@ -5,11 +5,6 @@ local g = vim.g
 
 local map = require("remap").map
 
-function M.colorscheme()
-	vim.g.material_style = "darker"
-	require("material").set()
-end
-
 function M.bqf()
 	if g.colors_name == "one" then
 		cmd("hi! link BqfPreviewBorder Parameter")
@@ -122,14 +117,6 @@ function M.file_tree()
 	vim.cmd("nmap <leader>r :RnvimrToggle<CR>")
 end
 
-function M.rnvimr()
-	vim.g.rnvimr_ex_enable = 1
-	vim.g.rnvimr_draw_border = 1
-	vim.g.rnvimr_pick_enable = 1
-	vim.g.rnvimr_bw_enable = 1
-	vim.cmd("nmap <leader>r :RnvimrToggle<CR>")
-end
-
 function M.neoformat()
 	g.neoformat_only_msg_on_error = 1
 	g.neoformat_basic_format_align = 1
@@ -152,10 +139,6 @@ function M.neoformat()
 		args = { "--stdin-filepath", '"%:p"', "--tab-width=2" },
 		stdin = 1,
 	}
-end
-
-function M.suda()
-	map("n", "<Leader>W", "<Cmd>SudaWrite<CR>")
 end
 
 return M

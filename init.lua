@@ -1,6 +1,6 @@
 local modules = {
-        "plugins",
 	"options",
+        "plugins",
 	"mappings",
 	"utils",
 	"auto_commands",
