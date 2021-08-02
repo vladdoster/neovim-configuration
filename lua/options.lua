@@ -33,10 +33,6 @@ o.history = 100         -- remember n lines in history
 o.lazyredraw = true     -- faster scrolling
 b.synmaxcol = 240       -- max column for syntax highlight
 
--- Colorscheme
-o.termguicolors = true          -- enable 24-bit RGB colors
-cmd([[colorscheme molokai]])    -- set colorscheme
-
 -- Tabs, indent
 b.expandtab = true      -- use spaces instead of tabs
 b.shiftwidth = 4        -- shift 4 spaces when tab
