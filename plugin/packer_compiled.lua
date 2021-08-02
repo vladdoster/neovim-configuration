@@ -181,22 +181,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require('configs.luasnip')
-time([[Config for LuaSnip]], false)
--- Config for: vim-matchup
-time([[Config for vim-matchup]], true)
-require('configs.config').matchup()
-time([[Config for vim-matchup]], false)
--- Config for: nvim-compe
-time([[Config for nvim-compe]], true)
-require('configs.compe')
-time([[Config for nvim-compe]], false)
--- Config for: material.nvim
-time([[Config for material.nvim]], true)
-try_loadstring("\27LJ\2\n`\0\0\3\0\a\0\n6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\bset\rmaterial\frequire\vdarker\19material_style\6g\bvim\0", "config", "material.nvim")
-time([[Config for material.nvim]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 require('configs.nvimtree')
@@ -205,10 +189,26 @@ time([[Config for nvim-tree.lua]], false)
 time([[Config for lspkind-nvim]], true)
 require('configs.config').lspkind()
 time([[Config for lspkind-nvim]], false)
+-- Config for: vim-matchup
+time([[Config for vim-matchup]], true)
+require('configs.config').matchup()
+time([[Config for vim-matchup]], false)
+-- Config for: material.nvim
+time([[Config for material.nvim]], true)
+try_loadstring("\27LJ\2\n`\0\0\3\0\a\0\n6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\bset\rmaterial\frequire\vdarker\19material_style\6g\bvim\0", "config", "material.nvim")
+time([[Config for material.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require('configs.lspconfig')
 time([[Config for nvim-lspconfig]], false)
+-- Config for: nvim-compe
+time([[Config for nvim-compe]], true)
+require('configs.compe')
+time([[Config for nvim-compe]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('configs.luasnip')
+time([[Config for LuaSnip]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -219,7 +219,7 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'galaxyline.nvim', 'nvim-bufferline.lua', 'nvim-web-devicons'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'nvim-bufferline.lua', 'nvim-web-devicons', 'galaxyline.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertCharPre * ++once lua require("packer.load")({'friendly-snippets'}, { event = "InsertCharPre *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
