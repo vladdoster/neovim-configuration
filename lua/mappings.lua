@@ -1,112 +1,169 @@
-local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true, silent = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+local mode_adapters = {
+    insert_mode = "i",
+    normal_mode = "n",
+    term_mode = "t",
+    visual_mode = "v",
+    visual_block_mode = "x"
+}
+
+local function load_mode(mode, keymaps, opts)
+    mode = mode_adapters[mode] and mode_adapters[mode] or mode
+    for _, keymap in ipairs(keymaps) do
+        vim.api.nvim_set_keymap(mode, keymap[1], keymap[2], opts)
+    end
 end
+
+local function load(keymaps, opts)
+    for mode, mapping in pairs(keymaps) do
+        M.load_mode(mode, mapping, opts[mode])
+    end
+end
+
+local function map(mode, lhs, rhs, opts)
+    local options = {noremap = true, silent = true}
+    if opts then options = vim.tbl_extend("force", options, opts) end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+-- compe stuff
+local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col(".") - 1
+    if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
+        return true
+    else
+        return false
+    end
+end
+
+_G.tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+        return t("<C-n>")
+    elseif check_back_space() then
+        return t("<Tab>")
+    else
+        return vim.fn["compe#complete"]()
+    end
+end
+
+_G.s_tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+        return t("<C-p>")
+    elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+        return t("<Plug>(vsnip-jump-prev)")
+    else
+        return t("<S-Tab>")
+    end
+end
+
+function _G.completions()
+    local npairs
+    if not pcall(function() npairs = require("nvim-autopairs") end) then
+        return
+    end
+
+    if vim.fn.pumvisible() == 1 then
+        if vim.fn.complete_info()["selected"] ~= -1 then
+            return vim.fn["compe#confirm"]("<CR>")
+        end
+    end
+    return npairs.check_break_line_char()
+end
+
+-- compe mappings
+map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map("i", "<CR>", "v:lua.completions()", {expr = true})
 
 local cmd = vim.cmd
 local opt = {}
 
 vim.g.mapleader = " "
 
--- toggle numbers
-map("n", "<leader>n", [[ <Cmd> set nu!<CR>]], opt)
+local opts = {
+    insert_mode = {noremap = true, silent = true},
+    normal_mode = {noremap = true, silent = true},
+    visual_mode = {noremap = true, silent = true},
+    visual_block_mode = {noremap = true, silent = true},
+    term_mode = {silent = true}
+}
 
--- use ESC to turn off search highlighting
-map("n", "<Esc>", ":noh<CR>", opt)
+local keymaps = {
+    insert_mode = {
+        -- I hate escape
+        {"jk", "<ESC>"}, {"kj", "<ESC>"}, {"jj", "<ESC>"},
+        -- Move current line / block with Alt-j/k ala vscode.
+        {"<A-j>", "<Esc>:m .+1<CR>==gi"}, {"<A-k>", "<Esc>:m .-2<CR>==gi"},
+        -- navigation
+        {"<A-Up>", "<C-\\><C-N><C-w>k"}, {"<A-Down>", "<C-\\><C-N><C-w>j"},
+        {"<A-Left>", "<C-\\><C-N><C-w>h"}, {"<A-Right>", "<C-\\><C-N><C-w>l"}
+    },
 
--- get out of terminal with jk
-map("t", "jk", "<C-\\><C-n>", opt)
+    normal_mode = {
+        -- Better window movement
+        {"<C-h>", "<C-w>h"}, {"<C-j>", "<C-w>j"}, {"<C-k>", "<C-w>k"},
+        {"<C-l>", "<C-w>l"}, -- Resize with arrows
+        {"<C-Up>", ":resize -2<CR>"}, {"<C-Down>", ":resize +2<CR>"},
+        {"<C-Left>", ":vertical resize -2<CR>"},
+        {"<C-Right>", ":vertical resize +2<CR>"},
 
--- NvimTree
-map("n", "<leader>n", [[ <Cmd> NvimTreeToggle <CR>]], opt)
+        {"<Leader>fm", ":Neoformat<CR>"}, -- Tab switch buffer
+        {"<TAB>", ":BufferLineCycleNextnull<CR>"}, {"<S-TAB>", ":Buffnull<CR>"},
 
-map("", "j", 'v:count ? "j" : "gj"', { expr = true })
-map("", "k", 'v:count ? "k" : "gk"', { expr = true })
-map("", "<Down>", 'v:count ? "j" : "gj"', { expr = true })
-map("", "<Up>", 'v:count ? "k" : "gk"', { expr = true })
+        -- NvimTree
+        {"<C-n>", ":NvimTreeToggle<CR>"},
 
-map("n", "<c-k>", [[<Cmd>wincmd k<CR>]], opt) -- ctrlhjkl to navigate splits
-map("n", "<c-j>", [[<Cmd>wincmd j<CR>]], opt)
-map("n", "<c-h>", [[<Cmd>wincmd h<CR>]], opt)
-map("n", "<c-l>", [[<Cmd>wincmd l<CR>]], opt)
+        -- Move current line / block with Alt-j/k a la vscode.
+        {"<A-j>", ":m .+1<CR>=="}, {"<A-k>", ":m .-2<CR>=="}, -- QuickFix
+        {"]q", ":cnext<CR>"}, {"[q", ":cprev<CR>"},
+        {"<C-q>", ":call QuickFixToggle()<CR>"},
 
-cmd([[autocmd BufWritePre * %s/\s\+$//e]]) -- remove trailing whitespaces
-cmd([[autocmd BufWritePre * %s/\n\+\%$//e]])
+        -- {'<C-TAB>', 'compe#complete()', {noremap = true, silent = true, expr = true}},
 
--- compe stuff
-local t = function(str)
-	return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
+        -- LSP
+        {"gd", "<cmd>lua vim.lsp.buf.definition()<CR>"},
+        {"gD", "<cmd>lua vim.lsp.buf.declaration()<CR>"},
+        {"gr", "<cmd>lua vim.lsp.buf.references()<CR>"},
+        {"gi", "<cmd>lua vim.lsp.buf.implementation()<CR>"}, {
+            "gl",
+            "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })<CR>"
+        }, {"gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>"},
+        {"gp", "<cmd>lua require'lsp.peek'.Peek('definition')<CR>"},
+        {"K", "<cmd>lua vim.lsp.buf.hover()<CR>"}, {
+            "<C-p>",
+            "<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = lvim.lsp.popup_border}})<CR>"
+        }, {
+            "<C-n>",
+            "<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<CR>"
+        }
+    },
 
-local check_back_space = function()
-	local col = vim.fn.col(".") - 1
-	if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-		return true
-	else
-		return false
-	end
-end
+    term_mode = {
+        -- Terminal window navigation
+        {"<C-h>", "<C-\\><C-N><C-w>h"}, {"<C-j>", "<C-\\><C-N><C-w>j"},
+        {"<C-k>", "<C-\\><C-N><C-w>k"}, {"<C-l>", "<C-\\><C-N><C-w>l"}
+    },
 
-_G.tab_complete = function()
-	if vim.fn.pumvisible() == 1 then
-		return t("<C-n>")
-	elseif check_back_space() then
-		return t("<Tab>")
-	else
-		return vim.fn["compe#complete"]()
-	end
-end
+    visual_mode = {
+        -- Better indenting
+        {"<", "<gv"}, {">", ">gv"}
 
-_G.s_tab_complete = function()
-	if vim.fn.pumvisible() == 1 then
-		return t("<C-p>")
-	elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
-		return t("<Plug>(vsnip-jump-prev)")
-	else
-		return t("<S-Tab>")
-	end
-end
+        -- { "p", '"0p', { silent = true } },
+        -- { "P", '"0P', { silent = true } },
+    },
 
-function _G.completions()
-	local npairs
-	if not pcall(function()
-		npairs = require("nvim-autopairs")
-	end) then
-		return
-	end
+    visual_block_mode = {
+        -- Move selected line / block of text in visual mode
+        {"K", ":move '<-2<CR>gv-gv"}, {"J", ":move '>+1<CR>gv-gv"},
 
-	if vim.fn.pumvisible() == 1 then
-		if vim.fn.complete_info()["selected"] ~= -1 then
-			return vim.fn["compe#confirm"]("<CR>")
-		end
-	end
-	return npairs.check_break_line_char()
-end
+        -- Move current line / block with Alt-j/k ala vscode.
+        {"<A-j>", ":m '>+1<CR>gv-gv"}, {"<A-k>", ":m '<-2<CR>gv-gv"}
+    }
+}
 
--- compe mappings
-map("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
-map("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
-map("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-map("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-map("i", "<CR>", "v:lua.completions()", { expr = true })
-
--- Telescope
-map("n", "<Leader>gt", [[<Cmd> Telescope git_status <CR>]], opt)
-map("n", "<Leader>cm", [[<Cmd> Telescope git_commits <CR>]], opt)
-map("n", "<Leader>.", [[<Cmd> Telescope find_files <CR>]], opt)
-map("n", "<Leader>bb", [[<Cmd>Telescope buffers<CR>]], opt)
-map("n", "<Leader>fh", [[<Cmd>Telescope help_tags<CR>]], opt)
-map("n", "<Leader>fr", [[<Cmd>Telescope oldfiles<CR>]], opt)
-
--- move between tabs
-map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
-map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
-
--- nvimtree
-map("n", "<C-n>", ":NvimTreeToggle<CR>", opt)
-
--- format code
-map("n", "<Leader>fm", ":Neoformat<CR>", opt)
+for mode, mapping in pairs(keymaps) do load_mode(mode, mapping, opts[mode]) end

@@ -83,8 +83,9 @@ _G.packer_plugins = {
   },
   ["galaxyline.nvim"] = {
     config = { "require('configs.statusline')" },
-    loaded = true,
-    path = "/Users/anonymous/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/anonymous/.local/share/nvim/site/pack/packer/opt/galaxyline.nvim"
   },
   ["lsp_signature.nvim"] = {
     loaded = true,
@@ -109,8 +110,9 @@ _G.packer_plugins = {
   },
   ["nvim-bufferline.lua"] = {
     config = { "require('configs.bufferline')" },
-    loaded = true,
-    path = "/Users/anonymous/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/anonymous/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
   },
   ["nvim-compe"] = {
     after_files = { "/Users/anonymous/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
@@ -140,8 +142,9 @@ _G.packer_plugins = {
     path = "/Users/anonymous/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/Users/anonymous/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/anonymous/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -181,26 +184,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: galaxyline.nvim
-time([[Config for galaxyline.nvim]], true)
-require('configs.statusline')
-time([[Config for galaxyline.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('configs.lspconfig')
-time([[Config for nvim-lspconfig]], false)
--- Config for: vim-matchup
-time([[Config for vim-matchup]], true)
-require('configs.config').matchup()
-time([[Config for vim-matchup]], false)
--- Config for: nvim-bufferline.lua
-time([[Config for nvim-bufferline.lua]], true)
-require('configs.bufferline')
-time([[Config for nvim-bufferline.lua]], false)
--- Config for: lspkind-nvim
-time([[Config for lspkind-nvim]], true)
-require('configs.config').lspkind()
-time([[Config for lspkind-nvim]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 require('configs.nvimtree')
@@ -209,6 +192,18 @@ time([[Config for nvim-tree.lua]], false)
 time([[Config for material.nvim]], true)
 try_loadstring("\27LJ\2\n`\0\0\3\0\a\0\n6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\bset\rmaterial\frequire\vdarker\19material_style\6g\bvim\0", "config", "material.nvim")
 time([[Config for material.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('configs.lspconfig')
+time([[Config for nvim-lspconfig]], false)
+-- Config for: lspkind-nvim
+time([[Config for lspkind-nvim]], true)
+require('configs.config').lspkind()
+time([[Config for lspkind-nvim]], false)
+-- Config for: vim-matchup
+time([[Config for vim-matchup]], true)
+require('configs.config').matchup()
+time([[Config for vim-matchup]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -220,6 +215,7 @@ vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au InsertCharPre * ++once lua require("packer.load")({'LuaSnip', 'friendly-snippets'}, { event = "InsertCharPre *" }, _G.packer_plugins)]]
+vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'nvim-bufferline.lua', 'galaxyline.nvim', 'nvim-web-devicons'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")

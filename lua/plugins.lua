@@ -8,7 +8,7 @@ local function module(name) return ([[require('configs.%s')]]):format(name) end
 local present, _ = pcall(require, "bootstrap_packer")
 
 if present then
-    packer = require "packer"
+    packer = require("packer")
 else
     print("--- ERROR: packer failed to load")
     return false
@@ -20,15 +20,18 @@ packer.startup({
     function()
         use {"wbthomason/packer.nvim"}
 
-        use {"kyazdani42/nvim-web-devicons"}
+        use {"kyazdani42/nvim-web-devicons", event = "BufWinEnter"}
+
         use {
             "akinsho/nvim-bufferline.lua",
             config = module("bufferline"),
+            event = "BufWinEnter",
             requires = {'kyazdani42/nvim-web-devicons'}
         }
         use {
             "glepnir/galaxyline.nvim",
             config = module("statusline"),
+            event = "BufWinEnter",
             requires = {'kyazdani42/nvim-web-devicons'}
         }
         use {
@@ -41,8 +44,6 @@ packer.startup({
 
         use {"kyazdani42/nvim-tree.lua", config = module("nvimtree")}
 
-
-
         use {"andymass/vim-matchup", config = conf("matchup")}
         use {
             "sbdchd/neoformat",
@@ -51,14 +52,18 @@ packer.startup({
             opt = true
         }
 
-	use {"machakann/vim-sandwich"}
-	use {"tpope/vim-commentary"}
+        use {"machakann/vim-sandwich"}
+        use {"tpope/vim-commentary"}
         use {"tpope/vim-repeat"}
 
         use {"nvim-lua/plenary.nvim"}
         use {"nvim-lua/popup.nvim"}
-        use {'nvim-telescope/telescope.nvim', config = module('telescope'), opt=true}
-        use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", opt=true}
+        use {
+            'nvim-telescope/telescope.nvim',
+            config = module('telescope'),
+            opt = true
+        }
+        use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", opt = true}
 
         use {"kabouzeid/nvim-lspinstall"}
         use {"neovim/nvim-lspconfig", config = module("lspconfig")}
@@ -79,6 +84,7 @@ packer.startup({
                 }, {"rafamadriz/friendly-snippets", event = "InsertCharPre"}
             }
         }
+
     end,
     config = {
         git = {clone_timeout = 60, depth = 1},
