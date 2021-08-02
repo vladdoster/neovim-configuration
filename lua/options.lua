@@ -8,7 +8,7 @@ local b = vim.bo        				-- buffer-scoped options
 local w = vim.wo        				-- windows-scoped options
 
 -- General
-g.mapleader = ','           -- change leader to a comma
+g.mapleader = ' '           -- change leader to a comma
 o.mouse = 'a'               -- enable mous support
 o.background = "dark"
 o.guifont = "JetBrains Mono Font:h15" -- the font used in graphical neovim applications
