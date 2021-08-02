@@ -72,14 +72,12 @@ packer.startup({
 
         use {
             "hrsh7th/nvim-compe",
-            event = "InsertEnter",
             config = module("compe"),
             wants = "LuaSnip",
             requires = {
                 {
                     "L3MON4D3/LuaSnip",
                     wants = "friendly-snippets",
-                    event = "InsertCharPre",
                     config = module("luasnip")
                 }, {"rafamadriz/friendly-snippets", event = "InsertCharPre"}
             }
