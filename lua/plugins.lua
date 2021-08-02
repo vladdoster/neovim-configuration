@@ -20,6 +20,17 @@ packer.startup({
     function()
         use {"wbthomason/packer.nvim"}
 
+        use {"kyazdani42/nvim-web-devicons"}
+        use {
+            "akinsho/nvim-bufferline.lua",
+            config = module("bufferline"),
+            requires = {'kyazdani42/nvim-web-devicons'}
+        }
+        use {
+            "glepnir/galaxyline.nvim",
+            config = module("statusline"),
+            requires = {'kyazdani42/nvim-web-devicons'}
+        }
         use {
             "marko-cerovac/material.nvim",
             config = function()
@@ -27,22 +38,10 @@ packer.startup({
                 require("material").set()
             end
         }
-        use {"kyazdani42/nvim-web-devicons"}
-        use {
-            "akinsho/nvim-bufferline.lua",
-            config = module("bufferline"),
-            reqires = {'kyazdani42/nvim-web-devicons'}
-        }
-        use {
-            "glepnir/galaxyline.nvim",
-            config = module("statusline"),
-            reqires = {'kyazdani42/nvim-web-devicons'}
-        }
 
         use {"kyazdani42/nvim-tree.lua", config = module("nvimtree")}
 
-        use {"nvim-lua/plenary.nvim"}
-        use {"nvim-lua/popup.nvim"}
+
 
         use {"andymass/vim-matchup", config = conf("matchup")}
         use {
@@ -52,17 +51,12 @@ packer.startup({
             opt = true
         }
 
+	use {"machakann/vim-sandwich"}
+	use {"tpope/vim-commentary"}
         use {"tpope/vim-repeat"}
-        use {
-            "tpope/vim-surround",
-            setup = [[vim.g.surround_no_mappings = 1]],
-            keys = {
-                {"n", "sd"}, {"n", "cs"}, {"n", "cS"}, {"n", "ys"}, {"n", "yS"},
-                {"n", "yss"}, {"n", "ygs"}, {"x", "S"}, {"x", "gS"}
-            },
-            config = conf("surround")
-        }
 
+        use {"nvim-lua/plenary.nvim"}
+        use {"nvim-lua/popup.nvim"}
         use {'nvim-telescope/telescope.nvim', config = module('telescope'), opt=true}
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", opt=true}
 

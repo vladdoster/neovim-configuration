@@ -5,31 +5,19 @@ local g = vim.g
 
 local map = require("remap").map
 
-function M.bqf()
-	if g.colors_name == "one" then
-		cmd("hi! link BqfPreviewBorder Parameter")
-	end
-
-	require("bqf").setup({
-		auto_enable = true,
-		auto_resize_height = true,
-		preview = { auto_preview = true },
-		func_map = { split = "<C-s>" },
-		filter = { fzf = { action_for = { ["ctrl-s"] = "split" } } },
-	})
-end
-
-function M.surround()
-	map("n", "sd", "<Plug>Dsurround", {})
-	map("n", "cs", "<Plug>Csurround", {})
-	map("n", "cS", "<Plug>CSurround", {})
-	map("n", "ys", "<Plug>Ysurround", {})
-	map("n", "yS", "<Plug>YSurround", {})
-	map("n", "yss", "<Plug>Yssurround", {})
-	map("n", "ygs", "<Plug>YSsurround", {})
-	map("x", "S", "<Plug>VSurround", {})
-	map("x", "gS", "<Plug>VgSurround", {})
-end
+--function M.bqf()
+--	if g.colors_name == "one" then
+--		cmd("hi! link BqfPreviewBorder Parameter")
+--	end
+--
+--	require("bqf").setup({
+--		auto_enable = true,
+--		auto_resize_height = true,
+--		preview = { auto_preview = true },
+--		func_map = { split = "<C-s>" },
+--		filter = { fzf = { action_for = { ["ctrl-s"] = "split" } } },
+--	})
+--end
 
 function M.lspkind()
 	local present, lspkind = pcall(require, "lspkind")
@@ -83,39 +71,32 @@ function M.matchup()
     ]])
 end
 
-function M.gitgutter()
-	cmd([[
-        hi! link GitGutterAdd Constant
-        hi! link GitGutterChange Type
-        hi! link GitGutterDelete Identifier
-        hi! link GitGutterAddLineNr GitGutterAdd
-        hi! link GitGutterChangeLineNr GitGutterChange
-        hi! link GitGutterDeleteLineNr GitGutterDelete
-        hi! link GitGutterChangeDeleteLineNr GitGutterChangeDeleteLine
-        hi! link GitGutterAddIntraLine DiffText
-        hi! link GitGutterDeleteIntraLine DiffText
-    ]])
-	if g.colors_name == "one" then
-		cmd("hi! GitGutterChangeDeleteLine guifg=#be5046")
-	end
-	map("n", "<Leader>hp", "<Plug>(GitGutterPreviewHunk)", {})
-	map("n", "<Leader>hs", "<Plug>(GitGutterStageHunk)", {})
-	map("n", "<Leader>hu", "<Plug>(GitGutterUndoHunk)", {})
-	map("n", "[c", "<Plug>(GitGutterPrevHunk)", {})
-	map("n", "]c", "<Plug>(GitGutterNextHunk)", {})
-	map("o", "ih", "<Plug>(GitGutterTextObjectInnerPending)", {})
-	map("o", "ah", "<Plug>(GitGutterTextObjectOuterPending)", {})
-	map("x", "ih", "<Plug>(GitGutterTextObjectInnerVisual)", {})
-	map("x", "ah", "<Plug>(GitGutterTextObjectOuterVisual)", {})
-end
-
-function M.file_tree()
-	vim.g.rnvimr_ex_enable = 1
-	vim.g.rnvimr_draw_border = 1
-	vim.g.rnvimr_pick_enable = 1
-	vim.g.rnvimr_bw_enable = 1
-	vim.cmd("nmap <leader>r :RnvimrToggle<CR>")
-end
+-- function M.gitgutter()
+-- 	cmd([[
+--         hi! link GitGutterAdd Constant
+--         hi! link GitGutterChange Type
+--         hi! link GitGutterDelete Identifier
+--         hi! link GitGutterAddLineNr GitGutterAdd
+--         hi! link GitGutterChangeLineNr GitGutterChange
+--         hi! link GitGutterDeleteLineNr GitGutterDelete
+--         hi! link GitGutterChangeDeleteLineNr GitGutterChangeDeleteLine
+--         hi! link GitGutterAddIntraLine DiffText
+--         hi! link GitGutterDeleteIntraLine DiffText
+--     ]])
+-- 	if g.colors_name == "one" then
+-- 		cmd("hi! GitGutterChangeDeleteLine guifg=#be5046")
+-- 	end
+-- 	map("n", "<Leader>hp", "<Plug>(GitGutterPreviewHunk)", {})
+-- 	map("n", "<Leader>hs", "<Plug>(GitGutterStageHunk)", {})
+-- 	map("n", "<Leader>hu", "<Plug>(GitGutterUndoHunk)", {})
+-- 	map("n", "[c", "<Plug>(GitGutterPrevHunk)", {})
+-- 	map("n", "]c", "<Plug>(GitGutterNextHunk)", {})
+-- 	map("o", "ih", "<Plug>(GitGutterTextObjectInnerPending)", {})
+-- 	map("o", "ah", "<Plug>(GitGutterTextObjectOuterPending)", {})
+-- 	map("x", "ih", "<Plug>(GitGutterTextObjectInnerVisual)", {})
+-- 	map("x", "ah", "<Plug>(GitGutterTextObjectOuterVisual)", {})
+-- end
+--
 
 function M.neoformat()
 	g.neoformat_only_msg_on_error = 1
