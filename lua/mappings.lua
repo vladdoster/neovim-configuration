@@ -7,6 +7,16 @@ local function map(mode, lhs, rhs, opts)
 end
 
 local opt = {}
+local noremap_nosilent = { noremap = true, silent = false }
+local noremap_silent = { noremap = true, silent = true }
+
+-- disable keys
+map( "n", "Q", "<Nop>", opt )
+map( "n", "<Left>", "<Nop>", opt )
+map( "n", "<Right>", "<Nop>", opt )
+map( "n", "<Up>", "<Nop>", opt )
+map( "n", "<Down>", "<Nop>", opt )
+map( "n", "<C-z>", "<Nop>", opt )
 
 -- Don't copy the replaced text after pasting in visual mode
 map("v", "p", '"_dP', opt)
@@ -14,9 +24,17 @@ map("v", "p", '"_dP', opt)
 -- copy whole file content
 map("n", "<C-a>", ":%y+<CR>", opt)
 
+-- resize window
+map( "n", "<A-Left>", "<CMD>vertical resize +5<CR>", noremap_silent )
+map( "n", "<A-Up>", "<CMD>resize -5<CR>", noremap_silent )
+map( "n", "<A-Right>", "<CMD>vertical resize -5<CR>", noremap_silent )
+map( "n", "<A-Down>", "<CMD>resize +5<CR>", noremap_silent )
+
+-- terminal mode
+map("t", "<Esc>", "<C-\\><C-n>", opt)
 
 -- nvimtree
-map("n", "<C-n>", ":NvimTreeToggle<CR>", opt)
+map("n", "`", ":NvimTreeToggle<CR>", opt)
 
 -- format code
 map("n", "<Leader>fm", ":Neoformat<CR>", opt)
@@ -39,5 +57,4 @@ map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", opt)
 -- use ESC to turn off search highlighting
 map("n", "<Esc>", ":noh<CR>", opt)
 
--- get out of terminal with jk
-map("t", "jk", "<C-\\><C-n>", opt)
+
