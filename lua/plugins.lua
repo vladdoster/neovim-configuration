@@ -21,17 +21,14 @@ packer.startup({
         use {"wbthomason/packer.nvim"}
 
         use {"kyazdani42/nvim-web-devicons", event = "BufWinEnter"}
-
         use {
             "akinsho/nvim-bufferline.lua",
             config = module("bufferline"),
-            event = "BufWinEnter",
             requires = {'kyazdani42/nvim-web-devicons'}
         }
         use {
             "glepnir/galaxyline.nvim",
             config = module("statusline"),
-            event = "BufWinEnter",
             requires = {'kyazdani42/nvim-web-devicons'}
         }
         use {
@@ -43,15 +40,9 @@ packer.startup({
         }
 
         use {"kyazdani42/nvim-tree.lua", config = module("nvimtree")}
+        use {"sbdchd/neoformat", cmd = "Neoformat",config = conf("neoformat")}
 
-        use {"andymass/vim-matchup", config = conf("matchup")}
-        use {
-            "sbdchd/neoformat",
-            cmd = "Neoformat",
-            config = conf("neoformat"),
-            opt = true
-        }
-
+        use {"junegunn/vim-easy-align"}
         use {"machakann/vim-sandwich"}
         use {"tpope/vim-commentary"}
         use {"tpope/vim-repeat"}
@@ -69,7 +60,7 @@ packer.startup({
         use {"neovim/nvim-lspconfig", config = module("lspconfig")}
         use {"onsails/lspkind-nvim", config = conf("lspkind")}
         use {"ray-x/lsp_signature.nvim"}
-
+        use {'stevearc/aerial.nvim'}
         use {
             "hrsh7th/nvim-compe",
             config = module("compe"),
