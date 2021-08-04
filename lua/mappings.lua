@@ -8,12 +8,12 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 -- disable keys
-map( "n", "Q", "<Nop>", opt )
-map( "n", "<Left>", "<Nop>", opt )
-map( "n", "<Right>", "<Nop>", opt )
-map( "n", "<Up>", "<Nop>", opt )
-map( "n", "<Down>", "<Nop>", opt )
-map( "n", "<C-z>", "<Nop>", opt )
+map("n", "Q", "<Nop>", opt)
+map("n", "<Left>", "<Nop>", opt)
+map("n", "<Right>", "<Nop>", opt)
+map("n", "<Up>", "<Nop>", opt)
+map("n", "<Down>", "<Nop>", opt)
+map("n", "<C-z>", "<Nop>", opt)
 -- don't copy the replaced text after pasting in visual mode
 map("v", "p", '"_dP', opt)
 -- copy whole file content
