@@ -2,10 +2,12 @@ local dep_0, lsp_config = pcall(require, "lspconfig")
 local dep_1, lsp_install = pcall(require, "lspinstall")
 local dep_2, lsp_signature = pcall(require, "lsp_signature")
 local dep_3, lsp_aerial = pcall(require, "aerial")
-if not (dep_0 or dep_1 or dep_2 or dep_3) then return end
+if not (dep_0 or dep_1 or dep_2 or dep_3) then
+    return
+end
 
 local on_attach = function(client, bufnr)
-    aerial.on_attach(client)
+    lsp_aerial.on_attach(client)
     lsp_signature.on_attach({
         bind = true,
         use_lspsaga = false,
@@ -13,11 +15,13 @@ local on_attach = function(client, bufnr)
         fix_pos = true,
         hint_enable = true,
         hi_parameter = "Search",
-        handler_opts = {"shadow"}
+        handler_opts = { "shadow" },
     })
     -- mappings
-    local opts = {noremap = true, silent = true}
-    local function keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local opts = { noremap = true, silent = true }
+    local function keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
 
     keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
@@ -43,13 +47,13 @@ local on_attach = function(client, bufnr)
         keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     end
     if client.resolved_capabilities.document_range_formatting then
-        keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>",
-               opts)
+        keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
     -- autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
+        vim.api.nvim_exec(
+            [[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
       hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
       hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
@@ -58,7 +62,9 @@ local on_attach = function(client, bufnr)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]], false)
+    ]],
+            false
+        )
     end
 end
 
@@ -66,24 +72,22 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {"documentation", "detail", "additionalTextEdits"}
+    properties = { "documentation", "detail", "additionalTextEdits" },
 }
 
-require("lspinstall").setup()
 local function setup_servers()
-    local servers = lsp_install.installed_servers()
+    local servers = require("lspinstall").installed_servers()
     for _, server in pairs(servers) do
         lsp_config[server].setup({
             on_attach = on_attach,
-            capabilities = capabilities
+            capabilities = capabilities,
         })
     end
 end
-
 setup_servers()
 
 -- automatically reload after `:lspinstall <server>` so we don't have to restart neovim
-lsp_install.post_install_hook = function()
+require("lspinstall").post_install_hook = function()
     setup_servers() -- reload installed servers
     vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end

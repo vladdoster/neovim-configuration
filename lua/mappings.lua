@@ -1,10 +1,12 @@
 local opt = {}
-local noremap_nosilent = {noremap = true, silent = false}
-local noremap_silent = {noremap = true, silent = true}
+local noremap_nosilent = { noremap = true, silent = false }
+local noremap_silent = { noremap = true, silent = true }
 
 local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true, silent = true}
-    if opts then options = vim.tbl_extend("force", options, opts) end
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 -- disable keys
