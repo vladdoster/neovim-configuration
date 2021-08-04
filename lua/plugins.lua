@@ -20,24 +20,7 @@ packer.startup({
     function()
         use {"wbthomason/packer.nvim"}
 
-        use {"kyazdani42/nvim-web-devicons", event = "BufWinEnter"}
-        use {
-            "akinsho/nvim-bufferline.lua",
-            config = module("bufferline"),
-            requires = {'kyazdani42/nvim-web-devicons'}
-        }
-        use {
-            "glepnir/galaxyline.nvim",
-            config = module("statusline"),
-            requires = {'kyazdani42/nvim-web-devicons'}
-        }
-        use {
-            "marko-cerovac/material.nvim",
-            config = function()
-                vim.g.material_style = "darker"
-                require("material").set()
-            end
-        }
+
 
         use {"kyazdani42/nvim-tree.lua", config = module("nvimtree")}
         use {"sbdchd/neoformat", cmd = "Neoformat",config = conf("neoformat")}
@@ -47,20 +30,21 @@ packer.startup({
         use {"tpope/vim-commentary"}
         use {"tpope/vim-repeat"}
 
-        use {"nvim-lua/plenary.nvim"}
-        use {"nvim-lua/popup.nvim"}
         use {
             'nvim-telescope/telescope.nvim',
             config = module('telescope'),
-            opt = true
+	    requires = {{"nvim-lua/plenary.nvim"},
+            		{"nvim-lua/popup.nvim"}},
+	    opt=true
         }
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", opt = true}
-
-        use {"kabouzeid/nvim-lspinstall"}
-        use {"neovim/nvim-lspconfig", config = module("lspconfig")}
-        use {"onsails/lspkind-nvim", config = conf("lspkind")}
-        use {"ray-x/lsp_signature.nvim"}
-        use {'stevearc/aerial.nvim'}
+        use {"neovim/nvim-lspconfig",
+		requires= {
+				{'ray-x/lsp_signature.nvim'},
+				{"kabouzeid/nvim-lspinstall"},
+				{'stevearc/aerial.nvim'}
+			}
+		,config = module("lspconfig")}
         use {
             "hrsh7th/nvim-compe",
             config = module("compe"),
@@ -72,6 +56,22 @@ packer.startup({
                     config = module("luasnip")
                 }, {"rafamadriz/friendly-snippets", event = "InsertCharPre"}
             }
+        }
+        use {"kyazdani42/nvim-web-devicons", opt=false}
+        use {
+            "akinsho/nvim-bufferline.lua",
+            config = module("bufferline"),
+        }
+        use {
+            "glepnir/galaxyline.nvim",
+            config = module("statusline"),
+        }
+        use {
+            "marko-cerovac/material.nvim",
+            config = function()
+                vim.g.material_style = "darker"
+                require("material").set()
+            end
         }
 
     end,

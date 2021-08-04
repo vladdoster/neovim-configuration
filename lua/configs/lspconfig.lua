@@ -69,11 +69,11 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = {"documentation", "detail", "additionalTextEdits"}
 }
 
+require("lspinstall").setup()
 local function setup_servers()
-    require("lspinstall").setup()
-    local servers = require("lspinstall").installed_servers()
+    local servers = lsp_install.installed_servers()
     for _, server in pairs(servers) do
-        require("lspconfig")[server].setup({
+        lsp_config[server].setup({
             on_attach = on_attach,
             capabilities = capabilities
         })
@@ -83,7 +83,7 @@ end
 setup_servers()
 
 -- automatically reload after `:lspinstall <server>` so we don't have to restart neovim
-require("lspinstall").post_install_hook = function()
+lsp_install.post_install_hook = function()
     setup_servers() -- reload installed servers
     vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
