@@ -31,6 +31,7 @@ packer.startup({
         use({ "machakann/vim-sandwich" })
         use({ "tpope/vim-commentary" })
         use({ "tpope/vim-repeat" })
+        use({"akinsho/nvim-toggleterm.lua", cmd="ToggleTerm", config = module("toggleterm")})
 
         use({
             "nvim-telescope/telescope.nvim",
@@ -80,12 +81,14 @@ packer.startup({
         use({
             "akinsho/nvim-bufferline.lua",
             config = module("bufferline"),
-            event = "BufWinEnter",
+	    wants = "material"
+            -- event = "BufWinEnter",
         })
         use({
             "glepnir/galaxyline.nvim",
             config = module("statusline"),
-            event = "BufWinEnter",
+	    wants = "material"
+            -- event = "BufWinEnter",
         })
     end,
     config = {

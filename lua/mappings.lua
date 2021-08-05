@@ -36,6 +36,8 @@ map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", opt)
 map("t", "<Esc>", "<C-\\><C-n>", opt)
 -- nvimtree
 map("n", "<Leader>n", ":NvimTreeToggle<CR>", noremap_silent)
+-- toggleterm
+map("n", "<Leader>t", ":ToggleTerm<CR>", noremap_silent)
 -- telescope
 map("n", "<Leader>fw", ":Telescope live_grep<CR>", opt)
 map("n", "<Leader>gt", ":Telescope git_status <CR>", opt)
