@@ -46,3 +46,8 @@ map("n", "<Leader>fb", ":Telescope buffers<CR>", opt)
 map("n", "<Leader>fh", ":Telescope help_tags<CR>", opt)
 map("n", "<Leader>fo", ":Telescope oldfiles<CR>", opt)
 map("n", "<Leader>th", ":Telescope themes<CR>", opt)
+-- split navigation
+map('n', '<C-h>', '<C-w>h', opt)
+map('n', '<C-j>', '<C-w>j', opt)
+map('n', '<C-k>', '<C-w>k', opt)
+map('n', '<C-l>', '<C-w>l', opt) 
