@@ -2,5 +2,5 @@ git clone --recurse-submodules https://github.com/Koihik/LuaFormatter.git /tmp/l
 pushd /tmp/luaformatter
 cmake .
 make
-make =j8 install
+make =j4 install
 popd -1
