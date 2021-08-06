@@ -2,9 +2,11 @@ name: "format"
 
 on:
   push:
-    branches: [master]
+    paths:
+      - '**.lua'
   pull_request:
-    branches: [master]
+    paths:
+      - '**.lua'
 
 jobs:
 
