@@ -1,1 +1,1 @@
-luarocks install --local --server=https://luarocks.org/dev luaformatter
+sudo luarocks install --server=https://luarocks.org/dev luaformatter
