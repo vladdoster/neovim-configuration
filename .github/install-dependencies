@@ -1,5 +1,3 @@
-sudo apt update -y  \
-&& sudo apt upgrade -y \
-&& sudo apt install -y build-essential \
-                       libreadline-dev \
-                       luarocks
+sudo apt update -y
+sudo apt upgrade -y \
+sudo apt install -y build-essential libreadline-dev lua5.3 luarocks
