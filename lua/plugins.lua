@@ -31,7 +31,7 @@ packer.startup({
         use({ "machakann/vim-sandwich" })
         use({ "tpope/vim-commentary" })
         use({ "tpope/vim-repeat" })
-        use({"akinsho/nvim-toggleterm.lua", cmd="ToggleTerm", config = module("toggleterm")})
+        use({"akinsho/nvim-toggleterm.lua", config = module("toggleterm")})
 
         use({
             "nvim-telescope/telescope.nvim",
