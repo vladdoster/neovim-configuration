@@ -1,6 +1,10 @@
 # Changelog
 
-## [v0.1.1](https://github.com/vladdoster/neovim-configuration/compare/v0.1.0...v0.1.1)
+## [v0.1.2](https://github.com/vladdoster/neovim-configuration/compare/v0.1.1...v0.1.2)
+
+- Update release-it.json [`3e27220`](https://github.com/vladdoster/neovim-configuration/commit/3e272202d64a23c20a4052e1b62cc7c1c7bc64d5)
+
+## [v0.1.1](https://github.com/vladdoster/neovim-configuration/compare/v0.1.0...v0.1.1) (2021-08-06)
 
 - BREAKING CHANGE(new structure); overheaul of config [`17a2ba3`](https://github.com/vladdoster/neovim-configuration/commit/17a2ba3abb12d07dfd1727cff609078ee7e485d3)
 - (linting) formatting [`5d8da64`](https://github.com/vladdoster/neovim-configuration/commit/5d8da64728bc331bc3e0cac04588feeec1d2c3e5)
@@ -29,6 +33,7 @@
 - (maint) add split navigation [`0ee7b5c`](https://github.com/vladdoster/neovim-configuration/commit/0ee7b5c9cc7d12fddd7c5ec2cc1675b99c2de3cf)
 - (maint): correct toggleterm logic [`24a08ff`](https://github.com/vladdoster/neovim-configuration/commit/24a08ffa46c019074db3be7a20308eb12d32870a)
 - sdsad [`a6e4407`](https://github.com/vladdoster/neovim-configuration/commit/a6e4407f6880c192adfe3e0f1bb847226a313016)
+- (release): v0.1.1 [`1ea3081`](https://github.com/vladdoster/neovim-configuration/commit/1ea30811b927ab11636fb4463571bbf0d1a16715)
 - sdasd [`1647c0e`](https://github.com/vladdoster/neovim-configuration/commit/1647c0e2c78f633cc135ad5ed4d8e5c9870bbae4)
 - feat(ci/cd): update lua formatting [`47bec93`](https://github.com/vladdoster/neovim-configuration/commit/47bec93a4ee32fe3c438769c028daccbb293bc57)
 - bugfix(packer bootstrap): remove disableing vim plugins pre-bootstrap [`4593339`](https://github.com/vladdoster/neovim-configuration/commit/45933393881ac0de66d1b316643b5432fce7ca8c)
