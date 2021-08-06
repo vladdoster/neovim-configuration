@@ -1,9 +1,9 @@
 name: "release"
-
+    
 on:
   workflow_run:
     workflows: ["format"]
-    branches: master
+    branches: [master]
     types: 
       - completed
       - requested
@@ -33,11 +33,17 @@ jobs:
           github-username: vladdoster
           git-user-name: vladdoster
           git-user-email: mvdoster@gmail.com
-          no-increment: true
+          no-increment: false
+          json-opts: >
+            {
+                "config": '.github/release-it.json',
+                "preRelease": 'beta'
+            }
 
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
       - name: Skip release
-        run: printf "--- Skipping release due to formatting workflow failure"
+        run: |
+          echo "Skipping release due to formatting workflow failure"

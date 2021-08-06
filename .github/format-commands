@@ -1,0 +1,1 @@
+find . -name '*.lua' -exec lua-format -i {} \;
