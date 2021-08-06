@@ -29,6 +29,7 @@ local packer = require("packer")
 
 return packer.init({
     git = {
+
         clone_timeout = 600 -- Timeout, in seconds, or git clones
     }
 })
