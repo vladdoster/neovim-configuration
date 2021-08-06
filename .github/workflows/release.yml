@@ -9,6 +9,7 @@ on:
     types: 
       - completed
       - requested
+  workflow_dispatch:
   push:
     paths:
       - '**.md'
