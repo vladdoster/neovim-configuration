@@ -20,8 +20,8 @@ jobs:
           fetch-depth: 2
           persist-credentials: true
 
-      - name: install dependencies
-        run: parallel --jobs 1 < "$(pwd)"/.github/install-dependencies
+#       - name: install dependencies
+#         run: parallel --jobs 1 < "$(pwd)"/.github/install-dependencies
       
       - name: install formatters
         run: bash "$(pwd)"/.github/install-lua-format.sh
