@@ -1,1 +1,10 @@
-sudo luarocks install --server=https://luarocks.org/dev luaformatter
+sudo apt update && apt upgrade -y && apt install g++ cmake git make -y
+git clone --recurse-submodules https://github.com/Koihik/LuaFormatter.git /tmp/luaformatter
+cd /tmp/luaformatter
+mkdir build 
+cd build 
+cmake .. -DBUILD_TESTS=FALSE 
+cmake --build . --target install 
+rm -rf /tmp/luaformatter
+sudo apt remove g++ cmake git make -y && rm -rf /var/lib/apt/lists/*
+>>>>>>> 0f56549 ((maint): fix deps for lua-format)
