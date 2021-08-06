@@ -1,7 +1,7 @@
 git clone --recurse-submodules https://github.com/Koihik/LuaFormatter.git /tmp/luaformatter
-cd /tmp/luaformatter
+pushd /tmp/luaformatter
 mkdir build 
-cd build 
+pushd build
 cmake .. -DBUILD_TESTS=FALSE 
 cmake --build . --target install 
-rm -rf /tmp/luaformatter
+popd -2
