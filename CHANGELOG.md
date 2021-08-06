@@ -1,8 +1,27 @@
 # Changelog
 
-## [v0.1.2](https://github.com/vladdoster/neovim-configuration/compare/v0.1.1...v0.1.2)
+## [v0.1.3](https://github.com/vladdoster/neovim-configuration/compare/v0.2.0-0...v0.1.3)
+
+- Update format.yml [`842ad13`](https://github.com/vladdoster/neovim-configuration/commit/842ad133d65d480f1df711b38998bb132fedc26e)
+- Update init.lua [`789eaad`](https://github.com/vladdoster/neovim-configuration/commit/789eaad209e543d02e8db6b1d240ef9c3e76fa8f)
+- Update release.yml [`5575107`](https://github.com/vladdoster/neovim-configuration/commit/5575107d9f45557834684a83de53ef440dddce51)
+- Update README.md [`7281e83`](https://github.com/vladdoster/neovim-configuration/commit/7281e83ea2a295c8e7e0862c82a44a3a6f16d7a0)
+- Update release.yml [`b0df93e`](https://github.com/vladdoster/neovim-configuration/commit/b0df93e522c0ea4d7ef22d571d24514880e1b069)
+- Update format.yml [`d2115cd`](https://github.com/vladdoster/neovim-configuration/commit/d2115cd59b25a76feba5158683085c57ecf36cff)
+- Update release.yml [`8d69306`](https://github.com/vladdoster/neovim-configuration/commit/8d693061dd173dd4595fe6990c7fa53a3d8f64b3)
+- Update bootstrap_packer.lua [`9aa5996`](https://github.com/vladdoster/neovim-configuration/commit/9aa5996b8b9d77888a1a6984c274ccf3bb46f8d0)
+
+## [v0.2.0-0](https://github.com/vladdoster/neovim-configuration/compare/v0.1.2...v0.2.0-0) (2021-08-06)
+
+- Delete .release-it.json [`1b8a023`](https://github.com/vladdoster/neovim-configuration/commit/1b8a02304e42ee317df0dbcc292f5e91bd4b4198)
+- Update release-it.json [`f2ccd7a`](https://github.com/vladdoster/neovim-configuration/commit/f2ccd7abbfe6a7cf444f44788a28c72ef0b9eada)
+- Update format.yml [`5a45787`](https://github.com/vladdoster/neovim-configuration/commit/5a4578769a73a1081344d011d0243425a9d76e7d)
+- (maint): fix format.yml & release-it.json [`895acbd`](https://github.com/vladdoster/neovim-configuration/commit/895acbd2f4f33e84c520e2fe7f878444fdb59dd8)
+
+## [v0.1.2](https://github.com/vladdoster/neovim-configuration/compare/v0.1.1...v0.1.2) (2021-08-06)
 
 - Update release-it.json [`3e27220`](https://github.com/vladdoster/neovim-configuration/commit/3e272202d64a23c20a4052e1b62cc7c1c7bc64d5)
+- (release): v0.1.2 [`25c6ec5`](https://github.com/vladdoster/neovim-configuration/commit/25c6ec5d107c4b0349e3066a42057afec1c24637)
 
 ## [v0.1.1](https://github.com/vladdoster/neovim-configuration/compare/v0.1.0...v0.1.1) (2021-08-06)
 
