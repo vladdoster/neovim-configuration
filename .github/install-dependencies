@@ -1,5 +1,5 @@
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt remove lua* -y
-sudo apt install -y build-essential libreadline-dev lua5.3 luarocks
+sudo apt update && apt upgrade -y && apt install g++ cmake git make -y
 
