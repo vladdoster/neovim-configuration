@@ -43,7 +43,8 @@ local vim = vim
 -- check if file changed when its window is focus, more eager than 'autoread'
 cmd([[autocmd FocusGained * checktime ]])
 cmd([[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})]])
-cmd([[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]])
+cmd(
+    [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]])
 -- disable auto comment new lines
 cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
 -- remove line length marker for selected filetypes
@@ -59,26 +60,10 @@ o.completeopt = "menuone,noselect,noinsert" -- completion options
 o.shortmess = "c" -- don't show completion messagese
 -- Disable built-in plugins
 local disabled_built_ins = {
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-    "spellfile_plugin",
-    "matchit",
+    "netrw", "netrwPlugin", "netrwSettings", "netrwFileHandlers", "gzip", "zip",
+    "zipPlugin", "tar", "tarPlugin", "getscript", "getscriptPlugin", "vimball",
+    "vimballPlugin", "2html_plugin", "logipat", "rrhelper", "spellfile_plugin",
+    "matchit"
 }
 
-for _, plugin in pairs(disabled_built_ins) do
-    vim.g["loaded_" .. plugin] = 1
-end
+for _, plugin in pairs(disabled_built_ins) do vim.g["loaded_" .. plugin] = 1 end

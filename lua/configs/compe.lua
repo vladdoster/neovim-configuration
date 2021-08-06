@@ -17,14 +17,14 @@ require("compe").setup({
         max_width = 120,
         min_width = 60,
         max_height = math.floor(vim.o.lines * 0.3),
-        min_height = 1,
+        min_height = 1
     },
-    source = { path = true, buffer = true, nvim_lsp = true, nvim_lua = true },
+    source = {path = true, buffer = true, nvim_lsp = true, nvim_lua = true}
 })
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = { "documentation", "detail", "additionalTextEdits" },
+    properties = {"documentation", "detail", "additionalTextEdits"}
 }
 
 local t = function(str)
@@ -56,10 +56,10 @@ _G.s_tab_complete = function()
 end
 
 -- Map tab to the above tab complete functiones
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 -- Map compe confirm and complete functions
-vim.api.nvim_set_keymap("i", "<cr>", 'compe#confirm("<cr>")', { expr = true })
-vim.api.nvim_set_keymap("i", "<c-space>", "compe#complete()", { expr = true })
+vim.api.nvim_set_keymap("i", "<cr>", 'compe#confirm("<cr>")', {expr = true})
+vim.api.nvim_set_keymap("i", "<c-space>", "compe#complete()", {expr = true})

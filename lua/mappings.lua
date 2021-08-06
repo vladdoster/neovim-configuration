@@ -23,7 +23,7 @@ map("n", "<C-a>", ":%y+<CR>", opt)
 -- turn off search highlighting
 map("n", "<Esc>", ":noh<CR>", opt)
 -- format code
-map("n", "<Leader>fm", ":Neoformat<CR>", opt)
+map("n", "<Leader>fm", ":Format<CR>", opt)
 -- resize window
 map("n", "<A-Left>", "<CMD>vertical resize +5<CR>", noremap_silent)
 map("n", "<A-Up>", "<CMD>resize -5<CR>", noremap_silent)

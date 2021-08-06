@@ -1,7 +1,5 @@
 local present, bufferline = pcall(require, "bufferline")
-if not present then
-    return
-end
+if not present then return end
 
 local bg = "#2e3440"
 local bg2 = "#3b4252"
@@ -27,12 +25,7 @@ bufferline.setup({
         max_name_length = 18,
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
         tab_size = 18,
-        offsets = {
-            {
-                filetype = "NvimTree",
-                text = "Files",
-            },
-        },
+        offsets = {{filetype = "NvimTree", text = "Files"}},
         show_buffer_icons = true, -- disable filetype icons for buffers
         show_buffer_close_icons = true,
         show_close_icon = false,
@@ -43,63 +36,25 @@ bufferline.setup({
         separator_style = "thin",
         enforce_regular_tabs = false,
         always_show_bufferline = true,
-        sort_by = "directory",
+        sort_by = "directory"
     },
     highlights = {
-        fill = {
-            guibg = bg,
-        },
-        background = {
-            guibg = bg,
-        },
+        fill = {guibg = bg},
+        background = {guibg = bg},
 
         -- buffer
-        buffer_selected = {
-            guifg = fg,
-            guibg = bg2,
-            gui = "bold",
-        },
-        separator = {
-            guifg = bg3,
-            guibg = bg,
-        },
-        separator_selected = {
-            guifg = bg3,
-            guibg = bg2,
-        },
-        separator_visible = {
-            guifg = bg2,
-            guibg = bg2,
-        },
-        indicator_selected = {
-            guifg = accent,
-            guibg = bg2,
-        },
+        buffer_selected = {guifg = fg, guibg = bg2, gui = "bold"},
+        separator = {guifg = bg3, guibg = bg},
+        separator_selected = {guifg = bg3, guibg = bg2},
+        separator_visible = {guifg = bg2, guibg = bg2},
+        indicator_selected = {guifg = accent, guibg = bg2},
 
         -- tabs over right
-        tab = {
-            guifg = fg,
-            guibg = bg,
-        },
-        tab_selected = {
-            guifg = accent,
-            guibg = bg2,
-        },
-        tab_close = {
-            guifg = accent,
-            guibg = bg2,
-        },
-        modified_selected = {
-            guifg = accent2,
-            guibg = bg2,
-        },
-        modified = {
-            guifg = accent3,
-            guibg = bg,
-        },
-        modified_visible = {
-            guifg = accent,
-            guibg = bg,
-        },
-    },
+        tab = {guifg = fg, guibg = bg},
+        tab_selected = {guifg = accent, guibg = bg2},
+        tab_close = {guifg = accent, guibg = bg2},
+        modified_selected = {guifg = accent2, guibg = bg2},
+        modified = {guifg = accent3, guibg = bg},
+        modified_visible = {guifg = accent, guibg = bg}
+    }
 })

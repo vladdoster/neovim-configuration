@@ -1,7 +1,5 @@
 local present, gitsigns = pcall(require, "gitsigns")
-if not present then
-    return
-end
+if not present then return end
 
 gitsigns.setup({
     signs = {
@@ -9,32 +7,32 @@ gitsigns.setup({
             hl = "GitSignsAdd",
             text = "│",
             numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn",
+            linehl = "GitSignsAddLn"
         },
         change = {
             hl = "GitSignsChange",
             text = "│",
             numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
+            linehl = "GitSignsChangeLn"
         },
         delete = {
             hl = "GitSignsDelete",
             text = "_",
             numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
+            linehl = "GitSignsDeleteLn"
         },
         topdelete = {
             hl = "GitSignsDelete",
             text = "‾",
             numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
+            linehl = "GitSignsDeleteLn"
         },
         changedelete = {
             hl = "GitSignsChange",
             text = "~",
             numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
-        },
+            linehl = "GitSignsChangeLn"
+        }
     },
     numhl = false,
     linehl = false,
@@ -45,11 +43,11 @@ gitsigns.setup({
 
         ["n ]c"] = {
             expr = true,
-            "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'",
+            "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'"
         },
         ["n [c"] = {
             expr = true,
-            "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'",
+            "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'"
         },
 
         ["n <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
@@ -61,13 +59,13 @@ gitsigns.setup({
 
         -- Text objects
         ["o ih"] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
-        ["x ih"] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
+        ["x ih"] = ':<C-U>lua require"gitsigns".select_hunk()<CR>'
     },
-    watch_index = { interval = 1000 },
+    watch_index = {interval = 1000},
     current_line_blame = false,
     sign_priority = 6,
     update_debounce = 100,
     status_formatter = nil, -- Use default
     use_decoration_api = true,
-    use_internal_diff = true, -- If luajit is present
+    use_internal_diff = true -- If luajit is present
 })

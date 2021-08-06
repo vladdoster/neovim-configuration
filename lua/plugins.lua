@@ -24,8 +24,7 @@ packer.startup({
         use({ "wbthomason/packer.nvim" })
 
         use({ "kyazdani42/nvim-tree.lua", config = module("nvimtree") })
-        use({ "sbdchd/neoformat", cmd = "Neoformat", config = conf("neoformat") })
-
+        use({ "lukas-reineke/format.nvim", config = module("format") })
         -- GENERAL
         use({ "junegunn/vim-easy-align" })
         use({ "machakann/vim-sandwich" })
