@@ -24,7 +24,7 @@ jobs:
         run: parallel --jobs 1 < "$(pwd)"/.github/install-dependencies
       
       - name: install formatters
-        run: parallel --jobs 1 < "$(pwd)"/.github/install-formatters
+        run: bash "$(pwd)"/.github/install-lua-format.sh
 
       - name: run formatters in parallel
         run: parallel --jobs 1 < "$(pwd)"/.github/format-commands

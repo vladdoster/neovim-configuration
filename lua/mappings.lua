@@ -1,12 +1,10 @@
 local opt = {}
-local noremap_nosilent = { noremap = true, silent = false }
-local noremap_silent = { noremap = true, silent = true }
+local noremap_nosilent = {noremap = true, silent = false}
+local noremap_silent = {noremap = true, silent = true}
 
 local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
+    local options = {noremap = true, silent = true}
+    if opts then options = vim.tbl_extend("force", options, opts) end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 -- disable keys
@@ -52,4 +50,4 @@ map("n", "<Leader>th", ":Telescope themes<CR>", opt)
 map('n', '<C-h>', '<C-w>h', opt)
 map('n', '<C-j>', '<C-w>j', opt)
 map('n', '<C-k>', '<C-w>k', opt)
-map('n', '<C-l>', '<C-w>l', opt) 
+map('n', '<C-l>', '<C-w>l', opt)
