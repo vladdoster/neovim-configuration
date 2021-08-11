@@ -16,38 +16,36 @@ map("n", "<Down>", "<Nop>", opt)
 map("n", "<C-z>", "<Nop>", opt)
 -- don't copy the replaced text after pasting in visual mode
 map("v", "p", '"_dP', opt)
+-- move line up or down
+map("v", "J", ":move '>+1<CR>gv-gv")
+map("v", "K", ":move '<-2<CR>gv-gv")
 -- copy whole file content
-map("n", "<C-a>", ":%y+<CR>", opt)
+map("n", "<C-a>", ":%y+<cr>", opt)
 -- turn off search highlighting
-map("n", "<Esc>", ":noh<CR>", opt)
+map("n", "<Esc>", ":noh<cr>", opt)
 -- format code
-map("n", "<Leader>fm", ":Format<CR>", opt)
+map("n", "<Leader>fm", ":Format<cr>", opt)
 -- resize window
-map("n", "<A-Left>", "<CMD>vertical resize +5<CR>", noremap_silent)
-map("n", "<A-Up>", "<CMD>resize -5<CR>", noremap_silent)
-map("n", "<A-Right>", "<CMD>vertical resize -5<CR>", noremap_silent)
-map("n", "<A-Down>", "<CMD>resize +5<CR>", noremap_silent)
--- move between tabs
-map("n", "<TAB>", ":BufferLineCycleNext<CR>", opt)
-map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", opt)
--- terminal mode
-map("t", "<Esc>", "<C-\\><C-n>", opt)
--- nvimtree
-map("n", "<Leader>n", ":NvimTreeToggle<CR>", noremap_silent)
--- toggleterm
-map("n", "<Leader>t", ":ToggleTerm direction=vertical size=80<CR>", opt)
--- telescope
-map("n", "<Leader>fw", ":Telescope live_grep<CR>", opt)
-map("n", "<Leader>gt", ":Telescope git_status <CR>", opt)
-map("n", "<Leader>cm", ":Telescope git_commits <CR>", opt)
-map("n", "<Leader>ff", ":Telescope find_files <CR>", opt)
-map("n", "<Leader>fp", ":Telescope media_files <CR>", opt)
-map("n", "<Leader>fb", ":Telescope buffers<CR>", opt)
-map("n", "<Leader>fh", ":Telescope help_tags<CR>", opt)
-map("n", "<Leader>fo", ":Telescope oldfiles<CR>", opt)
-map("n", "<Leader>th", ":Telescope themes<CR>", opt)
+map("n", "<A-Left>", "<cmd>vertical resize +5<cr>", noremap_silent)
+map("n", "<A-Up>", "<cmd>resize -5<cr>", noremap_silent)
+map("n", "<A-Right>", "<cmd>vertical resize -5<cr>", noremap_silent)
+map("n", "<A-Down>", "<cmd>resize +5<cr>", noremap_silent)
 -- split navigation
 map('n', '<C-h>', '<C-w>h', opt)
 map('n', '<C-j>', '<C-w>j', opt)
 map('n', '<C-k>', '<C-w>k', opt)
 map('n', '<C-l>', '<C-w>l', opt)
+-- move between tabs
+map("n", "<TAB>", ":BufferLineCycleNext<cr>", opt)
+map("n", "<S-TAB>", ":BufferLineCyclePrev<cr>", opt)
+-- terminal mode
+map("t", "<Esc>", "<C-\\><C-n>", opt)
+-- NVIMTREE
+map("n", "<Leader>n", ":NvimTreeToggle<cr>", noremap_silent)
+-- TOGGLETERM
+map("n", "<Leader>t", ":ToggleTerm direction=vertical size=80<cr>", opt)
+-- TELESCOPE
+map("n", "<Leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opt)
+map("n", "<Leader>gt", "<cmd>lua require('telescope.builtin').git_status()<cr>", opt)
+map("n", "<Leader>cm",  "<cmd>lua require('telescope.builtin').git_commits()<cr>", opt)
+map("n", "<Leader>ff",  "<cmd>lua require('telescope.builtin').find_files()<cr>", opt)

@@ -34,7 +34,6 @@ packer.startup({
             "nvim-telescope/telescope.nvim",
             config = module("telescope"),
             requires = {{"nvim-lua/plenary.nvim"}, {"nvim-lua/popup.nvim"}},
-            opt = true
         })
         use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", opt = true})
         -- LSP ---------------------------------------------

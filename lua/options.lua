@@ -43,8 +43,11 @@ local vim = vim
 -- check if file changed when its window is focus, more eager than 'autoread'
 cmd([[autocmd FocusGained * checktime ]])
 cmd([[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})]])
-cmd(
-    [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]])
+-- Restore cursor position when opening file
+cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]])
+-- Smarter cursorline
+cmd([[autocmd InsertLeave,WinEnter * set cursorline]])
+cmd([[autocmd InsertEnter,WinLeave * set nocursorline]])
 -- disable auto comment new lines
 cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
 -- remove line length marker for selected filetypes
