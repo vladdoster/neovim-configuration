@@ -79,27 +79,30 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 local function setup_servers()
-    local servers = require("lspinstall").installed_servers()
+    lsp_install.setup()
+    local servers = lsp_install.installed_servers()
     for _, server in pairs(servers) do
-        require("lspconfig")[server].setup({
+        lsp_config[server].setup({
             on_attach = on_attach,
-            capabilities = capabilities
+            capabilities = capabilities,
+            root_dir = vim.loop.cwd
         })
     end
 end
+
 setup_servers()
 
-require("lspinstall").post_install_hook = function()
+lsp_install.post_install_hook = function()
     setup_servers()
     vim.cmd("bufdo e")
 end
 
--- suppress error messages from lang servers
-vim.notify = function(msg, log_level, _opts)
-    if msg:match("exit code") then return end
-    if log_level == vim.log.levels.ERROR then
-        vim.api.nvim_err_writeln(msg)
-    else
-        vim.api.nvim_echo({{msg}}, true, {})
-    end
-end
+-- -- suppress error messages from lang servers
+-- vim.notify = function(msg, log_level, _opts)
+--     if msg:match("exit code") then return end
+--     if log_level == vim.log.levels.ERROR then
+--         vim.api.nvim_err_writeln(msg)
+--     else
+--         vim.api.nvim_echo({{msg}}, true, {})
+--     end
+-- end
