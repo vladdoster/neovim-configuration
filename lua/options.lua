@@ -6,6 +6,7 @@ local o = vim.o -- global options
 local b = vim.bo -- buffer-scoped options
 local w = vim.wo -- windows-scoped options
 
+vim.g.python_host_prog = "/usr/bin/python2.7"
 vim.g.python3_host_prog = "/usr/local/bin/python3"
 
 -- general
