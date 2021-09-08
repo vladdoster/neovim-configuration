@@ -56,20 +56,10 @@ telescope.setup {
          override_file_sorter = true, -- override the file sorter
          case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
-      media_files = {
-         filetypes = { "png", "webp", "jpg", "jpeg" },
-         find_cmd = "rg", -- find command (defaults to `fd`)
-      },
-   },
 }
 
 local extensions = { "terms", "fzf" }
 local packer_repos = [["extensions", "telescope-fzf-native.nvim"]]
-
-if vim.fn.executable "ueberzug" == 1 then
-   table.insert(extensions, "media_files")
-   packer_repos = packer_repos .. ', "telescope-media-files.nvim"'
-end
 
 pcall(function()
    for _, ext in ipairs(extensions) do

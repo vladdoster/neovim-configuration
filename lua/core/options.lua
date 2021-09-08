@@ -7,17 +7,18 @@ local o = vim.o -- global options
 local b = vim.bo -- buffer-scoped options
 local w = vim.wo -- windows-scoped options
 
-vim.g.python_host_prog = "/usr/bin/python2.7"
+-- CACHE_PATH = vim.fn.stdpath "cache"
 vim.g.python3_host_prog = "/usr/local/bin/python3"
+vim.g.python_host_prog = "/usr/bin/python2.7"
 
 -- general
--- o.guifont = "SauceCodePro Mono Font:h15" -- the font used in graphical neovim applications
--- b.swapfile = false -- don't use swapfile
 g.mapleader = " " -- change leader to a comma
 o.background = "dark"
 o.clipboard = "unnamedplus" -- copy/paste to system clipboard
 o.mouse = "a" -- enable mous support
 
+-- o.undodir = CACHE_PATH .. "/undo"
+-- o.undofile = true
 -- neovim ui
 o.ignorecase = true -- ignore case letters when search
 o.showmatch = true -- highlight matching parenthesis
@@ -27,8 +28,8 @@ o.splitright = true -- vertical split to the right
 o.syntax = "enable" -- enable yntax highlighting
 o.termguicolors = true
 w.colorcolumn = "80" -- line lenght marker at 80 columns
--- w.foldmethod = "marker" -- enable folding (default 'foldmarker')
 w.number = true -- show line number
+o.wrap = false
 
 -- memory, cpu
 b.synmaxcol = 240 -- max column for syntax highlight
@@ -47,26 +48,26 @@ o.shortmess = "c" -- don't show completion messagese
 
 -- Disable built-in plugins
 local disabled_built_ins = {
-   "2html_plugin",
-   "getscript",
-   "getscriptPlugin",
-   "gzip",
-   "logipat",
-   "netrw",
-   "netrwPlugin",
-   "netrwSettings",
-   "netrwFileHandlers",
-   "matchit",
-   "tar",
-   "tarPlugin",
-   "rrhelper",
-   "spellfile_plugin",
-   "vimball",
-   "vimballPlugin",
-   "zip",
-   "zipPlugin",
+    "2html_plugin",
+    "getscript",
+    "getscriptPlugin",
+    "gzip",
+    "logipat",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "matchit",
+    "tar",
+    "tarPlugin",
+    "rrhelper",
+    "spellfile_plugin",
+    "vimball",
+    "vimballPlugin",
+    "zip",
+    "zipPlugin",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-  g["loaded_" .. plugin] = 1
+    g["loaded_" .. plugin] = 1
 end
