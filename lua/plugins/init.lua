@@ -1,6 +1,10 @@
-local present, packer = pcall(require, "plugins.packerInit")
+local present_0, impatient = pcall(require, "impatient")
+if present_0 then
+    impatient.enable_profile()
+end
 
-if not present then
+local present_1, packer = pcall(require, "plugins.packerInit")
+if not present_1 then
     return false
 end
 
@@ -8,7 +12,7 @@ local use = packer.use
 
 return packer.startup {
     function()
-        use { "Nvchad/extensions" }
+        use { "lewis6991/impatient.nvim" }
         use { "nvim-lua/plenary.nvim" }
         use { "wbthomason/packer.nvim", event = "VimEnter" }
 
@@ -55,11 +59,9 @@ return packer.startup {
             end,
         }
 
-        use { "AndrewRadev/splitjoin.vim", keys = { "gJ", "gS" } }
         use { "dstein64/vim-startuptime", cmd = "StartupTime" }
         use { "godlygeek/tabular" }
         use { "monaqa/dial.nvim" }
-        use { "tpope/vim-abolish" }
         use { "tpope/vim-repeat" }
         use { "tpope/vim-surround" }
 
@@ -68,13 +70,6 @@ return packer.startup {
             cmd = "Neoformat",
             setup = function()
                 require("core.mappings").neoformat()
-            end,
-        }
-
-        use {
-            "antoinemadec/FixCursorHold.nvim",
-            run = function()
-                vim.g.curshold_updatime = 1000
             end,
         }
 
@@ -105,11 +100,8 @@ return packer.startup {
         use {
             "jdhao/better-escape.vim",
             event = "InsertEnter",
-            config = function()
-                require("plugins.configs.others").better_escape()
-            end,
             setup = function()
-                require("core.mappings").better_escape()
+                require("plugins.configs.others").better_escape()
             end,
         }
 
@@ -183,7 +175,6 @@ return packer.startup {
         }
     end,
     config = {
-        git = { clone_timeout = 60, depth = 20 },
-        profile = { enable = true, threshold = 1 },
+        profile = { enable = false, threshold = 1 },
     },
 }

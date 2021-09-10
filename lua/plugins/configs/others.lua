@@ -19,6 +19,7 @@ M.better_escape = function()
     local present, _ = pcall(require, "better_escape")
     if present then
         vim.g.better_escape_interval = 300
+	vim.g.better_escape_shortcut = { "jk" }
     end
 end
 

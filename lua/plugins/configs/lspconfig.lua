@@ -72,16 +72,15 @@ local function setup_servers()
                 on_attach = on_attach,
                 capabilities = capabilities,
                 flags = {
-                    debounce_text_changes = 500,
+                    debounce_text_changes = 150,
                 },
-                -- root_dir = vim.loop.cwd,
             }
         elseif lang == "lua" then
             lspconfig[lang].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 flags = {
-                    debounce_text_changes = 500,
+                    debounce_text_changes = 150,
                 },
                 settings = {
                     Lua = {
@@ -118,7 +117,7 @@ end
 local function lspSymbol(name, icon)
     vim.fn.sign_define(
         "LspDiagnosticsSign" .. name,
-        { text = icon, numhl = "LspDiagnosticsDefaul" .. name }
+        { text = icon, numhl = "LspDiagnosticsDefault" .. name }
     )
 end
 
