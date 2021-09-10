@@ -19,7 +19,7 @@ telescope.setup {
         entry_prefix = "  ",
         initial_mode = "insert",
         selection_strategy = "reset",
-        sorting_strategy = "ascending",
+        sorting_strategy = "descending",
         layout_strategy = "horizontal",
         layout_config = {
             horizontal = {
@@ -48,14 +48,5 @@ telescope.setup {
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
         buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-        extensions = {
-            fzf = {
-                case_mode = "smart_case",
-                fuzzy = true,
-                override_file_sorter = true,
-                override_generic_sorter = false,
-            },
-        },
     },
 }
-telescope.load_extension("fzf")

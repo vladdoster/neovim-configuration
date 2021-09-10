@@ -27,15 +27,16 @@ o.splitbelow = true -- orizontal split to the bottom
 o.splitright = true -- vertical split to the right
 o.syntax = "enable" -- enable yntax highlighting
 o.termguicolors = true
+o.wrap = false
+
 w.colorcolumn = "80" -- line lenght marker at 80 columns
 w.number = true -- show line number
-o.wrap = false
 
 -- memory, cpu
 b.synmaxcol = 240 -- max column for syntax highlight
 o.hidden = true -- enable background buffers
 o.history = 100 -- remember n lines in history
--- o.lazyredraw = true -- faster scrolling
+o.lazyredraw = true -- faster scrolling
 
 -- tabs, indent
 b.expandtab = true -- use spaces instead of tabs
@@ -44,30 +45,30 @@ b.smartindent = true -- autoindent new lines
 b.tabstop = 4 -- 1 tab == 4 spaces
 
 o.completeopt = "menuone,noselect,noinsert" -- completion options
-o.shortmess = "c" -- don't show completion messagese
+o.shortmess = "sI" -- don't show completion messagese
 
--- Disable built-in plugins
+-- disable some builtin vim plugins
 local disabled_built_ins = {
-    "2html_plugin",
-    "getscript",
-    "getscriptPlugin",
-    "gzip",
-    "logipat",
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "matchit",
-    "tar",
-    "tarPlugin",
-    "rrhelper",
-    "spellfile_plugin",
-    "vimball",
-    "vimballPlugin",
-    "zip",
-    "zipPlugin",
+   "2html_plugin",
+   "getscript",
+   "getscriptPlugin",
+   "gzip",
+   "logipat",
+   "netrw",
+   "netrwPlugin",
+   "netrwSettings",
+   "netrwFileHandlers",
+   "matchit",
+   "tar",
+   "tarPlugin",
+   "rrhelper",
+   "spellfile_plugin",
+   "vimball",
+   "vimballPlugin",
+   "zip",
+   "zipPlugin",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-    g["loaded_" .. plugin] = 1
+   g["loaded_" .. plugin] = 1
 end

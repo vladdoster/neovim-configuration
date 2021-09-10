@@ -45,8 +45,6 @@ M.misc = function()
         map("t", "jk", "<C-\\><C-n>")
         -- hide a term from within terminal mode
         map("t", "JK", "<C-\\><C-n> :lua require('core.utils').close_buffer() <CR>")
-        -- pick a hidden term
-        map("n", "<leader>W", ":Telescope terms <CR>")
         -- horizontal term
         map(
             "n",
@@ -89,15 +87,6 @@ M.bufferline = function()
     map("n", "<C-j>", "<C-w>j")
 end
 
--- M.chadsheet = function()
---    map("n", "<leader>dk", ":lua require('cheatsheet').show_cheatsheet_telescope() <CR>")
---    map(
---       "n",
---       "<leader>uk",
---       ":lua require('cheatsheet').show_cheatsheet_telescope{bundled_cheatsheets = false, bundled_plugin_cheatsheets = false } <CR>"
---    )
--- end
-
 M.comment = function()
     map("n", "<leader>/", ":CommentToggle <CR>")
     map("v", "<leader>/", ":CommentToggle <CR>")
@@ -121,10 +110,6 @@ M.telescope = function()
     map("n", "<leader>fh", ":Telescope help_tags <CR>")
     map("n", "<leader>fw", ":Telescope live_grep <CR>")
     map("n", "<leader>fo", ":Telescope oldfiles <CR>")
-end
-
-M.telescope_media = function()
-    map("n", "<leader>fp", ":Telescope media_files <CR>")
 end
 
 return M

@@ -12,6 +12,6 @@ gitsigns.setup {
         changedelete = { hl = "GitGutterChange", text = "~" },
     },
     watch_index = {
-        interval = 1000,
+        interval = 100,
     },
 }

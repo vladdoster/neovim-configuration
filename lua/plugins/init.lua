@@ -13,10 +13,8 @@ local use = packer.use
 return packer.startup {
     function()
         use { "lewis6991/impatient.nvim" }
-        use { "nvim-lua/plenary.nvim" }
-        use { "wbthomason/packer.nvim", event = "VimEnter" }
-
-        use { "kyazdani42/nvim-web-devicons", after = "packer.nvim" }
+        use { "wbthomason/packer.nvim" }
+        use { "kyazdani42/nvim-web-devicons" }
         use {
             "marko-cerovac/material.nvim",
             config = function()
@@ -33,7 +31,7 @@ return packer.startup {
 
         use {
             "akinsho/bufferline.nvim",
-            after = "nvim-web-devicons",
+            requires = "kyazdani42/nvim-web-devicons",
             config = function()
                 require "plugins.configs.bufferline"
             end,
@@ -43,16 +41,7 @@ return packer.startup {
         }
 
         use {
-            "lukas-reineke/indent-blankline.nvim",
-            event = "BufRead",
-            config = function()
-                require("plugins.configs.others").blankline()
-            end,
-        }
-
-        use {
             "nvim-treesitter/nvim-treesitter",
-            event = "BufRead",
             requires = { "andymass/vim-matchup" },
             config = function()
                 require "plugins.configs.treesitter"
@@ -60,7 +49,7 @@ return packer.startup {
         }
 
         use { "dstein64/vim-startuptime", cmd = "StartupTime" }
-        use { "godlygeek/tabular" }
+        -- use { "godlygeek/tabular" }
         use { "monaqa/dial.nvim" }
         use { "tpope/vim-repeat" }
         use { "tpope/vim-surround" }
@@ -150,11 +139,11 @@ return packer.startup {
 
         use {
             "kyazdani42/nvim-tree.lua",
-            after = "nvim-web-devicons",
-            cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+            cmd = { "NvimTreeToggle" },
             config = function()
                 require "plugins.configs.nvimtree"
             end,
+	    opt=true,
             setup = function()
                 require("core.mappings").nvimtree()
             end,
@@ -163,9 +152,7 @@ return packer.startup {
         use {
             "nvim-telescope/telescope.nvim",
             cmd = "Telescope",
-            requires = {
-                { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-            },
+            requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
             config = function()
                 require "plugins.configs.telescope"
             end,
