@@ -23,9 +23,9 @@ return packer.startup {
         }
 
         use {
-            "famiu/feline.nvim",
+            "hoob3rt/lualine.nvim",
             config = function()
-                require("feline").setup { preset = "noicon" }
+                require "plugins.configs.lualine"
             end,
         }
 
@@ -143,7 +143,7 @@ return packer.startup {
             config = function()
                 require "plugins.configs.nvimtree"
             end,
-	    opt=true,
+            opt = true,
             setup = function()
                 require("core.mappings").nvimtree()
             end,
