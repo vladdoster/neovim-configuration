@@ -1,29 +1,25 @@
 name: "release"
-
+    
 on:
+
   workflow_run:
+
     workflows: ["format"]
+    
     branches: [master]
+    
     types: 
       - completed
       - requested
-  workflow_dispatch:
-
-  push:
-    paths:
-      - '**.md'
-      - '**.yml'
-      - '**.json'
 
 jobs:
 
   on-success:
-    runs-on: self-hosted
-    permissions: write-all
-
-
+  
+    runs-on: ubuntu-latest
+    
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-
+    
     steps:
      
       - name: Checkout
@@ -34,27 +30,35 @@ jobs:
 
       - name: Resolve dependencies
         run: |
-           npm install -D release-it \
-                         @release-it/bumper \
-                         @release-it/conventional-changelog
+           npm install --global release-it \
+                                @release-it/bumper \
+                                @release-it/conventional-changelog
+                                
+      - name: Set git configuration
+        run: |
+          git config --global github.user "vladdoster"
+          git config --global user.email mvdoster@gmail.com
+          git config --global user.name "Vladislav Doster"
+          git config --global user.username "vladdoster"
                 
       - name: Publish release
-        uses: TheRealWaldo/release-it@v0.5.0
-        with:
-          github-username: vladdoster
-          git-user-name: vladdoster
-          git-user-email: mvdoster@gmail.com
-          no-increment: false
-          json-opts: >
-            {
-                "config": '.github/release-it.json',
-                "preRelease": 'beta'
-            }
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ACTIONS_TOKEN }}
+        run: |
+          # release-it --preRelease \
+          release-it preminor --preReleaseId=beta \
+                              --ci \
+                              --git.tag=true \
+                              --github.preRelease \
+                              --config=.github/release-it.json
+                  
   on-failure:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    
     steps:
+    
       - name: Skip release
         run: |
-          echo "Skipping release due to formatting workflow failure"
+          echo "[INFO] Skipped release due to earlier failures"
