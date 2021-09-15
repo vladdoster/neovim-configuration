@@ -23,27 +23,6 @@ M.better_escape = function()
     end
 end
 
-M.blankline = function()
-    local present, indent_blankline = pcall(require, "indent_blankline")
-    if present then
-        indent_blankline.setup {
-            indentLine_enabled = 1,
-            char = "▏",
-            filetype_exclude = {
-                "help",
-                "terminal",
-                "packer",
-                "lspinfo",
-                "TelescopePrompt",
-                "TelescopeResults",
-            },
-            buftype_exclude = { "terminal" },
-            show_trailing_blankline_indent = false,
-            show_first_indent_level = false,
-        }
-    end
-end
-
 M.comment = function()
     local present, nvim_comment = pcall(require, "nvim_comment")
     if present then

@@ -41,7 +41,7 @@ packer.init {
     },
     auto_clean = true,
     compile_on_sync = true,
-    --    auto_reload_compiled = true
+    auto_reload_compiled = true
 }
 
 return packer

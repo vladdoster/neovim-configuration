@@ -26,7 +26,6 @@ M.misc = function()
     end
 
     local function required_mappings()
-        map("n", "<leader>x", ":lua require('core.utils').close_buffer() <CR>") -- close  buffer
         map("n", "<C-a>", ":%y+ <CR>") -- copy whole file content
         map("n", "<S-t>", ":enew <CR>") -- new buffer
         map("n", "<C-t>b", ":tabnew <CR>") -- new tabs
@@ -43,8 +42,6 @@ M.misc = function()
 
         -- get out of terminal mode
         map("t", "jk", "<C-\\><C-n>")
-        -- hide a term from within terminal mode
-        map("t", "JK", "<C-\\><C-n> :lua require('core.utils').close_buffer() <CR>")
         -- horizontal term
         map(
             "n",
