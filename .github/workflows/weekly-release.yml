@@ -1,0 +1,39 @@
+name: "weekly release"
+    
+on:
+
+  workflow_dispatch:
+
+jobs:
+
+    release:
+
+        runs-on: ubuntu-latest
+        steps:
+
+          - name: Checkout
+            uses: actions/checkout@v2.3.1
+            with:
+              fetch-depth: 0
+              persist-credentials: true
+
+          - name: Resolve dependencies
+            run: |
+               npm install --global release-it \
+                                    @release-it/bumper \
+                                    @release-it/conventional-changelog
+          - name: Set git configuration
+            run: |
+              git config --global github.user "vladdoster"
+              git config --global user.email mvdoster@gmail.com
+              git config --global user.name "Vladislav Doster"
+              git config --global user.username "vladdoster"
+          - name: Publish release
+            env:
+              GITHUB_TOKEN: ${{ secrets.GH_ACTIONS_TOKEN }}
+            run: |
+              release-it minor \
+                         --config=.github/release-it.json \
+                         --git.tag=true \
+                         --github.release=true \
+                         --ci
