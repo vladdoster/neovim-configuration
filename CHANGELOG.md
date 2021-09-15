@@ -1,5 +1,24 @@
 # Changelog
 
+## [v0.2.0](https://github.com/vladdoster/neovim-configuration/compare/v0.1.4...v0.2.0)
+
+- (maint): configure treesitter [`0e9bc32`](https://github.com/vladdoster/neovim-configuration/commit/0e9bc320b76ff8efae13427498fbf6195bf3087b)
+- (maint): clean upp [`6cd3b9d`](https://github.com/vladdoster/neovim-configuration/commit/6cd3b9d37122820d68f42ac06417bcc2e0d28a96)
+- (maint): add better statusline via lualine [`90d86b1`](https://github.com/vladdoster/neovim-configuration/commit/90d86b153e77520f295cf160d6dd0e2a0d238cc3)
+- (maint): various fixes [`d0e5a4c`](https://github.com/vladdoster/neovim-configuration/commit/d0e5a4cc219a1279c8341be694bd82df24e0b0f0)
+- (maint): speed start up [`ee83f75`](https://github.com/vladdoster/neovim-configuration/commit/ee83f75aaa7dbc8696d237f77a5cc1fefc70d7a0)
+- (feat): use telescope & add au cmds and keymaps [`25185ea`](https://github.com/vladdoster/neovim-configuration/commit/25185ea0b1d42aa2db014f28d6c624b731bcc376)
+- (release): v0.2.0 [`3f9fdeb`](https://github.com/vladdoster/neovim-configuration/commit/3f9fdeb8300057e074c349c41eabef71d4d6d3a2)
+- (feat): add weekly release CI action [`2e6ffad`](https://github.com/vladdoster/neovim-configuration/commit/2e6ffad8d2df647e2eabb05aae847d8d63f68586)
+- (maint): add docker-compose.yml for self-hosting github action runners [`d0c4257`](https://github.com/vladdoster/neovim-configuration/commit/d0c4257eb5a853adcd5d15abe0cac45c8fe9451c)
+- (bugfix): fixed lsp_installer returning null [`67a5fbe`](https://github.com/vladdoster/neovim-configuration/commit/67a5fbe87f44ffe6345e2ee5992d8d8212d02593)
+- (maint): update release-it configuration [`c74be0b`](https://github.com/vladdoster/neovim-configuration/commit/c74be0b76c3fa9fa214b2c060bf2bbb56c81980e)
+- Update CHANGELOG.md [`34570f5`](https://github.com/vladdoster/neovim-configuration/commit/34570f5486bea6df62ea728cab33bfc2169d2348)
+- (feat): python2 prog path & fix nvim-tree behavior [`46287c7`](https://github.com/vladdoster/neovim-configuration/commit/46287c78ef47ebe5e31ed78516560e6555ab17df)
+- (maint): packer output is in centered floating window [`9c4837f`](https://github.com/vladdoster/neovim-configuration/commit/9c4837f1d8325183bc5f1d4708a3e418698ffc41)
+- Update VERSION [`f6b653b`](https://github.com/vladdoster/neovim-configuration/commit/f6b653b717afd74d348754c10d3f373a94355449)
+- (maint): ignore compiled plugin directory [`2adf702`](https://github.com/vladdoster/neovim-configuration/commit/2adf7029f906e773eb541ab296000595a3828da5)
+
 ## [v0.1.4](https://github.com/vladdoster/neovim-configuration/compare/v0.1.3...v0.1.4) (2021-08-06)
 
 - (release): v0.1.4 [`64a989e`](https://github.com/vladdoster/neovim-configuration/commit/64a989e15e2f93972c54c1265ee2f561bd4002ff)
