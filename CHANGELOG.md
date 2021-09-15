@@ -1,8 +1,11 @@
 # Changelog
 
-## [v0.3.0](https://github.com/vladdoster/neovim-configuration/compare/v0.2.0...v0.3.0)
+## [v0.4.0](https://github.com/vladdoster/neovim-configuration/compare/v0.3.0...v0.4.0)
+
+## [v0.3.0](https://github.com/vladdoster/neovim-configuration/compare/v0.2.0...v0.3.0) (2021-09-15)
 
 - (mai [`8cad683`](https://github.com/vladdoster/neovim-configuration/commit/8cad68309cdc56f5332976c1d0db696d58eef8e8)
+- (release): v0.3.0 [`9b362a5`](https://github.com/vladdoster/neovim-configuration/commit/9b362a5130d899f7f50995ccdf1b93824416effd)
 
 ## [v0.2.0](https://github.com/vladdoster/neovim-configuration/compare/v0.1.4...v0.2.0) (2021-09-15)
 
