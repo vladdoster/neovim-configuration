@@ -1,6 +1,10 @@
 # Changelog
 
-## [v0.2.0](https://github.com/vladdoster/neovim-configuration/compare/v0.1.4...v0.2.0)
+## [v0.3.0](https://github.com/vladdoster/neovim-configuration/compare/v0.2.0...v0.3.0)
+
+- (mai [`8cad683`](https://github.com/vladdoster/neovim-configuration/commit/8cad68309cdc56f5332976c1d0db696d58eef8e8)
+
+## [v0.2.0](https://github.com/vladdoster/neovim-configuration/compare/v0.1.4...v0.2.0) (2021-09-15)
 
 - (maint): configure treesitter [`0e9bc32`](https://github.com/vladdoster/neovim-configuration/commit/0e9bc320b76ff8efae13427498fbf6195bf3087b)
 - (maint): clean upp [`6cd3b9d`](https://github.com/vladdoster/neovim-configuration/commit/6cd3b9d37122820d68f42ac06417bcc2e0d28a96)
@@ -12,6 +16,7 @@
 - (feat): add weekly release CI action [`2e6ffad`](https://github.com/vladdoster/neovim-configuration/commit/2e6ffad8d2df647e2eabb05aae847d8d63f68586)
 - (maint): add docker-compose.yml for self-hosting github action runners [`d0c4257`](https://github.com/vladdoster/neovim-configuration/commit/d0c4257eb5a853adcd5d15abe0cac45c8fe9451c)
 - (bugfix): fixed lsp_installer returning null [`67a5fbe`](https://github.com/vladdoster/neovim-configuration/commit/67a5fbe87f44ffe6345e2ee5992d8d8212d02593)
+- (release): v0.2.0 [`db06a5a`](https://github.com/vladdoster/neovim-configuration/commit/db06a5a73b06c59e2d9e624c24ea4ed4df686275)
 - (maint): update release-it configuration [`c74be0b`](https://github.com/vladdoster/neovim-configuration/commit/c74be0b76c3fa9fa214b2c060bf2bbb56c81980e)
 - Update CHANGELOG.md [`34570f5`](https://github.com/vladdoster/neovim-configuration/commit/34570f5486bea6df62ea728cab33bfc2169d2348)
 - (feat): python2 prog path & fix nvim-tree behavior [`46287c7`](https://github.com/vladdoster/neovim-configuration/commit/46287c78ef47ebe5e31ed78516560e6555ab17df)
