@@ -1,22 +1,22 @@
 {
   "git": {
-    "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to}",
+    "changelog": "npx auto-changelog --stdout --commit-limit false --starting-version '${to}' --template https://raw.githubusercontent.com/release-it/release-it/master/templates/keepachangelog.hbs",
     "commitMessage": "(release): v${version}\n${changelog}",
     "requireCleanWorkingDir": true,
     "tag": true,
-    "tagAnnotation": "(release): v${version}",
-    "tagName": "v${version}"
+    "tagAnnotation": "v${version}",
+    "tagName": "v${version}",
+    "push": true,
+    "skipChecks": true
   },
   "github": {
-    "draft": false,
-    "release": true,
-    "preRelease": false,
-    "releaseName": "(release): v${version}"
+    "releaseName": "v${version}",
+    "releaseNotes": "npx auto-changelog --stdout --latest-version '${version}' --commit-limit false --template https://raw.githubusercontent.com/release-it/release-it/master/templates/keepachangelog.hbs"
   },
   "hooks": {
-    "before:init": "git fetch --prune --prune-tags origin",
     "after:bump": "npx auto-changelog  --latest-version '${version}' --commit-limit false --template https://raw.githubusercontent.com/release-it/release-it/master/templates/keepachangelog.hbs",
-    "after:release": "echo Successfully bumped release to v${version} for ${repo.repository}."
+    "after:release": "echo Successfully bumped release to v${version} for ${repo.repository}.",
+    "before:init": "git fetch --prune --prune-tags origin"
   },
   "npm": false,
   "plugins": {
