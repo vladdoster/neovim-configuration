@@ -26,7 +26,7 @@ wo.scrolloff = 8
 
 -- Better editor UI
 wo.number = true
-wo.numberwidth = 6
+wo.numberwidth = 2
 wo.relativenumber = true
 wo.signcolumn = "yes"
 wo.cursorline = true
@@ -78,27 +78,10 @@ o.shortmess = "sI" -- don't show completion messagese
 
 -- Disable builtin plugins
 local disabled_builtins = {
-    "man",
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-    "spellfile_plugin",
-    "matchit",
+    "man", "netrw", "netrwPlugin", "netrwSettings", "netrwFileHandlers", "gzip",
+    "zip", "zipPlugin", "tar", "tarPlugin", "getscript", "getscriptPlugin",
+    "vimball", "vimballPlugin", "2html_plugin", "logipat", "rrhelper",
+    "spellfile_plugin", "matchit"
 }
 
-for _, plugin in ipairs(disabled_builtins) do
-    g["loaded_" .. plugin] = 1
-end -- disable some builtin vim plugins
+for _, plugin in ipairs(disabled_builtins) do g["loaded_" .. plugin] = 1 end -- disable some builtin vim plugins
