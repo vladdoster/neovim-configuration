@@ -1,15 +1,11 @@
--- Disable shadafile
-vim.o.shadafile = 'NONE'
+vim.o.shadafile = 'NONE' -- Disable shadafile
 
 local present_0, impatient = pcall(require, "impatient")
 if present_0 then impatient.enable_profile() end
 
-local init_modules = {"core"}
+require "core.options"
+require "core.autocmds"
+require "core.mappings"
+require("core.mappings").misc()
 
-for _, module in ipairs(init_modules) do
-    local ok, err = pcall(require, module)
-    if not ok then error("Error loading " .. module .. "\n\n" .. err) end
-end
-
--- Enable shadafile
-vim.o.shadafile = ''
+vim.o.shadafile = '' -- Re-enable shadafile

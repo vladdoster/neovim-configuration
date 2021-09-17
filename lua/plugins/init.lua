@@ -1,16 +1,26 @@
-local present_0, impatient = pcall(require, "impatient")
-
-if present_0 then impatient.enable_profile() end
-
-local present_1, packer = pcall(require, "plugins.packerInit")
-if not present_1 then return false end
+local ok, packer = pcall(require, "plugins.packerInit")
+if not ok then return false end
 
 local use = packer.use
 
 return packer.startup {
     function()
-        use {"lewis6991/impatient.nvim"}
         use {"wbthomason/packer.nvim"}
+        use {
+            'kabouzeid/nvim-lspinstall',
+            run = function()
+                require("plugins.configs.lspinstall").install_servers()
+            end,
+            requires = {
+                {
+                    'neovim/nvim-lspconfig',
+                    config = function()
+                        require("plugins.configs.lspconfig")
+                    end
+                }
+            }
+        }
+
         use {
             "hoob3rt/lualine.nvim",
             config = function() require "plugins.configs.lualine" end
@@ -29,15 +39,16 @@ return packer.startup {
             setup = function() require("core.mappings").bufferline() end
         }
 
+        use {'unblevable/quick-scope'}
+
         use {
-            "nvim-treesitter/nvim-treesitter",
-            requires = {"andymass/vim-matchup"},
-            config = function() require "plugins.configs.treesitter" end
+            'nvim-treesitter/nvim-treesitter',
+            branch = '0.5-compat',
+            run = ':TSUpdate',
+            requires = {'nvim-treesitter/nvim-treesitter-textobjects'}
         }
 
-        use {"dstein64/vim-startuptime", cmd = "StartupTime"}
         -- use { "godlygeek/tabular" }
-        use {"monaqa/dial.nvim"}
         use {"tpope/vim-repeat"}
         use {"tpope/vim-surround"}
 
@@ -52,56 +63,35 @@ return packer.startup {
             config = function() require "plugins.configs.gitsigns" end
         }
 
-        use {"kabouzeid/nvim-lspinstall"}
-
+        --         use {
+        --             "neovim/nvim-lspconfig",
+        --             after = "nvim-lspinstall",
+        --             config = function() require "plugins.configs.lspconfig" end,
+        --             requires = {
+        --                 "kabouzeid/nvim-lspinstall", {
+        --                     "ray-x/lsp_signature.nvim",
+        --                     after = "nvim-lspconfig",
+        --                     config = function()
+        --                         require("plugins.configs.others").signature()
+        --                     end
+        --                 }, {
+        --                     "onsails/lspkind-nvim",
+        --                     config = function()
+        --                         require("lspkind").init()
+        --                     end
+        --                 }
+        --             }
+        --         }
         use {
-            "neovim/nvim-lspconfig",
-            after = "nvim-lspinstall",
-            config = function() require "plugins.configs.lspconfig" end
+            'hrsh7th/nvim-cmp',
+            config = function() require('plugins.configs.cmp') end,
+            requires = {
+                'dcampos/nvim-snippy', 'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-path', 'hrsh7th/cmp-emoji', 'hrsh7th/cmp-calc',
+                'f3fora/cmp-spell'
+            }
         }
-        use {
-            "ray-x/lsp_signature.nvim",
-            after = "nvim-lspconfig",
-            config = function()
-                require("plugins.configs.others").signature()
-            end
-        }
-        use {
-            "onsails/lspkind-nvim",
-            config = function() require("lspkind").init() end
-        }
-        use {
-            "tzachar/cmp-tabnine",
-            run = "./install.sh",
-            requires = "hrsh7th/nvim-cmp"
-        }
-
-        use {"tzachar/cmp-tabnine", run = "./install.sh"}
-
-        use {
-            "hrsh7th/nvim-cmp",
-            event = "InsertEnter",
-            config = function() require "plugins.configs.cmp" end,
-            after = "cmp-tabnine"
-
-        }
-
-        use {
-            "L3MON4D3/LuaSnip",
-            wants = "friendly-snippets",
-            after = "nvim-cmp",
-            config = function() require("plugins.configs.others").luasnip() end
-        }
-
-        use {"saadparwaiz1/cmp_luasnip", after = "LuaSnip"}
-
-        use {"hrsh7th/cmp-nvim-lua", after = "cmp_luasnip"}
-
-        use {"hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua"}
-
-        use {"hrsh7th/cmp-buffer", after = "cmp-nvim-lsp"}
-
-        use {"rafamadriz/friendly-snippets", after = "cmp-buffer"}
 
         -- misc plugins
         use {
@@ -130,6 +120,13 @@ return packer.startup {
         }
 
         use {
+            's1n7ax/nvim-comment-frame',
+            keys = '<leader>cf',
+            requires = {'nvim-treesitter'},
+            config = function() require'nvim-comment-frame'.setup() end
+        }
+
+        use {
             "kyazdani42/nvim-tree.lua",
             cmd = {"NvimTreeToggle"},
             config = function() require "plugins.configs.nvimtree" end,
@@ -144,6 +141,8 @@ return packer.startup {
             config = function() require "plugins.configs.telescope" end,
             setup = function() require("core.mappings").telescope() end
         }
+        use {"lewis6991/impatient.nvim"}
+        use {"dstein64/vim-startuptime", cmd = "StartupTime"}
     end,
     config = {profile = {enable = false, threshold = 1}}
 }

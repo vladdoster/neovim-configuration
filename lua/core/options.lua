@@ -8,7 +8,7 @@ vim.g.python3_host_prog = "/usr/local/bin/python3"
 vim.g.python_host_prog = "/usr/bin/python2.7"
 
 -- cmd('syntax on')
-cmd "filetype plugin indent on"
+-- cmd "filetype plugin indent on"
 
 o.termguicolors = true
 o.background = "dark"
@@ -31,23 +31,18 @@ wo.relativenumber = true
 wo.signcolumn = "yes"
 wo.cursorline = true
 
--- To fix a neovim bug affecting indent-blankline
--- Related: https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
-wo.colorcolumn = "99999"
-
 -- Better editing experience
-o.expandtab = true
-o.smarttab = true
-o.tabstop = 4
-o.cindent = true
-o.shiftwidth = 4
-o.softtabstop = 4
-o.autoindent = true
-wo.wrap = true
 bo.textwidth = 300
+o.autoindent = true
+o.cindent = true
+o.expandtab = true
+o.shiftwidth = 4
+o.smarttab = true
+o.softtabstop = 4
+o.tabstop = 4
+wo.wrap = true
 -- bo.formatoptions = 'qrn1'
 
--- Makes neovim and host OS clipboard play nicely with each other
 o.clipboard = "unnamedplus"
 
 -- Case insensitive searching UNLESS /C or capital in search
@@ -68,7 +63,7 @@ g.mapleader = " "
 g.maplocalleader = " "
 
 o.completeopt = "menuone,noselect,noinsert" -- completion options
-o.shortmess = "sI" -- don't show completion messagese
+-- o.shortmess = "sI" -- don't show completion messagese
 
 -- Disable builtin plugins
 local disabled_builtins = {

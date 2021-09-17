@@ -118,20 +118,20 @@ end
 -- replace the default lsp diagnostic symbols
 local function lspSymbol(name, icon)
     vim.fn.sign_define("LspDiagnosticsSign" .. name,
-                       {text = icon, numhl = "LspDiagnosticsDefaul" .. name})
+                       {text = icon, numhl = "LspDiagnosticsDefault" .. name})
 end
 
-lspSymbol("Error", "")
-lspSymbol("Information", "")
-lspSymbol("Hint", "")
-lspSymbol("Warning", "")
+lspSymbol("Error",  ' ﱥ')
+lspSymbol("Information", ' ﴀ')
+lspSymbol("Hint", ' ')
+lspSymbol("Warning", ' ')
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = {prefix = "", spacing = 0},
+        virtual_text = true,
         signs = true,
         underline = true,
-        update_in_insert = false -- update diagnostics insert mode
+        update_in_insert = true
     })
 vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
