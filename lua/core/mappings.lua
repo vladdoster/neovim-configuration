@@ -16,12 +16,6 @@ M.misc = function()
     local function optional_mappings()
         map({ "n", "v" }, "x", '"_x')
         map({ "n", "v" }, "dd", '"_dd')
-
-        map("i", "<C-h>", "<Left>")
-        map("i", "<C-e>", "<End>")
-        map("i", "<C-l>", "<Right>")
-        map("i", "<C-k>", "<Up>")
-        map("i", "<C-j>", "<Down>")
         map("i", "<C-a>", "<ESC>^i")
     end
 
@@ -37,6 +31,13 @@ M.misc = function()
         -- better indenting
         map("v", ">", ">gv")
         map("v", "<", "<gv")
+
+        map("t", "<Esc>", "<C-\\><C-n>") -- escape terminal
+
+        map("n", "<C-h>", "<C-w>h")
+        map("n", "<C-l>", "<C-w>l")
+        map("n", "<C-k>", "<C-w>k")
+        map("n", "<C-j>", "<C-w>j")
 
         -- Add Packer commands because we are not loading it at startup
         cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
