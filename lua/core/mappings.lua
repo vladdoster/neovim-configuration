@@ -32,12 +32,20 @@ M.misc = function()
         map("v", ">", ">gv")
         map("v", "<", "<gv")
 
-        map("t", "<Esc>", "<C-\\><C-n>") -- escape terminal
-
         map("n", "<C-h>", "<C-w>h")
         map("n", "<C-l>", "<C-w>l")
         map("n", "<C-k>", "<C-w>k")
         map("n", "<C-j>", "<C-w>j")
+        map("t", "<Esc>", "<C-\\><C-n><C-w>w")
+
+        map('n', '<A-Up>', ':resize -2<CR>')
+        map('n', '<A-Down>', ':resize +2<CR>')
+        map('n', '<A-Right>', ':vertical resize -2<CR>')
+        map('n', '<A-Left>', ':vertical resize +2<CR>')
+
+        map('n', '<Leader>bn', ':bufdo bnext<CR>')
+        map('n', '<Leader>bp', ':bufdo bprevious<CR>')
+        map('n', '<Leader>bc', ':bufdo bdelete<CR>')
 
         -- Add Packer commands because we are not loading it at startup
         cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
