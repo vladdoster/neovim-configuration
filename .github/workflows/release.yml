@@ -45,8 +45,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACTIONS_TOKEN }}
         run: |
-          # release-it --preRelease \
-          release-it preminor --preReleaseId=beta \
+          # release-it preminor --preReleaseId=beta \
+          release-it --preRelease \
                               --ci \
                               --git.tag=true \
                               --github.preRelease \
