@@ -1,6 +1,17 @@
 # Changelog
 
-## [v0.4.0](https://github.com/vladdoster/neovim-configuration/compare/v0.3.0...v0.4.0)
+## [v0.5.0](https://github.com/vladdoster/neovim-configuration/compare/v0.4.0...v0.5.0)
+
+- (maint): revert to old config [`9a74c65`](https://github.com/vladdoster/neovim-configuration/commit/9a74c6505c1936846b7c23952fa949662174ef0f)
+- (maint): try out light config [`1e3d2e5`](https://github.com/vladdoster/neovim-configuration/commit/1e3d2e537e411dc0c08b286ff1792cf3251f9e23)
+- (maint): config cleanup [`c3032c7`](https://github.com/vladdoster/neovim-configuration/commit/c3032c7c77e5a305206f50a4b0ce49f7b3b00895)
+- (maint): fix cmp 75% of the way [`5a82084`](https://github.com/vladdoster/neovim-configuration/commit/5a820848514419b1c86226e16afb86ba9737971c)
+- (maint): get start time back down [`7452c61`](https://github.com/vladdoster/neovim-configuration/commit/7452c61485cf8a254b34de2c2a8831798d2433b6)
+- (maint): cleanup [`144665e`](https://github.com/vladdoster/neovim-configuration/commit/144665e9f885a0645bc17f5fcbcd915885dd6a90)
+
+## [v0.4.0](https://github.com/vladdoster/neovim-configuration/compare/v0.3.0...v0.4.0) (2021-09-15)
+
+- (release): v0.4.0 [`cae2ad3`](https://github.com/vladdoster/neovim-configuration/commit/cae2ad3454de1b89bd1617d09f30b8e7261dec40)
 
 ## [v0.3.0](https://github.com/vladdoster/neovim-configuration/compare/v0.2.0...v0.3.0) (2021-09-15)
 
