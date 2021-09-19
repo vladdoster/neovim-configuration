@@ -1,10 +1,3 @@
------------------------------------------------------------
--- Neovim LSP configuration file
------------------------------------------------------------
-
--- Plugin: nvim-lspconfig
--- for language server setup see: https://github.com/neovim/nvim-lspconfig
-
 local nvim_lsp = require('lspconfig')
 
 -- Add additional capabilities supported by nvim-cmp
@@ -25,19 +18,14 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
   local opts = { noremap=true, silent=true }
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -58,40 +46,24 @@ local on_attach = function(client, bufnr)
 
 end
 
---[[ Language servers:
-
-Add here your language servers.
-
-For language servers list see:
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-
-
-Bash --> bashls
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#bashls
-
-Python --> pyright
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#pyright
-
-C-C++ -->  clangd
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#clangd
-
-HTML/CSS/JSON --> vscode-html-languageserver
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#html
-
-JavaScript/TypeScript --> tsserver
-https://github.com/typescript-language-server/typescript-language-server
-
---]]
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'bashls', 'pyright', 'clangd', 'html', 'tsserver' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  for _, server in pairs(servers) do
+    nvim_lsp[server].setup {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
     }
   }
+  end
+end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end

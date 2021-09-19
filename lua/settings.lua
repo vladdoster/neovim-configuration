@@ -66,26 +66,10 @@ opt.tabstop = 4           -- 1 tab == 4 spaces
 opt.smartindent = true    -- autoindent new lines
 
 -- don't auto commenting new lines
-cmd[[au BufEnter * set fo-=c fo-=r fo-=o]]
-
--- remove line lenght marker for selected filetypes
-cmd[[autocmd FileType text,markdown,xml,html,xhtml,javascript setlocal cc=0]]
-
--- 2 spaces for selected filetypes
-cmd[[
-  autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
-]]
-
--- IndentLine
---g.indentLine_setColors = 0  -- set indentLine color
-g.indentLine_char = '|'       -- set indentLine character
-
--- disable IndentLine for markdown files (avoid concealing)
-cmd[[autocmd FileType markdown let g:indentLine_enabled=0]]
+-- cmd[[au VimEnter * set fo-=c fo-=r fo-=o]]
 
 -----------------------------------------------------------
 -- Autocompletion
 -----------------------------------------------------------
 opt.completeopt = 'menuone,noselect,noinsert' -- completion options
 --opt.shortmess = 'c' 	-- don't show completion messages
-
