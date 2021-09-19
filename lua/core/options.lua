@@ -8,13 +8,10 @@ vim.g.python3_host_prog = "/usr/local/bin/python3"
 vim.g.python_host_prog = "/usr/bin/python2.7"
 
 -- cmd('syntax on')
-cmd "filetype plugin indent on"
+-- cmd "filetype plugin indent on"
 
 o.termguicolors = true
 o.background = "dark"
-
--- Do not save when switching buffers
-o.hidden = true
 
 -- Decrease update time
 o.timeoutlen = 500
@@ -57,17 +54,19 @@ o.smartcase = true
 -- Undo and backup options
 o.backup = false
 o.writebackup = false
-o.undofile = true
+o.undofile = false
 o.swapfile = false
 o.backupdir = "/tmp/"
 o.directory = "/tmp/"
 o.undodir = "/tmp/"
 
 -- Completion menu option
-o.completeopt = "menuone,noselect"
+o.completeopt = 'menuone,noselect,noinsert' -- completion options
 
--- When running macros and regexes on a large file, lazy redraw tells neovim/vim not to draw the screen, which greatly speeds it up, upto 6-7x faster
-o.lazyredraw = true
+o.hidden = true         -- enable background buffers
+-- o.history = 100         -- remember n lines in history
+o.lazyredraw = true     -- faster scrolling
+-- o.synmaxcol = 240       -- max column for syntax highlight
 
 -- Map <leader> to space
 g.mapleader = " "

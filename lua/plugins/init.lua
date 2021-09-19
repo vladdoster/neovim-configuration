@@ -31,7 +31,7 @@ return packer.startup {
 
         use {
             "akinsho/bufferline.nvim",
-            requires = "kyazdani42/nvim-web-devicons",
+            after = "nvim-web-devicons",
             config = function()
                 require "plugins.configs.bufferline"
             end,
@@ -50,7 +50,6 @@ return packer.startup {
 
         use { "dstein64/vim-startuptime", cmd = "StartupTime" }
         -- use { "godlygeek/tabular" }
-        use { "monaqa/dial.nvim" }
         use { "tpope/vim-repeat" }
         use { "tpope/vim-surround" }
 
@@ -69,11 +68,9 @@ return packer.startup {
             end,
         }
 
-        use { "kabouzeid/nvim-lspinstall" }
-
         use {
             "neovim/nvim-lspconfig",
-            after = "nvim-lspinstall",
+            requires = { "williamboman/nvim-lsp-installer" },
             config = function()
                 require "plugins.configs.lspconfig"
             end,
@@ -162,6 +159,6 @@ return packer.startup {
         }
     end,
     config = {
-        profile = { enable = false, threshold = 1 },
+        profile = { enable = true, threshold = 1 },
     },
 }
