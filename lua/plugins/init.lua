@@ -30,17 +30,6 @@ return packer.startup {
         }
 
         use {
-            "akinsho/bufferline.nvim",
-            after = "nvim-web-devicons",
-            config = function()
-                require "plugins.configs.bufferline"
-            end,
-            setup = function()
-                require("core.mappings").bufferline()
-            end,
-        }
-
-        use {
             "nvim-treesitter/nvim-treesitter",
             requires = { "andymass/vim-matchup" },
             config = function()
@@ -49,7 +38,6 @@ return packer.startup {
         }
 
         use { "dstein64/vim-startuptime", cmd = "StartupTime" }
-        -- use { "godlygeek/tabular" }
         use { "tpope/vim-repeat" }
         use { "tpope/vim-surround" }
 
@@ -80,14 +68,6 @@ return packer.startup {
             after = "nvim-lspconfig",
             config = function()
                 require("plugins.configs.others").signature()
-            end,
-        }
-
-        use {
-            "jdhao/better-escape.vim",
-            event = "InsertEnter",
-            setup = function()
-                require("plugins.configs.others").better_escape()
             end,
         }
 
@@ -127,7 +107,7 @@ return packer.startup {
             "terrortylor/nvim-comment",
             cmd = "CommentToggle",
             config = function()
-                require("plugins.configs.others").comment()
+                require("nvim_comment").setup()
             end,
             setup = function()
                 require("core.mappings").comment()

@@ -26,11 +26,8 @@ M.misc = function()
     end
 
     local function required_mappings()
-        map("n", "<leader>x", ":lua require('core.utils').close_buffer() <CR>") -- close  buffer
         map("n", "<C-a>", ":%y+ <CR>") -- copy whole file content
         map("n", "<S-t>", ":enew <CR>") -- new buffer
-        map("n", "<C-t>b", ":tabnew <CR>") -- new tabs
-        map("n", "<leader>n", ":set nu! <CR>") -- toggle numbers
         map("n", "<C-s>", ":w <CR>") -- ctrl + s to save file
 
         -- move lines up || down
@@ -40,25 +37,6 @@ M.misc = function()
         -- better indenting
         map("v", ">", ">gv")
         map("v", "<", "<gv")
-
-        -- get out of terminal mode
-        map("t", "jk", "<C-\\><C-n>")
-        -- hide a term from within terminal mode
-        map("t", "JK", "<C-\\><C-n> :lua require('core.utils').close_buffer() <CR>")
-        -- horizontal term
-        map(
-            "n",
-            "<leader>h",
-            ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>"
-        )
-        -- vertical term
-        map(
-            "n",
-            "<leader>v",
-            ":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>"
-        )
-        -- new window term
-        map("n", "<leader>w", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>")
 
         -- Add Packer commands because we are not loading it at startup
         cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
@@ -74,18 +52,14 @@ M.misc = function()
     required_mappings()
 end
 
-M.better_escape = function()
-    vim.g.better_escape_shortcut = { "jk" }
-end
-
-M.bufferline = function()
-    map("n", "<TAB>", ":BufferLineCycleNext <CR>")
-    map("n", "<S-TAB>", ":BufferLineCyclePrev <CR>")
-    map("n", "<C-h>", "<C-w>h")
-    map("n", "<C-l>", "<C-w>l")
-    map("n", "<C-k>", "<C-w>k")
-    map("n", "<C-j>", "<C-w>j")
-end
+-- M.bufferline = function()
+--     map("n", "<TAB>", ":BufferLineCycleNext <CR>")
+--     map("n", "<S-TAB>", ":BufferLineCyclePrev <CR>")
+--     map("n", "<C-h>", "<C-w>h")
+--     map("n", "<C-l>", "<C-w>l")
+--     map("n", "<C-k>", "<C-w>k")
+--     map("n", "<C-j>", "<C-w>j")
+-- end
 
 M.comment = function()
     map("n", "<leader>/", ":CommentToggle <CR>")
