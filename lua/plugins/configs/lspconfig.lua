@@ -5,6 +5,7 @@ if not (present1 or present2) then
     return
 end
 
+
 local function on_attach(_, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)

@@ -5,5 +5,5 @@ local present_0, impatient = pcall(require, "impatient")
 if present_0 then
     impatient.enable_profile()
 end
-require("core")
+require "core"
 o.shadafile = ""

@@ -63,46 +63,57 @@ return packer.startup {
                 require "plugins.configs.lspconfig"
             end,
         }
+        --         use {
+        --             "ray-x/lsp_signature.nvim",
+        --             after = "nvim-lspconfig",
+        --             config = function()
+        --                 require("plugins.configs.others").signature()
+        --             end,
+        --         }
+        --
+        --         use { "rafamadriz/friendly-snippets", event = "InsertEnter" }
+        --
+        --         use {
+        --             "hrsh7th/nvim-cmp",
+        --             after = "friendly-snippets",
+        --             config = function()
+        --                 require "plugins.configs.cmp"
+        --             end,
+        --         }
+        --
+        --         use {
+        --             "windwp/nvim-autopairs",
+        --             after = "nvim-cmp",
+        --             config = function()
+        --                 require("plugins.configs.others").autopairs()
+        --             end,
+        --         }
+        --
+        --         use {
+        --             "L3MON4D3/LuaSnip",
+        --             after = "nvim-cmp",
+        --             wants = "friendly-snippets",
+        --             config = function()
+        --                 require("plugins.configs.others").luasnip()
+        --             end,
+        --         }
+        --
+        --         use { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" }
+        --         use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
+        --         use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
+        --         use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
+
+        use { "ms-jpq/coq_nvim", branch = "coq" }
+        use { "ms-jpq/coq.artifacts", branch = "artifacts" }
         use {
-            "ray-x/lsp_signature.nvim",
-            after = "nvim-lspconfig",
+            "ms-jpq/coq.thirdparty",
+            branch = "3p",
             config = function()
-                require("plugins.configs.others").signature()
+                require "coq_3p" {
+                    { src = "nvimlua", short_name = "nLUA" },
+                }
             end,
         }
-
-        use { "rafamadriz/friendly-snippets", event = "InsertEnter" }
-
-        use {
-            "hrsh7th/nvim-cmp",
-            after = "friendly-snippets",
-            config = function()
-                require "plugins.configs.cmp"
-            end,
-        }
-
-        use {
-            "windwp/nvim-autopairs",
-            after = "nvim-cmp",
-            config = function()
-                require("plugins.configs.others").autopairs()
-            end,
-        }
-
-        use {
-            "L3MON4D3/LuaSnip",
-            after = "nvim-cmp",
-            wants = "friendly-snippets",
-            config = function()
-                require("plugins.configs.others").luasnip()
-            end,
-        }
-
-        use { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" }
-        use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
-        use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
-        use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
-
         use {
             "terrortylor/nvim-comment",
             cmd = "CommentToggle",
