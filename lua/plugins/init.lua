@@ -102,16 +102,19 @@ return packer.startup {
         --         use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
         --         use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
         --         use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
-
-        use { "ms-jpq/coq_nvim", branch = "coq" }
-        use { "ms-jpq/coq.artifacts", branch = "artifacts" }
         use {
-            "ms-jpq/coq.thirdparty",
-            branch = "3p",
+            "ms-jpq/coq_nvim",
+            branch = "coq",
+            requires = {
+                { "ms-jpq/coq.artifacts", branch = "artifacts" },
+                {
+
+                    "ms-jpq/coq.thirdparty",
+                    branch = "3p",
+                },
+            },
             config = function()
-                require "coq_3p" {
-                    { src = "nvimlua", short_name = "nLUA" },
-                }
+                require "plugins.configs.coq"
             end,
         }
         use {
