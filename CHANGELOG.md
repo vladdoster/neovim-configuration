@@ -1,6 +1,17 @@
 # Changelog
 
-## [v0.5.0](https://github.com/vladdoster/neovim-configuration/compare/v0.4.0...v0.5.0)
+## [v0.6.0](https://github.com/vladdoster/neovim-configuration/compare/v0.5.0...v0.6.0)
+
+- (maint): clean up cruft [`269dbfe`](https://github.com/vladdoster/neovim-configuration/commit/269dbfe96b5c6de30f11b72a47fd5723704b06e8)
+- (feat): use nvim-COQ for completion [`359584f`](https://github.com/vladdoster/neovim-configuration/commit/359584f71edda0dbb57c65192e9039c085c07a0c)
+- (feat): switch to nvim-lsp-installer [`154b4ec`](https://github.com/vladdoster/neovim-configuration/commit/154b4ec3d1ecaed720f74c9952f3f135dbab5a7a)
+- (maint): autostart COQ [`81b3862`](https://github.com/vladdoster/neovim-configuration/commit/81b386231a372523d1080c92815cece62f7b0fb1)
+- (feat): add nvim-terminal plugin [`a36054e`](https://github.com/vladdoster/neovim-configuration/commit/a36054e68069bd5afc31d8b252c85eb348224dd6)
+- (maint): autostart COQ [`ae1fee7`](https://github.com/vladdoster/neovim-configuration/commit/ae1fee73dc59bb9b8ec0507ee631e644dc32b3ed)
+- (maint): add keymap to quickly switch between terminal [`c0b31b5`](https://github.com/vladdoster/neovim-configuration/commit/c0b31b5927bbb13205862e4171fda26db4c0e078)
+- (maint): install COQdeps on PackerInstall & rm python paths [`2242e61`](https://github.com/vladdoster/neovim-configuration/commit/2242e619d3275af6bb95b600789a89e11d04cfbb)
+
+## [v0.5.0](https://github.com/vladdoster/neovim-configuration/compare/v0.4.0...v0.5.0) (2021-09-19)
 
 - (maint): revert to old config [`9a74c65`](https://github.com/vladdoster/neovim-configuration/commit/9a74c6505c1936846b7c23952fa949662174ef0f)
 - (maint): try out light config [`1e3d2e5`](https://github.com/vladdoster/neovim-configuration/commit/1e3d2e537e411dc0c08b286ff1792cf3251f9e23)
@@ -8,6 +19,7 @@
 - (maint): fix cmp 75% of the way [`5a82084`](https://github.com/vladdoster/neovim-configuration/commit/5a820848514419b1c86226e16afb86ba9737971c)
 - (maint): get start time back down [`7452c61`](https://github.com/vladdoster/neovim-configuration/commit/7452c61485cf8a254b34de2c2a8831798d2433b6)
 - (maint): cleanup [`144665e`](https://github.com/vladdoster/neovim-configuration/commit/144665e9f885a0645bc17f5fcbcd915885dd6a90)
+- (release): v0.5.0 [`5fe0fb3`](https://github.com/vladdoster/neovim-configuration/commit/5fe0fb3af254ccb4f0cefa2049b8110b164815b2)
 
 ## [v0.4.0](https://github.com/vladdoster/neovim-configuration/compare/v0.3.0...v0.4.0) (2021-09-15)
 
