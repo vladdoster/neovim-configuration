@@ -4,9 +4,6 @@ local g = vim.g -- global variables
 local o = vim.o -- global options
 local wo = vim.wo
 
-vim.g.python3_host_prog = "/usr/local/bin/python3"
-vim.g.python_host_prog = "/usr/bin/python2.7"
-
 -- cmd('syntax on')
 -- cmd "filetype plugin indent on"
 
