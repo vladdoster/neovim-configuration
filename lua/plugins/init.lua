@@ -44,6 +44,7 @@ return packer.startup {
         use {
             "sbdchd/neoformat",
             cmd = "Neoformat",
+            opt=true,
             setup = function()
                 require("core.mappings").neoformat()
             end,
@@ -58,7 +59,10 @@ return packer.startup {
 
         use {
             "neovim/nvim-lspconfig",
-            requires = { "williamboman/nvim-lsp-installer" },
+            requires = {
+                "williamboman/nvim-lsp-installer",
+                run = ":LspInstall bashls pyright sumneko_lua gopls terraformls tflint yamlls jsonls",
+            },
             config = function()
                 require "plugins.configs.lspconfig"
             end,
@@ -107,11 +111,7 @@ return packer.startup {
             branch = "coq",
             requires = {
                 { "ms-jpq/coq.artifacts", branch = "artifacts" },
-                {
-
-                    "ms-jpq/coq.thirdparty",
-                    branch = "3p",
-                },
+                { "ms-jpq/coq.thirdparty", branch = "3p" },
             },
             config = function()
                 require "plugins.configs.coq"
@@ -124,6 +124,7 @@ return packer.startup {
             config = function()
                 require("nvim_comment").setup()
             end,
+            opt=true,
             setup = function()
                 require("core.mappings").comment()
             end,
