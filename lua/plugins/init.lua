@@ -116,7 +116,7 @@ return packer.startup {
             config = function()
                 require "plugins.configs.coq"
             end,
-            run = ":COQdeps"
+            run = ":COQdeps",
         }
         use {
             "terrortylor/nvim-comment",

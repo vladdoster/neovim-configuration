@@ -58,11 +58,11 @@ o.directory = "/tmp/"
 o.undodir = "/tmp/"
 
 -- Completion menu option
-o.completeopt = 'menuone,noselect,noinsert' -- completion options
+o.completeopt = "menuone,noselect,noinsert" -- completion options
 
-o.hidden = true         -- enable background buffers
+o.hidden = true -- enable background buffers
 -- o.history = 100         -- remember n lines in history
-o.lazyredraw = true     -- faster scrolling
+o.lazyredraw = true -- faster scrolling
 -- o.synmaxcol = 240       -- max column for syntax highlight
 
 -- Map <leader> to space

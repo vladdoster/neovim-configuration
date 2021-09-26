@@ -200,7 +200,7 @@ ins_right {
     "fileformat",
     upper = true,
     icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-    color = { fg = colors.fg ,gui = "bold" },
+    color = { fg = colors.fg, gui = "bold" },
 }
 
 ins_right {

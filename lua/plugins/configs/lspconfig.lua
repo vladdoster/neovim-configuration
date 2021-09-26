@@ -5,7 +5,6 @@ if not (present1 or present2) then
     return
 end
 
-
 local function on_attach(_, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -71,7 +70,26 @@ lsp_installer.on_server_ready(function(server)
             debounce_text_changes = 150,
         },
     }
-    -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+    if server.name == "sumneko_lua" then
+        opts.settings = {
+            Lua = {
+                diagnostics = {
+                    globals = { "vim" },
+                },
+                workspace = {
+                    library = {
+                        [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                        [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+                    },
+                    maxPreload = 100000,
+                    preloadFileSize = 10000,
+                },
+                telemetry = {
+                    enable = false,
+                },
+            },
+        }
+    end
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
 end)
@@ -79,7 +97,7 @@ end)
 -- local function setup_servers()
 --     lspinstall.setup()
 --     local servers = lspinstall.installed_servers()
--- 
+--
 --     for _, lang in pairs(servers) do
 --         if lang ~= "lua" then
 --             lspconfig[lang].setup {

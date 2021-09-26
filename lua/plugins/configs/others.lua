@@ -9,10 +9,10 @@ M.autopairs = function()
     end
 
     autopairs.setup()
-    autopairs_completion.setup({
+    autopairs_completion.setup {
         map_complete = true,
         map_cr = true,
-    })
+    }
 end
 
 M.luasnip = function()
@@ -38,7 +38,6 @@ M.material = function()
     vim.g.material_style = "darker"
     vim.cmd [[colorscheme material]]
 end
-
 
 M.signature = function()
     local present, lspsignature = pcall(require, "lsp_signature")
