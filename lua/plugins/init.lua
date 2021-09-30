@@ -44,7 +44,7 @@ return packer.startup {
         use {
             "sbdchd/neoformat",
             cmd = "Neoformat",
-            opt=true,
+            opt = true,
             setup = function()
                 require("core.mappings").neoformat()
             end,
@@ -60,12 +60,26 @@ return packer.startup {
         use {
             "neovim/nvim-lspconfig",
             requires = {
-                "williamboman/nvim-lsp-installer",
-                run = ":LspInstall bashls pyright sumneko_lua gopls terraformls tflint yamlls jsonls",
+                {
+                    "williamboman/nvim-lsp-installer",
+                    run = ":LspInstall bashls pyright sumneko_lua gopls terraformls tflint yamlls jsonls",
+                },
             },
             config = function()
                 require "plugins.configs.lspconfig"
             end,
+        }
+        use {
+            "ms-jpq/coq_nvim",
+            branch = "coq",
+            requires = {
+                { "ms-jpq/coq.artifacts", branch = "artifacts" },
+                { "ms-jpq/coq.thirdparty", branch = "3p" },
+            },
+            config = function()
+                require "plugins.configs.coq"
+            end,
+            run = ":COQdeps",
         }
         --         use {
         --             "ray-x/lsp_signature.nvim",
@@ -116,7 +130,7 @@ return packer.startup {
             config = function()
                 require "plugins.configs.coq"
             end,
-            run = ":COQdeps",
+            -- run = ":COQdeps",
         }
         use {
             "terrortylor/nvim-comment",
@@ -124,7 +138,7 @@ return packer.startup {
             config = function()
                 require("nvim_comment").setup()
             end,
-            opt=true,
+            opt = true,
             setup = function()
                 require("core.mappings").comment()
             end,
