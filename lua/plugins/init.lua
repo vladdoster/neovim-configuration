@@ -21,9 +21,15 @@ return packer.startup {
         }
         use { "famiu/feline.nvim", config = [[require "plugins.configs.feline"]] }
         use { "andymass/vim-matchup" }
+        -- Highlights
         use {
             "nvim-treesitter/nvim-treesitter",
             config = [[require "plugins.configs.treesitter"]],
+            requires = {
+                "nvim-treesitter/nvim-treesitter-refactor",
+                "nvim-treesitter/nvim-treesitter-textobjects",
+            },
+            run = ":TSUpdate",
         }
         use { "dstein64/vim-startuptime", cmd = "StartupTime" }
         use { "tpope/vim-repeat" }
@@ -41,10 +47,11 @@ return packer.startup {
         }
         use {
             "neovim/nvim-lspconfig",
-            requires = "nvim-lsp-installer",
+            requires = {
+                "nvim-lsp-installer",
+            },
             config = [[require "plugins.configs.lspconfig"]],
         }
-        use { "s1n7ax/nvim-terminal", config = [[require("nvim-terminal").setup()]] }
         use {
             "ms-jpq/coq_nvim",
             branch = "coq",
@@ -55,6 +62,7 @@ return packer.startup {
             },
             run = ":COQdeps",
         }
+        use { "s1n7ax/nvim-terminal", config = [[require("nvim-terminal").setup()]] }
         use {
             "terrortylor/nvim-comment",
             cmd = "CommentToggle",
@@ -76,60 +84,6 @@ return packer.startup {
             requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
             setup = [[require("core.mappings").telescope()]],
         }
-        -- Completion
-        -- use {
-        --   'hrsh7th/nvim-cmp',
-        --   requires = {
-        --     'L3MON4D3/LuaSnip',
-        --     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-        --     'hrsh7th/cmp-nvim-lsp',
-        --     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-        --     { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-        --     { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-        --   },
-        --   config = [[require('config.cmp')]],
-        --   event = 'InsertEnter *',
-        -- }
-        --         use {
-        --             "ray-x/lsp_signature.nvim",
-        --             after = "nvim-lspconfig",
-        --             config = function()
-        --                 require("plugins.configs.others").signature()
-        --             end,
-        --         }
-        --
-        --         use { "rafamadriz/friendly-snippets", event = "InsertEnter" }
-        --
-        --         use {
-        --             "hrsh7th/nvim-cmp",
-        --             after = "friendly-snippets",
-        --             config = function()
-        --                 require "plugins.configs.cmp"
-        --             end,
-        --         }
-        --
-        --         use {
-        --             "windwp/nvim-autopairs",
-        --             after = "nvim-cmp",
-        --             config = function()
-        --                 require("plugins.configs.others").autopairs()
-        --             end,
-        --         }
-        --
-        --         use {
-        --             "L3MON4D3/LuaSnip",
-        --             after = "nvim-cmp",
-        --             wants = "friendly-snippets",
-        --             config = function()
-        --                 require("plugins.configs.others").luasnip()
-        --             end,
-        --         }
-        --
-        --         use { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" }
-        --         use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
-        --         use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
-        --         use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
-        --
     end,
     config = {
         profile = { enable = true, threshold = 1 },
