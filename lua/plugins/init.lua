@@ -22,10 +22,17 @@ return packer.startup {
             end,
         }
 
+        -- use {
+        --     "hoob3rt/lualine.nvim",
+        --     config = function()
+        --         require "plugins.configs.lualine"
+        --     end,
+        -- }
+
         use {
-            "hoob3rt/lualine.nvim",
+            "famiu/feline.nvim",
             config = function()
-                require "plugins.configs.lualine"
+                require "plugins.configs.feline"
             end,
         }
 
