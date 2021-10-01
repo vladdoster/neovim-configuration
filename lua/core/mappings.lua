@@ -75,10 +75,10 @@ M.comment = function()
     map("v", "<leader>/", ":CommentToggle <CR>")
 end
 
-M.nvimtree = function()
-    map("n", "<C-n>", ":NvimTreeToggle <CR>")
-    map("n", "<leader>e", ":NvimTreeFocus <CR>")
-end
+-- M.nvimtree = function()
+--     map("n", "<C-n>", ":NvimTreeToggle <CR>")
+--     map("n", "<leader>e", ":NvimTreeFocus <CR>")
+-- end
 
 M.neoformat = function()
     map("n", "<leader>fm", ":Neoformat <CR>")

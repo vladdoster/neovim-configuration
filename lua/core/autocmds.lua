@@ -32,3 +32,4 @@ cmd [[ au InsertLeave * set relativenumber ]]
 
 -- Open a file from its last left off position
 cmd [[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
+

@@ -58,7 +58,7 @@ return packer.startup {
         }
         use {
             "neovim/nvim-lspconfig",
-            after = "nvim-lsp-installer",
+            requires = "nvim-lsp-installer",
             config = [[require "plugins.configs.lspconfig"]],
         }
         use {
@@ -81,10 +81,7 @@ return packer.startup {
         }
         use {
             "kyazdani42/nvim-tree.lua",
-            cmd = { "NvimTreeToggle" },
             config = [[require "plugins.configs.nvimtree"]],
-            opt = true,
-            setup = [[require("core.mappings").nvimtree()]],
         }
         use {
             "nvim-telescope/telescope.nvim",
