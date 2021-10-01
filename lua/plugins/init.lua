@@ -17,77 +17,79 @@ return packer.startup {
         use { "kyazdani42/nvim-web-devicons" }
         use {
             "marko-cerovac/material.nvim",
-            config = function()
-                require("plugins.configs.others").material()
-            end,
+            config = [[require("plugins.configs.others").material()]],
         }
-
-        -- use {
-        --     "hoob3rt/lualine.nvim",
-        --     config = function()
-        --         require "plugins.configs.lualine"
-        --     end,
-        -- }
-
-        use {
-            "famiu/feline.nvim",
-            config = function()
-                require "plugins.configs.feline"
-            end,
-        }
-
+        use { "famiu/feline.nvim", config = [[require "plugins.configs.feline"]] }
+        use { "andymass/vim-matchup" }
         use {
             "nvim-treesitter/nvim-treesitter",
-            requires = { "andymass/vim-matchup" },
-            config = function()
-                require "plugins.configs.treesitter"
-            end,
+            config = [[require "plugins.configs.treesitter"]],
         }
-
         use { "dstein64/vim-startuptime", cmd = "StartupTime" }
         use { "tpope/vim-repeat" }
         use { "tpope/vim-surround" }
-
         use {
             "sbdchd/neoformat",
             cmd = "Neoformat",
             opt = true,
-            setup = function()
-                require("core.mappings").neoformat()
-            end,
+            setup = [[require("core.mappings").neoformat()]],
         }
-
+        use { "lewis6991/gitsigns.nvim", config = [[require "plugins.configs.gitsigns"]] }
         use {
-            "lewis6991/gitsigns.nvim",
-            config = function()
-                require "plugins.configs.gitsigns"
-            end,
+            "williamboman/nvim-lsp-installer",
+            run = ":LspInstall bashls pyright sumneko_lua gopls terraformls tflint yamlls jsonls",
         }
-
         use {
             "neovim/nvim-lspconfig",
-            requires = {
-                {
-                    "williamboman/nvim-lsp-installer",
-                    run = ":LspInstall bashls pyright sumneko_lua gopls terraformls tflint yamlls jsonls",
-                },
-            },
-            config = function()
-                require "plugins.configs.lspconfig"
-            end,
+            requires = "nvim-lsp-installer",
+            config = [[require "plugins.configs.lspconfig"]],
         }
+        use { "s1n7ax/nvim-terminal", config = [[require("nvim-terminal").setup()]] }
         use {
             "ms-jpq/coq_nvim",
             branch = "coq",
+            config = [[require "plugins.configs.coq"]],
             requires = {
                 { "ms-jpq/coq.artifacts", branch = "artifacts" },
                 { "ms-jpq/coq.thirdparty", branch = "3p" },
             },
-            config = function()
-                require "plugins.configs.coq"
-            end,
             run = ":COQdeps",
         }
+        use {
+            "terrortylor/nvim-comment",
+            cmd = "CommentToggle",
+            config = [[require("nvim_comment").setup()]],
+            opt = true,
+            setup = [[require("core.mappings").comment()]],
+        }
+        use {
+            "kyazdani42/nvim-tree.lua",
+            cmd = { "NvimTreeToggle" },
+            config = [[require "plugins.configs.nvimtree"]],
+            opt = true,
+            setup = [[require("core.mappings").nvimtree()]],
+        }
+        use {
+            "nvim-telescope/telescope.nvim",
+            cmd = "Telescope",
+            config = [[require "plugins.configs.telescope"]],
+            requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+            setup = [[require("core.mappings").telescope()]],
+        }
+        -- Completion
+        -- use {
+        --   'hrsh7th/nvim-cmp',
+        --   requires = {
+        --     'L3MON4D3/LuaSnip',
+        --     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+        --     'hrsh7th/cmp-nvim-lsp',
+        --     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+        --     { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+        --     { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+        --   },
+        --   config = [[require('config.cmp')]],
+        --   event = 'InsertEnter *',
+        -- }
         --         use {
         --             "ray-x/lsp_signature.nvim",
         --             after = "nvim-lspconfig",
@@ -127,60 +129,7 @@ return packer.startup {
         --         use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
         --         use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
         --         use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
-        use {
-            "ms-jpq/coq_nvim",
-            branch = "coq",
-            requires = {
-                { "ms-jpq/coq.artifacts", branch = "artifacts" },
-                { "ms-jpq/coq.thirdparty", branch = "3p" },
-            },
-            config = function()
-                require "plugins.configs.coq"
-            end,
-            -- run = ":COQdeps",
-        }
-        use {
-            "terrortylor/nvim-comment",
-            cmd = "CommentToggle",
-            config = function()
-                require("nvim_comment").setup()
-            end,
-            opt = true,
-            setup = function()
-                require("core.mappings").comment()
-            end,
-        }
-
-        use {
-            "kyazdani42/nvim-tree.lua",
-            cmd = { "NvimTreeToggle" },
-            config = function()
-                require "plugins.configs.nvimtree"
-            end,
-            opt = true,
-            setup = function()
-                require("core.mappings").nvimtree()
-            end,
-        }
-
-        use {
-            "nvim-telescope/telescope.nvim",
-            cmd = "Telescope",
-            requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
-            config = function()
-                require "plugins.configs.telescope"
-            end,
-            setup = function()
-                require("core.mappings").telescope()
-            end,
-        }
-        use {
-            "s1n7ax/nvim-terminal",
-            config = function()
-                vim.o.hidden = true
-                require("nvim-terminal").setup()
-            end,
-        }
+        --
     end,
     config = {
         profile = { enable = true, threshold = 1 },
