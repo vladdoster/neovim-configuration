@@ -1,15 +1,3 @@
------------------------------------------------------------
--- Statusline configuration file
------------------------------------------------------------
-
---[[
-  Plugin: feline.nvim
-  https://github.com/famiu/feline.nvim
-
-  Thanks to ibhagwan for the example to follow
-  see: https://github.com/ibhagwan/nvim-lua
---]]
-
 local colors = {
   bg = '#1d1f22',
   fg = '#f8f8f0',

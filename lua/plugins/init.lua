@@ -12,28 +12,38 @@ local use = packer.use
 
 return packer.startup {
     function()
-        use { "lewis6991/impatient.nvim" }
         use { "wbthomason/packer.nvim" }
+        use { "lewis6991/impatient.nvim" }
+        use { "dstein64/vim-startuptime", cmd = "StartupTime" }
         use { "kyazdani42/nvim-web-devicons" }
+        -- UI
         use {
             "marko-cerovac/material.nvim",
             config = [[require("plugins.configs.others").material()]],
         }
         use { "famiu/feline.nvim", config = [[require "plugins.configs.feline"]] }
-        use { "andymass/vim-matchup" }
+        use {
+            "akinsho/nvim-bufferline.lua",
+            config = [[require 'plugins.configs.bufferline']],
+        }
         -- Highlights
+        use {"nvim-treesitter/nvim-treesitter-refactor",
+             "nvim-treesitter/nvim-treesitter-textobjects"
+        }
         use {
             "nvim-treesitter/nvim-treesitter",
             config = [[require "plugins.configs.treesitter"]],
-            requires = {
-                "nvim-treesitter/nvim-treesitter-refactor",
-                "nvim-treesitter/nvim-treesitter-textobjects",
-            },
             run = ":TSUpdate",
         }
-        use { "dstein64/vim-startuptime", cmd = "StartupTime" }
-        use { "tpope/vim-repeat" }
-        use { "tpope/vim-surround" }
+        use {
+            "machakann/vim-sandwich",
+            "tpope/vim-repeat",
+            {
+                "andymass/vim-matchup",
+                config = [[require('plugins.configs.matchup')]],
+                event = "User ActuallyEditing",
+            },
+        }
         use {
             "sbdchd/neoformat",
             cmd = "Neoformat",
@@ -41,15 +51,14 @@ return packer.startup {
             setup = [[require("core.mappings").neoformat()]],
         }
         use { "lewis6991/gitsigns.nvim", config = [[require "plugins.configs.gitsigns"]] }
+        -- LSP
         use {
             "williamboman/nvim-lsp-installer",
             run = ":LspInstall bashls pyright sumneko_lua gopls terraformls tflint yamlls jsonls",
         }
         use {
             "neovim/nvim-lspconfig",
-            requires = {
-                "nvim-lsp-installer",
-            },
+            after = "nvim-lsp-installer",
             config = [[require "plugins.configs.lspconfig"]],
         }
         use {
