@@ -4,70 +4,55 @@ local cmd = vim.cmd
 local M = {}
 
 M.misc = function()
-    local function non_config_mappings()
-        map("v", "p", '"_dP')
-        map("", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
-        map("", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
-        map("", "<Down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
-        map("", "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
-        map("n", "<Esc>", ":noh <CR>")
-    end
+    map("v", "p", '"_dP')
+    map("", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
+    map("", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
+    map("", "<Down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
+    map("", "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
+    map("n", "<Esc>", ":noh <CR>")
 
-    local function optional_mappings()
-        map({ "n", "v" }, "x", '"_x')
-        map({ "n", "v" }, "dd", '"_dd')
-        map("i", "<C-a>", "<ESC>^i")
-    end
+    map({ "n", "v" }, "x", '"_x')
+    map({ "n", "v" }, "dd", '"_dd')
+    map("i", "<C-a>", "<ESC>^i")
 
-    local function required_mappings()
-        map("n", "<C-a>", ":%y+ <CR>") -- copy whole file content
-        map("n", "<S-t>", ":enew <CR>") -- new buffer
-        map("n", "<C-s>", ":w <CR>") -- ctrl + s to save file
+    map("n", "<C-a>", ":%y+ <CR>") -- copy whole file content
+    map("n", "<S-t>", ":enew <CR>") -- new buffer
+    map("n", "<C-s>", ":w <CR>") -- ctrl + s to save file
 
-        -- move lines up || down
-        map("v", "J", ":move '>+1<CR>gv-gv")
-        map("v", "K", ":move '<-2<CR>gv-gv")
+    -- move lines up || down
+    map("v", "J", ":move '>+1<CR>gv-gv")
+    map("v", "K", ":move '<-2<CR>gv-gv")
 
-        -- better indenting
-        map("v", ">", ">gv")
-        map("v", "<", "<gv")
+    -- better indenting
+    map("v", ">", ">gv")
+    map("v", "<", "<gv")
 
-        map("n", "<C-h>", "<C-w>h")
-        map("n", "<C-l>", "<C-w>l")
-        map("n", "<C-k>", "<C-w>k")
-        map("n", "<C-j>", "<C-w>j")
-        map("t", "<Esc>", "<C-\\><C-n><C-w>w")
+    map("n", "<C-h>", "<C-w>h")
+    map("n", "<C-l>", "<C-w>l")
+    map("n", "<C-k>", "<C-w>k")
+    map("n", "<C-j>", "<C-w>j")
+    map("t", "<Esc>", "<C-\\><C-n><C-w>w")
 
-        map("n", "<A-Up>", ":resize -2<CR>")
-        map("n", "<A-Down>", ":resize +2<CR>")
-        map("n", "<A-Right>", ":vertical resize -2<CR>")
-        map("n", "<A-Left>", ":vertical resize +2<CR>")
+    map("n", "<A-Up>", ":resize -2<CR>")
+    map("n", "<A-Down>", ":resize +2<CR>")
+    map("n", "<A-Right>", ":vertical resize -2<CR>")
+    map("n", "<A-Left>", ":vertical resize +2<CR>")
 
-        map("n", "<Leader>bn", ":bufdo bnext<CR>")
-        map("n", "<Leader>bp", ":bufdo bprevious<CR>")
-        map("n", "<Leader>bc", ":bufdo bdelete<CR>")
+    map("n", "<Leader>bn", ":bufdo bnext<CR>")
+    map("n", "<Leader>bp", ":bufdo bprevious<CR>")
+    map("n", "<Leader>bc", ":bufdo bdelete<CR>")
 
-        -- Add Packer commands because we are not loading it at startup
-        cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
-        cmd "silent! command PackerCompile lua require 'plugins' require('packer').compile()"
-        cmd "silent! command PackerInstall lua require 'plugins' require('packer').install()"
-        cmd "silent! command PackerStatus lua require 'plugins' require('packer').status()"
-        cmd "silent! command PackerSync lua require 'plugins' require('packer').sync()"
-        cmd "silent! command PackerUpdate lua require 'plugins' require('packer').update()"
-    end
-
-    non_config_mappings()
-    optional_mappings()
-    required_mappings()
+    cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
+    cmd "silent! command PackerCompile lua require 'plugins' require('packer').compile()"
+    cmd "silent! command PackerInstall lua require 'plugins' require('packer').install()"
+    cmd "silent! command PackerStatus lua require 'plugins' require('packer').status()"
+    cmd "silent! command PackerSync lua require 'plugins' require('packer').sync()"
+    cmd "silent! command PackerUpdate lua require 'plugins' require('packer').update()"
 end
 
 -- M.bufferline = function()
---     map("n", "<TAB>", ":BufferLineCycleNext <CR>")
---     map("n", "<S-TAB>", ":BufferLineCyclePrev <CR>")
---     map("n", "<C-h>", "<C-w>h")
---     map("n", "<C-l>", "<C-w>l")
---     map("n", "<C-k>", "<C-w>k")
---     map("n", "<C-j>", "<C-w>j")
+--     map("n", M.next_buffer, ":BufferLineCycleNext <CR>")
+--     map("n", M.prev_buffer, ":BufferLineCyclePrev <CR>")
 -- end
 
 M.comment = function()

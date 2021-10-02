@@ -1,10 +1,5 @@
-local present_0, impatient = pcall(require, "impatient")
-if present_0 then
-    impatient.enable_profile()
-end
-
-local present_1, packer = pcall(require, "plugins.packerInit")
-if not present_1 then
+local present, packer = pcall(require, "plugins.packerInit")
+if not present then
     return false
 end
 
@@ -15,31 +10,23 @@ return packer.startup {
         use { "wbthomason/packer.nvim" }
         use { "lewis6991/impatient.nvim" }
         use { "dstein64/vim-startuptime", cmd = "StartupTime" }
-        use { "kyazdani42/nvim-web-devicons" }
         -- UI
         use {
             "marko-cerovac/material.nvim",
-            config = [[require("plugins.others").material()]],
+            config = [[require "plugins.others".material()]],
         }
+        use { "kyazdani42/nvim-web-devicons" }
         use { "famiu/feline.nvim", config = [[require "plugins.feline"]] }
         use {
             "akinsho/nvim-bufferline.lua",
             config = [[require 'plugins.bufferline']],
-        }
-        -- Highlights
-        use {"nvim-treesitter/nvim-treesitter-refactor", opt=true }
-        use { "nvim-treesitter/nvim-treesitter-textobjects", opt=true}
-        use {
-            "nvim-treesitter/nvim-treesitter",
-            config = [[require "plugins.treesitter"]],
-            run = ":TSUpdate",
         }
         use {
             "machakann/vim-sandwich",
             "tpope/vim-repeat",
             {
                 "andymass/vim-matchup",
-                config = [[require('plugins.matchup')]],
+                config = [[require 'plugins.matchup']],
                 event = "User ActuallyEditing",
             },
         }
@@ -47,21 +34,31 @@ return packer.startup {
             "sbdchd/neoformat",
             cmd = "Neoformat",
             opt = true,
-            setup = [[require("core.mappings").neoformat()]],
+            setup = [[require "core.mappings".neoformat()]],
         }
         use { "lewis6991/gitsigns.nvim", config = [[require "plugins.gitsigns"]] }
-        -- LSP
+        use { "s1n7ax/nvim-terminal", config = [[require "nvim-terminal".setup()]] }
         use {
-            "williamboman/nvim-lsp-installer",
-            run = ":LspInstall bashls pyright sumneko_lua gopls terraformls tflint yamlls jsonls",
+            "terrortylor/nvim-comment",
+            cmd = "CommentToggle",
+            config = [[require "nvim_comment".setup()]],
+            opt = true,
+            setup = [[require "core.mappings".comment()]],
         }
         use {
+            "kyazdani42/nvim-tree.lua",
+            config = [[require "plugins.nvimtree"]],
+        }
+        -- LSP
+        use {
             "neovim/nvim-lspconfig",
-            requires = "nvim-lsp-installer",
+            requires = { "williamboman/nvim-lsp-installer" },
             config = [[require "plugins.lspconfig"]],
+            -- run = ":LspInstall bashls pyright sumneko_lua gopls terraformls tflint yamlls jsonls",
         }
         use {
             "ms-jpq/coq_nvim",
+            after = "nvim-lspconfig",
             branch = "coq",
             config = [[require "plugins.coq"]],
             requires = {
@@ -70,24 +67,22 @@ return packer.startup {
             },
             run = ":COQdeps",
         }
-        use { "s1n7ax/nvim-terminal", config = [[require("nvim-terminal").setup()]] }
         use {
-            "terrortylor/nvim-comment",
-            cmd = "CommentToggle",
-            config = [[require("nvim_comment").setup()]],
-            opt = true,
-            setup = [[require("core.mappings").comment()]],
-        }
-        use {
-            "kyazdani42/nvim-tree.lua",
-            config = [[require "plugins.nvimtree"]],
+            "nvim-treesitter/nvim-treesitter",
+            after = "coq_nvim",
+            config = [[require "plugins.treesitter"]],
+            requires = {
+                { "nvim-treesitter/nvim-treesitter-refactor", opt = true },
+                { "nvim-treesitter/nvim-treesitter-textobjects", opt = true },
+            },
+            run = ":TSUpdate",
         }
         use {
             "nvim-telescope/telescope.nvim",
             cmd = "Telescope",
             config = [[require "plugins.telescope"]],
             requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
-            setup = [[require("core.mappings").telescope()]],
+            setup = [[require "core.mappings".telescope()]],
         }
     end,
     config = {

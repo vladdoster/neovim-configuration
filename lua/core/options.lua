@@ -1,100 +1,79 @@
-local bo = vim.bo
-local cmd = vim.api.nvim_command
-local g = vim.g -- global variables
-local o = vim.o -- global options
-local wo = vim.wo
+local o_s = vim.o
+local g = vim.g
 
--- cmd('syntax on')
--- cmd "filetype plugin indent on"
+local function opt(o, v, scopes)
+  scopes = scopes or {o_s}
+  for _, s in ipairs(scopes) do s[o] = v end
+end
 
-o.termguicolors = true
-o.background = "dark"
+local o, wo, bo = vim.o, vim.wo, vim.bo
 
--- Decrease update time
-o.timeoutlen = 500
-o.updatetime = 200
+-- Leader/local leader
+g.mapleader = [[ ]]
+g.maplocalleader = [[,]]
 
--- I have to set these individually as neovim doesn't update those
-o.scrolloff = 8
-wo.scrolloff = 8
+-- Skip some remote provider loading
+g.loaded_python_provider = 0
+g.python_host_prog = '/usr/bin/python2'
+g.python3_host_prog = '/usr/bin/python3'
 
--- Better editor UI
-wo.number = true
-wo.numberwidth = 6
-wo.relativenumber = true
-wo.signcolumn = "yes"
-wo.cursorline = true
-
--- To fix a neovim bug affecting indent-blankline
--- Related: https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
-wo.colorcolumn = "99999"
-
--- Better editing experience
-o.expandtab = true
-o.smarttab = true
-o.tabstop = 4
-o.cindent = true
-o.shiftwidth = 4
-o.softtabstop = 4
-o.autoindent = true
-wo.wrap = true
-bo.textwidth = 300
--- bo.formatoptions = 'qrn1'
-
--- Makes neovim and host OS clipboard play nicely with each other
-o.clipboard = "unnamedplus"
-
--- Case insensitive searching UNLESS /C or capital in search
-o.ignorecase = true
-o.smartcase = true
-
--- Undo and backup options
-o.backup = false
-o.writebackup = false
-o.undofile = false
-o.swapfile = false
-o.backupdir = "/tmp/"
-o.directory = "/tmp/"
-o.undodir = "/tmp/"
-
--- Completion menu option
-o.completeopt = "menuone,noselect,noinsert" -- completion options
-
-o.hidden = true -- enable background buffers
--- o.history = 100         -- remember n lines in history
-o.lazyredraw = true -- faster scrolling
--- o.synmaxcol = 240       -- max column for syntax highlight
-
--- Map <leader> to space
-g.mapleader = " "
-g.maplocalleader = " "
-
--- o.completeopt = "menuone,noselect,noinsert" -- completion options
-o.shortmess = "sI" -- don't show completion messagese
-
--- Disable builtin plugins
-local disabled_builtins = {
-    "man",
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-    "spellfile_plugin",
-    "matchit",
+-- Disable some built-in plugins we don't want
+local disabled_built_ins = {
+  'gzip',
+  'man',
+  'matchit',
+  'matchparen',
+  'shada_plugin',
+  'tarPlugin',
+  'tar',
+  'zipPlugin',
+  'zip',
+  'netrwPlugin',
 }
 
-for _, plugin in ipairs(disabled_builtins) do
-    g["loaded_" .. plugin] = 1
-end -- disable some builtin vim plugins
+for i = 1, 10 do
+  g['loaded_' .. disabled_built_ins[i]] = 1
+end
+
+-- Settings
+local buffer = { o, bo }
+local window = { o, wo }
+opt('textwidth', 100, buffer)
+opt('scrolloff', 7)
+opt('wildignore', '*.o,*~,*.pyc')
+opt('wildmode', 'longest,full')
+opt('whichwrap', vim.o.whichwrap .. '<,>,h,l')
+opt('inccommand', 'nosplit')
+opt('lazyredraw', true)
+opt('showmatch', true)
+opt('ignorecase', true)
+opt('smartcase', true)
+opt('tabstop', 2, buffer)
+opt('softtabstop', 0, buffer)
+opt('expandtab', true, buffer)
+opt('shiftwidth', 2, buffer)
+opt('number', true, window)
+opt('relativenumber', true, window)
+opt('smartindent', true, buffer)
+opt('laststatus', 2)
+opt('showmode', false)
+opt('shada', [['20,<50,s10,h,/100]])
+opt('hidden', true)
+opt('shortmess', o.shortmess .. 'c')
+opt('joinspaces', false)
+opt('guicursor', [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]])
+opt('updatetime', 500)
+opt('conceallevel', 2, window)
+opt('concealcursor', 'nc', window)
+opt('previewheight', 5)
+opt('undofile', true, buffer)
+opt('synmaxcol', 500, buffer)
+opt('display', 'msgsep')
+opt('cursorline', true, window)
+opt('modeline', false, buffer)
+opt('mouse', 'nivh')
+opt('signcolumn', 'yes:1', window)
+
+-- Colorscheme
+opt('termguicolors', true)
+opt('background', 'dark')
