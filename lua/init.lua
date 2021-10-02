@@ -27,8 +27,9 @@ return packer.startup {
             config = [[require 'plugins.bufferline']],
         }
         -- Highlights
-        use {"nvim-treesitter/nvim-treesitter-refactor", opt=true }
-        use { "nvim-treesitter/nvim-treesitter-textobjects", opt=true}
+        use {"nvim-treesitter/nvim-treesitter-refactor",
+             "nvim-treesitter/nvim-treesitter-textobjects"
+        }
         use {
             "nvim-treesitter/nvim-treesitter",
             config = [[require "plugins.treesitter"]],
