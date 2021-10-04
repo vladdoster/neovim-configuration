@@ -14,8 +14,11 @@ g.maplocalleader = [[,]]
 
 -- Skip some remote provider loading
 g.loaded_python_provider = 0
-g.python_host_prog = '/usr/bin/python2'
-g.python3_host_prog = '/usr/bin/python3'
+g.loaded_ruby_provider = 0
+g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+-- g.python_host_prog = '/usr/bin/python2'
+g.python3_host_prog = '/home/linuxbrew/.linuxbrew/bin/python3.9'
 
 -- Disable some built-in plugins we don't want
 local disabled_built_ins = {
