@@ -50,21 +50,6 @@ M.misc = function()
     cmd "silent! command PackerUpdate lua require 'plugins' require('packer').update()"
 end
 
--- M.bufferline = function()
---     map("n", M.next_buffer, ":BufferLineCycleNext <CR>")
---     map("n", M.prev_buffer, ":BufferLineCyclePrev <CR>")
--- end
-
-M.comment = function()
-    map("n", "<leader>/", ":CommentToggle <CR>")
-    map("v", "<leader>/", ":CommentToggle <CR>")
-end
-
--- M.nvimtree = function()
---     map("n", "<C-n>", ":NvimTreeToggle <CR>")
---     map("n", "<leader>e", ":NvimTreeFocus <CR>")
--- end
-
 M.neoformat = function()
     map("n", "<leader>fm", ":Neoformat <CR>")
 end

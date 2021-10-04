@@ -1,7 +1,7 @@
-local present1, lspconfig = pcall(require, "lspconfig")
-local present2, lsp_installer = pcall(require, "nvim-lsp-installer")
+local present0, lspconfig = pcall(require, "lspconfig")
+local present1, lsp_installer = pcall(require, "nvim-lsp-installer")
 
-if not (present1 or present2) then
+if not (present0 or present1) then
     return
 end
 

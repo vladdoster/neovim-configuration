@@ -18,7 +18,7 @@ g.loaded_ruby_provider = 0
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 -- g.python_host_prog = '/usr/bin/python2'
-g.python3_host_prog = '/home/linuxbrew/.linuxbrew/bin/python3.9'
+g.python3_host_prog = '/usr/local/bin/python3'
 
 -- Disable some built-in plugins we don't want
 local disabled_built_ins = {
@@ -69,7 +69,7 @@ opt('updatetime', 500)
 opt('conceallevel', 2, window)
 opt('concealcursor', 'nc', window)
 opt('previewheight', 5)
-opt('undofile', true, buffer)
+opt('undofile', false, buffer)
 opt('synmaxcol', 500, buffer)
 opt('display', 'msgsep')
 opt('cursorline', true, window)

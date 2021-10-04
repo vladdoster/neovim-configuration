@@ -27,7 +27,6 @@ return packer.startup {
             {
                 "andymass/vim-matchup",
                 config = [[require 'plugins.matchup']],
-                event = "User ActuallyEditing",
             },
         }
         use {
@@ -38,13 +37,7 @@ return packer.startup {
         }
         use { "lewis6991/gitsigns.nvim", config = [[require "plugins.gitsigns"]] }
         use { "s1n7ax/nvim-terminal", config = [[require "nvim-terminal".setup()]] }
-        use {
-            "terrortylor/nvim-comment",
-            cmd = "CommentToggle",
-            config = [[require "nvim_comment".setup()]],
-            opt = true,
-            setup = [[require "core.mappings".comment()]],
-        }
+        use{'winston0410/commented.nvim', config = [[require 'commented'.setup()]] }
         use {
             "kyazdani42/nvim-tree.lua",
             config = [[require "plugins.nvimtree"]],
@@ -69,8 +62,9 @@ return packer.startup {
         }
         use {
             "nvim-treesitter/nvim-treesitter",
-            after = "coq_nvim",
+            requires = {"ms-jpq/coq_nvim"},
             config = [[require "plugins.treesitter"]],
+            event = "BufRead",
             requires = {
                 { "nvim-treesitter/nvim-treesitter-refactor", opt = true },
                 { "nvim-treesitter/nvim-treesitter-textobjects", opt = true },
@@ -81,6 +75,7 @@ return packer.startup {
             "nvim-telescope/telescope.nvim",
             cmd = "Telescope",
             config = [[require "plugins.telescope"]],
+            module = "telescope",
             requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
             setup = [[require "core.mappings".telescope()]],
         }

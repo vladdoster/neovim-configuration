@@ -101,3 +101,5 @@ end
 local opts = { silent = true, nowait = true }
 map("n", "<leader>gb", ":BufferLinePick<cr>", opts)
 map("n", "<leader>d", "<cmd>bdelete!<cr>", opts)
+map("n", "<TAB>", ":BufferLineCycleNext <CR>")
+map("n", "<S-TAB>", ":BufferLineCyclePrev <CR>")
