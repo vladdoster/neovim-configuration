@@ -1,6 +1,20 @@
 # Changelog
 
-## [v0.6.0](https://github.com/vladdoster/neovim-configuration/compare/v0.5.0...v0.6.0)
+## [v0.7.0](https://github.com/vladdoster/neovim-configuration/compare/v0.6.0...v0.7.0)
+
+- (maint): fix lazy loaded packer commands [`3d1e940`](https://github.com/vladdoster/neovim-configuration/commit/3d1e940a935f35707ce77d411692b2618b9d38ef)
+- (maint): add bufferline, matchup, and remove lualine config [`cd9f6aa`](https://github.com/vladdoster/neovim-configuration/commit/cd9f6aadad25ac9a6d7727895d6b0a907266d28d)
+- (maint): try feline and update packerInit [`1ca7a9e`](https://github.com/vladdoster/neovim-configuration/commit/1ca7a9eb4c8fd5eb743d138db263a3de5150647f)
+- (maint): add treesitter plugins [`692a46e`](https://github.com/vladdoster/neovim-configuration/commit/692a46ef6f94452f91d4baad21771497dd1faf68)
+- (maint): add new auto commands [`188bab0`](https://github.com/vladdoster/neovim-configuration/commit/188bab0d8d827337b466ef6e34c09cff0b123254)
+- (maint): nvimtree config updated [`b7ea39f`](https://github.com/vladdoster/neovim-configuration/commit/b7ea39fc26d8425c2ff6770f4d635541b55ddc3b)
+- (maint): make nvim-tree open on dir [`3058bc1`](https://github.com/vladdoster/neovim-configuration/commit/3058bc16ee1b34660ac842612b9a16ef59b443a3)
+- (maint): use condensed syntax for specifying config [`18e821f`](https://github.com/vladdoster/neovim-configuration/commit/18e821fe78870d90eca2d1dc11bda3a8eb37486b)
+- (maint): remove unessacary nesting [`577bbcb`](https://github.com/vladdoster/neovim-configuration/commit/577bbcb3e7c29c284f032d5a982100272d2011f6)
+- (bugfix): add curly braces to LspInstaller requirement" [`949fa56`](https://github.com/vladdoster/neovim-configuration/commit/949fa566a8bea5c9c940ce067432f1c0892302df)
+- (maint): misc. cleanup around opt plugins [`15ed71b`](https://github.com/vladdoster/neovim-configuration/commit/15ed71b4e6ff55ba6fcf894830e43e6c6cb5feec)
+
+## [v0.6.0](https://github.com/vladdoster/neovim-configuration/compare/v0.5.0...v0.6.0) (2021-09-21)
 
 - (maint): clean up cruft [`269dbfe`](https://github.com/vladdoster/neovim-configuration/commit/269dbfe96b5c6de30f11b72a47fd5723704b06e8)
 - (feat): use nvim-COQ for completion [`359584f`](https://github.com/vladdoster/neovim-configuration/commit/359584f71edda0dbb57c65192e9039c085c07a0c)
@@ -8,6 +22,7 @@
 - (maint): autostart COQ [`81b3862`](https://github.com/vladdoster/neovim-configuration/commit/81b386231a372523d1080c92815cece62f7b0fb1)
 - (feat): add nvim-terminal plugin [`a36054e`](https://github.com/vladdoster/neovim-configuration/commit/a36054e68069bd5afc31d8b252c85eb348224dd6)
 - (maint): autostart COQ [`ae1fee7`](https://github.com/vladdoster/neovim-configuration/commit/ae1fee73dc59bb9b8ec0507ee631e644dc32b3ed)
+- (release): v0.6.0 [`f48e99f`](https://github.com/vladdoster/neovim-configuration/commit/f48e99f382c0ccb437e9ba537cbdd3db328b25d5)
 - (maint): add keymap to quickly switch between terminal [`c0b31b5`](https://github.com/vladdoster/neovim-configuration/commit/c0b31b5927bbb13205862e4171fda26db4c0e078)
 - (maint): install COQdeps on PackerInstall & rm python paths [`2242e61`](https://github.com/vladdoster/neovim-configuration/commit/2242e619d3275af6bb95b600789a89e11d04cfbb)
 
