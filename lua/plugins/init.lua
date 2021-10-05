@@ -33,7 +33,7 @@ return packer.startup {
             "sbdchd/neoformat",
             cmd = "Neoformat",
             opt = true,
-            setup = [[require "core.mappings".neoformat()]],
+            -- setup = [[require "core.mappings".neoformat()]],
         }
         use { "lewis6991/gitsigns.nvim", config = [[require "plugins.gitsigns"]] }
         use { "s1n7ax/nvim-terminal", config = [[require "nvim-terminal".setup()]] }
