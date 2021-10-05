@@ -18,6 +18,7 @@ M.misc = function()
     map("n", "<C-a>", ":%y+ <CR>") -- copy whole file content
     map("n", "<S-t>", ":enew <CR>") -- new buffer
     map("n", "<C-s>", ":w <CR>") -- ctrl + s to save file
+    map("v", "<C-s>", ":sort<CR>")
 
     -- move lines up || down
     map("v", "J", ":move '>+1<CR>gv-gv")
@@ -42,6 +43,8 @@ M.misc = function()
     map("n", "<Leader>bp", ":bufdo bprevious<CR>")
     map("n", "<Leader>bc", ":bufdo bdelete<CR>")
 
+
+
     map("n", "<leader>fm", ":Neoformat<CR>")
 
     cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
@@ -50,6 +53,10 @@ M.misc = function()
     cmd "silent! command PackerStatus lua require 'plugins' require('packer').status()"
     cmd "silent! command PackerSync lua require 'plugins' require('packer').sync()"
     cmd "silent! command PackerUpdate lua require 'plugins' require('packer').update()"
+
+    map("n", "<Leader>ps", ":PackerSync<CR>")
+    map("n", "<Leader>st", ":StartupTime<CR>")
+
 end
 
 M.telescope = function()
