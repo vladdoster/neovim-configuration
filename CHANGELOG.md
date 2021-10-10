@@ -1,6 +1,13 @@
 # Changelog
 
-## [v0.7.0](https://github.com/vladdoster/neovim-configuration/compare/v0.6.0...v0.7.0)
+## [v0.8.0](https://github.com/vladdoster/neovim-configuration/compare/v0.7.0...v0.8.0)
+
+- (maint): use new comment plugin and fix bufferline keymaps [`c70739d`](https://github.com/vladdoster/neovim-configuration/commit/c70739d3f0302a4b682f75a9f6d7fe0f5dfb7390)
+- (maint): misc. QoL changes [`a569e41`](https://github.com/vladdoster/neovim-configuration/commit/a569e41954dda965f81ca03ce80400f9a310f495)
+- (maint): clean up neoformat [`969a720`](https://github.com/vladdoster/neovim-configuration/commit/969a7205dcea640b419d8dd2eb73beda0c719f1d)
+- (maint): disable node, perl, and ruby providers [`33a648e`](https://github.com/vladdoster/neovim-configuration/commit/33a648eeead3961f023598174cee343b3b91d7a3)
+
+## [v0.7.0](https://github.com/vladdoster/neovim-configuration/compare/v0.6.0...v0.7.0) (2021-10-04)
 
 - (maint): fix lazy loaded packer commands [`3d1e940`](https://github.com/vladdoster/neovim-configuration/commit/3d1e940a935f35707ce77d411692b2618b9d38ef)
 - (maint): add bufferline, matchup, and remove lualine config [`cd9f6aa`](https://github.com/vladdoster/neovim-configuration/commit/cd9f6aadad25ac9a6d7727895d6b0a907266d28d)
@@ -12,6 +19,7 @@
 - (maint): use condensed syntax for specifying config [`18e821f`](https://github.com/vladdoster/neovim-configuration/commit/18e821fe78870d90eca2d1dc11bda3a8eb37486b)
 - (maint): remove unessacary nesting [`577bbcb`](https://github.com/vladdoster/neovim-configuration/commit/577bbcb3e7c29c284f032d5a982100272d2011f6)
 - (bugfix): add curly braces to LspInstaller requirement" [`949fa56`](https://github.com/vladdoster/neovim-configuration/commit/949fa566a8bea5c9c940ce067432f1c0892302df)
+- (release): v0.7.0 [`c579660`](https://github.com/vladdoster/neovim-configuration/commit/c5796600bb57b2d288a985f9c24fdaa53f7cac70)
 - (maint): misc. cleanup around opt plugins [`15ed71b`](https://github.com/vladdoster/neovim-configuration/commit/15ed71b4e6ff55ba6fcf894830e43e6c6cb5feec)
 
 ## [v0.6.0](https://github.com/vladdoster/neovim-configuration/compare/v0.5.0...v0.6.0) (2021-09-21)
