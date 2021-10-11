@@ -19,7 +19,6 @@ vim.g.nvim_tree_window_picker_exclude = {
         "Trouble",
     },
 }
-
 vim.g.nvim_tree_icons = {
     default = "",
     git = {
@@ -34,12 +33,10 @@ vim.g.nvim_tree_icons = {
         open = "",
     },
 }
-
 vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<CR>", {
     noremap = true,
     silent = true,
 })
-
 vim.api.nvim_set_keymap("n", "<leader>r", ":NvimTreeRefresh<CR>", {
     noremap = true,
     silent = true,
@@ -50,8 +47,7 @@ require("nvim-tree").setup {
     hijack_netrw = true,
     open_on_setup = true,
     open_on_tab = true,
-    lsp_diagnostics = true,
-    auto_close = false,
+    auto_close = true,
     hijack_cursor = true,
     update_cwd = true,
     update_focused_file = {
