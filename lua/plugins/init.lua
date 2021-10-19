@@ -7,61 +7,60 @@ local use = packer.use
 
 return packer.startup {
     function()
-        use { "wbthomason/packer.nvim" }
-        use { "lewis6991/impatient.nvim" }
-        use { "dstein64/vim-startuptime", cmd = "StartupTime" }
-        -- UI
+        use { "wbthomason/packer.nvim" } -- pkg manager
+        use { "lewis6991/impatient.nvim" } -- plugin caching
+        use { "dstein64/vim-startuptime", cmd = "StartupTime" } -- load time per plugin
         use {
-            "marko-cerovac/material.nvim",
+            "marko-cerovac/material.nvim", -- color theme
             config = [[require "plugins.others".material()]],
         }
-        use { "kyazdani42/nvim-web-devicons" }
-        use { "famiu/feline.nvim", config = [[require "plugins.feline"]] }
+        use { "kyazdani42/nvim-web-devicons" } -- shapes
+        use { "famiu/feline.nvim", config = [[require "plugins.feline"]] } -- statusbar
         use {
-            "akinsho/nvim-bufferline.lua",
+            "akinsho/nvim-bufferline.lua", -- buffer/tab bar
             config = [[require 'plugins.bufferline']],
         }
         use {
-            "machakann/vim-sandwich",
-            "tpope/vim-repeat",
+            "machakann/vim-sandwich", -- object wrapping
+            "tpope/vim-repeat", -- expanded repeat capabilities
+            'junegunn/vim-easy-align',
             {
-                "andymass/vim-matchup",
+                "andymass/vim-matchup", -- auto-wrap
                 config = [[require 'plugins.matchup']],
             },
         }
         use {
-            "sbdchd/neoformat",
+            "sbdchd/neoformat", -- all-in-one formatter
             cmd = "Neoformat",
             opt = true,
-            -- setup = [[require "core.mappings".neoformat()]],
         }
         use { "lewis6991/gitsigns.nvim", config = [[require "plugins.gitsigns"]] }
-        use { "s1n7ax/nvim-terminal", config = [[require "nvim-terminal".setup()]] }
-        use{'winston0410/commented.nvim', config = [[require 'commented'.setup()]] }
+        use { "s1n7ax/nvim-terminal", config = [[require "nvim-terminal".setup()]] } -- persistent terminal
+        use{'winston0410/commented.nvim', config = [[require 'commented'.setup()]] } -- commenting
         use {
-            "kyazdani42/nvim-tree.lua",
+            "kyazdani42/nvim-tree.lua", -- file manager
             config = [[require "plugins.nvimtree"]],
         }
         -- LSP
         use {
-            "neovim/nvim-lspconfig",
-            requires = { "williamboman/nvim-lsp-installer" },
+            "neovim/nvim-lspconfig", -- language server configuration
+            requires = { "williamboman/nvim-lsp-installer" }, -- language server installer
             config = [[require "plugins.lspconfig"]],
             -- run = ":LspInstall bashls pyright sumneko_lua gopls terraformls tflint yamlls jsonls",
         }
         use {
-            "ms-jpq/coq_nvim",
+            "ms-jpq/coq_nvim", -- auto-completion
             after = "nvim-lspconfig",
             branch = "coq",
             config = [[require "plugins.coq"]],
             requires = {
-                { "ms-jpq/coq.artifacts", branch = "artifacts" },
-                { "ms-jpq/coq.thirdparty", branch = "3p" },
+                { "ms-jpq/coq.artifacts", branch = "artifacts" }, -- snippets
+                { "ms-jpq/coq.thirdparty", branch = "3p" }, -- misc. addons
             },
             run = ":COQdeps",
         }
         use {
-            "nvim-treesitter/nvim-treesitter",
+            "nvim-treesitter/nvim-treesitter", -- syntax highlighting
             requires = {"ms-jpq/coq_nvim"},
             config = [[require "plugins.treesitter"]],
             event = "BufRead",
@@ -72,7 +71,7 @@ return packer.startup {
             run = ":TSUpdate",
         }
         use {
-            "nvim-telescope/telescope.nvim",
+            "nvim-telescope/telescope.nvim", -- fuzzy finder
             cmd = "Telescope",
             config = [[require "plugins.telescope"]],
             module = "telescope",
