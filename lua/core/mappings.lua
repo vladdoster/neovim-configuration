@@ -41,11 +41,9 @@ M.misc = function()
 
     map("n", "<Leader>bn", ":bufdo bnext<CR>")
     map("n", "<Leader>bp", ":bufdo bprevious<CR>")
-    map("n", "<Leader>bc", ":bufdo bdelete<CR>")
-
-
 
     map("n", "<leader>fm", ":Neoformat<CR>")
+    map("n", "<C-n>", ":NvimTreeToggle<CR>")
 
     cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
     cmd "silent! command PackerCompile lua require 'plugins' require('packer').compile()"
