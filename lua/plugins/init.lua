@@ -14,16 +14,16 @@ return packer.startup {
         use {'kyazdani42/nvim-web-devicons' } -- shapes
         use {'famiu/feline.nvim', config = [[require 'plugins.feline']] } -- statusbar
         use {'akinsho/nvim-bufferline.lua', config = [[require 'plugins.bufferline']] }
+        use {'andymass/vim-matchup', config = [[require 'plugins.matchup']] }
+        use {'junegunn/vim-easy-align'}
         use {'machakann/vim-sandwich' }
         use {'tpope/vim-repeat' }
-        use {'junegunn/vim-easy-align'}
-        use {'andymass/vim-matchup', config = [[require 'plugins.matchup']] }
         -- use {'sbdchd/neoformat', cmd = 'Neoformat', opt = true }
-        use { 'lukas-reineke/format.nvim', config = [[require 'plugins.others'.format()]] }
+        use {'kyazdani42/nvim-tree.lua', config = [[require 'plugins.nvimtree']] }
         use {'lewis6991/gitsigns.nvim', config = [[require 'plugins.gitsigns']] }
+        use {'lukas-reineke/format.nvim', config = [[require 'plugins.format']] }
         use {'s1n7ax/nvim-terminal', config = [[require 'nvim-terminal'.setup()]] } -- persistent terminal
         use {'winston0410/commented.nvim', config = [[require 'commented'.setup()]] } -- commenting
-        use {'kyazdani42/nvim-tree.lua', config = [[require 'plugins.nvimtree']] }
         use {
             "nvim-treesitter/nvim-treesitter", -- syntax highlighting
             config = [[require "plugins.treesitter"]],

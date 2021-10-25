@@ -31,23 +31,6 @@ M.material = function()
     end
 end
 
-M.format = function()
-    local present, format = pcall(require, "format")
-    if present then
-      format.setup {
-          ["*"] = { {cmd = {"sed -i 's/[ \t]*$//'"}}},
-          lua = { { cmd = { function(file) return string.format("luafmt -l %s -w replace %s", vim.bo.textwidth, file) end } } },
-          go = { { cmd = {"gofmt -w", "goimports -w"}, tempfile_postfix = ".tmp" } },
-          python = { { cmd = {"black -l 80"} } },
-          markdown = {
-              {cmd = {"mdformat"}},
-              { cmd = {"black"}, start_pattern = "^```python$", end_pattern = "^```$", target = "current" },
-              { cmd = {"shfmt -w"}, start_pattern = "^```bash$", end_pattern = "^```$", target = "current" }
-          }
-      }
-    end
-end
-
 M.signature = function()
    local present, lspsignature = pcall(require, "lsp_signature")
    if present then
