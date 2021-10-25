@@ -1,9 +1,21 @@
 # Changelog
 
-## [v0.8.0](https://github.com/vladdoster/neovim-configuration/compare/v0.7.0...v0.8.0)
+## [v0.9.0](https://github.com/vladdoster/neovim-configuration/compare/v0.8.0...v0.9.0)
+
+- (maint): clean up and try out cmp again [`0f8e336`](https://github.com/vladdoster/neovim-configuration/commit/0f8e336fdf309a0b79889d4b0fb85def8600ea29)
+- (maint): remove verbose map func, remove comments, and fix mappings [`3033005`](https://github.com/vladdoster/neovim-configuration/commit/303300594d2f078d98231a35ad9341dff09566b8)
+- (feat): clean up lsp config [`ef9ddd2`](https://github.com/vladdoster/neovim-configuration/commit/ef9ddd28a0005e62ccff1426cb015969ba99493d)
+- (maint): revert mappings change [`619508f`](https://github.com/vladdoster/neovim-configuration/commit/619508f9bcc9c386bf40f16ccecb58f610778c87)
+- (maint): comment plugin ability [`02582cd`](https://github.com/vladdoster/neovim-configuration/commit/02582cdce1165767e96403349481ab62b183725f)
+- (maint): switch format plugin with less overhead [`cd7aa7b`](https://github.com/vladdoster/neovim-configuration/commit/cd7aa7b85d78b93184057e4235b1858d8e32ab87)
+- (maint): remove deprecated `lsp` setting [`e8bbac3`](https://github.com/vladdoster/neovim-configuration/commit/e8bbac3add926644cd2bee6c9a21023523e7296c)
+- (maint): add NvimTreeToggle mapping [`4c59eb3`](https://github.com/vladdoster/neovim-configuration/commit/4c59eb33a574b9d3580f4256aaf2bd9e91dbf0cb)
+
+## [v0.8.0](https://github.com/vladdoster/neovim-configuration/compare/v0.7.0...v0.8.0) (2021-10-10)
 
 - (maint): use new comment plugin and fix bufferline keymaps [`c70739d`](https://github.com/vladdoster/neovim-configuration/commit/c70739d3f0302a4b682f75a9f6d7fe0f5dfb7390)
 - (maint): misc. QoL changes [`a569e41`](https://github.com/vladdoster/neovim-configuration/commit/a569e41954dda965f81ca03ce80400f9a310f495)
+- (release): v0.8.0 [`cfecaf8`](https://github.com/vladdoster/neovim-configuration/commit/cfecaf8564ab14a94474ba0485614be09dd54d35)
 - (maint): clean up neoformat [`969a720`](https://github.com/vladdoster/neovim-configuration/commit/969a7205dcea640b419d8dd2eb73beda0c719f1d)
 - (maint): disable node, perl, and ruby providers [`33a648e`](https://github.com/vladdoster/neovim-configuration/commit/33a648eeead3961f023598174cee343b3b91d7a3)
 
