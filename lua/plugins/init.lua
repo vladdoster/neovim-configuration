@@ -10,7 +10,7 @@ return packer.startup {
         use {'wbthomason/packer.nvim' } -- pkg manager
         use {'lewis6991/impatient.nvim' } -- plugin caching
         use {'dstein64/vim-startuptime', cmd = 'StartupTime' } -- load time per plugin
-        use {'marko-cerovac/material.nvim', config = [[require 'plugins.others'.material()]], }
+        use {'marko-cerovac/material.nvim', config = [[require 'plugins.others'.material()]] }
         use {'kyazdani42/nvim-web-devicons' } -- shapes
         use {'famiu/feline.nvim', config = [[require 'plugins.feline']] } -- statusbar
         use {'akinsho/nvim-bufferline.lua', config = [[require 'plugins.bufferline']] }
@@ -18,7 +18,8 @@ return packer.startup {
         use {'tpope/vim-repeat' }
         use {'junegunn/vim-easy-align'}
         use {'andymass/vim-matchup', config = [[require 'plugins.matchup']] }
-        use {'sbdchd/neoformat', cmd = 'Neoformat', opt = true }
+        -- use {'sbdchd/neoformat', cmd = 'Neoformat', opt = true }
+        use { 'lukas-reineke/format.nvim', config = [[require 'plugins.others'.format()]] }
         use {'lewis6991/gitsigns.nvim', config = [[require 'plugins.gitsigns']] }
         use {'s1n7ax/nvim-terminal', config = [[require 'nvim-terminal'.setup()]] } -- persistent terminal
         use {'winston0410/commented.nvim', config = [[require 'commented'.setup()]] } -- commenting
@@ -31,7 +32,7 @@ return packer.startup {
                 { "nvim-treesitter/nvim-treesitter-refactor", opt = true },
                 { "nvim-treesitter/nvim-treesitter-textobjects", opt = true },
             },
-            run = ":TSUpdate",
+            run = ":TSUpdate"
         }
         use {
             "nvim-telescope/telescope.nvim", -- fuzzy finder

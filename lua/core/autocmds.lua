@@ -9,3 +9,4 @@ exec([[au InsertEnter * set norelativenumber ]], false) -- don't use relative nu
 exec([[au InsertLeave * set relativenumber ]], false) -- use relativenumber in normal & visual
 exec([[au TextYankPost * silent! lua vim.highlight.on_yank()]], false) -- highlight yanked selection
 exec([[au VimResized * tabdo wincmd =]], false) -- keep windows equally resized
+
