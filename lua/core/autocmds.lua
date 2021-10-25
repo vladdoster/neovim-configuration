@@ -1,28 +1,11 @@
-local cmd = vim.cmd
-local function autocmd(group, cmds, clear)
-    clear = clear == nil and false or clear
-    if type(cmds) == "string" then
-        cmds = { cmds }
-    end
-    cmd("augroup " .. group)
-    if clear then
-        cmd [[au!]]
-    end
-    for _, c in ipairs(cmds) do
-        cmd("autocmd " .. c)
-    end
-    cmd [[augroup END]]
-end
-
--- Open a file from its last left off position
-cmd [[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
-
-autocmd("misc_aucmds", {
-    [[BufWinEnter * checktime]],
-    [[TextYankPost * silent! lua vim.highlight.on_yank()]],
-    [[FileType qf set nobuflisted ]],
-    [[BufWritePre * :%s/\s\+$//e]],
-    [[FileType * set formatoptions-=cro]],
-    [[InsertEnter * set norelativenumber ]],
-    [[InsertLeave * set relativenumber ]],
-}, true)
+local exec = vim.api.nvim_exec
+vim.cmd [[
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
+]]
+exec([[au BufEnter * set fo-=c fo-=r fo-=o]], false) -- don't auto comment new lines
+exec([[au BufWinEnter * checktime]], false) -- faster checking
+exec([[au BufWritePre * :%s/\s\+$//e]], false) -- trim whitespace on save
+exec([[au InsertEnter * set norelativenumber ]], false) -- don't use relative number in insert
+exec([[au InsertLeave * set relativenumber ]], false) -- use relativenumber in normal & visual
+exec([[au TextYankPost * silent! lua vim.highlight.on_yank()]], false) -- highlight yanked selection
+exec([[au VimResized * tabdo wincmd =]], false) -- keep windows equally resized

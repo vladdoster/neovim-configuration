@@ -41,11 +41,28 @@ return packer.startup {
             requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
             setup = [[require "core.mappings".telescope()]],
         }
-        -- LSP
         use {
             "neovim/nvim-lspconfig", -- language server configuration
             requires = { "williamboman/nvim-lsp-installer" }, -- language server installer
             config = [[require "plugins.lsp-config"]],
+        }
+        use {
+          "hrsh7th/nvim-cmp",
+          requires = {
+            { "L3MON4D3/LuaSnip", config = [[require 'plugins.others'.luasnip()]] },
+            { "Saecki/crates.nvim" },
+            { "f3fora/cmp-spell" },
+            { "hrsh7th/cmp-buffer"},
+            { "hrsh7th/cmp-nvim-lsp"},
+            { "hrsh7th/cmp-nvim-lua"},
+            { "hrsh7th/cmp-path" },
+            { "hrsh7th/cmp-vsnip" },
+            { "onsails/lspkind-nvim" },
+            { "rafamadriz/friendly-snippets", event = "InsertEnter"},
+            { "ray-x/cmp-treesitter" },
+            { "saadparwaiz1/cmp_luasnip" },
+          },
+          config = [[require "plugins.cmp"]]
         }
         -- use {
             -- "ms-jpq/coq_nvim", -- auto-completion
@@ -58,14 +75,17 @@ return packer.startup {
             -- },
             -- run = ":COQdeps",
         -- }
-        use { "rafamadriz/friendly-snippets", event = "InsertEnter"}
-        use { "hrsh7th/nvim-cmp", after = "friendly-snippets", config = [[require "plugins.cmp"]] }
-        use { "L3MON4D3/LuaSnip", wants = "friendly-snippets", after = "nvim-cmp", config = [[require 'plugins.others'.luasnip()]] }
-        use { "saadparwaiz1/cmp_luasnip", after = "LuaSnip", }
-        use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip"}
-        use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
-        use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
-        use { "hrsh7th/cmp-path", after = "cmp-buffer" }
+        -- use { "rafamadriz/friendly-snippets", event = "InsertEnter"}
+        -- use { "onsails/lspkind-nvim", after="friendly-snippets" }
+        -- use { "hrsh7th/nvim-cmp", after = "lspkind-nvim", config = [[require "plugins.cmp"]] }
+        -- use { "L3MON4D3/LuaSnip", wants = "friendly-snippets", after = "nvim-cmp", config = [[require 'plugins.others'.luasnip()]] }
+        -- use { "saadparwaiz1/cmp_luasnip", after = "LuaSnip", }
+        -- use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip"}
+        -- use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
+        -- use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
+        -- use { "hrsh7th/cmp-path", after = "cmp-buffer" }
+
+        -- LSP
         -- use { "windwp/nvim-autopairs", after = "nvim-cmp", config = [[require("plugins.others").autopairs()]]
     end,
     config = {

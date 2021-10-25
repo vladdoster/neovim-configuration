@@ -7,21 +7,17 @@ local function opt(o, v, scopes)
 end
 
 local o, wo, bo = vim.o, vim.wo, vim.bo
-
--- Leader/local leader
+-- LEADER/LOCAL LEADER
 g.mapleader = [[ ]]
 g.maplocalleader = [[,]]
-
--- Skip some remote provider loading
+-- SKIP LOADING MISC. REMOTE PROVIDERS
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_python_provider = 0
 g.loaded_ruby_provider = 0
-
-g.python_host_prog = '/usr/bin/python2'
+-- PYTHON LOCATION
 g.python3_host_prog = '/usr/bin/python3'
-
--- Disable some built-in plugins we don't want
+-- DISABLE SOME BUILT-IN PLUGINS WE DON'T WANT
 local disabled_built_ins = {
   'gzip',
   'man',
@@ -34,12 +30,13 @@ local disabled_built_ins = {
   'zip',
   'netrwPlugin',
 }
-
 for i = 1, 10 do
   g['loaded_' .. disabled_built_ins[i]] = 1
 end
-
--- Settings
+-- COLORSCHEME
+opt('termguicolors', true)
+opt('background', 'dark')
+-- SETTINGS
 local buffer = { o, bo }
 local window = { o, wo }
 opt('textwidth', 100, buffer)
@@ -77,7 +74,3 @@ opt('cursorline', true, window)
 opt('modeline', false, buffer)
 opt('mouse', 'nivh')
 opt('signcolumn', 'yes:1', window)
-
--- Colorscheme
-opt('termguicolors', true)
-opt('background', 'dark')
