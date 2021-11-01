@@ -3,7 +3,7 @@ if not present then
     return
 end
 
-vim.g.nvim_tree_ignore = { ".git", "node_modules", "dist" }
+
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_show_icons = {
@@ -43,6 +43,7 @@ require("nvim-tree").setup {
     auto_close = true,
     hijack_cursor = true,
     update_cwd = true,
+    nvim_tree_ignore = { ".git", "node_modules", "dist" },
     update_focused_file = {
         enable = true,
         update_cwd = true,

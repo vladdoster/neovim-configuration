@@ -1,15 +1,10 @@
-local core_modules = {
-    "core.options",
-    "core.autocmds",
-    "core.mappings",
-}
-
-for _, module in ipairs(core_modules) do
-    local ok, err = pcall(require, module)
-    if not ok then
-        error("Error loading " .. module .. "\n\n" .. err)
-    end
+for _, module in ipairs({'options', 'autocmds', 'mappings'}) do
+    local ok, err = pcall(require, "core." .. module)
+    if not ok then error("Error loading " .. module .. "\n\n" .. err) end
 end
 
--- set all the non plugin mappings
-require("core.mappings").misc()
+local ok, impatient = pcall(require, "impatient")
+if ok then
+    require("packer_compiled")
+    impatient.enable_profile()
+end
