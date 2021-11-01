@@ -30,7 +30,7 @@ return packer.startup {
         }
         use {
           'hrsh7th/nvim-cmp',
-          config   = [[require 'plugins.cmp']]
+          config   = [[require 'plugins.cmp']],
           requires = {
             {'L3MON4D3/LuaSnip', config = [[require 'plugins.others'.luasnip()]] },
             {'Saecki/crates.nvim' },
@@ -58,7 +58,7 @@ return packer.startup {
             'nvim-treesitter/nvim-treesitter', -- syntax highlighting
             config = [[require 'plugins.treesitter']],
             event  = 'BufRead',
-            run    = ':TSUpdate'
+            run    = ':TSUpdate',
             requires = {
                 {'nvim-treesitter/nvim-treesitter-refactor', opt    = true},
                 {'nvim-treesitter/nvim-treesitter-textobjects', opt = true}
@@ -66,7 +66,7 @@ return packer.startup {
         }
     end,
     config = {
-        compile_path = vim.fn.stdpath('config')..'/packer_compiled.lua',
-        profile      = {enable = true, threshold = 1}
+        profile      = {enable = true, threshold = 1},
+        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
     },
 }
