@@ -4,7 +4,17 @@ local lspkind = require('lspkind')
 if not present then return end
 
 cmp.setup {
-   completion = { completeopt = 'menu,menuone,noinsert' },
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      require "cmp-under-comparator".under,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+    completion = { completeopt = 'menu,menuone,noinsert' },
     formatting = { format = lspkind.cmp_format({with_text = true, maxwidth = 50}) },
     documentation = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } },
     experimental = { ghost_text = true },
