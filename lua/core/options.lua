@@ -2,8 +2,8 @@ local o_s = vim.o
 local g = vim.g
 
 local function opt(o, v, scopes)
-  scopes = scopes or {o_s}
-  for _, s in ipairs(scopes) do s[o] = v end
+    scopes = scopes or {o_s}
+    for _, s in ipairs(scopes) do s[o] = v end
 end
 
 local o, wo, bo = vim.o, vim.wo, vim.bo
@@ -19,26 +19,24 @@ g.loaded_ruby_provider = 0
 g.python3_host_prog = '/usr/bin/python3'
 -- DISABLE SOME BUILT-IN PLUGINS WE DON'T WANT
 local disabled_built_ins = {
-  'gzip',
-  'man',
-  'matchit',
-  'matchparen',
-  'shada_plugin',
-  'tarPlugin',
-  'tar',
-  'zipPlugin',
-  'zip',
-  'netrwPlugin',
+    'gzip',
+    'man',
+    'matchit',
+    'matchparen',
+    'shada_plugin',
+    'tarPlugin',
+    'tar',
+    'zipPlugin',
+    'zip',
+    'netrwPlugin'
 }
-for i = 1, 10 do
-  g['loaded_' .. disabled_built_ins[i]] = 1
-end
+for i = 1, 10 do g['loaded_' .. disabled_built_ins[i]] = 1 end
 -- COLORSCHEME
 opt('termguicolors', true)
 opt('background', 'dark')
 -- SETTINGS
-local buffer = { o, bo }
-local window = { o, wo }
+local buffer = {o, bo}
+local window = {o, wo}
 opt('concealcursor', 'nc', window)
 opt('conceallevel', 2, window)
 opt('cursorline', true, window)
