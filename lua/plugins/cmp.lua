@@ -1,6 +1,4 @@
 local present, cmp = pcall(require, 'cmp')
-local lspkind = require('lspkind')
-
 if not present then return end
 
 cmp.setup {
@@ -15,8 +13,6 @@ cmp.setup {
         cmp.config.compare.order
     },
     completion={completeopt='menu,menuone,noinsert'},
-    formatting={format=lspkind.cmp_format({with_text=true, maxwidth=50})},
-    documentation={border={'╭', '─', '╮', '│', '╯', '─', '╰', '│'}},
     experimental={ghost_text=true},
     mapping={
         ['<C-p>']=cmp.mapping.select_prev_item(),
@@ -32,7 +28,7 @@ cmp.setup {
         ['<Tab>']=function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif require('luasnip').expand_or_jumpable() then
+            elseif luasnip.expand_or_jumpable() then
                 vim.fn.feedkeys(
                     vim.api.nvim_replace_termcodes(
                         '<Plug>luasnip-expand-or-jump', true, true, true), '')
@@ -43,7 +39,7 @@ cmp.setup {
         ['<S-Tab>']=function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif require('luasnip').jumpable(-1) then
+            elseif luasnip.jumpable(-1) then
                 vim.fn.feedkeys(
                     vim.api.nvim_replace_termcodes(
                         '<Plug>luasnip-jump-prev', true, true, true), '')
