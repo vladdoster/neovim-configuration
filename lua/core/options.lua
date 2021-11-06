@@ -8,8 +8,9 @@ end
 
 local o, wo, bo = vim.o, vim.wo, vim.bo
 -- LEADER/LOCAL LEADER
-g.mapleader = [[ ]]
-g.maplocalleader = [[,]]
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {noremap=true, silent=true})
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 -- SKIP LOADING MISC. REMOTE PROVIDERS
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
@@ -18,7 +19,7 @@ g.loaded_ruby_provider = 0
 -- PYTHON LOCATION
 g.python3_host_prog = '/usr/bin/python3'
 -- DISABLE SOME BUILT-IN PLUGINS WE DON'T WANT
-local disabled_built_ins = {
+local disable = {
     'gzip',
     'man',
     'matchit',
@@ -30,13 +31,14 @@ local disabled_built_ins = {
     'zip',
     'netrwPlugin'
 }
-for i = 1, 10 do g['loaded_' .. disabled_built_ins[i]] = 1 end
+for _, plugin in ipairs(disable) do g['loaded_' .. plugin] = 1 end
 -- COLORSCHEME
 opt('termguicolors', true)
 opt('background', 'dark')
 -- SETTINGS
 local buffer = {o, bo}
 local window = {o, wo}
+-- opt('guifont', 'IBM Plex Mono 11')
 opt('concealcursor', 'nc', window)
 opt('conceallevel', 2, window)
 opt('cursorline', true, window)
