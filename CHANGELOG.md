@@ -1,6 +1,23 @@
 # Changelog
 
-## [v0.9.0](https://github.com/vladdoster/neovim-configuration/compare/v0.8.0...v0.9.0)
+## [v0.10.0](https://github.com/vladdoster/neovim-configuration/compare/v0.9.0...v0.10.0)
+
+- (maint): add formatting Make target [`6ff5b01`](https://github.com/vladdoster/neovim-configuration/commit/6ff5b01e49df32926382437b20437ba48bb210cb)
+- (maint): clean up [`337c169`](https://github.com/vladdoster/neovim-configuration/commit/337c1694eb4007537d5a57f8d2b8ef4020bbc328)
+- (maint): modify lua-format column-limit limit to 120 [`c5b0224`](https://github.com/vladdoster/neovim-configuration/commit/c5b0224509ef4a9db17068c8279d0270c29d2b05)
+- (maint): add jenkinsfile syntax plugin [`8a89206`](https://github.com/vladdoster/neovim-configuration/commit/8a89206da6f1179f7c8f642a3eed2730ac5e11bd)
+- (maint): clean up cmp & lsp config [`7ac9031`](https://github.com/vladdoster/neovim-configuration/commit/7ac90317971f25784bca9021c97832735b4080b1)
+- (maint): clean up lsp config [`f183b8e`](https://github.com/vladdoster/neovim-configuration/commit/f183b8e4f41351920884897d0a639134c6d55500)
+- (maint): update cmp config, add autopairs, remove colorizer [`147a134`](https://github.com/vladdoster/neovim-configuration/commit/147a134c1e0f814c7132dc907977983690fec728)
+- (bugfix): add missing import of Luasnip module [`b9483b7`](https://github.com/vladdoster/neovim-configuration/commit/b9483b74411d2ae4a06a2a3a764d8b0c82507996)
+- (maint): add treesitter to cmp sources [`80464cc`](https://github.com/vladdoster/neovim-configuration/commit/80464cce07550b51dc250317f5932ac4970a0389)
+- (maint): add format plugin config file [`23d5c98`](https://github.com/vladdoster/neovim-configuration/commit/23d5c986e39345cb9fab5e46f5a28d002097d557)
+- (maint): simplify autocmds [`358a0f1`](https://github.com/vladdoster/neovim-configuration/commit/358a0f12e2558cf9cb9e5c1b9ac3c00757156895)
+- (maint): fix compile path [`3ae4261`](https://github.com/vladdoster/neovim-configuration/commit/3ae4261523a77f340762d2b0c044e454a554c7c0)
+- (maint): add zsh, bash, and python formatters [`b3af765`](https://github.com/vladdoster/neovim-configuration/commit/b3af765f6a4207bb951afe1ee29f676c9fc024c2)
+- (maint): update gitignore for packer_compiled [`c6884c7`](https://github.com/vladdoster/neovim-configuration/commit/c6884c74b7e605de4caf3462ca97ce8ab240324f)
+
+## [v0.9.0](https://github.com/vladdoster/neovim-configuration/compare/v0.8.0...v0.9.0) (2021-10-25)
 
 - (maint): clean up and try out cmp again [`0f8e336`](https://github.com/vladdoster/neovim-configuration/commit/0f8e336fdf309a0b79889d4b0fb85def8600ea29)
 - (maint): remove verbose map func, remove comments, and fix mappings [`3033005`](https://github.com/vladdoster/neovim-configuration/commit/303300594d2f078d98231a35ad9341dff09566b8)
@@ -8,6 +25,7 @@
 - (maint): revert mappings change [`619508f`](https://github.com/vladdoster/neovim-configuration/commit/619508f9bcc9c386bf40f16ccecb58f610778c87)
 - (maint): comment plugin ability [`02582cd`](https://github.com/vladdoster/neovim-configuration/commit/02582cdce1165767e96403349481ab62b183725f)
 - (maint): switch format plugin with less overhead [`cd7aa7b`](https://github.com/vladdoster/neovim-configuration/commit/cd7aa7b85d78b93184057e4235b1858d8e32ab87)
+- (release): v0.9.0 [`db5662d`](https://github.com/vladdoster/neovim-configuration/commit/db5662d1c7082dc39b9e09cf8079553ed9c2a701)
 - (maint): remove deprecated `lsp` setting [`e8bbac3`](https://github.com/vladdoster/neovim-configuration/commit/e8bbac3add926644cd2bee6c9a21023523e7296c)
 - (maint): add NvimTreeToggle mapping [`4c59eb3`](https://github.com/vladdoster/neovim-configuration/commit/4c59eb33a574b9d3580f4256aaf2bd9e91dbf0cb)
 
