@@ -59,3 +59,11 @@ cmp.setup {
         {name='treesitter'}
     }
 }
+
+vim.cmd(
+    [[
+augroup NvimCmp
+au!
+au FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
+augroup END
+]])

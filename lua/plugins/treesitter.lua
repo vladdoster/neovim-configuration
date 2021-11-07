@@ -2,7 +2,7 @@ local present, ts_configs = pcall(require, 'nvim-treesitter.configs')
 if not present then return end
 
 ts_configs.setup {
-    ensure_installed={'go', 'lua', 'python'},
+    ensure_installed={'go', 'lua', 'python', 'bash', 'hcl', 'dockerfile'},
     highlight={enable=true, use_languagetree=true},
     indent={enable=false},
     incremental_selection={

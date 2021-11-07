@@ -28,11 +28,6 @@ return packer.startup {
         use {'blackCauldron7/surround.nvim'}
         use {'junegunn/vim-easy-align'}
         use {'tpope/vim-repeat'}
-        use {'martinda/Jenkinsfile-vim-syntax'}
-        use {
-            'norcalli/nvim-colorizer.lua',
-            config=[[require 'colorizer'.setup()]]
-        }
         -- LSP
         use {'williamboman/nvim-lsp-installer'}
         use {'tami5/lspsaga.nvim', config=[[require 'plugins.lsp-saga']]}
@@ -53,11 +48,17 @@ return packer.startup {
                 {'hrsh7th/cmp-path'},
                 {'hrsh7th/cmp-vsnip'},
                 {'onsails/lspkind-nvim'},
-                {'rafamadriz/friendly-snippets', event='InsertEnter'},
+                {'rafamadriz/friendly-snippets'},
                 {'ray-x/cmp-treesitter'},
                 {'saadparwaiz1/cmp_luasnip'}
             }
         }
+        use {
+            'windwp/nvim-autopairs',
+            after={'nvim-cmp'},
+            config=[[require 'plugins.others'.autopairs()]]
+        }
+        use {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
         use {
             'nvim-telescope/telescope.nvim', -- fuzzy finder
             cmd='Telescope',
