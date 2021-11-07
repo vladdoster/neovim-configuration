@@ -25,10 +25,7 @@ M.active[1] = {
         right_sep=' ',
         icon=''
     },
-    {
-        provider='file_size',
-        right_sep={' ', {str='vertical_bar_thin', hl={fg='fg', bg='bg'}}}
-    },
+    {provider='file_size', right_sep={' ', {str='vertical_bar_thin', hl={fg='fg', bg='bg'}}}},
     {
         provider='position',
         left_sep=' ',

@@ -5,8 +5,7 @@ cmd 'packadd packer.nvim'
 local present, packer = pcall(require, 'packer')
 
 if not present then
-    local packer_path = vim.fn.stdpath 'data' ..
-                            '/site/pack/packer/opt/packer.nvim'
+    local packer_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
 
     print 'Cloning packer..'
     vim.fn.delete(packer_path, 'rf')
@@ -25,17 +24,13 @@ if not present then
     if present then
         print 'Packer cloned successfully.'
     else
-        error(
-            'Couldn\'t clone packer !\nPacker path: ' .. packer_path .. '\n' ..
-                packer)
+        error('Couldn\'t clone packer !\nPacker path: ' .. packer_path .. '\n' .. packer)
     end
 end
 
 packer.init {
     display={
-        open_fn=function()
-            return require('packer.util').float {border='single'}
-        end,
+        open_fn=function() return require('packer.util').float {border='single'} end,
         prompt_border='single'
     },
     auto_clean=true,

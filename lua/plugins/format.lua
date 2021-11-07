@@ -12,24 +12,9 @@ if present then
         zsh={{cmd={'shfmt -i 4 -s -ln bash -sr -bn -ci -w'}}},
         markdown={
             {cmd={'mdformat'}},
-            {
-                cmd={'black'},
-                start_pattern='^```python$',
-                end_pattern='^```$',
-                target='current'
-            },
-            {
-                cmd={'shfmt -w'},
-                start_pattern='^```bash$',
-                end_pattern='^```$',
-                target='current'
-            },
-            {
-                cmd={'yamlfmt -w'},
-                start_pattern='^```ya?ml$',
-                end_pattern='^```$',
-                target='current'
-            }
+            {cmd={'black'}, start_pattern='^```python$', end_pattern='^```$', target='current'},
+            {cmd={'shfmt -w'}, start_pattern='^```bash$', end_pattern='^```$', target='current'},
+            {cmd={'yamlfmt -w'}, start_pattern='^```ya?ml$', end_pattern='^```$', target='current'}
         }
     }
 end

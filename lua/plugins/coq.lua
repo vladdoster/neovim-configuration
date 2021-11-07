@@ -4,10 +4,7 @@ if not found then return end
 vim.o.completeopt = 'menuone,noselect,noinsert'
 vim.o.showmode = false
 
-require 'coq_3p' {
-    {src='nvimlua', short_name='nLUA'},
-    {src='figlet', short_name='BIG'}
-}
+require 'coq_3p' {{src='nvimlua', short_name='nLUA'}, {src='figlet', short_name='BIG'}}
 
 vim.g.coq_settings = {
     auto_start='shut-up',

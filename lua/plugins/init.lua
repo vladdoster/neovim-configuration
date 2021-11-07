@@ -9,15 +9,9 @@ return packer.startup {
         use {'dstein64/vim-startuptime', cmd='StartupTime'}
         -- UI
         use {'kyazdani42/nvim-web-devicons'}
-        use {
-            'marko-cerovac/material.nvim',
-            config=[[require 'plugins.others'.material()]]
-        }
+        use {'marko-cerovac/material.nvim', config=[[require 'plugins.others'.material()]]}
         use {'famiu/feline.nvim', config=[[require 'plugins.feline']]}
-        use {
-            'akinsho/nvim-bufferline.lua',
-            config=[[require 'plugins.bufferline']]
-        }
+        use {'akinsho/nvim-bufferline.lua', config=[[require 'plugins.bufferline']]}
         -- GENERAL
         use {'andymass/vim-matchup', config=[[require 'plugins.matchup']]}
         use {'kyazdani42/nvim-tree.lua', config=[[require 'plugins.nvimtree']]}
@@ -36,10 +30,7 @@ return packer.startup {
             'hrsh7th/nvim-cmp',
             config=[[require 'plugins.cmp']],
             requires={
-                {
-                    'L3MON4D3/LuaSnip',
-                    config=[[require 'plugins.others'.luasnip()]]
-                },
+                {'L3MON4D3/LuaSnip', config=[[require 'plugins.others'.luasnip()]]},
                 {'lukas-reineke/cmp-under-comparator'},
                 {'f3fora/cmp-spell'},
                 {'hrsh7th/cmp-buffer'},

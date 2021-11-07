@@ -24,22 +24,17 @@ M.map = function(mode, keys, cmd, opt)
     -- can gives multiple modes and keys
     local function map_wrapper(mode, lhs, rhs, options)
         if type(lhs) == 'table' then
-            for _, key in ipairs(lhs) do
-                map_wrapper(mode, key, rhs, options)
-            end
+            for _, key in ipairs(lhs) do map_wrapper(mode, key, rhs, options) end
         else
             if type(mode) == 'table' then
-                for _, m in ipairs(mode) do
-                    map_wrapper(m, lhs, rhs, options)
-                end
+                for _, m in ipairs(mode) do map_wrapper(m, lhs, rhs, options) end
             else
                 if valid_modes[mode] and lhs and rhs then
                     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
                 else
                     mode, lhs, rhs = mode or '', lhs or '', rhs or ''
                     print(
-                        'Cannot set mapping [ mode = \'' .. mode ..
-                            '\' | key = \'' .. lhs .. '\' | cmd = \'' .. rhs ..
+                        'Cannot set mapping [ mode = \'' .. mode .. '\' | key = \'' .. lhs .. '\' | cmd = \'' .. rhs ..
                             '\' ]')
                 end
             end

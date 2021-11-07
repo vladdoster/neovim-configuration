@@ -8,13 +8,7 @@ vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_window_picker_exclude = {filetype={'packer', 'qf', 'Trouble'}}
 vim.g.nvim_tree_icons = {
     default='',
-    git={
-        unstaged='✗',
-        staged='✓',
-        unmerged='',
-        renamed='➜',
-        untracked='★'
-    },
+    git={unstaged='✗', staged='✓', unmerged='', renamed='➜', untracked='★'},
     folder={default='', open=''}
 }
 
@@ -37,11 +31,7 @@ require('nvim-tree').setup {
         mappings={
             custom_only=false,
             list={
-                {
-                    mode='n',
-                    key='<C-t>',
-                    cb='<cmd>lua require\'telescope.builtin\'.live_grep()<cr>'
-                }
+                {mode='n', key='<C-t>', cb='<cmd>lua require\'telescope.builtin\'.live_grep()<cr>'}
             }
         }
     }
