@@ -14,10 +14,16 @@ M.telescope = function()
     map('n', '<leader>fo', ':Telescope oldfiles <CR>')
 end
 
-map('', '<Down>', 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', {expr=true})
-map('', '<Up>', 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', {expr=true})
-map('', 'j', 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', {expr=true})
-map('', 'k', 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', {expr=true})
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {noremap=true, silent=true})
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- Remap for dealing with word wrap
+map('n', '<Down>', 'v:count == 0 ? \'gk\' : \'k\'', {noremap=true, expr=true, silent=true})
+map('n', '<Up>', 'v:count == 0 ? \'gj\' : \'j\'', {noremap=true, expr=true, silent=true})
+map('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', {noremap=true, expr=true, silent=true})
+map('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', {noremap=true, expr=true, silent=true})
+
 map('n', '<Esc>', ':noh <CR>')
 map('v', 'p', '"_dP')
 
@@ -51,6 +57,7 @@ map('n', '<Leader>bn', ':bufdo bnext<CR>')
 map('n', '<Leader>bp', ':bufdo bprevious<CR>')
 
 map('n', '<leader>fm', ':FormatWrite<CR>')
+map('n', '<leader>mw', ':!mdformat --wrap 80 %<CR>')
 map('n', '<C-n>', ':NvimTreeToggle<CR>')
 
 cmd 'silent! command PackerClean lua require \'plugins\' require(\'packer\').clean()'
