@@ -11,6 +11,7 @@ return packer.startup {
         use {'folke/tokyonight.nvim', config=[[vim.cmd 'colorscheme tokyonight']]}
         use {'famiu/feline.nvim', config=[[require 'plugins.feline']]}
         use {'akinsho/nvim-bufferline.lua', config=[[require 'plugins.bufferline']]}
+        use {'norcalli/nvim-colorizer.lua', config=[[require 'colorizer'.setup()]]}
         -- GENERAL
         use {'andymass/vim-matchup', config=[[require 'plugins.matchup']]}
         use {'kyazdani42/nvim-tree.lua', config=[[require 'plugins.nvimtree']]}
