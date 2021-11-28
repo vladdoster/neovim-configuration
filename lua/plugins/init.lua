@@ -8,7 +8,7 @@ return packer.startup {
         use {'lewis6991/impatient.nvim'}
         use {'dstein64/vim-startuptime', cmd = 'StartupTime'}
         -- UI
-        use {'folke/tokyonight.nvim', config=[[vim.cmd 'colorscheme tokyonight']]}
+        use {'folke/tokyonight.nvim', config = [[vim.cmd 'colorscheme tokyonight']]}
         -- use {'RRethy/nvim-base16', config = [[vim.cmd 'colorscheme base16-macintosh']]}
         use {'famiu/feline.nvim', config = [[require 'plugins.feline']]}
         use {'akinsho/nvim-bufferline.lua', config = [[require 'plugins.bufferline']]}

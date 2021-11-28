@@ -17,12 +17,4 @@ M.autopairs = function()
     end
 end
 
-M.material = function()
-    local present, _ = pcall(require, 'material')
-    if present then
-        vim.g.material_style = 'darker'
-        vim.cmd [[colorscheme material]]
-    end
-end
-
 return M
