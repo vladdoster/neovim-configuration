@@ -97,6 +97,10 @@ local defaults = {
     ["<A-j>"] = ":m .+1<CR>==",
     ["<A-k>"] = ":m .-2<CR>==",
     -- QuickFix
+   ['<S-TAB>'] = ':BufferLineCyclePrev <CR>',
+   ['<TAB>'] = ':BufferLineCycleNext <CR>',
+   ['<leader>d'] = '<cmd>bdelete!<cr>',
+   ['<leader>gb'] = ':BufferLinePick<cr>'
   },
   ---@usage change or add keymappings for terminal mode
   term_mode = {

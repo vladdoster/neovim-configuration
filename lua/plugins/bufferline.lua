@@ -11,7 +11,7 @@ local info_fg = '#83a5cb'
 local pick_fg = '#870000'
 
 local colors = {
-    bar={guifg='#c9c9c9', guibg=bar_bg},
+    bar={guifg='', guibg=bar_bg},
     elem={guifg=elem_fg, guibg=elem_bg},
     elem_inactive={guifg=elem_fg, guibg=elem_bg},
     elem_selected={guifg=selected_fg, guibg=selected_bg},
@@ -27,20 +27,9 @@ local colors = {
     pick_selected={guifg=pick_fg, guibg=selected_bg}
 }
 
-local diagnostics_signs = {['error']='', warning='', default=''}
-
 bufferline.setup {
     options={
         always_show_bufferline=true,
-        diagnostics='nvim_lsp',
-        diagnostics_indicator=function(count, level, diagnostics_dict, context)
-            local s = ' '
-            for e, n in pairs(diagnostics_dict) do
-                local sym = diagnostics_signs[e] or diagnostics_signs.default
-                s = s .. (#s > 1 and ' ' or '') .. sym .. ' ' .. n
-            end
-            return s
-        end,
         separator_style='slant'
     },
     highlights={
@@ -81,17 +70,3 @@ bufferline.setup {
         warning_selected=colors.warning_selected
     }
 }
-
-local map_key = vim.api.nvim_set_keymap
-local function map(modes, lhs, rhs, opts)
-    opts = opts or {}
-    opts.noremap = opts.noremap == nil and true or opts.noremap
-    if type(modes) == 'string' then modes = {modes} end
-    for _, mode in ipairs(modes) do map_key(mode, lhs, rhs, opts) end
-end
-
-local opts = {silent=true, nowait=true}
-map('n', '<leader>gb', ':BufferLinePick<cr>', opts)
-map('n', '<leader>d', '<cmd>bdelete!<cr>', opts)
-map('n', '<TAB>', ':BufferLineCycleNext <CR>')
-map('n', '<S-TAB>', ':BufferLineCyclePrev <CR>')

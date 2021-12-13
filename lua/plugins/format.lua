@@ -2,11 +2,11 @@ local present, format = pcall(require, 'format')
 if present then
     format.setup {
         ['*']={{cmd={'sed -i \'s/[ \t]*$//\''}}},
-        bash={{cmd={'shfmt -i 4 -s -ln bash -sr -bn -ci -w'}}},
+        bash={{cmd={'shfmt -i=2 -s -ln=bash -sr -bn -ci -w'}}},
         go={{cmd={'gofmt -w', 'goimports -w'}, tempfile_postfix='.tmp'}},
         lua={{cmd={'lua-format --column-limit 120 --in-place'}}},
         python={{cmd={'black -l 160', 'isort'}, tempfile_postfix='.tmp'}},
-        sh={{cmd={'shfmt -i 4 -s -ln bash -sr -bn -ci -w'}}},
+        sh={{cmd={'shfmt -i=2 -s -ln=bash -sr -bn -ci -w'}}},
         terraform={{cmd={'terraform fmt'}}},
         yaml={{cmd={'yamlfmt -w'}}},
         zsh={{cmd={'shfmt -i 4 -s -ln bash -sr -bn -ci -w'}}},
