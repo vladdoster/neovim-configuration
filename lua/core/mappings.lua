@@ -5,11 +5,17 @@ local cmd = vim.cmd
 --
 --
 local M = {}
-
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {noremap=true, silent=true})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+--Remap space as leader key
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
+--Remap for dealing with word wrap
+vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 M.telescope = function()
     keymaps = {
         ['<leader>fb']= ':Telescope buffers <CR>',
@@ -23,14 +29,12 @@ M.telescope = function()
     }
     M.load_mode('normal_mode',keymaps)
 end
-
 cmd 'silent! command PackerClean lua require \'plugins\' require(\'packer\').clean()'
 cmd 'silent! command PackerCompile lua require \'plugins\' require(\'packer\').compile()'
 cmd 'silent! command PackerInstall lua require \'plugins\' require(\'packer\').install()'
 cmd 'silent! command PackerStatus lua require \'plugins\' require(\'packer\').status()'
 cmd 'silent! command PackerSync lua require \'plugins\' require(\'packer\').sync()'
 cmd 'silent! command PackerUpdate lua require \'plugins\' require(\'packer\').update()'
-
 local generic_opts_any = { noremap = true, silent = true }
 local generic_opts = {
   insert_mode = generic_opts_any, normal_mode = generic_opts_any, visual_mode = generic_opts_any,
@@ -45,7 +49,6 @@ local mode_adapters = {
 --map({'n', 'v'}, 'dd', '"_dd')
 --
 --map('n', '<Esc>', ':noh <CR>')
-
 local defaults = {
   insert_mode = {
     ["jk"] = "<ESC>", -- 'jk' for quitting insert mode
@@ -71,10 +74,8 @@ local defaults = {
     ['<A-Down>'] = ':resize +2<CR>',
     ['<A-Right>'] = ':vertical resize -2<CR>',
     ['<A-Left>'] = ':vertical resize +2<CR>',
-
     ['<Leader>bn'] = ':bufdo bnext<CR>',
     ['<Leader>bp'] = ':bufdo bprevious<CR>',
-
     ['<leader>fm'] = ':FormatWrite<CR>',
     ['<leader>mw'] = ':!mdformat --wrap 80 %<CR>',
     ['<C-n>'] = ':NvimTreeToggle<CR>',
@@ -136,9 +137,6 @@ local defaults = {
     ["<C-k>"] = { 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } },
   },
 }
-
-
-
 -- Set key mappings individually
 -- @param mode The keymap mode, can be one of the keys of mode_adapters
 -- @param key The key of keymap
@@ -155,7 +153,6 @@ function M.set_keymaps(mode, key, val)
     pcall(vim.api.nvim_del_keymap, mode, key)
   end
 end
-
 -- Load key mappings for a given mode
 -- @param mode The keymap mode, can be one of the keys of mode_adapters
 -- @param keymaps The list of key mappings
@@ -165,14 +162,9 @@ function M.load_mode(mode, keymaps)
     M.set_keymaps(mode, k, v)
   end
 end
-
 -- Load key mappings for all provided modes
 -- @param keymaps A list of key mappings for each mode
 for mode, mapping in pairs(defaults) do
   M.load_mode(mode, mapping)
 end
-
-
-
-
 return M

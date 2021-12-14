@@ -34,11 +34,11 @@ local disable = {
 for _, plugin in ipairs(disable) do g['loaded_' .. plugin] = 1 end
 -- COLORSCHEME
 opt('termguicolors', true)
-opt('background', 'dark')
+opt('background', 'onedark')
 -- SETTINGS
 local buffer = {o, bo}
 local window = {o, wo}
--- opt('guifont', 'IBM Plex Mono 11')
+opt('guifont', 'IBM Plex Mono 11')
 opt('concealcursor', 'nc', window)
 opt('conceallevel', 2, window)
 opt('cursorline', true, window)
@@ -70,8 +70,7 @@ opt('synmaxcol', 500, buffer)
 opt('tabstop', 2, buffer)
 opt('textwidth', 100, buffer)
 opt('undofile', false, buffer)
-opt('updatetime', 500)
-opt('whichwrap', vim.o.whichwrap .. '<,>,h,l')
+opt('updatetime', 250)
 opt('wrap', false)
 opt('wildignore', '*.o,*~,*.pyc')
 opt('wildmode', 'longest,full')

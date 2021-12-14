@@ -6,8 +6,7 @@ end
 
   local previewers = require "telescope.previewers"
   local sorters = require "telescope.sorters"
-  local actions = require "telescope.actions"
-   config = {
+  local config = {
     defaults = {
       prompt_prefix = " ",
       selection_caret = " ",
