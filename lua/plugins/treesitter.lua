@@ -1,7 +1,7 @@
 local status_ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
 if status_ok then
   local opts = {
-    ensure_installed = {'python', 'docker', 'go', 'terraform'},
+    ensure_installed = {'python', 'go', 'terraform'},
     ignore_install = {},
     highlight = { enable = true, additional_vim_regex_highlighting = true, disable = { "latex" } },
     context_commentstring = { enable = false, config = { json = "", },

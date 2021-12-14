@@ -33,8 +33,8 @@ local disable = {
 }
 for _, plugin in ipairs(disable) do g['loaded_' .. plugin] = 1 end
 -- COLORSCHEME
-opt('termguicolors', true)
-opt('background', 'onedark')
+vim.opt.termguicolors = true
+opt('background', 'dark')
 -- SETTINGS
 local buffer = {o, bo}
 local window = {o, wo}

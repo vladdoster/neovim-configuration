@@ -1,9 +1,6 @@
 local vi_mode_utils = require('feline.providers.vi_mode')
-
 local M = {active={}, inactive={}}
-
 require('feline').setup {components=M}
-
 M.active[1] = {
     {provider='▊ ', hl={fg='skyblue'}},
     {
@@ -35,9 +32,7 @@ M.active[1] = {
     {provider='diagnostic_warnings', hl={fg='yellow'}, icon=' W-'},
     {provider='diagnostic_hints', hl={fg='cyan'}, icon=' H-'},
     {provider='diagnostic_info', hl={fg='skyblue'}, icon=' I-'}
-
 }
-
 M.active[2] = {
     {
         provider='lsp_client_names',
@@ -63,7 +58,6 @@ M.active[2] = {
     {provider='line_percentage', hl={style='bold'}, left_sep='  ', right_sep=' '},
     {provider='scroll_bar', hl={fg='skyblue', style='bold'}}
 }
-
 M.inactive[1] = {
     {
         provider='file_type',
@@ -72,5 +66,4 @@ M.inactive[1] = {
         right_sep={{str=' ', hl={fg='NONE', bg='oceanblue'}}, ' '}
     }
 }
-
 return M
