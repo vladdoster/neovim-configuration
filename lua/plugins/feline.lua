@@ -1,5 +1,6 @@
 local vi_mode_utils = require('feline.providers.vi_mode')
 local M = {active={}, inactive={}}
+vim.opt.termguicolors = true
 require('feline').setup {components=M}
 M.active[1] = {
     {provider='▊ ', hl={fg='skyblue'}},

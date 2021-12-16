@@ -2,31 +2,35 @@ local present0, lspconfig = pcall(require, 'lspconfig')
 local present1, lsp_installer = pcall(require, 'nvim-lsp-installer')
 if not (present0 or present1) then return end
 local function on_attach(_, bufnr)
-   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-   -- Enable completion triggered by <c-x><c-o>
-   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-   -- Mappings.
-   local opts = { noremap = true, silent = true }
-   -- See `:help vim.lsp.*` for documentation on any of the below functions
-   buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-   buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-   buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-   buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-   buf_set_keymap("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-   buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-   buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-   buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-   buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-   buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-   buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-   buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-   buf_set_keymap("n", "ge", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-   buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-   buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-   buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-   buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-   buf_set_keymap("v", "<space>ca", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
+    local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    local opts = { noremap = true, silent = true }
+    map("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", opts)
+    map("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", opts)
+    -- map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    -- map("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    -- map("n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    -- map("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+    -- map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    -- map("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+    -- map("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+    -- map("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+    map("n", "K",  "<leader>Lspsaga hover_doc<cr>", opts)
+    -- map("n", "[d", "<leader>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+    -- map("n", "]d", "<leader>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+    -- map("n", "gD", "<leader>lua vim.lsp.buf.declaration()<CR>", opts)
+    -- map("n", "gd", "<leader>lua vim.lsp.buf.definition()<CR>", opts)
+    -- map("n", "ge", "<leader>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+    -- map("n", "gi", "<leader>lua vim.lsp.buf.implementation()<CR>", opts)
+    map("n", "gj", "<leader>Lspsaga diagnostic_jump_next<cr>", opts)
+    map("n", "gk", "<leader>Lspsaga diagnostic_jump_prev<cr>", opts)
+    -- map("n", "gk", "<leader>lua vim.lsp.buf.signature_help()<CR>", opts)
+    map("n", "go", "<leader>Lspsaga show_line_diagnostics<cr>", opts)
+    map("n", "gr", "<leader>Lspsaga rename<cr>", opts)
+    -- map("n", "gr", "<leader>lua vim.lsp.buf.references()<CR>", opts)
+    map("n", "gx", "<leader>Lspsaga code_action<cr>", opts)
+    map("x", "gx", ":<c-u>Lspsaga range_code_action<cr>", opts)
 end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
