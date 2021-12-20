@@ -18,8 +18,8 @@ return packer.startup {
         use {'kyazdani42/nvim-tree.lua', config = [[require 'plugins.nvimtree']]}
         use {'lewis6991/gitsigns.nvim', config = [[require 'plugins.gitsigns']]}
         use {'lukas-reineke/format.nvim', config = [[require 'plugins.format']]}
-          -- Terminal
-        use {'akinsho/toggleterm.nvim', config = [[require 'plugins.toggle-term']] }
+        -- Terminal
+        use {'akinsho/toggleterm.nvim', config = [[require 'plugins.toggle-term']]}
         use {'winston0410/commented.nvim', config = [[require 'commented'.setup()]]}
         use {'blackCauldron7/surround.nvim', config = [[require 'surround'.setup {mappings_style = "surround"} ]]}
         use {'junegunn/vim-easy-align'}
