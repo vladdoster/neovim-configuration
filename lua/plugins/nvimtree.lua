@@ -1,6 +1,5 @@
 local present, tree_c = pcall(require, 'nvim-tree.config')
 if not present then return end
-
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_show_icons = {git = 1, folders = 1, files = 0, folder_arrows = 1}
 vim.g.nvim_tree_group_empty = 1
@@ -10,7 +9,6 @@ vim.g.nvim_tree_icons = {
     git = {unstaged = '✗', staged = '✓', unmerged = '', renamed = '➜', untracked = '★'},
     folder = {default = '', open = ''}
 }
-
 require('nvim-tree').setup {
     disable_netrw = true,
     hijack_netrw = true,
@@ -33,4 +31,3 @@ require('nvim-tree').setup {
         }
     }
 }
-

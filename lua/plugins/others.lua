@@ -1,5 +1,4 @@
 local M = {}
-
 M.luasnip = function()
     local is_ok, luasnip = pcall(require, 'luasnip')
     if is_ok then
@@ -7,7 +6,6 @@ M.luasnip = function()
         require('luasnip/loaders/from_vscode').load()
     end
 end
-
 M.autopairs = function()
     local present_0, autopairs = pcall(require, 'nvim-autopairs')
     local present_1, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
@@ -16,5 +14,4 @@ M.autopairs = function()
         require('cmp').event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end
 end
-
 return M

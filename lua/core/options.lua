@@ -17,7 +17,7 @@ g.loaded_perl_provider = 0
 g.loaded_python_provider = 0
 g.loaded_ruby_provider = 0
 -- PYTHON LOCATION
-g.python3_host_prog = '/usr/bin/python3'
+g.python3_host_prog = '/usr/local/bin/python3'
 -- DISABLE SOME BUILT-IN PLUGINS WE DON'T WANT
 local disable = {
     'gzip',

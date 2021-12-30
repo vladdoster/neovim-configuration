@@ -2,23 +2,19 @@
 luac.out
 plugin/
 packer_compiled.lua
-
 # luarocks build files
 *.src.rock
 *.zip
 *.tar.gz
-
 # Object files
 *.o
 *.os
 *.ko
 *.obj
 *.elf
-
 # Precompiled Headers
 *.gch
 *.pch
-
 # Libraries
 *.lib
 *.a
@@ -26,13 +22,11 @@ packer_compiled.lua
 *.lo
 *.def
 *.exp
-
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so
 *.so.*
 *.dylib
-
 # Executables
 *.exe
 *.out
@@ -40,4 +34,3 @@ packer_compiled.lua
 *.i*86
 *.x86_64
 *.hex
-

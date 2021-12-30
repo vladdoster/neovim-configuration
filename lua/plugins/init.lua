@@ -1,6 +1,5 @@
 local present, packer = pcall(require, 'plugins.packer-init')
 if not present then return false end
-
 local use = packer.use
 return packer.startup {
     function()

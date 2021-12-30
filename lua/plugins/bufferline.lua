@@ -1,5 +1,4 @@
 local bufferline = require 'bufferline'
-
 local bar_bg = '#1f1f1f'
 local elem_bg = '#2d2d2d'
 local elem_fg = '#8c8c8c'
@@ -9,7 +8,6 @@ local error_fg = '#ca241a'
 local warning_fg = '#fabd2f'
 local info_fg = '#83a5cb'
 local pick_fg = '#870000'
-
 local colors = {
     bar={guifg='', guibg=bar_bg},
     elem={guifg=elem_fg, guibg=elem_bg},
@@ -26,7 +24,6 @@ local colors = {
     pick={guifg=pick_fg, guibg=elem_bg},
     pick_selected={guifg=pick_fg, guibg=selected_bg}
 }
-
 bufferline.setup {
     options={
         always_show_bufferline=true,

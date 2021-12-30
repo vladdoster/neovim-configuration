@@ -2,8 +2,6 @@ local ok, actions = pcall(require, "telescope.actions")
 if not ok then
   return
 end
-
-
   local previewers = require "telescope.previewers"
   local sorters = require "telescope.sorters"
   local config = {
@@ -99,8 +97,6 @@ local opts = {
 local builtin = require "telescope.builtin"
 local themes = require "telescope.themes"
 builtin.lsp_code_actions(themes.get_dropdown(opts))
-
-
 local telescope = require "telescope"
 telescope.setup(config)
 require("telescope").load_extension "fzf"

@@ -1,9 +1,7 @@
 local M = {}
-
 M.map = function(mode, keys, cmd, opt)
     local options = {noremap=true, silent=true}
     if opt then options = vim.tbl_extend('force', options, opt) end
-
     -- all valid modes allowed for mappings
     -- :h map-modes
     local valid_modes = {
@@ -19,7 +17,6 @@ M.map = function(mode, keys, cmd, opt)
         ['c']=true,
         ['t']=true
     }
-
     -- helper function for M.map
     -- can gives multiple modes and keys
     local function map_wrapper(mode, lhs, rhs, options)
@@ -40,8 +37,6 @@ M.map = function(mode, keys, cmd, opt)
             end
         end
     end
-
     map_wrapper(mode, keys, cmd, options)
 end
-
 return M
