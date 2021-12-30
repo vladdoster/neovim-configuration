@@ -4,9 +4,9 @@ if status_ok then
     ensure_installed = {'python', 'go', 'hcl', 'markdown', 'make', 'dockerfile'},
     ignore_install = {},
     highlight = { enable = true, additional_vim_regex_highlighting = true, disable = { "latex" } },
-    context_commentstring = { enable = false, config = { json = "", },
+    context_commentstring = { enable = true, config = { json = "", },
   },
-    indent = {enable = true, disable = {"python"} },
-  }
+    indent = {enable = true}
+}
   treesitter_configs.setup(opts)
 end

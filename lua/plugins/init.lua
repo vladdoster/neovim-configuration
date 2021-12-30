@@ -8,7 +8,6 @@ return packer.startup {
         use {'dstein64/vim-startuptime', cmd = 'StartupTime'}
         -- UI
         use {'folke/tokyonight.nvim', config = [[vim.cmd 'colorscheme tokyonight']]}
-        -- use {'RRethy/nvim-base16', config = [[vim.cmd 'colorscheme base16-macintosh']]}
         use {'famiu/feline.nvim', config = [[require 'plugins.feline']]}
         use {'akinsho/nvim-bufferline.lua', config = [[require 'plugins.bufferline']]}
         use {'norcalli/nvim-colorizer.lua', config = [[require 'colorizer'.setup()]]}
@@ -23,6 +22,7 @@ return packer.startup {
         use {'blackCauldron7/surround.nvim', config = [[require 'surround'.setup {mappings_style = "surround"} ]]}
         use {'junegunn/vim-easy-align'}
         use {'tpope/vim-repeat'}
+        -- use {'kamykn/spelunker.vim'}
         -- LSP
         use {'williamboman/nvim-lsp-installer'}
         use {'tami5/lspsaga.nvim', config = [[require 'plugins.lsp-saga']]}
@@ -57,7 +57,8 @@ return packer.startup {
             run = ':TSUpdate',
             requires = {
                 {'nvim-treesitter/nvim-treesitter-refactor', opt = true},
-                {'nvim-treesitter/nvim-treesitter-textobjects', opt = true}
+                {'nvim-treesitter/nvim-treesitter-textobjects', opt = true},
+                -- {'lewis6991/spellsitter.nvim', config = [[require('spellsitter').setup {enable=true,spellchecker = 'vimfn'}]]}
             }
         }
     end,
