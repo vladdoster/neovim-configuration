@@ -27,6 +27,7 @@ return packer.startup {
         use {'williamboman/nvim-lsp-installer'}
         use {'tami5/lspsaga.nvim', config = [[require 'plugins.lsp-saga']]}
         use {'neovim/nvim-lspconfig', config = [[require 'plugins.lsp-config']]}
+        use { "ray-x/lsp_signature.nvim", after = "nvim-lspconfig", config = [[require 'plugins.lsp-signature']]}
         use {
             'hrsh7th/nvim-cmp',
             config = [[require 'plugins.cmp']],
