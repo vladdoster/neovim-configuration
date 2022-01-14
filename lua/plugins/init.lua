@@ -26,8 +26,7 @@ return packer.startup {
         -- LSP
         use {'williamboman/nvim-lsp-installer'}
         use {'tami5/lspsaga.nvim', config = [[require 'plugins.lsp-saga']]}
-        use {'neovim/nvim-lspconfig', config = [[require 'plugins.lsp-config']]}
-        use { "ray-x/lsp_signature.nvim", after = "nvim-lspconfig", config = [[require 'plugins.lsp-signature']]}
+        use {'neovim/nvim-lspconfig', requires = { "ray-x/lsp_signature.nvim" }, config = [[require 'plugins.lsp-config']]}
         use {
             'hrsh7th/nvim-cmp',
             config = [[require 'plugins.cmp']],
@@ -59,7 +58,10 @@ return packer.startup {
             requires = {
                 {'nvim-treesitter/nvim-treesitter-refactor', opt = true},
                 {'nvim-treesitter/nvim-treesitter-textobjects', opt = true},
-                -- {'lewis6991/spellsitter.nvim', config = [[require('spellsitter').setup {enable=true,spellchecker = 'vimfn'}]]}
+                {'lewis6991/spellsitter.nvim',
+                  config = [[require('spellsitter').setup {enable=true,spellchecker = 'vimfn'}]],
+                  ft="md"
+                }
             }
         }
     end,
