@@ -1,37 +1,52 @@
-vim.cmd "packadd packer.nvim"
-local present, packer = pcall(require, "packer")
+local present, cmp = pcall(require, "cmp")
+
 if not present then
-   local packer_path = vim.fn.stdpath "data" .. "/site/pack/packer/opt/packer.nvim"
-   print "Cloning packer.."
-   -- remove the dir before cloning
-   vim.fn.delete(packer_path, "rf")
-   vim.fn.system {
-      "git",
-      "clone",
-      "https://github.com/wbthomason/packer.nvim",
-      "--depth",
-      "20",
-      packer_path,
-   }
-   vim.cmd "packadd packer.nvim"
-   present, packer = pcall(require, "packer")
-   if present then
-      print "Packer cloned successfully."
-   else
-      error("Couldn't clone packer !\nPacker path: " .. packer_path .. "\n" .. packer)
-   end
+   return
 end
-packer.init {
-   display = {
-      open_fn = function()
-         return require("packer.util").float { border = "single" }
+
+vim.opt.completeopt = "menuone,noselect"
+
+cmp.setup {
+   snippet = {
+      expand = function(args)
+         require("luasnip").lsp_expand(args.body)
       end,
-      prompt_border = "single",
    },
-   git = {
-      clone_timeout = 6000, -- seconds
+   mapping = {
+      ["<C-p>"] = cmp.mapping.select_prev_item(),
+      ["<C-n>"] = cmp.mapping.select_next_item(),
+      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-e>"] = cmp.mapping.close(),
+      ["<CR>"] = cmp.mapping.confirm {
+         behavior = cmp.ConfirmBehavior.Replace,
+         select = true,
+      },
+      ["<Tab>"] = function(fallback)
+         if cmp.visible() then
+            cmp.select_next_item()
+         elseif require("luasnip").expand_or_jumpable() then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+         else
+            fallback()
+         end
+      end,
+      ["<S-Tab>"] = function(fallback)
+         if cmp.visible() then
+            cmp.select_prev_item()
+         elseif require("luasnip").jumpable(-1) then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+         else
+            fallback()
+         end
+      end,
    },
-   auto_clean = true,
-   compile_on_sync = true,
+   sources = {
+      { name = "buffer" },
+      { name = "luasnip" },
+      { name = "nvim_lsp" },
+      { name = "nvim_lua" },
+      { name = "path" },
+   },
 }
-return packer
