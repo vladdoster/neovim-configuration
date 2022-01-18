@@ -1,11 +1,13 @@
-local utils = require 'core.utils'
-local map = utils.map
 local cmd = vim.cmd
+local keymap = vim.keymap.set
 local M = {}
 -- Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {noremap=true, silent=true})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+keymap({'n', 'v'}, '<Leader>bb', require('comment-box').cbox, {})
+
 -- Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', {
     noremap=true,
@@ -84,7 +86,7 @@ local defaults = {
         ['<C-n>']=':NvimTreeToggle<CR>',
         ['<C-s>']='<C-x> s <CR>',
         ['<Esc>']=':noh <CR>',
-        ['<Leader>bc']=':lua require("comment-box").cbox()<CR>',
+        -- ['<Leader>bc']=':lua require("comment-box").cbox()<CR>',
         ['<Leader>bn']=':bufdo bnext<CR>',
         ['<Leader>bp']=':bufdo bprevious<CR>',
         ['<Leader>ps']=':PackerSync<CR>',
@@ -115,7 +117,7 @@ local defaults = {
         ['p']='"0p',
         ['<']='<gv',
         ['<C-s>']=':sort<CR>',
-        ['<Leader>bc']=':lua require("comment-box").cbox()<CR>',
+        -- ['<Leader>bc']=':lua require("comment-box").cbox()<CR>',
         ['>']='>gv'
     },
     ---@usage change or add keymappings for visual block mode
