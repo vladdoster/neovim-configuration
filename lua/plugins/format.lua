@@ -13,7 +13,12 @@ if present then
         markdown={
             {cmd={'mdformat --wrap 100'}},
             {cmd={'black'}, start_pattern='^```python$', end_pattern='^```$', target='current'},
-            {cmd={'shfmt -bn -ci -i 2 -sr -s -w'}, start_pattern='^```bash$', end_pattern='^```$', target='current'},
+            {
+                cmd={'shfmt -bn -ci -i 2 -sr -s -w'},
+                start_pattern='^```bash$',
+                end_pattern='^```$',
+                target='current'
+            },
             {cmd={'yamlfmt -w'}, start_pattern='^```ya?ml$', end_pattern='^```$', target='current'}
         }
     }

@@ -28,7 +28,7 @@ M.active[1] = {
         provider='position',
         left_sep=' ',
         right_sep={' ', {str='vertical_bar_thin', hl={fg='fg', bg='bg'}}}
-    },
+    }
     -- {provider='diagnostic_errors', hl={fg='red'}, icon=' E-'},
     -- {provider='diagnostic_warnings', hl={fg='yellow'}, icon=' W-'},
     -- {provider='diagnostic_hints', hl={fg='cyan'}, icon=' H-'},

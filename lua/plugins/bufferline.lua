@@ -25,10 +25,7 @@ local colors = {
     pick_selected={guifg=pick_fg, guibg=selected_bg}
 }
 bufferline.setup {
-    options={
-        always_show_bufferline=true,
-        separator_style='slant'
-    },
+    options={always_show_bufferline=true, separator_style='slant'},
     highlights={
         background=colors.elem_inactive,
         buffer_selected=colors.elem_selected,
