@@ -18,8 +18,6 @@ vim.api.nvim_set_keymap('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', {
     silent=true
 })
 
-M.comment_box = function() vim.keymap.set({'n', 'v'}, '<Leader>bb', require('comment-box').cbox, {}) end
-
 M.telescope = function()
     local keymaps = {
         ['<leader>cm']=':Telescope git_commits <CR>',

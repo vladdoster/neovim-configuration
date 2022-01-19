@@ -25,6 +25,7 @@ M.comment_box = function()
             outer_blank_lines=false, -- insert a blank line above and below the box
             width=30
         })
+       vim.keymap.set({'n', 'v'}, '<Leader>bb', comment_box.cbox, {})
     end
 end
 M.luasnip = function()

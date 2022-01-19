@@ -16,11 +16,7 @@ return packer.startup {
         use {'kyazdani42/nvim-tree.lua', config=[[require 'plugins.nvimtree']]}
         use {'lewis6991/gitsigns.nvim', config=[[require 'plugins.gitsigns']]}
         use {'lukas-reineke/format.nvim', config=[[require 'plugins.format']]}
-        use {
-            'LudoPinelli/comment-box.nvim',
-            config=[[require 'plugins.other'.comment_box()]],
-            setup=[[require 'core.mappings'.comment_box()]]
-        }
+        use { 'LudoPinelli/comment-box.nvim', config=[[require 'plugins.other'.comment_box()]] }
         -- Terminal
         use {'akinsho/toggleterm.nvim', config=[[require 'plugins.toggle-term']]}
         use {'winston0410/commented.nvim', config=[[require 'commented'.setup()]]}
