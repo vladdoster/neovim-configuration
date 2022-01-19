@@ -12,7 +12,6 @@ M.comment_box = function()
     local present, comment_box = pcall(require, 'comment-box')
     if present then
         comment_box.setup({
-            width=30,
             borders={
                 horizontal='-',
                 vertical='|',
@@ -21,9 +20,10 @@ M.comment_box = function()
                 bottom_left='+',
                 bottom_right='+'
             },
+            inner_blank_lines=false, -- insert a blank line above and below the text
             line_symbol='-', -- symbol used to draw a line
             outer_blank_lines=false, -- insert a blank line above and below the box
-            inner_blank_lines=false -- insert a blank line above and below the text
+            width=30
         })
     end
 end
