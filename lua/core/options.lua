@@ -1,78 +1,45 @@
 local o_s = vim.o
 local g = vim.g
-
 local function opt(o, v, scopes)
-    scopes = scopes or {o_s}
+    scopes = scopes or {vim.o}
     for _, s in ipairs(scopes) do s[o] = v end
 end
 
-local o, wo, bo = vim.o, vim.wo, vim.bo
--- LEADER/LOCAL LEADER
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {noremap=true, silent=true})
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
--- SKIP LOADING MISC. REMOTE PROVIDERS
-g.loaded_node_provider = 0
-g.loaded_perl_provider = 0
-g.loaded_python_provider = 0
-g.loaded_ruby_provider = 0
--- PYTHON LOCATION
+g.loaded_node_provider = 0; g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0; g.loaded_python_provider = 0
 g.python3_host_prog = '/usr/local/bin/python3'
--- DISABLE SOME BUILT-IN PLUGINS WE DON'T WANT
-local disable = {
-    'gzip',
-    'man',
-    'matchit',
-    'matchparen',
-    'shada_plugin',
-    'tarPlugin',
-    'tar',
-    'zipPlugin',
-    'zip',
-    'netrwPlugin'
-}
-for _, plugin in ipairs(disable) do g['loaded_' .. plugin] = 1 end
--- COLORSCHEME
-vim.opt.termguicolors = true
-opt('background', 'dark')
--- SETTINGS
-local buffer = {o, bo}
-local window = {o, wo}
-opt('concealcursor', 'nc', window)
-opt('conceallevel', 2, window)
-opt('cursorline', true, window)
-opt('display', 'msgsep')
-opt('expandtab', true, buffer)
-opt('guicursor', [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]])
-opt('guifont', 'IBM Plex Mono 11')
-opt('hidden', true)
-opt('ignorecase', true)
-opt('inccommand', 'nosplit')
-opt('joinspaces', false)
-opt('laststatus', 2)
-opt('lazyredraw', true)
-opt('modeline', false, buffer)
-opt('mouse', 'nivh')
-opt('mousemodel', 'popup')
-opt('number', true, window)
-opt('previewheight', 5)
-opt('relativenumber', true, window)
-opt('scrolloff', 7)
-opt('spelllang', 'en')
-opt('shada', [['20,<50,s10,h,/100]])
-opt('shiftwidth', 2, buffer)
-opt('shortmess', o.shortmess .. 'c')
-opt('showmatch', true)
-opt('showmode', false)
-opt('signcolumn', 'yes:1', window)
-opt('smartcase', true)
-opt('smartindent', true, buffer)
-opt('softtabstop', 0, buffer)
-opt('synmaxcol', 500, buffer)
-opt('tabstop', 2, buffer)
-opt('textwidth', 100, buffer)
-opt('undofile', false, buffer)
-opt('updatetime', 250)
-opt('wildignore', '*.o,*~,*.pyc')
-opt('wildmode', 'longest,full')
-opt('wrap', false)
+
+opt('autoindent',true)
+opt('background','dark')
+opt('backup',false)
+opt('clipboard','unnamedplus')
+opt('cursorline',true)
+opt('expandtab',true)
+opt('ignorecase',true)
+opt('incsearch',true)
+opt('laststatus',2)
+opt('lazyredraw',false)
+opt('linebreak',true)
+opt('magic',true)
+opt('mouse','a')
+opt('number',false)
+opt('ruler',false)
+opt('scrolloff',8)
+opt('shiftwidth',4)
+opt('showmode',false)
+opt('signcolumn','yes')
+opt('smartcase',true)
+opt('swapfile',false)
+opt('tabstop',4)
+opt('termguicolors',true)
+opt('ttyfast',true)
+opt('undofile',true)
+opt('updatecount',0)
+opt('updatetime',50)
+opt('writebackup',false)
+vim.opt.guifont = 'UbuntuMono Nerd Font Mono:h16' -- set guifont for neovide
+vim.opt.fillchars = {eob=' '} -- disable tilde fringe
+vim.opt.shortmess:append 'casI' -- disable intro
+vim.opt.whichwrap:append '<>hl' -- clean aligned wraps
+vim.api.nvim_set_keymap('n', 'k', 'v:count == 0 ? "gk" : "k"', { noremap = true, expr = true, silent = true })
+vim.api.nvim_set_keymap('n', 'j', 'v:count == 0 ? "gj" : "j"', { noremap = true, expr = true, silent = true })

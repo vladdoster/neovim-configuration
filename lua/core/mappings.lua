@@ -1,22 +1,16 @@
 local cmd = vim.cmd
-local keymap = vim.keymap.set
 local M = {}
 -- Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {noremap=true, silent=true})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', {
-    noremap=true,
-    expr=true,
-    silent=true
-})
-vim.api.nvim_set_keymap('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', {
-    noremap=true,
-    expr=true,
-    silent=true
-})
+cmd 'silent! command PackerClean lua require "plugins" require("packer").clean()'
+cmd 'silent! command PackerCompile lua require"plugins" require("packer").compile()'
+cmd 'silent! command PackerInstall lua require"plugins" require("packer").install()'
+cmd 'silent! command PackerStatus lua require "plugins" require("packer").status()'
+cmd 'silent! command PackerSync lua require "plugins" require("packer").sync()'
+cmd 'silent! command PackerUpdate lua require "plugins" require("packer").update()'
 
 M.telescope = function()
     local keymaps = {
@@ -31,13 +25,6 @@ M.telescope = function()
     }
     M.load_mode('normal_mode', keymaps)
 end
-
-cmd 'silent! command PackerClean lua require "plugins" require("packer").clean()'
-cmd 'silent! command PackerCompile lua require"plugins" require("packer").compile()'
-cmd 'silent! command PackerInstall lua require"plugins" require("packer").install()'
-cmd 'silent! command PackerStatus lua require "plugins" require("packer").status()'
-cmd 'silent! command PackerSync lua require "plugins" require("packer").sync()'
-cmd 'silent! command PackerUpdate lua require "plugins" require("packer").update()'
 
 local generic_opts_any = {noremap=true, silent=true}
 local generic_opts = {
@@ -58,12 +45,6 @@ local mode_adapters = {
 }
 local defaults = {
     insert_mode={
-        ['<A-Down>']='<C-\\><C-N><C-w>j',
-        ['<A-Left>']='<C-\\><C-N><C-w>h',
-        ['<A-Right>']='<C-\\><C-N><C-w>l',
-        ['<A-Up>']='<C-\\><C-N><C-w>k',
-        ['<A-j>']='<Esc>:m .+1<CR>==gi',
-        ['<A-k>']='<Esc>:m .-2<CR>==gi',
         ['jj']='<ESC>',
         ['jk']='<ESC>',
         ['kj']='<ESC>'

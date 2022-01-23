@@ -1,6 +1,6 @@
 local present, gitsigns = pcall(require, 'gitsigns')
 if not present then return end
-require('gitsigns').setup {
+gitsigns.setup {
     signs={
         add={hl='GitGutterAdd', text='+'},
         change={hl='GitGutterChange', text='~'},
@@ -8,5 +8,8 @@ require('gitsigns').setup {
         topdelete={hl='GitGutterDelete', text='‾'},
         changedelete={hl='GitGutterChange', text='~'}
     },
-    watch_index={interval=100}
+    signcolumn=true,
+    numhl=false,
+    linehl=false,
+    update_debounce=200
 }

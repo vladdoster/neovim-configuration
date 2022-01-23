@@ -1,11 +1,48 @@
 local present, cmp = pcall(require, 'cmp')
-
 if not present then return end
-
 vim.opt.completeopt = 'menuone,noselect'
-
 cmp.setup {
     snippet={expand=function(args) require('luasnip').lsp_expand(args.body) end},
+    formatting={
+        format=function(entry, vim_item)
+            vim_item.menu = ({
+                rg='rg',
+                nvim_lsp='LSP',
+                nvim_lua='Lua',
+                Path='Path',
+                luasnip='LuaSnip',
+                treesitter='ts'
+            })[entry.source.name]
+            vim_item.kind = ({
+                Text='',
+                Method='',
+                Function='',
+                Constructor='',
+                Field='ﰠ',
+                Variable='',
+                Class='ﴯ',
+                Interface='',
+                Module='',
+                Property='ﰠ',
+                Unit='塞',
+                Value='',
+                Enum='',
+                Keyword='',
+                Snippet='',
+                Color='',
+                File='',
+                Reference='',
+                Folder='',
+                EnumMember='',
+                Constant='',
+                Struct='פּ',
+                Event='',
+                Operator='',
+                TypeParameter=''
+            })[vim_item.kind]
+            return vim_item
+        end
+    },
     mapping={
         ['<C-p>']=cmp.mapping.select_prev_item(),
         ['<C-n>']=cmp.mapping.select_next_item(),
@@ -34,11 +71,10 @@ cmp.setup {
         end
     },
     sources={
-        {name='buffer'},
-        {name='git'},
-        {name='luasnip'},
         {name='nvim_lsp'},
+        {name='luasnip'},
+        {name='rg'},
         {name='nvim_lua'},
-        {name='path'}
+        {name='treesitter'}
     }
 }
