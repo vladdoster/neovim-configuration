@@ -1,7 +1,7 @@
 local present, ts_config = pcall(require, 'nvim-treesitter.configs')
 if not present then return end
 ts_config.setup {
-    ensure_installed={'hcl', 'go', 'hcl', 'python', 'markdown' },
+    ensure_installed= {'python', 'hcl', 'bash', 'go', 'markdown'},
     indent={enable=true},
     highlight={enable=true, use_languagetree=true, additional_vim_regex_highlighting={'org'}},
     rainbow={
