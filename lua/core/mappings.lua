@@ -4,14 +4,12 @@ local M = {}
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {noremap=true, silent=true})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 cmd 'silent! command PackerClean lua require "plugins" require("packer").clean()'
 cmd 'silent! command PackerCompile lua require"plugins" require("packer").compile()'
 cmd 'silent! command PackerInstall lua require"plugins" require("packer").install()'
 cmd 'silent! command PackerStatus lua require "plugins" require("packer").status()'
 cmd 'silent! command PackerSync lua require "plugins" require("packer").sync()'
 cmd 'silent! command PackerUpdate lua require "plugins" require("packer").update()'
-
 M.telescope = function()
     local keymaps = {
         ['<leader>cm']=':Telescope git_commits <CR>',
@@ -25,7 +23,6 @@ M.telescope = function()
     }
     M.load_mode('normal_mode', keymaps)
 end
-
 local generic_opts_any = {noremap=true, silent=true}
 local generic_opts = {
     insert_mode=generic_opts_any,

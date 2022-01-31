@@ -4,11 +4,9 @@ local function opt(o, v, scopes)
     scopes = scopes or {vim.o}
     for _, s in ipairs(scopes) do s[o] = v end
 end
-
 g.loaded_node_provider = 0; g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0; g.loaded_python_provider = 0
 g.python3_host_prog = '/usr/local/bin/python3'
-
 opt('autoindent',true)
 opt('background','dark')
 opt('backup',false)

@@ -18,3 +18,6 @@ fmt:
 	           --no-spaces-around-equals-in-field \
 	           --no-spaces-inside-table-braces \
 	           {} \;
+
+install-lua-formatter:
+	luarocks install --server=https://luarocks.org/dev luaformatter

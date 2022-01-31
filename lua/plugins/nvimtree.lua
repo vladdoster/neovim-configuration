@@ -1,7 +1,5 @@
 local present, nvimtree = pcall(require, 'nvim-tree')
-
 if not present then return end
-
 vim.g.nvim_tree_add_trailing = 0 -- append a trailing slash to folder names
 vim.g.nvim_tree_highlight_opened_files = 0
 vim.g.nvim_tree_indent_markers = 1
@@ -14,7 +12,6 @@ vim.g.nvim_tree_root_folder_modifier = table.concat {
 }
 --
 vim.g.nvim_tree_show_icons = {folders=1, files=1}
-
 vim.g.nvim_tree_icons = {
     default='',
     symlink='',
@@ -38,7 +35,6 @@ vim.g.nvim_tree_icons = {
         symlink_open=''
     }
 }
-
 nvimtree.setup {
     filters={dotfiles=false},
     disable_netrw=true,

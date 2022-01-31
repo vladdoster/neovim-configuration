@@ -7,7 +7,12 @@ cmd [[au InsertEnter * set norelativenumber]] -- don't use relative number in in
 cmd [[au InsertLeave * set relativenumber]] -- use relativenumber in normal & visual
 cmd [[au TextYankPost * silent! lua vim.highlight.on_yank()]] -- highlight yanked selection
 cmd [[au VimResized * tabdo wincmd =]] -- keep windows equally resized
-
+cmd [[autocmd BufReadPost *
+    \ if line("'\"") > 1
+    \ && line("'\"") <= line("$")
+    \ | execute "normal! g`\""
+    \ | endif
+    ]]
 -- defer lsp and utilities
 local M = {}
 M.packer_lazy_load = function(plugin, timer)
