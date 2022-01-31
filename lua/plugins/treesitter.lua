@@ -1,9 +1,13 @@
 local present, ts_config = pcall(require, 'nvim-treesitter.configs')
 if not present then return end
 ts_config.setup {
-    ensure_installed= {'python', 'hcl', 'bash', 'go', 'markdown'},
+    ensure_installed={'python', 'hcl', 'bash', 'go', 'markdown'},
     indent={enable=true},
-    highlight={enable=true, use_languagetree=true, additional_vim_regex_highlighting={'org'}},
+    highlight={
+        enable=true,
+        use_languagetree=true,
+        additional_vim_regex_highlighting={'org'}
+    },
     rainbow={
         enable=true,
         extended_mode=true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
@@ -40,7 +44,10 @@ ts_config.setup {
             set_jumps=true, -- whether to set jumps in the jumplist
             goto_next_start={[']m']='@function.outer', [']]']='@class.outer'},
             goto_next_end={[']M']='@function.outer', ['][']='@class.outer'},
-            goto_previous_start={['[m']='@function.outer', ['[[']='@class.outer'},
+            goto_previous_start={
+                ['[m']='@function.outer',
+                ['[[']='@class.outer'
+            },
             goto_previous_end={['[M']='@function.outer', ['[]']='@class.outer'}
         }
     }

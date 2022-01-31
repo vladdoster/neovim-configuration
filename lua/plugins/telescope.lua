@@ -19,7 +19,11 @@ telescope.setup {
         sorting_strategy='ascending',
         layout_strategy='horizontal',
         layout_config={
-            horizontal={prompt_position='top', preview_width=0.55, results_width=0.8},
+            horizontal={
+                prompt_position='top',
+                preview_width=0.55,
+                results_width=0.8
+            },
             vertical={mirror=false},
             width=0.87,
             height=0.80,
@@ -53,4 +57,6 @@ telescope.setup {
 }
 local extensions = {'themes', 'terms', 'fzf'}
 local packer_repos = [["extensions", "telescope-fzf-native.nvim"]]
-pcall(function() for _, ext in ipairs(extensions) do telescope.load_extension(ext) end end)
+pcall(function()
+    for _, ext in ipairs(extensions) do telescope.load_extension(ext) end
+end)

@@ -41,11 +41,7 @@ local mode_adapters = {
     command_mode='c'
 }
 local defaults = {
-    insert_mode={
-        ['jj']='<ESC>',
-        ['jk']='<ESC>',
-        ['kj']='<ESC>'
-    },
+    insert_mode={['jj']='<ESC>', ['jk']='<ESC>', ['kj']='<ESC>'},
     ---@usage change or add keymappings for normal mode
     normal_mode={
         ['<A-Down>']=':resize +2<CR>',
@@ -89,7 +85,13 @@ local defaults = {
         ['<C-l>']='<C-\\><C-N><C-w>l'
     },
     ---@usage change or add keymappings for visual mode
-    visual_mode={['P']='"0P', ['p']='"0p', ['<']='<gv', ['<C-s>']=':sort<CR>', ['>']='>gv'},
+    visual_mode={
+        ['P']='"0P',
+        ['p']='"0p',
+        ['<']='<gv',
+        ['<C-s>']=':sort<CR>',
+        ['>']='>gv'
+    },
     ---@usage change or add keymappings for visual block mode
     visual_block_mode={
         ['<A-j>']=':m \'>+1<CR>gv-gv',
@@ -99,8 +101,14 @@ local defaults = {
     },
     ---@usage change or add keymappings for command mode
     command_mode={
-        ['<C-j>']={'pumvisible() ? "\\<C-n>" : "\\<C-j>"', {expr=true, noremap=true}},
-        ['<C-k>']={'pumvisible() ? "\\<C-p>" : "\\<C-k>"', {expr=true, noremap=true}}
+        ['<C-j>']={
+            'pumvisible() ? "\\<C-n>" : "\\<C-j>"',
+            {expr=true, noremap=true}
+        },
+        ['<C-k>']={
+            'pumvisible() ? "\\<C-p>" : "\\<C-k>"',
+            {expr=true, noremap=true}
+        }
     }
 }
 -- Set key mappings individually

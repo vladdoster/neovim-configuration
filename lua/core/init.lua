@@ -21,6 +21,9 @@ local disabled_built_ins = {
     'zipPlugin'
 }
 for _, plugin in pairs(disabled_built_ins) do vim.g['loaded_' .. plugin] = 1 end
-for _, module in ipairs({'core.utils', 'core.options','core.mappings','packer_compiled'}) do
-    pcall(require, module)
-end
+for _, module in ipairs({
+    'core.utils',
+    'core.options',
+    'core.mappings',
+    'packer_compiled'
+}) do pcall(require, module) end

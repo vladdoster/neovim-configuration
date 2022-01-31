@@ -23,7 +23,10 @@ M.active[1] = {
         right_sep=' ',
         icon=''
     },
-    {provider='file_size', right_sep={' ', {str='vertical_bar_thin', hl={fg='fg', bg='bg'}}}},
+    {
+        provider='file_size',
+        right_sep={' ', {str='vertical_bar_thin', hl={fg='fg', bg='bg'}}}
+    },
     {
         provider='position',
         left_sep=' ',
@@ -56,7 +59,12 @@ M.active[2] = {
         right_sep={str=' ', hl={fg='NONE', bg='black'}},
         icon=' -'
     },
-    {provider='line_percentage', hl={style='bold'}, left_sep='  ', right_sep=' '},
+    {
+        provider='line_percentage',
+        hl={style='bold'},
+        left_sep='  ',
+        right_sep=' '
+    },
     {provider='scroll_bar', hl={fg='skyblue', style='bold'}}
 }
 M.inactive[1] = {
