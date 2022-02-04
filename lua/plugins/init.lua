@@ -38,8 +38,26 @@ return packer.startup(function()
         cmd={'NvimTreeToggle', 'NvimTreeFocus'},
         config=[[require "plugins.nvimtree"]]
     }
+    -- LSP completion
+    use {
+        'hrsh7th/nvim-cmp',
+        after='friendly-snippets',
+        config=[[require "plugins.cmp"]]
+    }
+    use {
+        'L3MON4D3/LuaSnip',
+        wants='friendly-snippets',
+        after='nvim-cmp',
+        config=[[require("plugins.others").luasnip()]]
+    }
+    use {'saadparwaiz1/cmp_luasnip', after='LuaSnip'}
+    use {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'}
+    use {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}
+    use {'lukas-reineke/cmp-rg', after='nvim-cmp'}
+    use {'ray-x/cmp-treesitter', after='nvim-cmp'}
+    use {'hrsh7th/cmp-path', after='nvim-cmp'}
     -- LSP
-    use {'neovim/nvim-lspconfig', after='nvim-lsp-installer'}
+    use {'neovim/nvim-lspconfig', after='nvim-lsp-installer', requires='nvim-cmp'}
     use {
         'williamboman/nvim-lsp-installer',
         opt=true,
@@ -64,23 +82,6 @@ return packer.startup(function()
     use {'weilbith/nvim-code-action-menu', cmd='CodeActionMenu'}
     use {'rafamadriz/friendly-snippets', event='InsertEnter'}
     -- completion engine
-    use {
-        'hrsh7th/nvim-cmp',
-        after='friendly-snippets',
-        config=[[require "plugins.cmp"]]
-    }
-    use {
-        'L3MON4D3/LuaSnip',
-        wants='friendly-snippets',
-        after='nvim-cmp',
-        config=[[require("plugins.others").luasnip()]]
-    }
-    use {'saadparwaiz1/cmp_luasnip', after='LuaSnip'}
-    use {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'}
-    use {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}
-    use {'lukas-reineke/cmp-rg', after='nvim-cmp'}
-    use {'ray-x/cmp-treesitter', after='nvim-cmp'}
-    use {'hrsh7th/cmp-path', after='nvim-cmp'}
     use {
         'nvim-telescope/telescope.nvim',
         cmd='Telescope',
