@@ -41,7 +41,6 @@ return packer.startup(function()
     -- LSP completion
     use {
         'hrsh7th/nvim-cmp',
-        after='friendly-snippets',
         config=[[require "plugins.cmp"]]
     }
     use {
@@ -57,7 +56,7 @@ return packer.startup(function()
     use {'ray-x/cmp-treesitter', after='nvim-cmp'}
     use {'hrsh7th/cmp-path', after='nvim-cmp'}
     -- LSP
-    use {'neovim/nvim-lspconfig', after='nvim-lsp-installer', requires='nvim-cmp'}
+    use {'neovim/nvim-lspconfig', after={'nvim-lsp-installer', 'nvim-cmp'}}
     use {
         'williamboman/nvim-lsp-installer',
         opt=true,
