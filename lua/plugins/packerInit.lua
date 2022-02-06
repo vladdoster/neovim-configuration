@@ -19,7 +19,7 @@ if not present then
         error('Couldn\'t clone packer !\nPacker path: ' .. packer_path)
     end
 end
-return packer.init {
+return require('packer').init({
     display={
         open_fn=function()
             return require('packer.util').float {border='rounded'}
@@ -27,4 +27,4 @@ return packer.init {
         prompt_border='rounded'
     },
     git={clone_timeout=600}
-}
+})

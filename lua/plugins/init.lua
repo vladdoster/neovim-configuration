@@ -41,20 +41,18 @@ return packer.startup(function()
     -- LSP completion
     use {
         'hrsh7th/nvim-cmp',
-        config=[[require "plugins.cmp"]]
+        config=[[require "plugins.cmp"]],
+        requires={
+          {'L3MON4D3/LuaSnip', config=[[require("plugins.others").luasnip()]]},
+           'hrsh7th/cmp-nvim-lsp',
+           'hrsh7th/cmp-nvim-lsp',
+           'hrsh7th/cmp-nvim-lua',
+           'hrsh7th/cmp-path',
+           'lukas-reineke/cmp-rg',
+           'ray-x/cmp-treesitter',
+           'saadparwaiz1/cmp_luasnip',
+          }
     }
-    use {
-        'L3MON4D3/LuaSnip',
-        wants='friendly-snippets',
-        after='nvim-cmp',
-        config=[[require("plugins.others").luasnip()]]
-    }
-    use {'saadparwaiz1/cmp_luasnip', after='LuaSnip'}
-    use {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'}
-    use {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}
-    use {'lukas-reineke/cmp-rg', after='nvim-cmp'}
-    use {'ray-x/cmp-treesitter', after='nvim-cmp'}
-    use {'hrsh7th/cmp-path', after='nvim-cmp'}
     -- LSP
     use {'neovim/nvim-lspconfig', after={'nvim-lsp-installer', 'nvim-cmp'}}
     use {

@@ -1,64 +1,28 @@
-name: "release"
-    
-on:
+name: Release
 
-  workflow_run:
-
-    workflows: ["format"]
-    
-    branches: [master]
-    
-    types: 
-      - completed
-      - requested
-
+"on":
+  push:
+    branches:
+      - master
+      - next
+      - beta
+      - "*.x"
 jobs:
-
-  on-success:
-  
+  release:
+    name: release
     runs-on: ubuntu-latest
-    
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    
     steps:
-     
-      - name: Checkout
-        uses: actions/checkout@v2.3.1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          fetch-depth: 0
-          persist-credentials: true
-
-      - name: Resolve dependencies
-        run: |
-           npm install --global release-it \
-                                @release-it/bumper \
-                                @release-it/conventional-changelog
-                                
-      - name: Set git configuration
-        run: |
-          git config --global github.user "vladdoster"
-          git config --global user.email mvdoster@gmail.com
-          git config --global user.name "Vladislav Doster"
-          git config --global user.username "vladdoster"
-                
-      - name: Publish release
+          node-version: 16
+      - run: |
+          npm \
+            install --no-package-lock \
+              @google/semantic-release-replace-plugin \
+              @semantic-release/changelog \
+              @semantic-release/git \
+              semantic-release-slack-bot
+      - run: npx semantic-release --ci --
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACTIONS_TOKEN }}
-        run: |
-          # release-it preminor --preReleaseId=beta \
-          release-it --preRelease \
-                              --ci \
-                              --git.tag=true \
-                              --github.preRelease \
-                              --config=.github/release-it.json
-                  
-  on-failure:
-    runs-on: self-hosted
-    
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    
-    steps:
-    
-      - name: Skip release
-        run: |
-          echo "[INFO] Skipped release due to earlier failures"

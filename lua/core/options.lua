@@ -38,10 +38,8 @@ opt('updatecount', 0)
 opt('updatetime', 50)
 opt('writebackup', false)
 vim.opt.guifont = 'UbuntuMono Nerd Font Mono:h16' -- set guifont for neovide
-vim.opt.fillchars = {eob=' '} -- disable tilde fringe
+vim.opt.fillchars = {eob = ' '} -- disable tilde fringe
 vim.opt.shortmess:append 'casI' -- disable intro
 vim.opt.whichwrap:append '<>hl' -- clean aligned wraps
-vim.api.nvim_set_keymap('n', 'k', 'v:count == 0 ? "gk" : "k"',
-                        {noremap=true, expr=true, silent=true})
-vim.api.nvim_set_keymap('n', 'j', 'v:count == 0 ? "gj" : "j"',
-                        {noremap=true, expr=true, silent=true})
+vim.api.nvim_set_keymap('n', 'k', 'v:count == 0 ? "gk" : "k"', {noremap = true, expr = true, silent = true})
+vim.api.nvim_set_keymap('n', 'j', 'v:count == 0 ? "gj" : "j"', {noremap = true, expr = true, silent = true})
