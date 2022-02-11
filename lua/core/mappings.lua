@@ -30,10 +30,6 @@ map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 map("n", "<A-j>", "<Esc><cmd>m .+1<CR>==gi", opts)
 map("n", "<A-k>", "<Esc><cmd>m .-2<CR>==gi", opts)
 
--- NvimTree
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
-map("n", "<leader>o", "<cmd>NvimTreeFocus<CR>", opts)
-
 -- Dashboard
 map("n", "<leader>fn", "<cmd>DashboardNewFile<CR>", opts)
 map("n", "<leader>db", "<cmd>Dashboard<CR>", opts)
@@ -42,13 +38,14 @@ map("n", "<leader>sl", "<cmd>SessionLoad<CR>", opts)
 map("n", "<leader>ss", "<cmd>SessionSave<CR>", opts)
 
 -- Telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", opts)
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", opts)
-map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
+map("n", "<leader>fb", ":Telescope file_browser<CR>", opts)
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", opts)
+map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", opts)
+map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
+map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", opts)
 
 -- Lspsaga
 map("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
@@ -75,9 +72,6 @@ map("n", "<C-\\>", "<cmd>ToggleTerm<CR>", opts)
 
 -- SymbolsOutline
 map("n", "<leader>s", "<cmd>SymbolsOutline<CR>", opts)
-
--- SaveSession
-map("n", "<leader>ss", "<cmd>SessionSave<CR>", opts)
 
 -- Visual --
 -- Stay in indent mode
