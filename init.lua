@@ -1,8 +1,8 @@
 local utils = require "core.utils"
 
+utils.impatient()
 utils.disabled_builtins()
 utils.bootstrap()
-utils.impatient()
 
 local sources = {
   "core.options",
@@ -18,5 +18,4 @@ for _, source in ipairs(sources) do
   end
 end
 
-utils.user_settings()
 utils.compiled()

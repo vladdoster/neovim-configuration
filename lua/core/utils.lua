@@ -34,15 +34,6 @@ function M.disabled_builtins()
   set.shadafile = "NONE"
 end
 
-function M.user_settings()
-  local default = require "core.defaults"
-  local user_status_ok, user_settings = pcall(require, "user.settings")
-  if user_status_ok then
-    default = vim.tbl_deep_extend("force", default, user_settings)
-  end
-  return default
-end
-
 function M.impatient()
   local impatient_ok, _ = pcall(require, "impatient")
   if impatient_ok then

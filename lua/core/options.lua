@@ -40,4 +40,11 @@ set.history = 100                               -- Number of commands to remembe
 set.timeoutlen = 300                            -- Length of time to wait for a mapped sequence
 set.updatetime = 300                            -- Length of time to wait before triggering the plugin
 
+--Defer loading shada until after startup_
+vim.opt.shadafile = "NONE"
+vim.schedule(function()
+   vim.opt.shadafile = vim.opt.shadafile
+   vim.cmd [[ silent! rsh ]]
+end)
+
 return M
