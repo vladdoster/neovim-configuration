@@ -4,5 +4,5 @@
 
 ## Current version
 
-### [v1.1.0](https://github.com/vladdoster/neovim-configuration/releases)
+### [v1.2.0](https://github.com/vladdoster/neovim-configuration/releases)
 

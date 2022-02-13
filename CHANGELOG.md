@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/vladdoster/neovim-configuration/compare/v1.1.0...v1.2.0) (2022-02-13)
+
+
+### Features
+
+* add back formatting plugin & config ([a212f12](https://github.com/vladdoster/neovim-configuration/commit/a212f121097c325de94a895d5b9408236b3178db))
+* update telescope, mappings, feline, & aucmds ([f7b7cb2](https://github.com/vladdoster/neovim-configuration/commit/f7b7cb2a3e55b3c298cc7007716d934dda964e6a))
+
 # [1.1.0](https://github.com/vladdoster/neovim-configuration/compare/v1.0.2...v1.1.0) (2022-02-09)
 
 
