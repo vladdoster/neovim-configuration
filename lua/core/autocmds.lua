@@ -28,8 +28,12 @@ vim.cmd(string.format(
 ))
 
 
-vim.cmd [[
-  command! ConfigUpdate lua require('core.utils').update()
-]]
+vim.cmd [[ command! ConfigUpdate lua require('core.utils').update() ]]
+
+vim.cmd[[ au InsertEnter * set norelativenumber ]]
+vim.cmd[[ au InsertLeave * set relativenumber ]]
+vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
+vim.cmd [[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
+vim.cmd [[ autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4 ]]
 
 return M

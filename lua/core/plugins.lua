@@ -20,7 +20,7 @@ packer.startup {
     use { "antoinemadec/FixCursorHold.nvim", event = "BufRead", config = [[vim.g.cursorhold_updatetime = 100]], }
     use { "kyazdani42/nvim-web-devicons", config = [[require("configs.icons").config()]] }
     use { "akinsho/bufferline.nvim", after = "nvim-web-devicons", config = [[ require("configs.bufferline").config()]] }
-    use { 'famiu/feline.nvim', config= [[require 'feline'.setup({ preset = 'noicon' })]] }
+    use { 'famiu/feline.nvim', config = [[require("configs.feline")]] }
     use {
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
