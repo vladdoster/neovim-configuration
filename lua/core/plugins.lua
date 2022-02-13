@@ -16,11 +16,11 @@ packer.startup {
     use { 'winston0410/commented.nvim', config=[[require 'commented'.setup()]]}
     use { 'sQVe/sort.nvim', config=[[require("sort").setup()]]}
     use { "nathom/filetype.nvim", config = [[vim.g.did_load_filetypes = 1]]}
-    use { 'ethanholz/nvim-lastplace', config = [[require'nvim-lastplace'.setup{}]] }
     use { "antoinemadec/FixCursorHold.nvim", event = "BufRead", config = [[vim.g.cursorhold_updatetime = 100]], }
     use { "kyazdani42/nvim-web-devicons", config = [[require("configs.icons").config()]] }
     use { "akinsho/bufferline.nvim", after = "nvim-web-devicons", config = [[ require("configs.bufferline").config()]] }
     use { 'famiu/feline.nvim', config = [[require("configs.feline")]] }
+    use {'lukas-reineke/format.nvim', config=[[require 'configs.format']]}
     use {
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
