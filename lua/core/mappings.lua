@@ -2,7 +2,7 @@ local M = {}
 -- Remap space as leader key
 local cmd = vim.cmd
 local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+local opts = {noremap = true, silent = true}
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 map("", "<Space>", "<Nop>", opts)
@@ -32,11 +32,7 @@ local mode_adapters = {
     visual_mode = 'v'
 }
 local defaults = {
-    insert_mode = {
-        ['jj'] = '<ESC>',
-        ['jk'] = '<ESC>',
-        ['kj'] = '<ESC>'
-    },
+    insert_mode = {['jj'] = '<ESC>', ['jk'] = '<ESC>', ['kj'] = '<ESC>'},
     ---@usage change or add keymappings for normal mode
     normal_mode = {
         ['<A-Down>'] = ':resize +4<CR>',
@@ -44,6 +40,7 @@ local defaults = {
         ['<A-Right>'] = ':vertical resize -2<CR>',
         ['<A-Up>'] = ':resize -4<CR>',
         ['<A-j>'] = ':m .+1<CR>==',
+        ['<leader>fm'] = ':FormatWrite<CR>',
         ['<A-k>'] = ':m .-2<CR>==',
         ['<C-Q>'] = ':q!',
         ['<C-h>'] = '<C-w>h',
@@ -106,7 +103,6 @@ end
 -- @param keymaps A list of key mappings for each mode
 for mode, mapping in pairs(defaults) do M.load_mode(mode, mapping) end
 
-
 -- Navigate buffers
 map("n", "<S-l>", "<cmd>bnext<CR>", opts)
 map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
@@ -143,6 +139,5 @@ map("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()
 map("v", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", opts)
 -- Terminal
 map("n", "<C-\\>", "<cmd>ToggleTerm<CR>", opts)
-
 
 return M
