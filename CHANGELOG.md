@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/vladdoster/neovim-configuration/compare/v1.2.0...v1.2.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* add fmt mapping & fmt {plugins,mappings}.lua ([ee7c586](https://github.com/vladdoster/neovim-configuration/commit/ee7c58650f6f0e976cb3b58da49c0579a541cc9e))
+
 # [1.2.0](https://github.com/vladdoster/neovim-configuration/compare/v1.1.0...v1.2.0) (2022-02-13)
 
 
