@@ -9,12 +9,24 @@
           { "type": "chore", "release": "patch" },
           { "type": "ci", "release": "patch" },
           { "type": "docs", "release": "patch" },
-          { "type": "init", "release" : "major" },
+          { "type": "init", "release": "major" },
           { "type": "maint", "release": "patch" },
           { "type": "refactor", "release": "patch" },
           { "type": "release", "release": "minor" },
           { "type": "style", "release": "patch" }
-        ]
+        ],
+        "parserOpts": {
+          "types": [
+            { "type": "feat", "section": "Features" },
+            { "type": "fix", "section": "Bug Fixes" },
+            { "type": "chore", "hidden": true },
+            { "type": "docs", "hidden": true },
+            { "type": "style", "hidden": true },
+            { "type": "refactor", "hidden": true },
+            { "type": "perf", "hidden": true },
+            { "type": "test", "hidden": true }
+          ]
+        }
       }
     ],
     "@semantic-release/commit-analyzer",
