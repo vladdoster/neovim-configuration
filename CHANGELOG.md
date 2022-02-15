@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/vladdoster/neovim-configuration/compare/v1.4.0...v1.4.1) (2022-02-15)
+
+
+### Bug Fixes
+
+* add `end` to autopairs config function ([ff44784](https://github.com/vladdoster/neovim-configuration/commit/ff447847f5aef875f2abcc562e6d5ea11bc21476))
+
 # [1.4.0](https://github.com/vladdoster/neovim-configuration/compare/v1.3.3...v1.4.0) (2022-02-15)
 
 
