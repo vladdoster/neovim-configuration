@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/vladdoster/neovim-configuration/compare/v1.3.3...v1.4.0) (2022-02-15)
+
+
+### Features
+
+* fmt & plugin updates ([6e0d6b4](https://github.com/vladdoster/neovim-configuration/commit/6e0d6b4c134b91e3dc26aa3279ec573dde767a1f))
+
 ## [1.3.3](https://github.com/vladdoster/neovim-configuration/compare/v1.3.2...v1.3.3) (2022-02-15)
 
 ## [1.3.2](https://github.com/vladdoster/neovim-configuration/compare/v1.3.1...v1.3.2) (2022-02-15)
