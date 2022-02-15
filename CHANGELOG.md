@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/vladdoster/neovim-configuration/compare/v1.2.1...v1.3.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* autopairs, remove cruft, & fmt cmp config ([2da938d](https://github.com/vladdoster/neovim-configuration/commit/2da938d2667cb7575161f6893a48d332ae05305e))
+
+
+### Features
+
+* deep ocean variant of material color scheme ([3d4fbcc](https://github.com/vladdoster/neovim-configuration/commit/3d4fbccc52efad3f38dbef426002fa0b6314d7fa))
+
 ## [1.2.1](https://github.com/vladdoster/neovim-configuration/compare/v1.2.0...v1.2.1) (2022-02-14)
 
 
