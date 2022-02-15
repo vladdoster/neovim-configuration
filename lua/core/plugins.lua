@@ -5,6 +5,7 @@ packer.startup {
     function(use)
         use {"wbthomason/packer.nvim"}
         use {"lewis6991/impatient.nvim"}
+        use {'marko-cerovac/material.nvim', config = [[require("configs.color-scheme")]]}
         use {"dstein64/vim-startuptime", cmd = "StartupTime"}
         use {"nvim-lua/plenary.nvim"}
         use {"nvim-lua/popup.nvim"}
@@ -43,7 +44,7 @@ packer.startup {
             config = [[require("luasnip/loaders/from_vscode").lazy_load()]],
             requires = {"rafamadriz/friendly-snippets"}
         }
-        use {"hrsh7th/nvim-cmp", event = "BufRead", config = [[require("configs.cmp").config()]]}
+        use {"hrsh7th/nvim-cmp", event = "BufRead", config = [[require "configs.cmp"]]}
         use {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"}
         use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
         use {"hrsh7th/cmp-path", after = "nvim-cmp"}
@@ -63,7 +64,7 @@ packer.startup {
             cmd = "SymbolsOutline",
             setup = [[require "configs.symbols-outline".setup()]]
         }
-        use {"jose-elias-alvarez/null-ls.nvim", event = "BufRead", config = [[require "user.null-ls".config()]]}
+        use {"jose-elias-alvarez/null-ls.nvim", event = "BufRead", config = [[require "configs.null-ls".config()]]}
         use {"nvim-telescope/telescope-file-browser.nvim"}
         use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
         use {"nvim-telescope/telescope.nvim", cmd = "Telescope", config = [[require("configs.telescope").config()]]}
