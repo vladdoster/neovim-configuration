@@ -1,14 +1,6 @@
 local M = {}
 
 vim.cmd [[
-  augroup cursor_off
-    autocmd!
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
-  augroup end
-]]
-
-vim.cmd [[
   augroup dashboard_settings
     autocmd!
     autocmd FileType dashboard set showtabline=0
@@ -18,22 +10,13 @@ vim.cmd [[
   augroup end
 ]]
 
-vim.cmd(string.format(
-  [[
-    augroup colorscheme
-      autocmd!
-      autocmd VimEnter * colorscheme %s
-    augroup end]],
-  'onedark'
-))
+vim.cmd [[ au InsertEnter * set norelativenumber ]]
+vim.cmd [[ au InsertLeave * set relativenumber ]]
 
-
-vim.cmd [[ command! ConfigUpdate lua require('core.utils').update() ]]
-
-vim.cmd[[ au InsertEnter * set norelativenumber ]]
-vim.cmd[[ au InsertLeave * set relativenumber ]]
 vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
+
 vim.cmd [[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
+
 vim.cmd [[ autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4 ]]
 
 return M
