@@ -18,13 +18,12 @@
         "parserOpts": {
           "types": [
             { "type": "feat", "section": "Features" },
+            { "type": "chore", "section": "Bug Fixes" },
+            { "type": "ci", "section": "CI/CD"},
+            { "type": "docs", "section": "Docs" },
             { "type": "fix", "section": "Bug Fixes" },
-            { "type": "chore", "hidden": true },
-            { "type": "docs", "hidden": true },
-            { "type": "style", "hidden": true },
-            { "type": "refactor", "hidden": true },
-            { "type": "perf", "hidden": true },
-            { "type": "test", "hidden": true }
+            { "type": "refactor", "section": "Refactor" },
+            { "type": "style", "section": "Style" }
           ]
         }
       }
