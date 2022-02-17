@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/vladdoster/neovim-configuration/compare/v1.5.0...v1.6.0) (2022-02-17)
+
+
+### Bug Fixes
+
+* cleanup dashboard config ([3fb41df](https://github.com/vladdoster/neovim-configuration/commit/3fb41df36660bfbc9c6402e1f57c723521a06236))
+* rename conflicting path names ([88ebe1e](https://github.com/vladdoster/neovim-configuration/commit/88ebe1e959fca86661188945240638aacb3cf119))
+* update lsp handlers and lspsage config ([8825307](https://github.com/vladdoster/neovim-configuration/commit/88253072cfd7bc234e0694980e8c8f8a82ecc51d))
+
+
+### Features
+
+* new format styling ([cb35c83](https://github.com/vladdoster/neovim-configuration/commit/cb35c838c596ccfa8961dd81c652ebac0a8da227))
+
 # [1.5.0](https://github.com/vladdoster/neovim-configuration/compare/v1.4.1...v1.5.0) (2022-02-17)
 
 
