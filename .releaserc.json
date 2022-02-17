@@ -4,7 +4,7 @@
     [
       "@semantic-release/commit-analyzer",
       {
-	"preset": "conventionalcommits",
+				"preset": "conventionalcommits",
         "releaseRules": [
           { "type": "build", "release": "patch" },
           { "type": "chore", "release": "patch" },
@@ -18,13 +18,13 @@
         ],
         "parserOpts": {
           "types": [
-            { "type": "feat", "section": "Features" },
-            { "type": "chore", "section": "Bug Fixes" },
-            { "type": "ci", "section": "CI/CD"},
-            { "type": "docs", "section": "Docs" },
-            { "type": "fix", "section": "Bug Fixes" },
-            { "type": "refactor", "section": "Refactor" },
-            { "type": "style", "section": "Style" }
+            { "type": "feat", "section": "Features", "hidden": false},
+            { "type": "chore", "section": "Bug Fixes", "hidden":false},
+            { "type": "ci", "section": "CI/CD", "hidden": false},
+            { "type": "docs", "section": "Docs", "hidden": false},
+            { "type": "fix", "section": "Bug Fixes", "hidden": false},
+            { "type": "refactor", "section": "Refactor", "hidden": false},
+            { "type": "style", "section": "Style", "hidden": false}
           ]
         }
       }
