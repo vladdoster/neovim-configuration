@@ -1,3 +1,16 @@
+# [1.5.0](https://github.com/vladdoster/neovim-configuration/compare/v1.4.1...v1.5.0) (2022-02-17)
+
+
+### Bug Fixes
+
+* required to define preset to 'conventionalcommits' ([7af8cb8](https://github.com/vladdoster/neovim-configuration/commit/7af8cb8d64b0119c652335d85e33856418cd3d91))
+
+
+### Features
+
+* add luarc.json config ([a85c4e4](https://github.com/vladdoster/neovim-configuration/commit/a85c4e4acd8a2325e87e449ced826e6b52f1c552))
+* remove bufferline for minimal tabline ([fc9e6b8](https://github.com/vladdoster/neovim-configuration/commit/fc9e6b868e4ffc4b2a94d19632d120385b44c76f))
+
 ## [1.4.1](https://github.com/vladdoster/neovim-configuration/compare/v1.4.0...v1.4.1) (2022-02-15)
 
 
