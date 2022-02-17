@@ -14,7 +14,7 @@ function M.config()
         'nofile',
         'terminal',
         'lsp-installer',
-        'lspinfo'
+        'lspinfo',
     }
     vim.g.indent_blankline_filetype_exclude = {
         'help',
@@ -23,7 +23,7 @@ function M.config()
         'packer',
         'neogitstatus',
         'NvimTree',
-        'Trouble'
+        'Trouble',
     }
     vim.g.indent_blankline_context_patterns = {
         'class',
@@ -45,12 +45,12 @@ function M.config()
         'try_statement',
         'catch_clause',
         'import_statement',
-        'operation_type'
+        'operation_type',
     }
 
     indent_blankline.setup {
-        show_current_context=true,
-        show_current_context_start=false
+        show_current_context = true,
+        show_current_context_start = false,
     }
 end
 
