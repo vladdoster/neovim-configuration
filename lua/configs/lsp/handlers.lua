@@ -1,36 +1,36 @@
 local M = {}
 function M.setup()
     local signs = {
-        {name = 'DiagnosticSignError', text = 'E'},
-        {name = 'DiagnosticSignWarn', text = 'W'},
-        {name = 'DiagnosticSignHint', text = 'H'},
-        {name = 'DiagnosticSignInfo', text = 'I'}
+        {name='DiagnosticSignError', text='E'},
+        {name='DiagnosticSignWarn', text='W'},
+        {name='DiagnosticSignHint', text='H'},
+        {name='DiagnosticSignInfo', text='I'}
     }
     for _, sign in ipairs(signs) do
         vim.fn.sign_define(sign.name,
-                           {texthl = sign.name, text = sign.text, numhl = ''})
+                           {texthl=sign.name, text=sign.text, numhl=''})
     end
     local config = {
-        virtual_text = true,
-        signs = {active = signs},
-        update_in_insert = true,
-        underline = true,
-        severity_sort = true,
-        float = {
-            focusable = false,
-            style = 'minimal',
-            border = 'rounded',
-            source = 'always',
-            header = '',
-            prefix = ''
+        virtual_text=true,
+        signs={active=signs},
+        update_in_insert=true,
+        underline=true,
+        severity_sort=true,
+        float={
+            focusable=false,
+            style='minimal',
+            border='rounded',
+            source='always',
+            header='',
+            prefix=''
         }
     }
     vim.diagnostic.config(config)
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
                                                  vim.lsp.handlers.hover,
-                                                 {border = 'rounded'})
+                                                 {border='rounded'})
     vim.lsp.handlers['textDocument/signatureHelp'] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded'})
+        vim.lsp.with(vim.lsp.handlers.signature_help, {border='rounded'})
 end
 local function lsp_highlight_document(client)
     if client.resolved_capabilities.document_highlight then
@@ -44,7 +44,7 @@ local function lsp_highlight_document(client)
     end
 end
 local function lsp_keymaps(bufnr)
-    local opts = {noremap = true, silent = true}
+    local opts = {noremap=true, silent=true}
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD',
                                 '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd',
