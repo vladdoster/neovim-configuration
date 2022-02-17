@@ -15,8 +15,7 @@
           { "type": "release", "release": "minor" },
           { "type": "style", "release": "patch" }
         ],
-        "parserOpts": {
-          "types": [
+        "parserOpts": [
             { "type": "feat", "section": "Features", "hidden": false},
             { "type": "chore", "section": "Bug Fixes", "hidden":false},
             { "type": "ci", "section": "CI/CD", "hidden": false},
@@ -24,8 +23,7 @@
             { "type": "fix", "section": "Bug Fixes", "hidden": false},
             { "type": "refactor", "section": "Refactor", "hidden": false},
             { "type": "style", "section": "Style", "hidden": false}
-          ]
-        }
+				]
       }
     ],
     "@semantic-release/commit-analyzer",
