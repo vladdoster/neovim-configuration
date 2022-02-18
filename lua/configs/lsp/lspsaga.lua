@@ -2,7 +2,7 @@ local M = {}
 function M.config()
   local status_ok, lspsaga = pcall(require, 'lspsaga')
   if not status_ok then return end
-  lspsaga.setup {
+  lspsaga.setup{
     debug = false,
     use_saga_diagnostic_sign = false,
     -- diagnostics
@@ -18,7 +18,7 @@ function M.config()
       enable = true,
       sign = true,
       sign_priority = 40,
-      virtual_text = true,
+      virtual_text = true
     },
     code_action_keys = {quit = 'q', exec = '<CR>'},
     finder_definition_icon = '  ',
@@ -30,13 +30,13 @@ function M.config()
       split = 'i',
       quit = 'q',
       scroll_down = '<C-f>',
-      scroll_up = '<C-b>',
+      scroll_up = '<C-b>'
     },
     border_style = 'round',
     definition_preview_icon = 'Def',
     rename_action_keys = {quit = '<C-c>', exec = '<CR>'},
     rename_prompt_prefix = '-> ',
-    server_filetype_map = {},
+    server_filetype_map = {}
   }
 end
 return M

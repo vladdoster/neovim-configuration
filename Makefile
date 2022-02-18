@@ -2,7 +2,7 @@
 fmt:
 	@find . -name '*.lua' -print -exec \
 		lua-format \
-		--config lua_format.yml \
+		--config .lua_format.yml \
 		--in-place \
 		-- {} \;
 
