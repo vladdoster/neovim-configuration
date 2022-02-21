@@ -1,52 +1,52 @@
 local M = {}
 local packer_status_ok, packer = pcall(require, 'packer')
 if not packer_status_ok then return end
-packer.startup{
+packer.startup {
   function(use)
-    use{'wbthomason/packer.nvim'}
-    use{'lewis6991/impatient.nvim'}
+    use {'wbthomason/packer.nvim'}
+    use {'lewis6991/impatient.nvim'}
     use('nathom/filetype.nvim')
-    use{
+    use {
       'ethanholz/nvim-lastplace',
-      config = [[require 'nvim-lastplace'.setup{}]]
+      config = [[require 'nvim-lastplace'.setup{}]],
     }
-    use{
+    use {
       'marko-cerovac/material.nvim',
-      config = [[require 'configs.color-scheme']]
+      config = [[require 'plugins.color-scheme']],
     }
-    use{'dstein64/vim-startuptime', cmd = 'StartupTime'}
-    use{'nvim-lua/plenary.nvim'}
-    use{'nvim-lua/popup.nvim'}
-    use{'junegunn/vim-easy-align'}
-    use{'tpope/vim-repeat'}
-    use{'sQVe/sort.nvim', config = [[require 'sort'.setup()]]}
-    use{
+    use {'dstein64/vim-startuptime', cmd = 'StartupTime'}
+    use {'nvim-lua/plenary.nvim'}
+    use {'nvim-lua/popup.nvim'}
+    use {'junegunn/vim-easy-align'}
+    use {'tpope/vim-repeat'}
+    use {'sQVe/sort.nvim', config = [[require 'sort'.setup()]]}
+    use {
       'kyazdani42/nvim-web-devicons',
-      config = [[require 'configs.icons'.config()]]
+      config = [[require 'plugins.icons'.config()]],
     }
-    use{
+    use {
       'rafcamlet/tabline-framework.nvim',
-      config = [[require 'configs.tabline']]
+      config = [[require 'plugins.tabline']],
     }
-    use{'lukas-reineke/format.nvim', config = [[require 'configs.format']]}
-    use{
+    use {'lukas-reineke/format.nvim', config = [[require 'plugins.format']]}
+    use {
       'SmiteshP/nvim-gps',
       requires = 'nvim-treesitter/nvim-treesitter',
       wants = 'nvim-treesitter',
       module = 'nvim-gps',
-      config = [[require("nvim-gps").setup({separator = " "})]]
+      config = [[require("nvim-gps").setup({separator = " "})]],
     }
-    use{
+    use {
       'numToStr/Comment.nvim',
       opt = true,
       keys = {'gc', 'gcc', 'gbc'},
-      config = [[require("Comment").setup()]]
+      config = [[require("Comment").setup()]],
     }
-    use{
+    use {
       'JoosepAlviste/nvim-ts-context-commentstring',
-      module = 'ts_context_commentstring'
+      module = 'ts_context_commentstring',
     }
-    use{
+    use {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       event = 'BufRead',
@@ -58,23 +58,23 @@ packer.startup{
         'TSUpdate',
         'TSUpdateSync',
         'TSDisableAll',
-        'TSEnableAll'
+        'TSEnableAll',
       },
-      config = [[require 'configs.treesitter'.config()]],
+      config = [[require 'plugins.treesitter'.config()]],
       requires = {
         {'p00f/nvim-ts-rainbow', after = 'nvim-treesitter'},
         {'windwp/nvim-ts-autotag', after = 'nvim-treesitter'},
         {
           'JoosepAlviste/nvim-ts-context-commentstring',
-          after = 'nvim-treesitter'
-        }
-      }
+          after = 'nvim-treesitter',
+        },
+      },
     }
-    use{
+    use {
       'hrsh7th/nvim-cmp',
       event = 'InsertEnter',
       opt = true,
-      config = [[require 'configs.cmp']],
+      config = [[require 'plugins.cmp']],
       wants = {'LuaSnip'},
       requires = {
         'hrsh7th/cmp-nvim-lsp',
@@ -84,25 +84,25 @@ packer.startup{
         {
           'L3MON4D3/LuaSnip',
           wants = 'friendly-snippets',
-          config = [[require("configs.snippets")]]
+          config = [[require("plugins.snippets")]],
         },
         'rafamadriz/friendly-snippets',
         {
           module = 'nvim-autopairs',
           'windwp/nvim-autopairs',
-          config = [[require("nvim-autopairs").setup()]]
-        }
-      }
+          config = [[require("nvim-autopairs").setup()]],
+        },
+      },
     }
     use({'simrat39/symbols-outline.nvim', cmd = {'SymbolsOutline'}})
-    use{
+    use {
       'nvim-lualine/lualine.nvim',
       requires = {'rlch/github-notifications.nvim'},
       event = 'VimEnter',
-      config = [[require('configs.lualine')]],
-      wants = 'nvim-web-devicons'
+      config = [[require('plugins.lualine')]],
+      wants = 'nvim-web-devicons',
     }
-    use{
+    use {
       'williamboman/nvim-lsp-installer',
       event = 'BufRead',
       cmd = {
@@ -112,67 +112,67 @@ packer.startup{
         'LspRestart',
         'LspStart',
         'LspStop',
-        'LspUninstall'
-      }
+        'LspUninstall',
+      },
     }
-    use{
+    use {
       'neovim/nvim-lspconfig',
       event = 'BufRead',
-      config = [[require 'configs.lsp']]
+      config = [[require 'plugins.lsp']],
     }
-    use{
+    use {
       'tami5/lspsaga.nvim',
       event = 'BufRead',
-      config = [[require 'configs.lsp.lspsaga'.config()]]
+      config = [[require 'plugins.lsp.lspsaga'.config()]],
     }
-    use{
+    use {
       'jose-elias-alvarez/null-ls.nvim',
       event = 'BufRead',
-      config = [[require 'configs.null-ls'.config()]]
+      config = [[require 'plugins.null-ls'.config()]],
     }
-    use{'nvim-telescope/telescope-file-browser.nvim'}
-    use{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-    use{
+    use {'nvim-telescope/telescope-file-browser.nvim'}
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+    use {
       'nvim-telescope/telescope.nvim',
       cmd = 'Telescope',
-      config = [[require 'configs.telescope'.config()]]
+      config = [[require 'plugins.telescope'.config()]],
     }
-    use{
+    use {
       'glepnir/dashboard-nvim',
-      config = [[require 'configs.dashboard'.config()]]
+      config = [[require 'plugins.dashboard'.config()]],
     }
-    -- use {
-    -- 'windwp/nvim-autopairs',
-    -- after = 'nvim-cmp',
-    -- event = 'InsertEnter',
-    -- config = [[require 'configs.autopairs'.config()]]
-    -- }
-    use{
+    use {
+      'windwp/nvim-autopairs',
+      after = 'nvim-cmp',
+      event = 'InsertEnter',
+      config = [[require 'plugins.autopairs'.config()]],
+    }
+    use {
       'akinsho/nvim-toggleterm.lua',
       cmd = 'ToggleTerm',
-      config = [[require 'configs.toggleterm'.config()]]
+      config = [[require 'plugins.toggleterm'.config()]],
     }
-    use{
+    use {
       'lukas-reineke/indent-blankline.nvim',
-      config = [[require 'configs.indent-line'.config()]]
+      config = [[require 'plugins.indent-line'.config()]],
     }
-    use{
+    use {
       'folke/which-key.nvim',
-      config = [[require 'configs.which-key'.config()]]
+      config = [[require 'plugins.which-key'.config()]],
     }
-    use{'rcarriga/nvim-notify', config = [[require 'configs.notify']]}
+    use {'rcarriga/nvim-notify', config = [[require 'plugins.notify']]}
   end,
   config = {
     auto_clean = true,
     compile_on_sync = true,
-    compile_path = vim.fn.stdpath'config' .. '/lua/packer_compiled.lua',
+    compile_path = vim.fn.stdpath 'config' .. '/lua/packer_compiled.lua',
     display = {
-      open_fn = function() return require('packer.util').float{
-        border = 'rounded'
-      } end
+      open_fn = function() return require('packer.util').float {
+        border = 'rounded',
+      } end,
     },
     git = {clone_timeout = 300},
-    profile = {enable = true, threshold = 0.0001}
-  }
+    profile = {enable = true, threshold = 0.0001},
+  },
 }
 return M

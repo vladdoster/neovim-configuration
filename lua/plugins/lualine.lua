@@ -19,7 +19,7 @@ local function lsp_progress(_, is_active)
     '⠦',
     '⠧',
     '⠇',
-    '⠏'
+    '⠏',
   }
   local ms = vim.loop.hrtime() / 1000000
   local frame = math.floor(ms / 120) % #spinners
@@ -31,7 +31,7 @@ local config = {
     theme = 'tokyonight',
     section_separators = {left = '|', right = '|'},
     component_separators = {left = '|', right = '|'},
-    icons_enabled = true
+    icons_enabled = true,
   },
   sections = {
     lualine_a = {'mode'},
@@ -42,7 +42,7 @@ local config = {
         'filetype',
         icon_only = true,
         separator = '',
-        padding = {left = 1, right = 0}
+        padding = {left = 1, right = 0},
       },
       {'filename', path = 1, symbols = {modified = 'M', readonly = ''}},
       {
@@ -54,15 +54,15 @@ local config = {
           local gps = require('nvim-gps')
           return pcall(require, 'nvim-treesitter.parsers') and gps.is_available()
         end,
-        color = {fg = '#ff9e64'}
-      }
+        color = {fg = '#ff9e64'},
+      },
     },
     lualine_x = {
       lsp_progress,
-      require('github-notifications').statusline_notification_count
+      require('github-notifications').statusline_notification_count,
     },
     lualine_y = {'location'},
-    lualine_z = {clock}
+    lualine_z = {clock},
   },
   inactive_sections = {
     lualine_a = {},
@@ -70,9 +70,9 @@ local config = {
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
-  extensions = {'nvim-tree'}
+  extensions = {'nvim-tree'},
 }
 local M = {}
 function M.load()
