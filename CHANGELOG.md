@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/vladdoster/neovim-configuration/compare/v1.6.2...v1.7.0) (2022-02-21)
+
+
+### Features
+
+* refactor directories to remove duplicate 1st char ([d5b7d47](https://github.com/vladdoster/neovim-configuration/commit/d5b7d47e50c2167dd7211c4cc8dc56f91c1cc22c))
+
 ## [1.6.2](https://github.com/vladdoster/neovim-configuration/compare/v1.6.1...v1.6.2) (2022-02-17)
 
 ## [1.6.1](https://github.com/vladdoster/neovim-configuration/compare/v1.6.0...v1.6.1) (2022-02-17)
