@@ -1,44 +1,45 @@
-vim.cmd[[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
-vim.cmd([[
-		augroup dashboard_settings
-		autocmd!
-		autocmd FileType dashboard set showtabline=0
-		autocmd BufWinLeave <buffer> set showtabline=2
-		autocmd BufEnter * if &ft is "dashboard" | set laststatus=0 | else | set laststatus=2 | endif
-		autocmd BufEnter * if &ft is "dashboard" | set nocursorline | endif
-		augroup end
-	]])
-function nvim_create_augroups(definitions)
+local M = {}
+local cmd = vim.cmd
+
+cmd [[au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]
+
+M.nvim_create_augroups = function(definitions)
   for group_name, definition in pairs(definitions) do
     vim.cmd('augroup ' .. group_name)
     vim.cmd('autocmd!')
     for _, def in ipairs(definition) do
-      local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+      local command = table.concat(vim.tbl_flatten {'autocmd', def}, ' ')
       vim.cmd(command)
     end
     vim.cmd('augroup END')
   end
 end
+
+cmd([[au FocusGained * :checktime]]) -- Check if we need to reload the file when it changed
+cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]])
+cmd([[autocmd FileType markdown setlocal spell]])
+
 local autocmds = {
-  relative_num_on = {{'InsertEnter', '*', 'setlocal number'}},
-  relative_num_off = {{'InsertLeave', '*', 'setlocal relativenumber'}},
-  save_shada = {{'VimLeave', '*', 'wshada!'}},
-  resize_windows_proportionally = {{'VimResized', '*', ':wincmd ='}},
-  toggle_search_highlighting = {{'InsertEnter', '*', 'setlocal nohlsearch'}},
-  lua_highlight = {
+  ansi_esc_log = {{'BufEnter', '*.log', ':AnsiEsc'}},
+  lua_hl = {
     {
       'TextYankPost',
       '*',
-      [[silent! lua vim.highlight.on_yank() {higroup="IncSearch", timeout=400}]]
-    }
+      [[silent! lua vim.highlight.on_yank() {higroup="IncSearch", timeout=400}]],
+    },
   },
-  ansi_esc_log = {{'BufEnter', '*.log', ':AnsiEsc'}},
   python_file = {
     {
       'Filetype',
       'python',
-      'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4'
-    }
-  }
+      'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4',
+    },
+  },
+  rel_num_off = {{'InsertLeave', '*', 'setlocal relativenumber'}},
+  rel_num_on = {{'InsertEnter', '*', 'setlocal number'}},
+  resize_windows_proportionally = {{'VimResized', '*', ':wincmd ='}},
+  save_shada = {{'VimLeave', '*', 'wshada!'}},
+  toggle_search_hl = {{'InsertEnter', '*', 'setlocal nohlsearch'}},
 }
-nvim_create_augroups(autocmds)
+M.nvim_create_augroups(autocmds)
+return M

@@ -1,55 +1,8 @@
 local M = {}
+
 local cmd = vim.cmd
-local indent = 2
-local opt, buf_opt = vim.opt, vim.bo
+local opt = vim.opt
 
-buf_opt.expandtab = true -- Use spaces instead of tabs
-buf_opt.shiftwidth = indent -- Size of an indent
-buf_opt.smartindent = true -- Insert indents automatically
-buf_opt.undofile = true
-
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
-
-opt.autowrite = true -- enable auto write
-opt.clipboard = 'unnamedplus' -- sync with system clipboard
-opt.concealcursor = 'n' -- Hide * markup for bold and italic
-opt.conceallevel = 2 -- Hide * markup for bold and italic
-opt.confirm = true -- confirm to save changes before exiting modified buffer
-opt.cursorline = true -- Enable highlighting of the current line
-opt.expandtab = true -- Use spaces instead of tabs
-opt.grepformat = '%f:%l:%c:%m'
-opt.grepprg = 'rg --vimgrep'
-opt.guifont = 'IBM Plex Mono Regular Font:h14'
-opt.hidden = true -- Enable modified buffers in background
-opt.ignorecase = true -- Ignore case
-opt.inccommand = 'split' -- preview incremental substitute
-opt.joinspaces = false -- No double spaces with join after a dot
-opt.list = true -- Show some invisible characters (tabs...
-opt.mouse = 'a' -- enable mouse mode
-opt.number = true -- Print line number
-opt.pumblend = 10 -- Popup blend
-opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.relativenumber = true -- Relative line numbers
-opt.scrolloff = 4 -- Lines of context
-opt.sessionoptions = {'buffers', 'curdir', 'tabpages', 'winsize'}
-opt.shiftround = true -- Round indent
-opt.shiftwidth = indent -- Size of an indent
-opt.showmode = false -- dont show mode since we have a statusline
-opt.sidescrolloff = 8 -- Columns of context
-opt.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
-opt.smartcase = true -- Don't ignore case with capitals
-opt.smartindent = true -- Insert indents automatically
-opt.splitbelow = true -- Put new windows below current
-opt.splitright = true -- Put new windows right of current
-opt.tabstop = indent -- Number of spaces tabs count for
-opt.termguicolors = true -- True color support
-opt.undofile = true
-opt.undolevels = 10000
-opt.updatetime = 200 -- save swap file and trigger CursorHold
-opt.wildmode = 'longest:full,full' -- Command-line completion mode
-opt.wrap = false -- Disable line wrap
--- don't load following plugins
 vim.g.loaded_gzip = 1
 vim.g.loaded_fzf = 1
 vim.g.loaded_tar = 1
@@ -74,23 +27,69 @@ local fences = {
   'typescript',
 }
 vim.g.markdown_fenced_languages = fences
-cmd([[autocmd FileType markdown nnoremap gO <cmd>Toc<cr>]])
-cmd([[autocmd FileType markdown setlocal spell]])
-cmd('au FocusGained * :checktime') -- Check if we need to reload the file when it changed
-cmd( -- show cursor line only in active window
-  [[
-  autocmd InsertLeave,WinEnter * set cursorline
-  autocmd InsertEnter,WinLeave * set nocursorline
-]]
-)
--- -- go to last loc when opening a buffer
--- cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]])
--- cmd('au TextYankPost * lua vim.highlight.on_yank {}') -- Highlight on yank
--- vim.opt.shadafile = 'NONE'
--- vim.schedule(
---   function()
---     vim.opt.shadafile = vim.opt.shadafile
---     vim.cmd [[ silent! rsh ]]
---   end
--- )
+
+vim.g.loaded_matchparen = 1
+-- Ignore compiled files
+opt.wildignore = '__pycache__'
+opt.wildignore = opt.wildignore + {'*.o', '*~', '*.pyc', '*pycache*'}
+
+-- Cool floating window popup menu for completion on command line
+opt.pumblend = 17
+opt.wildmode = 'longest:full'
+
+opt.cmdheight = 1 -- Height of the command bar
+opt.cursorline = true -- Highlight the current line
+opt.equalalways = false -- I don't like my windows changing all the time
+opt.hidden = true -- I like having buffers stay around
+opt.hlsearch = true -- I wouldn't use this without my DoNoHL function
+opt.ignorecase = true -- Ignore case when searching...
+opt.incsearch = true -- Makes search act like search in modern browsers
+opt.number = true -- But show the actual number for the line we're on
+opt.relativenumber = true -- Show line numbers
+opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
+opt.showcmd = true
+opt.showmatch = true -- show matching brackets when text indicator is over them
+opt.showmode = false
+opt.smartcase = true -- ... unless there is a capital letter in the query
+opt.splitbelow = true -- Prefer windows splitting to the bottom
+opt.splitright = true -- Prefer windows splitting to the right
+opt.updatetime = 1000 -- Make updates happen faster
+-- Tabs
+opt.autoindent = true
+opt.cindent = true
+opt.wrap = true
+
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.expandtab = true
+
+opt.breakindent = true
+opt.showbreak = string.rep(' ', 3) -- Make it so that long lines wrap smartly
+opt.linebreak = true
+
+opt.foldmethod = 'marker'
+opt.foldlevel = 0
+opt.modelines = 1
+
+opt.belloff = 'all' -- Just turn the dang bell off
+
+opt.clipboard = 'unnamedplus'
+
+opt.inccommand = 'split'
+opt.swapfile = false -- Living on the edge
+opt.shada = {'!', '\'1000', '<50', 's10', 'h'}
+
+opt.mouse = 'n'
+
+opt.formatoptions = opt.formatoptions - 'a' -- Auto formatting is BAD.
+- 't' -- Don't auto format my code. I got linters for that.
++ 'c' -- In general, I like it when comments respect textwidth
++ 'q' -- Allow formatting comments w/ gq
+- 'o' -- O and o, don't continue comments
++ 'r' -- But do continue when pressing enter.
++ 'n' -- Indent past the formatlistpat, not underneath it.
++ 'j' -- Auto-remove comments if possible.
+- '2' -- I'm not in gradeschool anymore
+
 return M
