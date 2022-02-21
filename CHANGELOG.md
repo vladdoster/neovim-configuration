@@ -1,3 +1,5 @@
+## [1.7.1](https://github.com/vladdoster/neovim-configuration/compare/v1.7.0...v1.7.1) (2022-02-21)
+
 # [1.7.0](https://github.com/vladdoster/neovim-configuration/compare/v1.6.2...v1.7.0) (2022-02-21)
 
 
