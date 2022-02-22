@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/vladdoster/neovim-configuration/compare/v1.7.1...v1.8.0) (2022-02-22)
+
+
+### Bug Fixes
+
+* autopairs annoying behavior removed ([38733a1](https://github.com/vladdoster/neovim-configuration/commit/38733a1ccc63be18aaccd45da75326cf69a1cde9))
+
+
+### Features
+
+* add nvim-tree file browser ([f68b11a](https://github.com/vladdoster/neovim-configuration/commit/f68b11ac0d6f6b893ceed013ab451dcdf587d73a))
+
 ## [1.7.1](https://github.com/vladdoster/neovim-configuration/compare/v1.7.0...v1.7.1) (2022-02-21)
 
 # [1.7.0](https://github.com/vladdoster/neovim-configuration/compare/v1.6.2...v1.7.0) (2022-02-21)
