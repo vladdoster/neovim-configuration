@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/vladdoster/neovim-configuration/compare/v1.8.0...v1.9.0) (2022-02-22)
+
+
+### Features
+
+* LSP config overhaul ([79603cb](https://github.com/vladdoster/neovim-configuration/commit/79603cb4f2341a544b7f68ba97087bb7d17b08e8))
+
 # [1.8.0](https://github.com/vladdoster/neovim-configuration/compare/v1.7.1...v1.8.0) (2022-02-22)
 
 
