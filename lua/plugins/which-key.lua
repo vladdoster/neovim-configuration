@@ -1,9 +1,7 @@
 local M = {}
-
 function M.config()
   local status_ok, which_key = pcall(require, 'which-key')
   if not status_ok then return end
-
   local setup = {
     plugins = {
       marks = true,
@@ -41,7 +39,6 @@ function M.config()
     triggers = 'auto',
     triggers_blacklist = {i = {'j', 'k'}, v = {'j', 'k'}}
   }
-
   local opts = {
     mode = 'n',
     prefix = '<leader>',
@@ -50,7 +47,6 @@ function M.config()
     noremap = true,
     nowait = true
   }
-
   local mappings = {
     ['d'] = {'<cmd>Dashboard<cr>', 'Dashboard'},
     ['e'] = {'<cmd>Telescope filebrowser<cr>', 'Explorer'},
@@ -62,7 +58,6 @@ function M.config()
       '<cmd>lua require(\'Comment.api\').toggle_current_linewise()<cr>',
       'Comment'
     },
-
     p = {
       name = 'Packer',
       c = {'<cmd>PackerCompile<cr>', 'Compile'},
@@ -71,7 +66,6 @@ function M.config()
       S = {'<cmd>PackerStatus<cr>', 'Status'},
       u = {'<cmd>PackerUpdate<cr>', 'Update'}
     },
-
     g = {
       name = 'Git',
       g = {'<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit'},
@@ -91,7 +85,6 @@ function M.config()
       c = {'<cmd>Telescope git_commits<cr>', 'Checkout commit'},
       d = {'<cmd>Gitsigns diffthis HEAD<cr>', 'Diff'}
     },
-
     l = {
       name = 'LSP',
       a = {'<cmd>Lspsaga code_action<cr>', 'Code Action'},
@@ -101,7 +94,6 @@ function M.config()
       r = {'<cmd>Lspsaga rename<cr>', 'Rename'},
       s = {'<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols'}
     },
-
     s = {
       name = 'Search',
       b = {'<cmd>Telescope git_branches<cr>', 'Checkout branch'},
@@ -111,7 +103,6 @@ function M.config()
       k = {'<cmd>Telescope keymaps<cr>', 'Keymaps'},
       c = {'<cmd>Telescope commands<cr>', 'Commands'}
     },
-
     t = {
       name = 'Terminal',
       n = {'<cmd>lua _NODE_TOGGLE()<cr>', 'Node'},
@@ -123,9 +114,7 @@ function M.config()
       v = {'<cmd>ToggleTerm size=80 direction=vertical<cr>', 'Vertical'}
     }
   }
-
   which_key.setup(setup)
   which_key.register(mappings, opts)
 end
-
 return M

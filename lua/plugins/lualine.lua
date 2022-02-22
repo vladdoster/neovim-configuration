@@ -117,7 +117,7 @@ function M.setup()
   ins_left{
     'diagnostics',
     sources = {'nvim_diagnostic'},
-    symbols = {error = ' ', warn = ' ', info = ' '},
+    symbols = {error = 'E', warn = 'W', info = 'I'},
     color_error = colors.red,
     color_warn = colors.yellow,
     color_info = colors.cyan
@@ -148,7 +148,7 @@ function M.setup()
       end
       return msg
     end,
-    icon = ' LSP:',
+    icon = 'LSP:',
     color = {fg = colors.violet, gui = 'bold'}
   }
   ins_right{
@@ -172,7 +172,7 @@ function M.setup()
   ins_right{
     'diff',
     -- Is it me or the symbol for modified us really weird
-    symbols = {added = ' ', modified = '柳 ', removed = ' '},
+    symbols = {added = 'A', modified = 'M', removed = 'D'},
     color_added = colors.green,
     color_modified = colors.orange,
     color_removed = colors.red,

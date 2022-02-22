@@ -1,9 +1,7 @@
 local M = {}
-
 function M.config()
   local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
   if not ok then return end
-
   local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
   parser_configs.norg = {
     install_info = {
@@ -12,7 +10,6 @@ function M.config()
       branch = 'main'
     }
   }
-
   treesitter.setup{
     ensure_installed = 'maintained',
     highlight = {

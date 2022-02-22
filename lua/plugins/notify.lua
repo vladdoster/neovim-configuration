@@ -6,10 +6,10 @@ notify.setup{
   timeout = 2500,
   minimum_width = 50,
   icons = {
-    ERROR = 'ERROR: ',
-    WARN = 'WARNING: ',
-    INFO = 'INFO: ',
     DEBUG = 'DEBUG: ',
-    TRACE = 'TRACE: '
+    ERROR = 'ERROR: ',
+    INFO = 'INFO: ',
+    TRACE = 'TRACE: ',
+    WARN = 'WARNING: '
   }
 }
