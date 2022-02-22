@@ -1,14 +1,14 @@
 local M = {}
 local cmd = vim.cmd
 
-cmd [[au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]
+cmd[[au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]
 
 M.nvim_create_augroups = function(definitions)
   for group_name, definition in pairs(definitions) do
     vim.cmd('augroup ' .. group_name)
     vim.cmd('autocmd!')
     for _, def in ipairs(definition) do
-      local command = table.concat(vim.tbl_flatten {'autocmd', def}, ' ')
+      local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
       vim.cmd(command)
     end
     vim.cmd('augroup END')
@@ -25,21 +25,21 @@ local autocmds = {
     {
       'TextYankPost',
       '*',
-      [[silent! lua vim.highlight.on_yank() {higroup="IncSearch", timeout=400}]],
-    },
+      [[silent! lua vim.highlight.on_yank() {higroup="IncSearch", timeout=400}]]
+    }
   },
   python_file = {
     {
       'Filetype',
       'python',
-      'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4',
-    },
+      'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4'
+    }
   },
   rel_num_off = {{'InsertLeave', '*', 'setlocal relativenumber'}},
   rel_num_on = {{'InsertEnter', '*', 'setlocal number'}},
   resize_windows_proportionally = {{'VimResized', '*', ':wincmd ='}},
   save_shada = {{'VimLeave', '*', 'wshada!'}},
-  toggle_search_hl = {{'InsertEnter', '*', 'setlocal nohlsearch'}},
+  toggle_search_hl = {{'InsertEnter', '*', 'setlocal nohlsearch'}}
 }
 M.nvim_create_augroups(autocmds)
 return M
