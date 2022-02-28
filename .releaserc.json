@@ -34,18 +34,26 @@
       {
         "replacements": [
           {
-            "files": ["VERSION", "README.md"],
-            "from": "^([0-9]).+([0-9]).+([0-9])$",
+            "files": ["README.md"],
+            "from": "v([0-9]).+([0-9]).+([0-9])",
             "to": "v${nextRelease.version}",
             "results": [
               {
-                "file": "VERSION",
+                "file": "README.md",
                 "hasChanged": true,
                 "numMatches": 1,
                 "numReplacements": 1
-              },
+              }
+            ],
+            "countMatches": true
+          },
+          {
+            "files": ["VERSION"],
+            "from": "^([0-9]).+([0-9]).+([0-9])$",
+            "to": "${nextRelease.version}",
+            "results": [
               {
-                "file": "README.md",
+                "file": "VERSION",
                 "hasChanged": true,
                 "numMatches": 1,
                 "numReplacements": 1
@@ -67,7 +75,7 @@
       "@semantic-release/git",
       {
         "assets": ["README.md", "CHANGELOG.md", "VERSION"],
-        "message": "release: ${lastRelease.version} → ${nextRelease.version}\n\n${nextRelease.notes}"
+        "message": "release: v${lastRelease.version} → v${nextRelease.version}\n\n${nextRelease.notes}"
       }
     ],
     "@semantic-release/github"
