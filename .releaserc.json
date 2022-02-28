@@ -5,16 +5,16 @@
       "@semantic-release/commit-analyzer",
       {
         "releaseRules": [
-          { "type": "bugfix", "release": "patch" },
-          { "type": "build", "release": "patch" },
-          { "type": "chore", "release": "patch" },
-          { "type": "ci", "release": "patch" },
-          { "type": "docs", "release": "patch" },
-          { "type": "init", "release": "major" },
-          { "type": "maint", "release": "patch" },
-          { "type": "refactor", "release": "patch" },
-          { "type": "release", "release": "minor" },
-          { "type": "style", "release": "patch" }
+            { "type": "bugfix", "release": "patch" },
+            { "type": "build", "release": "patch" },
+            { "type": "chore", "release": "patch" },
+            { "type": "ci", "release": "patch" },
+            { "type": "docs", "release": "patch" },
+            { "type": "init", "release": "major" },
+            { "type": "maint", "release": "patch" },
+            { "type": "refactor", "release": "patch" },
+            { "type": "release", "release": "minor" },
+            { "type": "style", "release": "patch" }
         ],
         "parserOpts": [
             { "type": "bugfix", "section": "Bug Fixes", "hidden":false},
