@@ -1,4 +1,3 @@
-
 fmt:
 	@find . -name '*.lua' -print -exec \
 		lua-format \
