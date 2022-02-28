@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/vladdoster/neovim-configuration/compare/v1.9.1...v1.9.2) (2022-02-28)
+
+
+### Bug Fixes
+
+* un-bork semantic-release configuration ([df91620](https://github.com/vladdoster/neovim-configuration/commit/df91620b4dc85130bf4e574260ba40a0e9ad6b7e))
+
 ## [1.9.1](https://github.com/vladdoster/neovim-configuration/compare/v1.9.0...v1.9.1) (2022-02-28)
 
 # [1.9.0](https://github.com/vladdoster/neovim-configuration/compare/v1.8.0...v1.9.0) (2022-02-22)
