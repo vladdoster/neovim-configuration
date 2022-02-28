@@ -1,3 +1,5 @@
+## [1.9.1](https://github.com/vladdoster/neovim-configuration/compare/v1.9.0...v1.9.1) (2022-02-28)
+
 # [1.9.0](https://github.com/vladdoster/neovim-configuration/compare/v1.8.0...v1.9.0) (2022-02-22)
 
 
