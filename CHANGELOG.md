@@ -1,3 +1,20 @@
+# [1.10.0](https://github.com/vladdoster/neovim-configuration/compare/v1.9.2...v1.10.0) (2022-03-01)
+
+
+### fix
+
+* add missing conventional-changelog-eslint node dep ([68d5dc9](https://github.com/vladdoster/neovim-configuration/commit/68d5dc97a8549dd244fca33d88fc1ca2f0678041))
+* check if colorscheme is available to remove err msg ([fbb9fd7](https://github.com/vladdoster/neovim-configuration/commit/fbb9fd71959bb7acff45c3c38036c6bf0338bce8))
+* correct braces and condense redundant config ([80bcd29](https://github.com/vladdoster/neovim-configuration/commit/80bcd291ae7017b5edef49a930341656bfd59a15))
+
+### new
+
+* iron out broken config and remove 90% of bugs ([fd95fc2](https://github.com/vladdoster/neovim-configuration/commit/fd95fc284be240b46c028d502a7a8bf6bcaa6385))
+
+### style
+
+* clean up .releaserc and add missing v prefix in VERSION ([67d12dc](https://github.com/vladdoster/neovim-configuration/commit/67d12dc1488cb7f2ecbfdb7232cdd667135ce20f))
+
 ## [1.9.2](https://github.com/vladdoster/neovim-configuration/compare/v1.9.1...v1.9.2) (2022-02-28)
 
 
