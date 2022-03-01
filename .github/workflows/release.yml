@@ -14,11 +14,10 @@ jobs:
           node-version: 16
       - run: |
           npm install --no-package-lock \
-            conventional-changelog-conventionalcommits \
             @google/semantic-release-replace-plugin \
             @semantic-release/changelog \
             @semantic-release/git \
-            semantic-release-slack-bot
+            conventional-changelog-eslint
       - run: npx semantic-release --ci --
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACTIONS_TOKEN }}
