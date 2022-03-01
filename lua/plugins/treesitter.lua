@@ -11,7 +11,7 @@ function M.config()
     }
   }
   treesitter.setup{
-    ensure_installed = 'maintained',
+    ensure_installed = {},
     highlight = {
       enable = true,
       disable = {},

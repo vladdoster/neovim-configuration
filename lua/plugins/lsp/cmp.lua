@@ -1,14 +1,9 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
+local cmp_ok, cmp = pcall(require, "cmp")
+local luasnip_ok, luasnip = pcall(require, "luasnip")
+if cmp_ok and luasnip_ok then
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
-	completion = {
-		keyword_length = 2,
-	},
+	snippet = { expand = function(args) luasnip.lsp_expand(args.body) end, },
+	completion = { keyword_length = 2 },
 	mapping = {
 		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -46,3 +41,4 @@ cmp.setup({
 		{ name = "buffer" },
 	},
 })
+end

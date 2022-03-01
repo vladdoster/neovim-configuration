@@ -95,9 +95,7 @@ function M.config()
         mappings = {
           ['i'] = {
             ['<C-h>'] = fb_actions.goto_home_dir,
-            ['<Leader><Space>'] = require('telescope.builtin').git_files({
-              cwd = '~/.config/dotfiles'
-            })
+            ['<Leader>df'] = require('telescope.builtin').git_files({ cwd = '~/.config/dotfiles' })
           },
           ['n'] = {}
         }

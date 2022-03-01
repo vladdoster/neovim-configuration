@@ -2,19 +2,19 @@ local M = {}
 function M.setup()
   local lualine = require'lualine'
   local gps = require'nvim-gps'
-  -- Color table for highlights
   local colors = {
-    bg = '#202328',
-    blue = '#51afef',
-    cyan = '#008080',
+    bg       = '#202328',
+    black    = '#000000',
+    blue     = '#51afef',
+    cyan     = '#008080',
     darkblue = '#081633',
-    fg = '#bbc2cf',
-    green = '#98be65',
-    magenta = '#c678dd',
-    orange = '#FF8800',
-    red = '#ec5f67',
-    violet = '#a9a1e1',
-    yellow = '#ECBE7B'
+    fg       = '#bbc2cf',
+    green    = '#20C20E',
+    magenta  = '#c678dd',
+    orange   = '#FF8800',
+    red      = '#ec5f67',
+    violet   = '#a9a1e1',
+    yellow   = '#ECBE7B'
   }
   local conditions = {
     buffer_not_empty = function() return vim.fn.empty(vim.fn.expand'%:t') ~= 1 end,
@@ -34,29 +34,15 @@ function M.setup()
         inactive = {c = {fg = colors.fg, bg = colors.bg}}
       }
     },
-    sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_y = {},
-      lualine_z = {},
-      lualine_c = {},
-      lualine_x = {}
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_v = {},
-      lualine_y = {},
-      lualine_z = {},
-      lualine_c = {},
-      lualine_x = {}
-    }
+    sections = { lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {} },
+    inactive_sections = { lualine_a = {}, lualine_v = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {} }
   }
   local function ins_left(component) table.insert(config.sections.lualine_c, component) end
   local function ins_right(component) table.insert(config.sections.lualine_x, component) end
   ins_left{
     function() return '▊' end,
-    color = {fg = colors.blue}, -- Sets highlighting of component
-    left_padding = 0 -- We don't need space before this
+    color = {fg = colors.black},
+    left_padding = 0
   }
   ins_left{
     function()
@@ -110,10 +96,10 @@ function M.setup()
   ins_left{
     'filename',
     condition = conditions.buffer_not_empty,
-    color = {fg = colors.magenta, gui = 'bold'}
+    color = {fg = colors.green}
   }
   ins_left{'location'}
-  ins_left{'progress', color = {fg = colors.fg, gui = 'bold'}}
+  ins_left{'progress', color = {fg = colors.fg}}
   ins_left{
     'diagnostics',
     sources = {'nvim_diagnostic'},
@@ -126,7 +112,7 @@ function M.setup()
   ins_left{function() return '%=' end}
   ins_left{
     function()
-      local msg = 'No Active Lsp'
+      local msg = 'nil'
       local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
       local clients = vim.lsp.get_active_clients()
       if next(clients) == nil then return msg end
@@ -149,30 +135,29 @@ function M.setup()
       return msg
     end,
     icon = 'LSP:',
-    color = {fg = colors.violet, gui = 'bold'}
+    color = {fg = colors.green}
   }
   ins_right{
-    'o:encoding', -- option component same as &encoding in viml
-    upper = true, -- I'm not sure why it's upper case either ;)
+    'o:encoding',
+    upper = true,
     condition = conditions.hide_in_width,
-    color = {fg = colors.green, gui = 'bold'}
+    color = {fg = colors.green}
   }
   ins_right{
     'fileformat',
     upper = true,
-    icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-    color = {fg = colors.green, gui = 'bold'}
+    icons_enabled = false,
+    color = {fg = colors.green}
   }
   ins_right{
     'branch',
     icon = '',
     condition = conditions.check_git_workspace,
-    color = {fg = colors.violet, gui = 'bold'}
+    color = {fg = colors.green}
   }
   ins_right{
     'diff',
-    -- Is it me or the symbol for modified us really weird
-    symbols = {added = 'A', modified = 'M', removed = 'D'},
+    symbols = {added = '+', modified = '~', removed = '-'},
     color_added = colors.green,
     color_modified = colors.orange,
     color_removed = colors.red,
@@ -180,7 +165,7 @@ function M.setup()
   }
   ins_right{
     function() return '▊' end,
-    color = {fg = colors.blue},
+    color = {fg = colors.black},
     right_padding = 0
   }
   lualine.setup(config)

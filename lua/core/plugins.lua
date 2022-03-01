@@ -1,7 +1,8 @@
+local M = {}
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({
+	M.packer_bootstrap = fn.system({
 		"git",
 		"clone",
 		"--depth",
@@ -23,7 +24,6 @@ return require("packer").startup(function(use)
 	use({ "sQVe/sort.nvim", config = [[require 'sort'.setup()]] })
 	use({ "kyazdani42/nvim-tree.lua", config = [[require 'plugins.nvim-tree']] })
 	use({ "rafcamlet/tabline-framework.nvim", config = [[require 'plugins.tabline']] })
-	use({ "lukas-reineke/format.nvim", config = [[require 'plugins.format']] })
 	use({
 		"SmiteshP/nvim-gps",
 		requires = "nvim-treesitter/nvim-treesitter",
@@ -34,8 +34,8 @@ return require("packer").startup(function(use)
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", module = "ts_context_commentstring" })
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
 		event = "BufRead",
+		run = ":silent TSUpdate bash c comment go javascript lua python toml yaml",
 		config = [[require 'plugins.treesitter'.config()]],
 		requires = {
 			{ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
@@ -51,7 +51,6 @@ return require("packer").startup(function(use)
 	use({ "lukas-reineke/indent-blankline.nvim", config = [[require 'plugins.indent-line'.config()]] })
 	use({ "folke/which-key.nvim", config = [[require 'plugins.which-key'.config()]] })
 	use({ "rcarriga/nvim-notify", config = [[require 'plugins.notify']] })
-	use({ "plasticboy/vim-markdown", event = "VimEnter", ft = "markdown", requires = { "godlygeek/tabular" } })
 	use({ "nvim-lualine/lualine.nvim", config = [[require("plugins.lualine").setup()]] })
 	use({
 		"neovim/nvim-lspconfig",
@@ -82,7 +81,7 @@ return require("packer").startup(function(use)
 		after = "nvim-cmp",
 		config = [[require 'plugins.autopairs'.config()]],
 	})
-	if packer_bootstrap then
+	if M.packer_bootstrap then
 		require("packer").sync()
 	end
 end)
