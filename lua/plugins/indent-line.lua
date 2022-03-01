@@ -1,14 +1,24 @@
 local M = {}
 function M.config()
-    vim.opt.list = true
-    vim.opt.listchars:append("space:⋅")
-    vim.opt.listchars:append("eol:↴")
-  local status_ok, indent_blankline = pcall(require, 'indent_blankline')
-  if not status_ok then return end
-  indent_blankline.setup{
-    space_char_blankline = " ",
-    show_current_context = true,
-    show_current_context_start = true,
-  }
+	local status_ok, indent_blankline = pcall(require, "indent_blankline")
+	if status_ok then
+		indent_blankline.setup({
+			char = "▏",
+			show_first_indent_level = false,
+			filetype_exclude = {
+				"help",
+				"git",
+				"markdown",
+				"text",
+				"terminal",
+				"lspinfo",
+				"packer",
+			},
+			buftype_exclude = {
+				"terminal",
+				"nofile",
+			},
+		})
+	end
 end
 return M

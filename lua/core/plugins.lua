@@ -1,8 +1,7 @@
-local M = {}
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-	M.packer_bootstrap = fn.system({
+	packer_bootstrap = fn.system({
 		"git",
 		"clone",
 		"--depth",
@@ -15,10 +14,10 @@ return require("packer").startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 	use({ "lewis6991/impatient.nvim" })
 	use({ "nathom/filetype.nvim" })
-	use({ "marko-cerovac/material.nvim", config = [[require 'plugins.color-scheme']] })
 	use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "nvim-lua/popup.nvim" })
+	use({ "marko-cerovac/material.nvim", config = [[require 'plugins.color-scheme']] })
 	use({ "junegunn/vim-easy-align" })
 	use({ "tpope/vim-repeat" })
 	use({ "sQVe/sort.nvim", config = [[require 'sort'.setup()]] })
@@ -31,25 +30,26 @@ return require("packer").startup(function(use)
 		module = "nvim-gps",
 		config = [[require("nvim-gps").setup({separator = " "})]],
 	})
-	use({ "JoosepAlviste/nvim-ts-context-commentstring", module = "ts_context_commentstring" })
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		event = "BufRead",
-		run = ":silent TSUpdate bash c comment go javascript lua python toml yaml",
 		config = [[require 'plugins.treesitter'.config()]],
+		event = "BufRead",
+		run = ":silent TSUpdate bash c go javascript lua python toml",
 		requires = {
 			{ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
 			{ "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
-			{ "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
+			{
+				"JoosepAlviste/nvim-ts-context-commentstring",
+				module = "ts_context_commentstring",
+				after = "nvim-treesitter",
+			},
 		},
 	})
 	use({ "williamboman/nvim-lsp-installer" })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({ "nvim-telescope/telescope.nvim", cmd = "Telescope", config = [[require 'plugins.telescope'.config()]] })
 	use({ "akinsho/nvim-toggleterm.lua", cmd = "ToggleTerm", config = [[require 'plugins.toggleterm'.config()]] })
 	use({ "lukas-reineke/indent-blankline.nvim", config = [[require 'plugins.indent-line'.config()]] })
-	use({ "folke/which-key.nvim", config = [[require 'plugins.which-key'.config()]] })
 	use({ "rcarriga/nvim-notify", config = [[require 'plugins.notify']] })
 	use({ "nvim-lualine/lualine.nvim", config = [[require("plugins.lualine").setup()]] })
 	use({
@@ -76,12 +76,10 @@ return require("packer").startup(function(use)
 		},
 	})
 	use({
-		"windwp/nvim-autopairs",
-		event = "InsertCharPre",
-		after = "nvim-cmp",
-		config = [[require 'plugins.autopairs'.config()]],
+		"numToStr/Comment.nvim",
+		config = [[require("Comment").setup()]],
 	})
-	if M.packer_bootstrap then
+	if packer_bootstrap then
 		require("packer").sync()
 	end
 end)
