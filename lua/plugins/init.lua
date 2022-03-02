@@ -1,3 +1,4 @@
+local plugins = {}
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -10,7 +11,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 		install_path,
 	})
 end
-return require("packer").startup(function(use)
+require("packer").startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 	use({ "lewis6991/impatient.nvim" })
 	use({ "nathom/filetype.nvim" })
@@ -58,7 +59,7 @@ return require("packer").startup(function(use)
 		after = "nvim-treesitter",
 		requires = { { "hrsh7th/cmp-nvim-lsp" } },
 	})
-	use({ "jose-elias-alvarez/null-ls.nvim", event = "BufRead", config = [[require('plugins.lsp.null-ls')]] })
+	-- use({ "jose-elias-alvarez/null-ls.nvim", event = "BufRead", config = [[require('plugins.lsp.null-ls')]] })
 	use({
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -83,3 +84,4 @@ return require("packer").startup(function(use)
 		require("packer").sync()
 	end
 end)
+return plugins

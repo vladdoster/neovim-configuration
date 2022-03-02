@@ -3,10 +3,8 @@ utils.impatient()
 utils.disabled_builtins()
 utils.bootstrap()
 local sources = {
-	"core.plugins",
-	"core.options",
-	"core.autocmds",
-	"core.mappings",
+	"plugins",
+	"core",
 }
 for _, source in ipairs(sources) do
 	local status_ok, fault = pcall(require, source)
