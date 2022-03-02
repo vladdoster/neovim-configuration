@@ -1,6 +1,6 @@
 local M = {}
 function M.setup()
-	local lualine, gps = require("lualine"), require("nvim-gps")
+	local lualine = require("lualine")
 	local colors = {
 		bg = "#202328",
 		black = "#000000",
@@ -17,18 +17,13 @@ function M.setup()
 		hide_in_width = function()
 			return vim.fn.winwidth(0) > 80
 		end,
-		check_git_workspace = function()
-			local filepath = vim.fn.expand("%:p:h")
-			local gitdir = vim.fn.finddir(".git", filepath .. ";")
-			return gitdir and #gitdir > 0 and #gitdir < #filepath
-		end,
 	}
 	local config = {
 		options = {
 			component_separators = "",
 			section_separators = "",
 			theme = {
-				normal = { c = { fg = colors.fg, bg = colors.bg } },
+				normal = { c = { fg = colors.green, bg = colors.bg } },
 				inactive = { c = { fg = colors.fg, bg = colors.bg } },
 			},
 		},
@@ -70,7 +65,7 @@ function M.setup()
 		end,
 		condition = conditions.buffer_not_empty,
 	})
-	ins_left({ "filename", condition = conditions.buffer_not_empty, color = { fg = colors.green } })
+	ins_left({ "filename", condition = conditions.buffer_not_empty })
 	ins_left({ "location" })
 	ins_left({
 		"diagnostics",
@@ -80,14 +75,12 @@ function M.setup()
 		color_warn = colors.yellow,
 		color_info = colors.cyan,
 	})
-	ins_left({ gps.get_location, cond = gps.is_available })
 	ins_left({
 		function()
-			local msg = "nil"
 			local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 			local clients = vim.lsp.get_active_clients()
 			if next(clients) == nil then
-				return msg
+				return ""
 			end
 			local client_names = {}
 			for _, client in ipairs(clients) do
@@ -105,23 +98,18 @@ function M.setup()
 						names = names .. ", " .. k
 					end
 				end
-				return names
+				return 'LSP: '..names
 			end
-			return msg
+			return
 		end,
-		icon = "LSP:",
-		color = { fg = colors.green },
 	})
-	ins_right({ "o:encoding", upper = true, condition = conditions.hide_in_width, color = { fg = colors.green } })
-	ins_right({ "fileformat", upper = true, condition = conditions.hide_in_width, color = { fg = colors.green } })
-	ins_right({ "branch", condition = conditions.check_git_workspace, color = { fg = colors.green } })
+	ins_right({ "o:encoding" })
 	ins_right({
 		"diff",
 		symbols = { added = "+", modified = "~", removed = "-" },
 		color_added = colors.green,
 		color_modified = colors.yellow,
 		color_removed = colors.red,
-		condition = conditions.hide_in_width,
 	})
 	lualine.setup(config)
 end

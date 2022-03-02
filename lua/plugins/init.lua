@@ -24,28 +24,7 @@ require("packer").startup(function(use)
 	use({ "sQVe/sort.nvim", config = [[require 'sort'.setup()]] })
 	use({ "kyazdani42/nvim-tree.lua", config = [[require 'plugins.nvim-tree']] })
 	use({ "rafcamlet/tabline-framework.nvim", config = [[require 'plugins.tabline']] })
-	use({
-		"SmiteshP/nvim-gps",
-		requires = "nvim-treesitter/nvim-treesitter",
-		wants = "nvim-treesitter",
-		module = "nvim-gps",
-		config = [[require("nvim-gps").setup({separator = " "})]],
-	})
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		config = [[require 'plugins.treesitter'.config()]],
-		event = "BufRead",
-		run = ":silent TSUpdate bash c go javascript lua python toml",
-		requires = {
-			{ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
-			{ "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
-			{
-				"JoosepAlviste/nvim-ts-context-commentstring",
-				module = "ts_context_commentstring",
-				after = "nvim-treesitter",
-			},
-		},
-	})
+
 	use({ "williamboman/nvim-lsp-installer" })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
 	use({ "nvim-telescope/telescope.nvim", cmd = "Telescope", config = [[require 'plugins.telescope'.config()]] })
@@ -56,10 +35,8 @@ require("packer").startup(function(use)
 	use({
 		"neovim/nvim-lspconfig",
 		event = "BufRead",
-		after = "nvim-treesitter",
 		requires = { { "hrsh7th/cmp-nvim-lsp" } },
 	})
-	-- use({ "jose-elias-alvarez/null-ls.nvim", event = "BufRead", config = [[require('plugins.lsp.null-ls')]] })
 	use({
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
