@@ -1,3 +1,26 @@
+## [1.10.1](https://github.com/vladdoster/neovim-configuration/compare/v1.10.0...v1.10.1) (2022-03-03)
+
+
+### chore
+
+* better separation of concerns ([98b5562](https://github.com/vladdoster/neovim-configuration/commit/98b55627a6fb76345480608a8d3e970ae3bfef3b))
+* better separation of concerns ([acc3c63](https://github.com/vladdoster/neovim-configuration/commit/acc3c63d8acffa5a5fc917ad4491aaf13a936e5c))
+* remap md fmt to 'fm' & and rm blank lines to 'nl' ([1a1e272](https://github.com/vladdoster/neovim-configuration/commit/1a1e27201e8667f125222100aab5d93d800e1881))
+* various plugin config updates ([c844741](https://github.com/vladdoster/neovim-configuration/commit/c8447415c31fd9dbd97eeee0d39a0f8bf347928e))
+
+### doc
+
+* fmt README.md ([362f4ad](https://github.com/vladdoster/neovim-configuration/commit/362f4ad4bf7cd7b122272692938396da82eaf374))
+
+### refactor
+
+* null-ls, cmp, toggle-term, notify, and comment ([951e0f1](https://github.com/vladdoster/neovim-configuration/commit/951e0f1780a86eea55773f7bb286c8553c9793ee))
+* update aucmd, utils, aupairs, and mappings ([d6dd469](https://github.com/vladdoster/neovim-configuration/commit/d6dd469b06bf96d1d53a720e5f65e27550f03820))
+
+### style
+
+* fmt plugins/init.lua ([fa9c8a8](https://github.com/vladdoster/neovim-configuration/commit/fa9c8a8a791d01800d5a1b5fb144daf6dc700569))
+
 # [1.10.0](https://github.com/vladdoster/neovim-configuration/compare/v1.9.2...v1.10.0) (2022-03-01)
 
 
