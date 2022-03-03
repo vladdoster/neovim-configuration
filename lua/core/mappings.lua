@@ -30,6 +30,7 @@ local mode_adapters = {
 }
 local defaults = {
 	normal_mode = {
+        ['Q'] = '<Nop>',
 		["<A-Down>"] = ":resize +4<CR>",
 		["<A-Left>"] = ":vertical resize +4<CR>",
 		["<A-Right>"] = ":vertical resize -2<CR>",
@@ -52,9 +53,9 @@ local defaults = {
 		["<S-w>"] = ":w <CR>",
 		["<leader>cm"] = ":Telescope git_commits <CR>",
 		["<leader>d"] = "<cmd>bdelete!<cr>",
-		["<leader>fm"] = ":FormatWrite<CR>",
-		["<leader>mw"] = ":!mdformat --wrap 80 %<CR>",
+		["<leader>fm"] = ":!mdformat --wrap 80 %<CR>",
 		["<leader>tw"] = ":%s/\\s\\+$//e<CR>",
+		["<leader>nl"] = ":%g/^$/d<CR>",
 	},
 	---@usage change or add keymappings for terminal mode
 	term_mode = { -- Terminal window navigation
