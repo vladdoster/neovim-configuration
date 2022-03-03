@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/vladdoster/neovim-configuration/compare/v1.10.1...v1.11.0) (2022-03-03)
+
+
+### new
+
+* add lspkind and setup cmp_cli source ([40b08e7](https://github.com/vladdoster/neovim-configuration/commit/40b08e7a04470c24f2f26f2137aeb96e445efde6))
+
 ## [1.10.1](https://github.com/vladdoster/neovim-configuration/compare/v1.10.0...v1.10.1) (2022-03-03)
 
 
