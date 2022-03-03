@@ -1,5 +1,5 @@
-local status_ok, indent_blankline = pcall(require, "indent_blankline")
-if status_ok then
+local ok, indent_blankline = pcall(require, "indent_blankline")
+if not ok then return end
   indent_blankline.setup({
     char = "▏",
     show_first_indent_level = false,
@@ -17,4 +17,3 @@ if status_ok then
       "nofile",
     },
   })
-end

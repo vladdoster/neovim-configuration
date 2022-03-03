@@ -22,25 +22,26 @@ local status_ok, packer = pcall(require, "packer")
 if not status_ok then return end
 packer.init { display = { open_fn = function() return require("packer.util").float { border = "rounded" } end, }, }
 return packer.startup(function(use)
-	use({ "wbthomason/packer.nvim" })
-	use({ "lewis6991/impatient.nvim" })
-	use({ "nathom/filetype.nvim" })
-	use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
-	use({ "nvim-lua/plenary.nvim" })
-	use({ "nvim-lua/popup.nvim" })
-	use({ "marko-cerovac/material.nvim", config = [[require 'plugins.color-scheme']] })
+	use "wbthomason/packer.nvim"
+	use "lewis6991/impatient.nvim"
+	use "nathom/filetype.nvim"
+	use "dstein64/vim-startuptime"
+	use "junegunn/vim-easy-align"
+	use "nvim-lua/plenary.nvim"
+	use "nvim-lua/popup.nvim"
+	use "tpope/vim-repeat"
+  use "antoinemadec/FixCursorHold.nvim"
 	use({ "akinsho/nvim-toggleterm.lua", cmd = "ToggleTerm", config = [[require 'plugins.toggleterm']] })
-	use({ "junegunn/vim-easy-align" })
 	use({ "kyazdani42/nvim-tree.lua", config = [[require 'plugins.nvim-tree']] })
 	use({ "lukas-reineke/indent-blankline.nvim", config = [[require 'plugins.indent-line']] })
-	use({ "numToStr/Comment.nvim", config = [[require("Comment").setup()]], })
+	use({ "marko-cerovac/material.nvim", config = [[require 'plugins.color-scheme']] })
+	use({ "numToStr/Comment.nvim", config = [[require "plugins.comment"]], })
 	use({ "nvim-lualine/lualine.nvim", config = [[require "plugins.lualine"]] })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
 	use({ "nvim-telescope/telescope.nvim", cmd = "Telescope", config = [[require 'plugins.telescope']] })
 	use({ "rafcamlet/tabline-framework.nvim", config = [[require 'plugins.tabline']] })
 	use({ "rcarriga/nvim-notify", config = [[require 'plugins.notify']] })
 	use({ "sQVe/sort.nvim", config = [[require 'sort'.setup()]] })
-	use({ "tpope/vim-repeat" })
   -- treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
