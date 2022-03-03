@@ -1,48 +1,7 @@
 local M = {}
 M.functions = {}
 local g = vim.g
-function M.bootstrap()
-	local fn = vim.fn
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		PACKER_BOOTSTRAP = fn.system({
-			"git",
-			"clone",
-			"--depth",
-			"1",
-			"https://github.com/wbthomason/packer.nvim",
-			install_path,
-		})
-		print("Cloning packer...\nSetup NeoVim Configuration")
-		vim.cmd([[packadd packer.nvim]])
-	end
-end
 -- disable some builtin vim plugins
-function M.disabled_builtins()
-	local disabled_built_ins = {
-		"2html_plugin",
-		"getscript",
-		"getscriptPlugin",
-		"gzip",
-		"logipat",
-		"netrw",
-		"netrwPlugin",
-		"netrwSettings",
-		"netrwFileHandlers",
-		"matchit",
-		"tar",
-		"tarPlugin",
-		"rrhelper",
-		"spellfile_plugin",
-		"vimball",
-		"vimballPlugin",
-		"zip",
-		"zipPlugin",
-	}
-	for _, plugin in pairs(disabled_built_ins) do
-		g["loaded_" .. plugin] = 1
-	end
-end
 function M.impatient()
 	local impatient_ok, _ = pcall(require, "impatient")
 	if impatient_ok then

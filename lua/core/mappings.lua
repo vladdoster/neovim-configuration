@@ -1,24 +1,25 @@
 local M = {}
 local cmd = vim.cmd
-local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+local term_opts = { silent = true }
+local generic_opts_any = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-map("", "<Space>", "<Nop>", opts)
 cmd('silent! command PackerClean lua require "plugins" require("packer").clean()')
 cmd('silent! command PackerCompile lua require"plugins" require("packer").compile()')
 cmd('silent! command PackerInstall lua require"plugins" require("packer").install()')
 cmd('silent! command PackerStatus lua require "plugins" require("packer").status()')
 cmd('silent! command PackerSync lua require "plugins" require("packer").sync()')
 cmd('silent! command PackerUpdate lua require "plugins" require("packer").update()')
-local generic_opts_any = { noremap = true, silent = true }
 local generic_opts = {
+	command_mode = generic_opts_any,
 	insert_mode = generic_opts_any,
 	normal_mode = generic_opts_any,
-	visual_mode = generic_opts_any,
-	visual_block_mode = generic_opts_any,
-	command_mode = generic_opts_any,
 	term_mode = { silent = true },
+	visual_block_mode = generic_opts_any,
+	visual_mode = generic_opts_any,
 }
 local mode_adapters = {
 	command_mode = "c",
@@ -30,7 +31,6 @@ local mode_adapters = {
 }
 local defaults = {
 	normal_mode = {
-        ['Q'] = '<Nop>',
 		["<A-Down>"] = ":resize +4<CR>",
 		["<A-Left>"] = ":vertical resize +4<CR>",
 		["<A-Right>"] = ":vertical resize -2<CR>",
@@ -51,11 +51,11 @@ local defaults = {
 		["<Leader>st"] = ":StartupTime<CR>",
 		["<S-t>"] = ":enew <CR>",
 		["<S-w>"] = ":w <CR>",
-		["<leader>cm"] = ":Telescope git_commits <CR>",
 		["<leader>d"] = "<cmd>bdelete!<cr>",
 		["<leader>fm"] = ":!mdformat --wrap 80 %<CR>",
-		["<leader>tw"] = ":%s/\\s\\+$//e<CR>",
-		["<leader>nl"] = ":%g/^$/d<CR>",
+		["<leader>nl"] = ":%g/^$/d <CR>",
+		["<leader>tw"] = ":%s/\\s\\+$//e <CR>",
+    ['Q'] = '<Nop>',
 	},
 	---@usage change or add keymappings for terminal mode
 	term_mode = { -- Terminal window navigation
@@ -108,23 +108,15 @@ end
 for mode, mapping in pairs(defaults) do
 	M.load_mode(mode, mapping)
 end
-map("n", "<S-l>", "<cmd>bnext<CR>", opts)
-map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
-map("n", "<leader>fb", ":Telescope file_browser<CR>", opts)
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", opts)
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", opts)
-map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", opts)
-map("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
-map("n", "ca", "<cmd>Lspsaga code_action<CR>", opts)
-map("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-map("n", "rn", "<cmd>Lspsaga rename<CR>", opts)
-map("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
-map("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-map("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", opts)
-map("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", opts)
-map("n", "<C-\\>", "<cmd>ToggleTerm<CR>", opts)
+keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
+keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
+keymap("n", "<leader>fb", ":Telescope file_browser<CR>", opts)
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
+keymap("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", opts)
+keymap("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", opts)
+keymap("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
+keymap("n", "<leader>gt", "<cmd>Telescope git_status<CR>", opts)
+keymap("n", "<C-\\>", "<cmd>ToggleTerm<CR>", opts)
 return M

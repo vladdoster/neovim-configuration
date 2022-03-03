@@ -1,11 +1,6 @@
 local utils = require("core.utils")
 utils.impatient()
-utils.disabled_builtins()
-utils.bootstrap()
-local sources = {
-	"plugins",
-	"core",
-}
+local sources = { "plugins", "core" }
 for _, source in ipairs(sources) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then

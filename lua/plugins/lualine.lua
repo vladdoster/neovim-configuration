@@ -1,14 +1,11 @@
-local M = {}
-function M.setup()
 	local lualine = require("lualine")
 	local colors = {
 		bg = "#202328",
 		black = "#000000",
 		fg = "#bbc2cf",
 		green = "#20C20E",
-		orange = "#FF8800",
-		red = "#ec5f67",
-		yellow = "#ECBE7B",
+		red = "#FF0000",
+		yellow = "#FFFF00",
 	}
 	local conditions = {
 		buffer_not_empty = function()
@@ -19,23 +16,26 @@ function M.setup()
 		end,
 	}
 	local config = {
-		options = {
-			component_separators = "",
-			section_separators = "",
-			theme = {
-				normal = { c = { fg = colors.green, bg = colors.bg } },
-				inactive = { c = { fg = colors.fg, bg = colors.bg } },
-			},
-		},
-		sections = { lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {} },
-		inactive_sections = {
-			lualine_a = {},
-			lualine_v = {},
-			lualine_y = {},
-			lualine_z = {},
-			lualine_c = {},
-			lualine_x = {},
-		},
+    options = {
+      icons_enabled = true,
+      theme = {
+        normal = { c = { fg = colors.green, bg = colors.bg } },
+        inactive = { c = { fg = colors.fg, bg = colors.bg } },
+      },
+      component_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
+      disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+      always_divide_middle = true,
+    },
+    sections = { lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {} },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_v = {},
+      lualine_y = {},
+      lualine_z = {},
+      lualine_c = {},
+      lualine_x = {},
+    },
 	}
 	local function ins_left(component)
 		table.insert(config.sections.lualine_c, component)
@@ -73,7 +73,7 @@ function M.setup()
 		symbols = { error = "E: ", warn = "W: ", info = "I: " },
 		color_error = colors.red,
 		color_warn = colors.yellow,
-		color_info = colors.cyan,
+		color_info = colors.green,
 	})
 	ins_left({
 		function()
@@ -112,5 +112,3 @@ function M.setup()
 		color_removed = colors.red,
 	})
 	lualine.setup(config)
-end
-return M

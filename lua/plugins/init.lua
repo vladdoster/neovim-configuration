@@ -1,17 +1,27 @@
-local plugins = {}
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
+local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = vim.fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "--- Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
 end
-require("packer").startup(function(use)
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost init.lua source <afile> | PackerSync
+  augroup end
+]]
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then return end
+packer.init { display = { open_fn = function() return require("packer.util").float { border = "rounded" } end, }, }
+return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 	use({ "lewis6991/impatient.nvim" })
 	use({ "nathom/filetype.nvim" })
@@ -19,46 +29,46 @@ require("packer").startup(function(use)
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "nvim-lua/popup.nvim" })
 	use({ "marko-cerovac/material.nvim", config = [[require 'plugins.color-scheme']] })
+	use({ "akinsho/nvim-toggleterm.lua", cmd = "ToggleTerm", config = [[require 'plugins.toggleterm']] })
 	use({ "junegunn/vim-easy-align" })
-	use({ "tpope/vim-repeat" })
-	use({ "sQVe/sort.nvim", config = [[require 'sort'.setup()]] })
 	use({ "kyazdani42/nvim-tree.lua", config = [[require 'plugins.nvim-tree']] })
-	use({ "rafcamlet/tabline-framework.nvim", config = [[require 'plugins.tabline']] })
-
-	use({ "williamboman/nvim-lsp-installer" })
+	use({ "lukas-reineke/indent-blankline.nvim", config = [[require 'plugins.indent-line']] })
+	use({ "numToStr/Comment.nvim", config = [[require("Comment").setup()]], })
+	use({ "nvim-lualine/lualine.nvim", config = [[require "plugins.lualine"]] })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
-	use({ "nvim-telescope/telescope.nvim", cmd = "Telescope", config = [[require 'plugins.telescope'.config()]] })
-	use({ "akinsho/nvim-toggleterm.lua", cmd = "ToggleTerm", config = [[require 'plugins.toggleterm'.config()]] })
-	use({ "lukas-reineke/indent-blankline.nvim", config = [[require 'plugins.indent-line'.config()]] })
+	use({ "nvim-telescope/telescope.nvim", cmd = "Telescope", config = [[require 'plugins.telescope']] })
+	use({ "rafcamlet/tabline-framework.nvim", config = [[require 'plugins.tabline']] })
 	use({ "rcarriga/nvim-notify", config = [[require 'plugins.notify']] })
-	use({ "nvim-lualine/lualine.nvim", config = [[require("plugins.lualine").setup()]] })
-	use({
-		"neovim/nvim-lspconfig",
-		event = "BufRead",
-		requires = { { "hrsh7th/cmp-nvim-lsp" } },
-	})
-	use({
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		config = [[require('plugins.lsp.cmp')]],
-		requires = {
-			{
-				"L3MON4D3/LuaSnip",
-				event = "CursorHold",
-				config = [[require('plugins.lsp.luasnip')]],
-				requires = { "rafamadriz/friendly-snippets" },
-			},
-			{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-		},
-	})
-	use({
-		"numToStr/Comment.nvim",
-		config = [[require("Comment").setup()]],
-	})
-	if packer_bootstrap then
-		require("packer").sync()
-	end
+	use({ "sQVe/sort.nvim", config = [[require 'sort'.setup()]] })
+	use({ "tpope/vim-repeat" })
+  -- treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    requires = { "JoosepAlviste/nvim-ts-context-commentstring" }
+  }
+  -- cmp plugins
+  use{ "hrsh7th/nvim-cmp",
+    config = [[require 'plugins.cmp']],
+    requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+    }
+  }
+  -- snippets
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  -- LSP
+  use{ "neovim/nvim-lspconfig",
+    config = [[require 'plugins.lsp']],
+    requires = {
+      "williamboman/nvim-lsp-installer",
+      "tamago324/nlsp-settings.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+  }
+}
+	if PACKER_BOOTSTRAP then require("packer").sync() end
 end)
-return plugins
