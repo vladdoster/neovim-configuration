@@ -1,29 +1,29 @@
 local M = {}
 local cmd = vim.cmd
-local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
-local generic_opts_any = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
 cmd('silent! command PackerClean lua require "plugins" require("packer").clean()')
 cmd('silent! command PackerCompile lua require"plugins" require("packer").compile()')
 cmd('silent! command PackerInstall lua require"plugins" require("packer").install()')
 cmd('silent! command PackerStatus lua require "plugins" require("packer").status()')
 cmd('silent! command PackerSync lua require "plugins" require("packer").sync()')
 cmd('silent! command PackerUpdate lua require "plugins" require("packer").update()')
+
 local generic_opts = {
-	command_mode = generic_opts_any,
-	insert_mode = generic_opts_any,
-	normal_mode = generic_opts_any,
+	command_mode = opts,
+	insert_mode = opts,
+	normal_mode = opts,
 	term_mode = { silent = true },
-	visual_block_mode = generic_opts_any,
-	visual_mode = generic_opts_any,
+	visual_block_mode = opts,
+	visual_mode = opts,
 }
 local mode_adapters = {
 	command_mode = "c",
-	insert_mode = "i",
 	normal_mode = "n",
 	term_mode = "t",
 	visual_block_mode = "x",
@@ -47,18 +47,14 @@ local defaults = {
 		["<Esc>"] = ":noh <CR>",
 		["<Leader>bn"] = ":bufdo bnext<CR>",
 		["<Leader>bp"] = ":bufdo bprevious<CR>",
+		["<Leader>db"] = "<cmd>bdelete!<CR>",
 		["<Leader>ps"] = ":PackerSync<CR>",
 		["<Leader>st"] = ":StartupTime<CR>",
+		["<Leader>tw"] = ":%s/\\s\\+$//e <CR>",
 		["<S-t>"] = ":enew <CR>",
 		["<S-w>"] = ":w <CR>",
-		["<leader>d"] = "<cmd>bdelete!<cr>",
-		["<leader>fm"] = ":!mdformat --wrap 80 %<CR>",
-		["<leader>nl"] = ":%g/^$/d <CR>",
-		["<leader>tw"] = ":%s/\\s\\+$//e <CR>",
-    ['Q'] = '<Nop>',
 	},
-	---@usage change or add keymappings for terminal mode
-	term_mode = { -- Terminal window navigation
+	term_mode = {
 		["<C-h>"] = "<C-\\><C-N><C-w>h",
 		["<C-j>"] = "<C-\\><C-N><C-w>j",
 		["<C-k>"] = "<C-\\><C-N><C-w>k",
@@ -89,12 +85,12 @@ local defaults = {
 	},
 }
 function M.set_keymaps(mode, key, val)
-	local opt = generic_opts[mode] or generic_opts_any
+	local opt = generic_opts[mode] or opts
 	if type(val) == "table" then
 		opt, val = val[2], val[1]
 	end
 	if val then
-		vim.api.nvim_set_keymap(mode, key, val, opt)
+		keymap(mode, key, val, opt)
 	else
 		pcall(vim.api.nvim_del_keymap, mode, key)
 	end

@@ -1,6 +1,7 @@
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = vim.fn.system({
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+	packer_bootstrap = fn.system({
 		"git",
 		"clone",
 		"--depth",
@@ -8,56 +9,38 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 		"https://github.com/wbthomason/packer.nvim",
 		install_path,
 	})
-	print("--- installing packer close and reopen neovim...")
-	vim.cmd([[packadd packer.nvim]])
 end
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerSync
-  augroup end
-]])
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-	return
+local cfg = function(name)
+	return string.format("require('plugins.%s')", name)
 end
-packer.init({ display = {
-	open_fn = function()
-		return require("packer.util").float({ border = "rounded" })
-	end,
-} })
-return packer.startup(function(use)
+return require("packer").startup(function(use)
+	local use_with_config = function(path, name)
+		use({ path, config = cfg(name) })
+	end
 	use("wbthomason/packer.nvim")
 	use("lewis6991/impatient.nvim")
-	use("nathom/filetype.nvim")
+	use_with_config("nathom/filetype.nvim", "filetype")
 	use("dstein64/vim-startuptime")
-	use("junegunn/vim-easy-align")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-lua/popup.nvim")
+	use("junegunn/vim-easy-align")
 	use("tpope/vim-repeat")
+	use({ "numToStr/Comment.nvim", config = cfg("comment") })
 	use("antoinemadec/FixCursorHold.nvim")
-	use({ "akinsho/nvim-toggleterm.lua", cmd = "ToggleTerm", config = [[require 'plugins.toggleterm']] })
-	use({ "kyazdani42/nvim-tree.lua", config = [[require 'plugins.nvim-tree']] })
-	use({ "lukas-reineke/indent-blankline.nvim", config = [[require 'plugins.indent-line']] })
-	use({ "marko-cerovac/material.nvim", config = [[require 'plugins.color-scheme']] })
-	use({ "numToStr/Comment.nvim", config = [[require "plugins.comment"]] })
-	use({ "nvim-lualine/lualine.nvim", config = [[require "plugins.lualine"]] })
+	use({ "akinsho/nvim-toggleterm.lua", config = cfg("toggleterm") })
+	use({ "kyazdani42/nvim-tree.lua", config = cfg("nvim-tree") })
+	use({ "lukas-reineke/indent-blankline.nvim", config = cfg("indent-line") })
+	use({ "marko-cerovac/material.nvim", config = cfg("color-scheme") })
+	use({ "nvim-lualine/lualine.nvim", config = cfg("lualine") })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
-	use({ "nvim-telescope/telescope.nvim", cmd = "Telescope", config = [[require 'plugins.telescope']] })
-	use({ "rafcamlet/tabline-framework.nvim", config = [[require 'plugins.tabline']] })
-	use({ "rcarriga/nvim-notify", config = [[require 'plugins.notify']] })
+	use({ "nvim-telescope/telescope.nvim", cmd = "Telescope", config = cfg("telescope") })
+	use({ "rafcamlet/tabline-framework.nvim", config = cfg("tabline") })
 	use({ "sQVe/sort.nvim", config = [[require 'sort'.setup()]] })
-	-- treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
-	})
-	-- cmp plugins
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	--use_with_config("rcarriga/nvim-notify", "notify")
 	use({
 		"hrsh7th/nvim-cmp",
-		config = [[require 'plugins.cmp']],
+		config = cfg("cmp"),
 		requires = {
 			"onsails/lspkind-nvim",
 			"hrsh7th/cmp-buffer",
@@ -67,20 +50,18 @@ return packer.startup(function(use)
 			"hrsh7th/cmp-nvim-lsp",
 		},
 	})
-	-- snippets
-	use("L3MON4D3/LuaSnip") --snippet engine
-	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
-	-- LSP
+	use("L3MON4D3/LuaSnip")
+	use("rafamadriz/friendly-snippets")
 	use({
 		"neovim/nvim-lspconfig",
-		config = [[require 'plugins.lsp']],
+		config = cfg("lsp"),
 		requires = {
 			"williamboman/nvim-lsp-installer",
 			"tamago324/nlsp-settings.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
 		},
 	})
-	if PACKER_BOOTSTRAP then
+	if packer_bootstrap then
 		require("packer").sync()
 	end
 end)
