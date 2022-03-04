@@ -19,10 +19,10 @@ g.nvim_tree_icons = {
   }
 }
 nvim_tree.setup({
-  diagnostics         = {enable = false},
-  filters             = {custom = {'.git', 'node_modules'}},
-  git                 = {ignore = false},
+  diagnostics = {enable = false},
+  filters = {custom = {'.git', 'node_modules'}},
+  git = {ignore = false},
   update_focused_file = {enable = true},
-  view                = {width  = 30, side = 'left'},
+  view = {width = 30, side = 'left'}
 })
 require('core.keymap').n('<C-n>', '<CMD>NvimTreeToggle<CR>')
