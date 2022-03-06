@@ -1,3 +1,23 @@
+# [1.12.0](https://github.com/vladdoster/neovim-configuration/compare/v1.11.0...v1.12.0) (2022-03-06)
+
+
+### feat
+
+* switch file browser to neo-tree ([ef9ac0e](https://github.com/vladdoster/neovim-configuration/commit/ef9ac0ee38c582e5ce45187f8cab3dcb26a6ddee))
+
+### refactor
+
+* packer bootstrap and plugin configurations ([05dbd4a](https://github.com/vladdoster/neovim-configuration/commit/05dbd4a6314c1e479b09985b2c7b0517db5a443b))
+
+### style
+
+* run lua-format ([03b4545](https://github.com/vladdoster/neovim-configuration/commit/03b4545005a3cf1bcdcde83f951c8b78999ced7b))
+* run lua-format ([7083522](https://github.com/vladdoster/neovim-configuration/commit/7083522e952072fac0d4789e53c596fadebcd639))
+
+### update
+
+* add minor release tag `feat` ([03d4778](https://github.com/vladdoster/neovim-configuration/commit/03d4778db546dcea2b2338d35885a86804176473))
+
 # [1.11.0](https://github.com/vladdoster/neovim-configuration/compare/v1.10.1...v1.11.0) (2022-03-03)
 
 
