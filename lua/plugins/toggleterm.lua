@@ -13,11 +13,7 @@ toggleterm.setup({
   direction = 'float',
   close_on_exit = true,
   shell = vim.o.shell,
-  float_opts = {
-    border = 'curved',
-    winblend = 0,
-    highlights = {border = 'Normal', background = 'Normal'}
-  }
+  float_opts = {border = 'curved', winblend = 0, highlights = {border = 'Normal', background = 'Normal'}}
 })
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}

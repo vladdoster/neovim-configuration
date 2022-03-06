@@ -5,11 +5,5 @@ notify.setup({
   stages = 'slide',
   timeout = 2500,
   minimum_width = 50,
-  icons = {
-    DEBUG = 'DEBUG: ',
-    ERROR = 'ERROR: ',
-    INFO = 'INFO: ',
-    TRACE = 'TRACE: ',
-    WARN = 'WARNING: '
-  }
+  icons = {DEBUG = 'DEBUG: ', ERROR = 'ERROR: ', INFO = 'INFO: ', TRACE = 'TRACE: ', WARN = 'WARNING: '}
 })
