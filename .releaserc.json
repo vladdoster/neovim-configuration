@@ -8,6 +8,7 @@
         {"tag": "chore",  "release": "patch"},
         {"tag": "docs",   "release": "patch"},
         {"tag": "fix",    "release": "patch"},
+        {"tag": "feat",   "release": "minor"},
         {"tag": "new",    "release": "minor"},
         {"tag": "update", "release": "minor"}
       ]
