@@ -1,3 +1,18 @@
+## [1.12.1](https://github.com/vladdoster/neovim-configuration/compare/v1.12.0...v1.12.1) (2022-03-07)
+
+
+### build
+
+* update git credentials for releases ([19ccf03](https://github.com/vladdoster/neovim-configuration/commit/19ccf03ccbc91ea9c9c684e942ad5866c81e223d))
+
+### chore
+
+* remove unused autocmd ([f23acb8](https://github.com/vladdoster/neovim-configuration/commit/f23acb880160d985c22c26ba65dd864c8f190985))
+
+### style
+
+* modify lua-format config and apply to files ([9aa6937](https://github.com/vladdoster/neovim-configuration/commit/9aa693767df76fbe8bc5dfea4e2b9696541c2c6b))
+
 # [1.12.0](https://github.com/vladdoster/neovim-configuration/compare/v1.11.0...v1.12.0) (2022-03-06)
 
 
