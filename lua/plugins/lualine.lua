@@ -14,14 +14,31 @@ local conditions = {
 local config = {
   options = {
     icons_enabled = true,
-    theme = {normal = {c = {fg = colors.green, bg = colors.bg}}, inactive = {c = {fg = colors.fg, bg = colors.bg}}},
+    theme = {
+      normal = {c = {fg = colors.green, bg = colors.bg}},
+      inactive = {c = {fg = colors.fg, bg = colors.bg}}
+    },
     component_separators = {left = '', right = ''},
     section_separators = {left = '', right = ''},
     -- disabled_filetypes = { "NvimTree" },
     always_divide_middle = true
   },
-  sections = {lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {}},
-  inactive_sections = {lualine_a = {}, lualine_v = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {}},
+  sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_y = {},
+    lualine_z = {},
+    lualine_c = {},
+    lualine_x = {}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_v = {},
+    lualine_y = {},
+    lualine_z = {},
+    lualine_c = {},
+    lualine_x = {}
+  },
   extensions = {'quickfix', 'nvim-tree'}
 }
 local function ins_left(component) table.insert(config.sections.lualine_c, component) end

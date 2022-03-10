@@ -14,17 +14,14 @@ lsp.sumneko_lua.setup({
     Lua = {
       completion = {
         enable = true,
-        showWord = 'Disable'
-        -- keywordSnippet = 'Disable',
+        showWord = 'Disable' -- keywordSnippet = 'Disable',
       },
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+      runtime = { -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
         path = U.get_luajit_path()
       },
       diagnostis = {globals = {'vim', 'dump'}},
-      workspace = {
-        -- Make the server aware of Neovim runtime files
+      workspace = { -- Make the server aware of Neovim runtime files
         library = U.get_nvim_rtp_path()
       },
       -- Do not send telemetry data containing a randomized but unique identifier

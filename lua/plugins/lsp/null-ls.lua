@@ -6,16 +6,11 @@ local dgn = nls.builtins.diagnostics
 
 -- Configuring null-ls
 nls.setup({
-  sources = {
-    -- # FORMATTING #
+  sources = { -- # FORMATTING #
     fmt.trim_whitespace.with({filetypes = {'text', 'sh', 'zsh', 'toml', 'make', 'conf', 'tmux'}}),
-    fmt.rustfmt,
-    fmt.stylua,
     fmt.terraform_fmt,
     fmt.gofmt,
-    fmt.shfmt,
-    -- # DIAGNOSTICS #
-    dgn.eslint_d,
+    fmt.shfmt, -- # DIAGNOSTICS #
     dgn.shellcheck,
     dgn.luacheck.with({extra_args = {'--globals', 'vim', '--std', 'luajit'}})
   },
