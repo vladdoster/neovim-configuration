@@ -42,20 +42,19 @@ return require('packer').startup({
       },
       {'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim'}
     })
-    use({'Navigator.nvim', event = 'CursorHold', config = cfg('navigator')})
+    use({'numToStr/Navigator.nvim', event = 'CursorHold', config = cfg('navigator')})
     use({'phaazon/hop.nvim', event = 'BufRead', config = cfg('hop')})
     -- EDITING
     use('junegunn/vim-easy-align')
     use({'sQVe/sort.nvim', config = [[require 'sort'.setup()]]})
-    use({'Comment.nvim', event = 'BufRead', config = cfg('comment')})
-    -- use({ "marko-cerovac/material.nvim", config = cfg("color-scheme") })
+    use({'numToStr/Comment.nvim', event = 'BufRead', config = cfg('comment')})
     use({'tpope/vim-surround', event = 'BufRead', requires = {{'tpope/vim-repeat', event = 'BufRead'}}})
     use({'wellle/targets.vim', event = 'BufRead'})
     use({'ntpeters/vim-better-whitespace', event = 'BufRead', config = cfg('whitespace')})
     use({'AndrewRadev/splitjoin.vim', event = 'CursorHold'})
-    use({'Buffers.nvim', event = 'BufRead', config = cfg('buffers')})
+    use({'numToStr/Buffers.nvim', event = 'BufRead', config = cfg('buffers')})
     -- TERMINAL
-    use({'FTerm.nvim', event = 'CursorHold', config = cfg('fterm')})
+    use({'numToStr/FTerm.nvim', event = 'CursorHold', config = cfg('fterm')})
     -- LSP, COMPLETIONS, AND SNIPPETS
     use({
       'neovim/nvim-lspconfig',
