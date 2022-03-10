@@ -1,32 +1,26 @@
-local M = {}
-local null_ls_status_ok, null_ls = pcall(require, 'null-ls')
-if not null_ls_status_ok then return end
-local formatting = null_ls.builtins.formatting
-local diagnostics = null_ls.builtins.diagnostics
-function M.fmt_on_save(client)
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd([[ augroup FORMATTING
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-            augroup END
-        ]])
-  end
-end
+local nls = require('null-ls')
+local U = require('plugins.lsp.utils')
 
-function M.disable_formatting(client)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
-end
+local fmt = nls.builtins.formatting
+local dgn = nls.builtins.diagnostics
 
-null_ls.setup({
-  debug = false,
+-- Configuring null-ls
+nls.setup({
   sources = {
-    diagnostics.flake8.with({method = null_ls.methods.DIAGNOSTICS_ON_SAVE}),
-    formatting.black.with({extra_args = {'--fast'}}),
-    formatting.reorder_python_imports,
-    formatting.stylua.with({extra_args = {'--column-width=120'}}),
-    formatting.trim_whitespace.with({filetypes = {'text', 'sh', 'zsh', 'toml', 'make', 'conf', 'tmux'}})
+    -- # FORMATTING #
+    fmt.trim_whitespace.with({filetypes = {'text', 'sh', 'zsh', 'toml', 'make', 'conf', 'tmux'}}),
+    fmt.rustfmt,
+    fmt.stylua,
+    fmt.terraform_fmt,
+    fmt.gofmt,
+    fmt.shfmt,
+    -- # DIAGNOSTICS #
+    dgn.eslint_d,
+    dgn.shellcheck,
+    dgn.luacheck.with({extra_args = {'--globals', 'vim', '--std', 'luajit'}})
   },
-  on_attach = function(client, bufnr) M.fmt_on_save(client) end
+  on_attach = function(client, bufnr)
+    U.fmt_on_save(client)
+    U.mappings(bufnr)
+  end
 })
-return M

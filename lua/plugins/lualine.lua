@@ -17,11 +17,12 @@ local config = {
     theme = {normal = {c = {fg = colors.green, bg = colors.bg}}, inactive = {c = {fg = colors.fg, bg = colors.bg}}},
     component_separators = {left = '', right = ''},
     section_separators = {left = '', right = ''},
-    disabled_filetypes = {'alpha', 'dashboard', 'NvimTree', 'Outline'},
+    -- disabled_filetypes = { "NvimTree" },
     always_divide_middle = true
   },
   sections = {lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {}},
-  inactive_sections = {lualine_a = {}, lualine_v = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {}}
+  inactive_sections = {lualine_a = {}, lualine_v = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {}},
+  extensions = {'quickfix', 'nvim-tree'}
 }
 local function ins_left(component) table.insert(config.sections.lualine_c, component) end
 local function ins_right(component) table.insert(config.sections.lualine_x, component) end
