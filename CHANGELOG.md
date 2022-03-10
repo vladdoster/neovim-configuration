@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/vladdoster/neovim-configuration/compare/v1.13.0...v1.13.1) (2022-03-10)
+
+
+### fix
+
+* add missing part of plugin path ([c6b66d3](https://github.com/vladdoster/neovim-configuration/commit/c6b66d305fdf2d3c6ed3109b07749cfe56c8523b))
+
 # [1.13.0](https://github.com/vladdoster/neovim-configuration/compare/v1.12.1...v1.13.0) (2022-03-10)
 
 
