@@ -1,3 +1,14 @@
+# [1.13.0](https://github.com/vladdoster/neovim-configuration/compare/v1.12.1...v1.13.0) (2022-03-10)
+
+
+### chore
+
+* test misc. changes ([22d796d](https://github.com/vladdoster/neovim-configuration/commit/22d796d03cd75dc7edb6f5d5580d2d31792b0ebd))
+
+### new
+
+* re-work of config modules ([aa659fa](https://github.com/vladdoster/neovim-configuration/commit/aa659fab1f9467cc4ed5ed8f9f9d0f15399b40df))
+
 ## [1.12.1](https://github.com/vladdoster/neovim-configuration/compare/v1.12.0...v1.12.1) (2022-03-07)
 
 
