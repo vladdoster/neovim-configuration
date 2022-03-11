@@ -10,9 +10,11 @@ nls.setup({
     fmt.trim_whitespace.with({filetypes={'text', 'sh', 'zsh', 'toml', 'make', 'conf', 'tmux'}}),
     fmt.terraform_fmt,
     fmt.gofmt,
-    fmt.shfmt, -- # DIAGNOSTICS #
+    fmt.shfmt,
+    fmt.lua_format.with({ condition = function(utils) return utils.root_has_file({ '.lua_format.yml', '.lua_format.yaml'}) end, }),
     dgn.shellcheck,
-    dgn.luacheck.with({extra_args={'--globals', 'vim', '--std', 'luajit'}})
+    dgn.luacheck.with({extra_args={'--globals', 'vim', '--std', 'luajit'},  method = nls.methods.DIAGNOSTICS_ON_SAVE }),
+    dgn.pylint.with({ method = nls.methods.DIAGNOSTICS_ON_SAVE }),
   },
   on_attach=function(client, bufnr)
     U.fmt_on_save(client)
