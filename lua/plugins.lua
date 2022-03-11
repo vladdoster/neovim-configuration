@@ -19,7 +19,7 @@ return packer.startup(function(use)
   use({'lewis6991/impatient.nvim'})
   use({'nathom/filetype.nvim'})
   use({'wbthomason/packer.nvim'})
-  use('nvim-lua/plenary.nvim')
+  use({'nvim-lua/plenary.nvim'})
   use({'marko-cerovac/material.nvim', config=cfg('color-scheme')})
   use({'nvim-lualine/lualine.nvim', config=cfg('lualine'), event='BufEnter'})
   use({
@@ -76,12 +76,13 @@ return packer.startup(function(use)
         }
       }
     },
-    {'onsails/lspkind-nvim', after='nvim-cmp'},
+    {'onsails/lspkind-nvim'},
     {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
     {'hrsh7th/cmp-path', after='nvim-cmp'},
     {'hrsh7th/cmp-buffer', after='nvim-cmp'},
     {'j-hui/fidget.nvim', after='nvim-cmp', config=[[require('fidget').setup{}]]}
   })
+
   use({'windwp/nvim-autopairs', after='nvim-cmp', config=cfg('pairs'), event='InsertCharPre'})
   if not warm_boot then packer.sync() end
 end)
