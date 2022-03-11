@@ -38,6 +38,7 @@ K.n('<Leader>o', 'o<ESC>')
 K.n('<Leader>ps', ':PackerSync<CR>')
 K.n('<Leader>st', ':StartupTime<CR>')
 K.n('<Leader>tw', ':%s/\\s\\+$//e <CR>')
+K.n('<C-n>', ':NvimTreeToggle<CR>')
 
 K.n('<S-h>', ':bprevious<CR>')
 K.n('<S-l>', ':bnext<CR>')

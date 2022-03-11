@@ -16,12 +16,3 @@ require('nvim-tree').setup({
   git={ignore=false},
   actions={open_file={window_picker={enable=false}}}
 })
-
-require('keymap').n('<C-n>', ':NvimTreeToggle<CR>')
-
-vim.api.nvim_create_augroup('NVIM_TREE', {})
-vim.api.nvim_create_autocmd('FileType', {
-  group='NVIM_TREE',
-  pattern='NvimTree',
-  callback=function() vim.api.nvim_win_set_option(0, 'wrap', false) end
-})

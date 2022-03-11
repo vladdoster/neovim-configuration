@@ -1,4 +1,3 @@
-vim.cmd'packadd packer.nvim'
 local warm_boot, packer = pcall(require, 'packer')
 if not warm_boot then
   local packer_path = vim.fn.stdpath'data' .. '/site/pack/packer/opt/packer.nvim'
@@ -12,6 +11,7 @@ if not warm_boot then
     packer_path
   }
   vim.cmd'packadd packer.nvim'
+  packer = require('packer')
 end
 packer.init{auto_clean=true, compile_on_sync=true, git={clone_timeout=6000}}
 local cfg = function(name) return string.format('require("plugins.%s")', name) end
@@ -61,7 +61,7 @@ return packer.startup(function(use)
     requires={{'williamboman/nvim-lsp-installer', 'hrsh7th/cmp-nvim-lsp'}}
   })
   use({'jose-elias-alvarez/null-ls.nvim', config=cfg('lsp.null-ls'), event='BufRead'})
-  use_rocks{'luacheck', {'luaformatter', server='https://luarocks.org/dev'}}
+  --use_rocks{'luacheck', {'luaformatter', server='https://luarocks.org/dev'}}
   use({
     {
       'hrsh7th/nvim-cmp',
