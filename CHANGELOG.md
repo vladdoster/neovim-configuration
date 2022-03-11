@@ -1,3 +1,21 @@
+# [1.15.0](https://github.com/vladdoster/neovim-configuration/compare/v1.14.0...v1.15.0) (2022-03-11)
+
+
+### fix
+
+* logic & terminolgy for if and when to bootstrap & sync packer ([48e908b](https://github.com/vladdoster/neovim-configuration/commit/48e908bdca3d24f4f5aab2aae043df591efed0e8))
+* various cmp issues ([5def3b8](https://github.com/vladdoster/neovim-configuration/commit/5def3b82aa41f6d5de4a44eccd789ad7cf5403fe))
+* various plugin errors during packer cold boot ([120d3e6](https://github.com/vladdoster/neovim-configuration/commit/120d3e675a5609178393f2061a39948c095e8e85))
+
+### new
+
+* lua-fmt Dockerdile and minor cmp updates ([8b31667](https://github.com/vladdoster/neovim-configuration/commit/8b31667c9cc4431d3c3b86d458047b7e25e4723d))
+
+### style
+
+* add icons via lspkind to cmp autocompletion ([bdf3c84](https://github.com/vladdoster/neovim-configuration/commit/bdf3c841f22106bb0f4a811d9407321a6c655564))
+* fix Makefile indentation ([713eafa](https://github.com/vladdoster/neovim-configuration/commit/713eafa01e6118a3c267538414fff99a3d36b1f6))
+
 # [1.14.0](https://github.com/vladdoster/neovim-configuration/compare/v1.13.1...v1.14.0) (2022-03-11)
 
 
