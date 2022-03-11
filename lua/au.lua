@@ -10,9 +10,9 @@ local function autocmd(this, event, spec)
   cmd('autocmd ' .. e .. ' ' .. pattern .. ' ' .. action)
 end
 
-local S = {__au = {}}
+local S = {__au={}}
 
-local X = setmetatable({}, {__index = S, __newindex = autocmd, __call = autocmd})
+local X = setmetatable({}, {__index=S, __newindex=autocmd, __call=autocmd})
 
 function S.exec(id) S.__au[id]() end
 

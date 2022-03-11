@@ -19,8 +19,12 @@ extra_sep_at_table_end: false
 indent_width: 2
 keep_simple_control_block_one_line: true
 keep_simple_function_one_line: true
+line_breaks_after_function_body: 1
+no_spaces_around_equals_in_field: true
 single_quote_to_double_quote: false
+spaces_around_equals_in_field: false
 spaces_before_call: 0
 tab_width: 2
 table_sep: ','
 use_tab: false
+

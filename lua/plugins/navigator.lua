@@ -1,6 +1,6 @@
 local K = require('keymap')
 
-require('Navigator').setup({auto_save = 'current'})
+require('Navigator').setup({auto_save='current'})
 
 K.n('<A-h>', '<CMD>lua require("Navigator").left()<CR>')
 K.n('<A-k>', '<CMD>lua require("Navigator").up()<CR>')

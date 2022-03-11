@@ -1,6 +1,6 @@
 local K = require('keymap')
 local U = {}
-U.flags = {allow_incremental_sync = true, debounce_text_changes = 200}
+U.flags = {allow_incremental_sync=true, debounce_text_changes=200}
 ---Common format-on-save for lsp servers that implements formatting
 ---@param client table
 function U.fmt_on_save(client)

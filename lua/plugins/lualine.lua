@@ -1,45 +1,35 @@
 local lualine = require('lualine')
 local colors = {
-  bg = '#202328',
-  black = '#000000',
-  fg = '#bbc2cf',
-  green = '#20C20E',
-  red = '#FF0000',
-  yellow = '#FFFF00'
+  bg='#202328',
+  black='#000000',
+  fg='#bbc2cf',
+  green='#20C20E',
+  red='#FF0000',
+  yellow='#FFFF00'
 }
 local conditions = {
-  buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
-  hide_in_width = function() return vim.fn.winwidth(0) > 80 end
+  buffer_not_empty=function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
+  hide_in_width=function() return vim.fn.winwidth(0) > 80 end
 }
 local config = {
-  options = {
-    icons_enabled = true,
-    theme = {
-      normal = {c = {fg = colors.green, bg = colors.bg}},
-      inactive = {c = {fg = colors.fg, bg = colors.bg}}
-    },
-    component_separators = {left = '', right = ''},
-    section_separators = {left = '', right = ''},
+  options={
+    icons_enabled=true,
+    theme={normal={c={fg=colors.green, bg=colors.bg}}, inactive={c={fg=colors.fg, bg=colors.bg}}},
+    component_separators={left='', right=''},
+    section_separators={left='', right=''},
     -- disabled_filetypes = { "NvimTree" },
-    always_divide_middle = true
+    always_divide_middle=true
   },
-  sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {}
+  sections={lualine_a={}, lualine_b={}, lualine_y={}, lualine_z={}, lualine_c={}, lualine_x={}},
+  inactive_sections={
+    lualine_a={},
+    lualine_v={},
+    lualine_y={},
+    lualine_z={},
+    lualine_c={},
+    lualine_x={}
   },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_v = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {}
-  },
-  extensions = {'quickfix', 'nvim-tree'}
+  extensions={'quickfix', 'nvim-tree'}
 }
 local function ins_left(component) table.insert(config.sections.lualine_c, component) end
 local function ins_right(component) table.insert(config.sections.lualine_x, component) end
@@ -59,17 +49,17 @@ ins_left({
     if string.len(file) == 0 then return '' end
     return format_file_size(file)
   end,
-  condition = conditions.buffer_not_empty
+  condition=conditions.buffer_not_empty
 })
-ins_left({'filename', condition = conditions.buffer_not_empty})
+ins_left({'filename', condition=conditions.buffer_not_empty})
 ins_left({'location'})
 ins_left({
   'diagnostics',
-  sources = {'nvim_diagnostic'},
-  symbols = {error = 'E: ', warn = 'W: ', info = 'I: '},
-  color_error = colors.red,
-  color_warn = colors.yellow,
-  color_info = colors.green
+  sources={'nvim_diagnostic'},
+  symbols={error='E: ', warn='W: ', info='I: '},
+  color_error=colors.red,
+  color_warn=colors.yellow,
+  color_info=colors.green
 })
 ins_left({
   function()
@@ -98,9 +88,9 @@ ins_left({
 ins_right({'o:encoding'})
 ins_right({
   'diff',
-  symbols = {added = '+', modified = '~', removed = '-'},
-  color_added = colors.green,
-  color_modified = colors.yellow,
-  color_removed = colors.red
+  symbols={added='+', modified='~', removed='-'},
+  color_added=colors.green,
+  color_modified=colors.yellow,
+  color_removed=colors.red
 })
 lualine.setup(config)

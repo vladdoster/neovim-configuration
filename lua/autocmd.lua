@@ -4,12 +4,12 @@ local cmd = vim.cmd
 
 -- vim.cmdustom filetypes
 vim.filetype.add({
-  extension = {eslintrc = 'json', prettierrc = 'json', conf = 'conf', mdx = 'markdown'},
-  pattern = {
-    ['.*%.env.*'] = 'sh',
-    ['.*ignore'] = 'conf' -- ['.*tmux.*conf$'] = 'tmux',
+  extension={eslintrc='json', prettierrc='json', conf='conf', mdx='markdown'},
+  pattern={
+    ['.*%.env.*']='sh',
+    ['.*ignore']='conf' -- ['.*tmux.*conf$'] = 'tmux',
   },
-  filename = {['yup.lock'] = 'yaml'}
+  filename={['yup.lock']='yaml'}
 })
 
 cmd([[au FocusGained * :checktime]])
