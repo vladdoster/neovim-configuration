@@ -1,3 +1,14 @@
+# [1.14.0](https://github.com/vladdoster/neovim-configuration/compare/v1.13.1...v1.14.0) (2022-03-11)
+
+
+### fix
+
+* packer bootstrap process causing multi-second load times ([5ec3956](https://github.com/vladdoster/neovim-configuration/commit/5ec395612518f8494b6b52fa58ac5bc6bd957c21))
+
+### update
+
+* plugin & luafmt configuration updates ([f69327d](https://github.com/vladdoster/neovim-configuration/commit/f69327d1f93e4efeb5d939e860495045afdee9cc))
+
 ## [1.13.1](https://github.com/vladdoster/neovim-configuration/compare/v1.13.0...v1.13.1) (2022-03-10)
 
 
