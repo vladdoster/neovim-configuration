@@ -1,3 +1,14 @@
+# [1.16.0](https://github.com/vladdoster/neovim-configuration/compare/v1.15.0...v1.16.0) (2022-03-14)
+
+
+### chore
+
+* null-ls only loads lua-format config found in root git repo or dir ([7c34985](https://github.com/vladdoster/neovim-configuration/commit/7c34985158c8d02b18b4608870a8172dfb1601ac))
+
+### new
+
+* re-work of plugin configurations ([55241cf](https://github.com/vladdoster/neovim-configuration/commit/55241cfba536e9b6bad8616824120ae616c344c9))
+
 # [1.15.0](https://github.com/vladdoster/neovim-configuration/compare/v1.14.0...v1.15.0) (2022-03-11)
 
 
