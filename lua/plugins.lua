@@ -15,13 +15,12 @@ if not warm_boot then
 end
 packer.init{auto_clean=true, compile_on_sync=true, git={clone_timeout=6000}}
 local cfg = function(name) return string.format('require("plugins.%s")', name) end
-return packer.startup(function(use, use_rocks)
+return packer.startup(function(use)
   use({'lewis6991/impatient.nvim'})
   use({'nathom/filetype.nvim'})
   use({'wbthomason/packer.nvim'})
   use({'nvim-lua/plenary.nvim'})
-  use({'lunarvim/darkplus.nvim', config=cfg('color-scheme')})
-  -- use({'marko-cerovac/material.nvim', config = cfg('color-scheme')})
+  use({'marko-cerovac/material.nvim', config=cfg('color-scheme')})
   use({'nvim-lualine/lualine.nvim', config=cfg('lualine'), event='BufEnter'})
   use({
     {
@@ -61,7 +60,7 @@ return packer.startup(function(use, use_rocks)
     requires={{'williamboman/nvim-lsp-installer', 'hrsh7th/cmp-nvim-lsp'}}
   })
   use({'jose-elias-alvarez/null-ls.nvim', config=cfg('lsp.null-ls'), event='BufRead'})
-  use_rocks{'luacheck', {'luaformatter', server='https://luarocks.org/dev'}}
+  -- use_rocks{'luacheck', {'luaformatter', server='https://luarocks.org/dev'}}
   use({
     {
       'hrsh7th/nvim-cmp',
@@ -80,9 +79,8 @@ return packer.startup(function(use, use_rocks)
     {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
     {'hrsh7th/cmp-path', after='nvim-cmp'},
     {'hrsh7th/cmp-buffer', after='nvim-cmp'},
-    {'j-hui/fidget.nvim', after='nvim-cmp', config=[[require('fidget').setup{}]]}
+    {'j-hui/fidget.nvim', after='nvim-cmp', config=[[require('fidget').setup{}]]},
+    {'windwp/nvim-autopairs', after='nvim-cmp', config=cfg('pairs')}
   })
-
-  use({'windwp/nvim-autopairs', after='nvim-cmp', config=cfg('pairs'), event='InsertCharPre'})
   if not warm_boot then packer.sync() end
 end)
