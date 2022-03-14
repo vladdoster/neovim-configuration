@@ -6,13 +6,10 @@ require('luasnip').config.setup({
     [types.insertNode]={active={virt_text={{'●', 'DiffDelete'}}}}
   }
 })
-
 -- Loading any vscode snippets from plugins
 require('luasnip.loaders.from_vscode').lazy_load()
-
 -- Mappins to move around inside snippets
 local K = require('keymap')
-
 K.i('<C-j>', '<CMD>lua require("luasnip").jump(1)<CR>')
 K.i('<C-k>', '<CMD>lua require("luasnip").jump(-1)<CR>')
 K.s('<C-j>', '<CMD>lua require("luasnip").jump(1)<CR>')

@@ -1,5 +1,5 @@
 require('gitsigns').setup({
-  signs={add={text='+'}, change={text='~'}, changedelete={text='='}},
+  signs={add={text='+'}, change={text='~'}, changedelete={text='='}}
   -- on_attach=function(buf)
   --   local map = vim.keymap.set
   --
