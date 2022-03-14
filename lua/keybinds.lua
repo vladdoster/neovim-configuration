@@ -1,66 +1,50 @@
-local K = require('keymap')
-
-K.i('<A-j>', '<Esc>:m .+1<CR>==gi')
-K.i('<A-k>', '<Esc>:m .-2<CR>==gi')
-
-K.n('<A-Down>', ':resize +4<CR>')
-K.n('<A-Left>', ':vertical resize +4<CR>')
-K.n('<A-Right>', ':vertical resize -4<CR>')
-K.n('<A-Up>', ':resize -4<CR>')
-K.n('<A-\\>', ':split<CR>')
-K.n('<A-j>', ':m .+1<CR>==')
-K.n('<A-k>', ':m .-2<CR>==')
-
-K.n('<C-Q>', ':q!')
-K.n('<C-Q>', ':q<CR>')
-K.n('<C-\\>', ':vsplit<CR>')
-K.n('<C-h>', '<C-w>h')
-K.n('<C-j>', ':m .+1<CR>==')
-K.n('<C-j>', '<C-w>j')
-K.n('<C-k>', ':m .-2<CR>==')
-K.n('<C-k>', ':move .-2<CR>')
-K.n('<C-k>', '<C-w>k')
-K.n('<C-l>', '<C-w>l')
-K.n('<C-n>', ':NvimTreeToggle<CR>')
-
-K.n('<Esc>', ':noh <CR>')
-
-K.n('<Leader>;', ': <CR>')
-K.n('<Leader>O', 'O<ESC>')
-K.n('<Leader>W', ':wall<CR>')
-K.n('<Leader>[', ':bp<CR>')
-K.n('<Leader>]', ':bn<CR>')
-K.n('<Leader>bd', ':bdelete<CR>')
-K.n('<Leader>bn', ':bufdo bnext<CR>')
-K.n('<Leader>bp', ':bufdo bprevious<CR>')
-K.n('<Leader>db', ':bdelete!<CR>')
-K.n('<Leader>fb', ':Telescope file_browser<CR>')
-K.n('<Leader>ff', ':Telescope find_files<CR>')
-K.n('<Leader>fh', ':Telescope help_tags<CR>')
-K.n('<Leader>fo', ':Telescope oldfiles<CR>')
-K.n('<Leader>fw', ':Telescope live_grep<CR>')
-K.n('<Leader>gc', ':Telescope git_commits<CR>')
-K.n('<Leader>gt', ':Telescope git_status<CR>')
-K.n('<Leader>o', 'o<ESC>')
-K.n('<Leader>ps', ':PackerSync<CR>')
-K.n('<Leader>st', ':StartupTime<CR>')
-K.n('<Leader>tw', ':%s/\\s\\+$//e <CR>')
-
-K.n('<S-h>', ':bprevious<CR>')
-K.n('<S-l>', ':bnext<CR>')
-K.n('<S-t>', ':enew <CR>')
-K.n('<S-w>', ':w <CR>')
-
-K.v('<A-j>', ":m '>+1<CR>gv=gv")
-K.v('<A-k>', ":m '<-2<CR>gv=gv")
-
-K.x('#', 'y?\\V<C-R>"<CR>')
-K.x('*', 'y/\\V<C-R>"<CR>')
-
-K.x('<C-s>', ':Sort <CR>')
-K.x('<C-j>', ':move \'>+1<CR>gv=gv')
-K.x('<C-k>', ':move \'<-2<CR>gv=gv')
-
-vim.keymap.set('', 'Q', '<Nop>', { silent = true })
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+local K = require("keymap")
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+-- [[ Modes ]]
+-- normal_mode = "n", insert_mode       = "i",
+-- visual_mode = "v", visual_block_mode = "x",
+-- term_mode   = "t", command_mode      = "c",
+--[[ NORMAL ]]
+-- window navigation
+K.n("<C-h>", "<C-w>h")
+K.n("<C-j>", "<C-w>j")
+K.n("<C-k>", "<C-w>k")
+K.n("<C-l>", "<C-w>l")
+-- resize with arrows
+K.n("<C-Down>", ":resize +2<CR>")
+K.n("<C-Left>", ":vertical resize -2<CR>")
+K.n("<C-Right>", ":vertical resize +2<CR>")
+K.n("<C-Up>", ":resize -2<CR>")
+-- nvimtree
+K.n("<C-n>", "<Esc>:NvimTreeToggle<CR>")
+-- navigate buffers
+K.n("<S-l>", ":bnext<CR>")
+K.n("<S-h>", ":bprevious<CR>")
+-- move text up and down
+K.n("<A-j>", ":m .+1<CR>==gi")
+K.n("<A-k>", ":m .-2<CR>==gi")
+--[[ INSERT ]]
+K.i("jk", "<ESC>")
+--[[ VISUAL ]]
+-- persistent indent mode
+K.v("<", "<gv")
+K.v(">", ">gv")
+-- sort
+K.v("<C-s>", ":Sort<CR>")
+-- move text up and down
+K.v("<A-j>", ":m .+1<CR>==")
+K.v("<A-k>", ":m .-2<CR>==")
+K.v("p", '"_dP')
+--[[ VISUAL BLOCK ]]
+-- move text up and down
+K.x("<A-j>", ":move '>+1<CR>gv-gv")
+K.x("<A-k>", ":move '<-2<CR>gv-gv")
+K.x("J", ":move '>+1<CR>gv-gv")
+K.x("K", ":move '<-2<CR>gv-gv")
+--[[ TERMINAL ]]
+-- navigation
+K.t("<C-h>", "<C-\\><C-N><C-w>h")
+K.t("<C-j>", "<C-\\><C-N><C-w>j")
+K.t("<C-k>", "<C-\\><C-N><C-w>k")
+K.t("<C-l>", "<C-\\><C-N><C-w>l")
