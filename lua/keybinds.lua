@@ -24,6 +24,16 @@ K.n('<S-h>', ':bprevious<CR>')
 -- move text up and down
 K.n('<A-j>', ':m .+1<CR>==gi')
 K.n('<A-k>', ':m .-2<CR>==gi')
+-- telescope
+K.n('<Leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
+K.n('<Leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
+K.n('<Leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
+K.n('<Leader>sd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]])
+K.n('<Leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]])
+K.n('<Leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
+K.n('<Leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]])
+K.n('<Leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
+K.n('<Leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]])
 --[[ INSERT ]]
 K.i('jk', '<ESC>')
 --[[ VISUAL ]]
