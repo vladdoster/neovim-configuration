@@ -1,4 +1,4 @@
-local A, K = vim.api, require('keymap')
+local A = vim.api
 local actions = require('telescope.actions')
 require('telescope').setup({
   defaults={
@@ -17,14 +17,7 @@ require('telescope').setup({
       }
     }
   },
-  extensions={
-    fzf={
-      fuzzy=true,
-      override_generic_sorter=true,
-      override_file_sorter=true,
-      case_mode='smart_case'
-    }
-  }
+  extensions={}
 })
 _G.Telescope = setmetatable({}, {
   __index=function(_, k)
@@ -32,9 +25,3 @@ _G.Telescope = setmetatable({}, {
     return require('telescope.builtin')[k]
   end
 })
-
-K.n('<C-P>', '<CMD>lua Telescope.find_files({ hidden = true })<CR>')
-K.n('<leader>H', '<CMD>lua Telescope.help_tags()<CR>')
-K.n('\'b', '<CMD>lua Telescope.buffers()<CR>')
-K.n('\'r', '<CMD>lua Telescope.live_grep()<CR>')
-K.n('\'c', '<CMD>lua Telescope.git_status()<CR>')

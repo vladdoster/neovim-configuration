@@ -13,10 +13,12 @@ nls.setup({
     }),
     dgn.pylint.with({method=nls.methods.DIAGNOSTICS_ON_SAVE}),
     dgn.shellcheck,
+    dgn.zsh,
     fmt.gofmt,
-    fmt.shfmt,
+    fmt.lua_format.with({condition=function(utils) return utils.root_has_file({'.lua_format'}) end}),
+    fmt.shfmt.with({extra_args={'-i', 2, '-s', '-ci', '-sr', '-bn'}}),
     fmt.terraform_fmt,
-    fmt.trim_whitespace.with({filetypes={'text', 'sh', 'zsh', 'toml', 'make', 'conf', 'tmux'}})
+    fmt.trim_whitespace
   },
   on_attach=function(client, bufnr)
     U.fmt_on_save(client)

@@ -38,12 +38,6 @@ return packer.startup(function(use)
   use({'kyazdani42/nvim-tree.lua', config=cfg('nvim-tree'), event='CursorHold'})
   use({
     {'nvim-telescope/telescope.nvim', config=cfg('telescope'), event='CursorHold'},
-    {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      after='telescope.nvim',
-      config=[[require("telescope").load_extension("fzf")]],
-      run='make'
-    },
     {'nvim-telescope/telescope-symbols.nvim', after='telescope.nvim'}
   })
   -- EDITING
