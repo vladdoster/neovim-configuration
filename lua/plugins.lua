@@ -66,14 +66,14 @@ return packer.startup(function(use)
           config=cfg('lsp.luasnip'),
           event='CursorHold',
           requires={'rafamadriz/friendly-snippets'}
-        }
+        },
+        {'onsails/lspkind-nvim'},
       }
     },
-    {'onsails/lspkind-nvim'},
-    {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
-    {'hrsh7th/cmp-path', after='nvim-cmp'},
     {'hrsh7th/cmp-buffer', after='nvim-cmp'},
+    {'hrsh7th/cmp-path', after='nvim-cmp'},
     {'j-hui/fidget.nvim', after='nvim-cmp', config=[[require('fidget').setup{}]]},
+    {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
     {'windwp/nvim-autopairs', after='nvim-cmp', config=cfg('pairs')}
   })
   if not warm_boot then packer.sync() end
