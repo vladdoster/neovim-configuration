@@ -18,7 +18,6 @@ g.nvim_tree_root_folder_modifier = table.concat({ ':t:gs?$?/..', string.rep(' ',
 
 nvim_tree.setup({
     actions = { open_file = { resize_window = true } },
-    auto_close = true,
     diagnostics = { enable = false },
     disable_netrw = true,
     disable_window_picker = 0,
