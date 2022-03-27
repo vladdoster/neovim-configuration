@@ -1,3 +1,28 @@
+# [1.17.0](https://github.com/vladdoster/neovim-configuration/compare/v1.16.0...v1.17.0) (2022-03-27)
+
+
+### chore
+
+* add java and yaml to treesitter ([1755ff9](https://github.com/vladdoster/neovim-configuration/commit/1755ff95fbebb231d730200d99a618ffb4c85a9b))
+* remove lua_format in null_ls & add telescope keymaps ([e2bbd99](https://github.com/vladdoster/neovim-configuration/commit/e2bbd99fc1482daafc789495ff87399fa1834dec))
+
+### feat
+
+* formatting & misc plugin updates ([e1d358c](https://github.com/vladdoster/neovim-configuration/commit/e1d358ca6a2a002a482197ea413bb266b5e61057))
+
+### fix
+
+* rm old nvim cmd & fix keymapping ([09c2b2a](https://github.com/vladdoster/neovim-configuration/commit/09c2b2ac52b610bcb1063604564547d8e588fbff))
+
+### maint
+
+* update neovim options and make module ([70540e4](https://github.com/vladdoster/neovim-configuration/commit/70540e456818314ed5bef7c84b5ac9f5a88943d8))
+
+### style
+
+* apply lua-formatter ([1ad635a](https://github.com/vladdoster/neovim-configuration/commit/1ad635adc858c775ef2a01a6f38ef1ff62c876c1))
+* apply lua-formatter ([7929959](https://github.com/vladdoster/neovim-configuration/commit/792995916915d35de53aa37305246a733f07b869))
+
 # [1.16.0](https://github.com/vladdoster/neovim-configuration/compare/v1.15.0...v1.16.0) (2022-03-14)
 
 
