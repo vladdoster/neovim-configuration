@@ -1,7 +1,7 @@
 vim.g.did_load_filetypes = 0 -- Disable vim-based filetype plugin
 vim.g.do_filetype_lua = 1 -- Enable lua-based filetype plugin
 vim.cmd([[
-  augroup _general_settings
+  augroup _global_settings
     autocmd!
 
     autocmd BufEnter * set fo-=c fo-=r fo-=o
@@ -12,7 +12,7 @@ vim.cmd([[
     autocmd FileType man nnoremap <buffer><silent> q :quit<CR>
 
     autocmd FileType qf set nobuflisted
-    autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
+    autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
 
     autocmd FocusGained * :checktime
 
@@ -25,20 +25,14 @@ vim.cmd([[
     autocmd TextYankPost * lua vim.highlight.on_yank {}
   augroup end
 
-  augroup _git
+  augroup _git_and_md_settings
     autocmd!
-    autocmd FileType gitcommit setlocal wrap
-    autocmd FileType gitcommit setlocal spell
-  augroup end
-
-  augroup _markdown
-    autocmd!
-    autocmd FileType markdown setlocal wrap
-    autocmd FileType markdown setlocal spell
+    autocmd FileType gitcommit,markdown setlocal wrap
+    autocmd FileType gitcommit,markdown setlocal spell
   augroup end
 
   augroup _auto_resize
     autocmd!
-    autocmd VimResized * tabdo wincmd = 
+    autocmd VimResized * tabdo wincmd =
   augroup end
 ]])

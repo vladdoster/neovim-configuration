@@ -19,6 +19,9 @@ g.loaded_vimball = false
 g.loaded_vimballPlugin = false
 g.zipPlugin = false
 
+g.did_load_filetypes = 0 -- Disable vim-based filetype plugin
+g.do_filetype_lua = 1 -- Enable lua-based filetype plugin
+
 set.fileencoding = 'utf-8' -- File content encoding for the buffer
 set.spelllang = 'en' -- Support US english
 set.clipboard = 'unnamedplus' -- Connection to the system clipboard
@@ -56,4 +59,5 @@ set.pumheight = 10 -- Height of the pop up menu
 set.history = 100 -- Number of commands to remember in a history table
 set.timeoutlen = 300 -- Length of time to wait for a mapped sequence
 set.updatetime = 300 -- Length of time to wait before triggering the plugin
+
 return M

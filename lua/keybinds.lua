@@ -92,28 +92,16 @@ K.n('gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
 K.n('go', '<cmd>lua vim.diagnostic.open_float()<CR>')
 K.n('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 -- Comment
-K.n(
-  '<leader>/',
-  '<cmd>lua require(\'Comment.api\').toggle_current_linewise()<cr>'
-)
-K.n(
-  '<leader>/',
-  '<esc><cmd>lua require(\'Comment.api\').toggle_linewise_op(vim.fn.visualmode())<CR>'
-)
+K.n('<leader>/', '<cmd>lua require(\'Comment.api\').toggle_current_linewise()<cr>')
+K.n('<leader>/', '<esc><cmd>lua require(\'Comment.api\').toggle_linewise_op(vim.fn.visualmode())<CR>')
 -- ForceWrite
 K.n('<C-s>', '<cmd>w!<CR>')
 -- ForceQuit
 K.n('<C-q>', '<cmd>q!<CR>')
 -- Terminal
 K.n('<C-\\>', '<cmd>ToggleTerm<CR>')
-K.n('<leader>gg', '<cmd>lua _LAZYGIT_TOGGLE()<CR>')
 K.n('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
 K.n('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
-K.n('<leader>tl', '<cmd>lua _LAZYGIT_TOGGLE()<CR>')
-K.n('<leader>tn', '<cmd>lua _NODE_TOGGLE()<CR>')
-K.n('<leader>tp', '<cmd>lua _PYTHON_TOGGLE()<CR>')
-K.n('<leader>tt', '<cmd>lua _HTOP_TOGGLE()<CR>')
-K.n('<leader>tu', '<cmd>lua _NCDU_TOGGLE()<CR>')
 K.n('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
 -- Trouble
 K.n('<leader>xx', '<cmd>Trouble<cr>')
@@ -146,3 +134,7 @@ K.t('<C-h>', '<C-\\><C-N><C-w>h')
 K.t('<C-j>', '<C-\\><C-N><C-w>j')
 K.t('<C-k>', '<C-\\><C-N><C-w>k')
 K.t('<C-l>', '<C-\\><C-N><C-w>l')
+-- toggle terminal
+K.t('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
+K.t('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
+K.t('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
