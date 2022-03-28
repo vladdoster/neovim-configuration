@@ -92,8 +92,14 @@ K.n('gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
 K.n('go', '<cmd>lua vim.diagnostic.open_float()<CR>')
 K.n('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 -- Comment
-K.n('<leader>/', '<cmd>lua require(\'Comment.api\').toggle_current_linewise()<cr>')
-K.n('<leader>/', '<esc><cmd>lua require(\'Comment.api\').toggle_linewise_op(vim.fn.visualmode())<CR>')
+K.n(
+  '<leader>/',
+  '<cmd>lua require(\'Comment.api\').toggle_current_linewise()<cr>'
+)
+K.n(
+  '<leader>/',
+  '<esc><cmd>lua require(\'Comment.api\').toggle_linewise_op(vim.fn.visualmode())<CR>'
+)
 -- ForceWrite
 K.n('<C-s>', '<cmd>w!<CR>')
 -- ForceQuit
@@ -109,6 +115,13 @@ K.n('<leader>tp', '<cmd>lua _PYTHON_TOGGLE()<CR>')
 K.n('<leader>tt', '<cmd>lua _HTOP_TOGGLE()<CR>')
 K.n('<leader>tu', '<cmd>lua _NCDU_TOGGLE()<CR>')
 K.n('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
+-- Trouble
+K.n('<leader>xx', '<cmd>Trouble<cr>')
+K.n('<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>')
+K.n('<leader>xd', '<cmd>Trouble document_diagnostics<cr>')
+K.n('<leader>xl', '<cmd>Trouble loclist<cr>')
+K.n('<leader>xq', '<cmd>Trouble quickfix<cr>')
+K.n('gR', '<cmd>Trouble lsp_references<cr>')
 --[[ INSERT ]]
 K.i('jk', '<ESC>')
 --[[ VISUAL ]]
