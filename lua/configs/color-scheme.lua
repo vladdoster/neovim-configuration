@@ -1,9 +1,12 @@
-local plugin_ok, material = pcall(require, 'material')
+local plugin_ok, _ = pcall(require, 'tokyonight')
 if not plugin_ok then
-  vim.cmd([[colorscheme default]])
-else
-  vim.g.material_style = 'deep ocean'
-  material.setup({})
-  vim.cmd('colorscheme material') -- activate the colorscheme
+  return
 end
-return
+
+vim.g.tokyonight_style = 'night'
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_sidebars = { 'qf', 'vista_kind', 'terminal', 'packer' }
+-- Change the "hint" color to the "orange" color, and make the "error" color bright red
+vim.g.tokyonight_colors = { hint = 'orange', error = '#ff0000' }
+-- Load the colorscheme
+vim.cmd([[colorscheme tokyonight]])

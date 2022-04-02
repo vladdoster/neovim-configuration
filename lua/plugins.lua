@@ -26,7 +26,7 @@ return packer.startup(function(use)
   use({ 'nathom/filetype.nvim' })
   use({ 'wbthomason/packer.nvim' })
   use({ 'nvim-lua/plenary.nvim' })
-  use({ 'marko-cerovac/material.nvim', config = cfg('color-scheme') })
+  use({ 'folke/tokyonight.nvim', config = cfg('color-scheme') })
   use({
     'nvim-lualine/lualine.nvim',
     config = cfg('lualine'),
