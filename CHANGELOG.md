@@ -1,3 +1,24 @@
+# [1.18.0](https://github.com/vladdoster/neovim-configuration/compare/v1.17.0...v1.18.0) (2022-04-04)
+
+
+### feat
+
+* add dressing plugin for nicer ui components ([b7b8cc8](https://github.com/vladdoster/neovim-configuration/commit/b7b8cc8a89ab7798974f8919754698e2c99811b0))
+* add trouble, fmt via stylua, keymap refactor ([c4df89a](https://github.com/vladdoster/neovim-configuration/commit/c4df89a55f0a0411b863e4406ac3fda8565fd293))
+* switch to stylua formatter ([8bcb9cd](https://github.com/vladdoster/neovim-configuration/commit/8bcb9cda1167e1a8044c99ce1221d9fb29f5c14e))
+
+### maint
+
+* improved toggleterm user experience ([fab2cd9](https://github.com/vladdoster/neovim-configuration/commit/fab2cd9a1de6436f7d9db2316ada6fd670657d67))
+* rename plugins dir to remove conflict with plugins.lua ([a05e6e4](https://github.com/vladdoster/neovim-configuration/commit/a05e6e437b160a08b2fbdb5836b60068880343b8))
+* stylua fmt ([545c16a](https://github.com/vladdoster/neovim-configuration/commit/545c16a71f1574dfa4636b5b5aae6d5df8f7fca9))
+* stylua fmt && add toggle-term plugin ([a1b21d7](https://github.com/vladdoster/neovim-configuration/commit/a1b21d74583995e3ec3ee7dd405214495a684c94))
+* use folke/tokyonight.nvim colorscheme ([25e2741](https://github.com/vladdoster/neovim-configuration/commit/25e27413981c0c4a9852cfe81ba82638bd2fce64))
+
+### style
+
+* format with stylua ([0b42713](https://github.com/vladdoster/neovim-configuration/commit/0b42713b9649226fcaa229252e3c0ef7827a74a3))
+
 # [1.17.0](https://github.com/vladdoster/neovim-configuration/compare/v1.16.0...v1.17.0) (2022-03-27)
 
 
