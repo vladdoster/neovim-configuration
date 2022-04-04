@@ -1,4 +1,4 @@
-local lualine = require('lualine')
+local lualine = require 'lualine'
 local colors = {
   bg = '#202328',
   black = '#000000',
@@ -9,7 +9,7 @@ local colors = {
 }
 local conditions = {
   buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+    return vim.fn.empty(vim.fn.expand '%:t') ~= 1
   end,
   hide_in_width = function()
     return vim.fn.winwidth(0) > 80
@@ -20,10 +20,12 @@ local config = {
     icons_enabled = true,
     theme = {
       normal = { c = { fg = colors.green, bg = colors.bg } },
-      inactive = { c = {
-        fg = colors.fg,
-        bg = colors.bg,
-      } },
+      inactive = {
+        c = {
+          fg = colors.fg,
+          bg = colors.bg,
+        },
+      },
     },
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
@@ -54,7 +56,7 @@ end
 local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
-ins_left({
+ins_left {
   function()
     local function format_file_size(file)
       local size = vim.fn.getfsize(file)
@@ -68,25 +70,25 @@ ins_left({
       end
       return string.format('%.1f%s', size, sufixes[i])
     end
-    local file = vim.fn.expand('%:p')
+    local file = vim.fn.expand '%:p'
     if string.len(file) == 0 then
       return ''
     end
     return format_file_size(file)
   end,
   condition = conditions.buffer_not_empty,
-})
-ins_left({ 'filename', condition = conditions.buffer_not_empty })
-ins_left({ 'location' })
-ins_left({
+}
+ins_left { 'filename', condition = conditions.buffer_not_empty }
+ins_left { 'location' }
+ins_left {
   'diagnostics',
   sources = { 'nvim_diagnostic' },
   symbols = { error = 'E: ', warn = 'W: ', info = 'I: ' },
   color_error = colors.red,
   color_warn = colors.yellow,
   color_info = colors.green,
-})
-ins_left({
+}
+ins_left {
   function()
     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
     local clients = vim.lsp.get_active_clients()
@@ -113,13 +115,13 @@ ins_left({
     end
     return
   end,
-})
-ins_right({ 'o:encoding' })
-ins_right({
+}
+ins_right { 'o:encoding' }
+ins_right {
   'diff',
   symbols = { added = '+', modified = '~', removed = '-' },
   color_added = colors.green,
   color_modified = colors.yellow,
   color_removed = colors.red,
-})
+}
 lualine.setup(config)

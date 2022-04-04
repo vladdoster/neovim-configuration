@@ -1,10 +1,10 @@
 local A = vim.api
 
-local actions = require('telescope.actions')
-local telescope = require('telescope')
-local trouble = require('trouble.providers.telescope')
+local actions = require 'telescope.actions'
+local telescope = require 'telescope'
+local trouble = require 'trouble.providers.telescope'
 
-telescope.setup({
+telescope.setup {
   defaults = {
     prompt_prefix = 'ᐳ ',
     initial_mode = 'insert',
@@ -26,11 +26,11 @@ telescope.setup({
     },
     extensions = {},
   },
-})
+}
 _G.Telescope = setmetatable({}, {
   __index = function(_, k)
     if vim.bo.filetype == 'NvimTree' then
-      A.nvim_command('wincmd l')
+      A.nvim_command 'wincmd l'
     end
     return require('telescope.builtin')[k]
   end,

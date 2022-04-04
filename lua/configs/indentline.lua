@@ -1,4 +1,4 @@
-require('indent_blankline').setup({
+require('indent_blankline').setup {
   char = '▏',
   show_first_indent_level = false,
   filetype_exclude = {
@@ -11,4 +11,4 @@ require('indent_blankline').setup({
     'packer',
   },
   buftype_exclude = { 'terminal', 'nofile' },
-})
+}

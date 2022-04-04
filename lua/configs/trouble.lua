@@ -2,7 +2,7 @@ local loaded, trouble = pcall(require, 'trouble')
 if not loaded then
   return
 end
-trouble.setup({
+trouble.setup {
   icons = false,
   fold_open = 'v',
   fold_closed = '>',
@@ -14,4 +14,4 @@ trouble.setup({
     warning = 'warn',
   },
   use_diagnostic_signs = false,
-})
+}

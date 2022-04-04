@@ -1,47 +1,74 @@
 local warm_boot, packer = pcall(require, 'packer')
 if not warm_boot then
-  local packer_path = vim.fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
+  local packer_path = vim.fn.stdpath 'data'
+    .. '/site/pack/packer/opt/packer.nvim'
   vim.fn.delete(packer_path, 'rf')
-  vim.fn.system({
+  vim.fn.system {
     'git',
     'clone',
     'https://github.com/wbthomason/packer.nvim',
     '--depth',
-    '20',
+    '1',
     packer_path,
-  })
-  vim.cmd('packadd packer.nvim')
-  packer = require('packer')
+  }
+  vim.cmd 'packadd packer.nvim'
+  packer = require 'packer'
 end
-packer.init({
+packer.init {
   auto_clean = true,
   compile_on_sync = true,
   git = { clone_timeout = 6000 },
-})
+  profile = { enable = true, threshold = 0.0001 },
+}
 local cfg = function(name)
   return string.format([[require("configs.%s")]], name)
 end
 return packer.startup(function(use)
-  use({ 'lewis6991/impatient.nvim' })
-  use({ 'nathom/filetype.nvim' })
-  use({ 'wbthomason/packer.nvim' })
-  use({ 'nvim-lua/plenary.nvim' })
-  use({ 'folke/tokyonight.nvim', config = cfg('color-scheme') })
-  use({
+  use { 'lewis6991/impatient.nvim' }
+  use { 'nathom/filetype.nvim' }
+  use { 'wbthomason/packer.nvim' }
+  use { 'nvim-lua/plenary.nvim' }
+  use { 'folke/tokyonight.nvim', config = cfg 'color-scheme' }
+  use { 'rcarriga/nvim-notify', config = cfg 'notify' }
+  use {
+    'stevearc/dressing.nvim',
+    event = 'BufWinEnter',
+    config = cfg 'dressing',
+  }
+  use {
     'nvim-lualine/lualine.nvim',
-    config = cfg('lualine'),
+    config = cfg 'lualine',
     event = 'BufEnter',
-  })
-
-  use({ 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' })
-  use({ 'windwp/nvim-ts-autotag', after = 'nvim-treesitter' })
-  use({
+  }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = cfg 'nvim-tree',
+    event = 'CursorHold',
+  }
+  use { 'lewis6991/gitsigns.nvim', config = cfg 'gitsigns', event = 'BufRead' }
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = cfg 'indentline',
+    event = 'BufRead',
+  }
+  use { 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' }
+  use { 'windwp/nvim-ts-autotag', after = 'nvim-treesitter' }
+  use {
     'JoosepAlviste/nvim-ts-context-commentstring',
     after = 'nvim-treesitter',
-  })
-  use({
+  }
+  -- EDITING
+  use { 'junegunn/vim-easy-align' }
+  use { 'sQVe/sort.nvim', config = [[require 'sort'.setup()]] }
+  use { 'numToStr/Comment.nvim', config = cfg 'comment', event = 'BufRead' }
+  use {
+    'tpope/vim-surround',
+    event = 'BufRead',
+    requires = { { 'tpope/vim-repeat', event = 'BufRead' } },
+  }
+  use { 'akinsho/toggleterm.nvim', config = cfg 'toggle-term' }
+  use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
     event = 'BufRead',
     cmd = {
       'TSInstall',
@@ -53,65 +80,39 @@ return packer.startup(function(use)
       'TSDisableAll',
       'TSEnableAll',
     },
-    config = cfg('treesitter'),
-  })
-  use({
-    'lukas-reineke/indent-blankline.nvim',
-    config = cfg('indentline'),
-    event = 'BufRead',
-  })
-  use({
-    'lewis6991/gitsigns.nvim',
-    config = cfg('gitsigns'),
-    event = 'BufRead',
-  })
-  use({
-    'kyazdani42/nvim-tree.lua',
-    config = cfg('nvim-tree'),
+    config = cfg 'treesitter',
+    run = ':TSUpdate',
+  }
+  use {
+    'nvim-telescope/telescope.nvim',
+    config = cfg 'telescope',
     event = 'CursorHold',
-  })
-  use({
-    {
-      'nvim-telescope/telescope.nvim',
-      config = cfg('telescope'),
-      event = 'CursorHold',
-    },
-    { 'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim' },
-  })
-  -- EDITING
-  use({ 'junegunn/vim-easy-align' })
-  use({ 'sQVe/sort.nvim', config = [[require 'sort'.setup()]] })
-  use({ 'numToStr/Comment.nvim', config = cfg('comment'), event = 'BufRead' })
-  use({
-    'tpope/vim-surround',
-    event = 'BufRead',
-    requires = { { 'tpope/vim-repeat', event = 'BufRead' } },
-  })
-  use({ 'akinsho/toggleterm.nvim', config = cfg('toggle-term') })
+  }
+  use { 'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim' }
   -- LSP, COMPLETIONS, AND SNIPPETS
-  use({
+  use {
     'neovim/nvim-lspconfig',
-    config = cfg('lsp.servers'),
+    config = cfg 'lsp.servers',
     event = 'BufRead',
     requires = {
       { 'williamboman/nvim-lsp-installer', 'hrsh7th/cmp-nvim-lsp' },
     },
-  })
-  use({
+  }
+  use {
     'jose-elias-alvarez/null-ls.nvim',
-    config = cfg('lsp.null-ls'),
+    config = cfg 'lsp.null-ls',
     event = 'BufRead',
-  })
-  use({ 'folke/trouble.nvim', config = cfg('trouble') })
-  use({
+  }
+  use { 'folke/trouble.nvim', config = cfg 'trouble' }
+  use {
     {
       'hrsh7th/nvim-cmp',
-      config = cfg('lsp.nvim-cmp'),
+      config = cfg 'lsp.nvim-cmp',
       event = 'InsertEnter',
       requires = {
         {
           'L3MON4D3/LuaSnip',
-          config = cfg('lsp.luasnip'),
+          config = cfg 'lsp.luasnip',
           event = 'CursorHold',
           requires = { 'rafamadriz/friendly-snippets' },
         },
@@ -126,8 +127,8 @@ return packer.startup(function(use)
       config = [[require('fidget').setup{}]],
     },
     { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-    { 'windwp/nvim-autopairs', after = 'nvim-cmp', config = cfg('pairs') },
-  })
+    { 'windwp/nvim-autopairs', after = 'nvim-cmp', config = cfg 'pairs' },
+  }
   if not warm_boot then
     packer.sync()
   end

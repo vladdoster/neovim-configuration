@@ -21,13 +21,13 @@ g.nvim_tree_icons = {
   },
 }
 g.nvim_tree_indent_markers = 1
-g.nvim_tree_root_folder_modifier = table.concat({
+g.nvim_tree_root_folder_modifier = table.concat {
   ':t:gs?$?/..',
   string.rep(' ', 1000),
   '?:gs?^??',
-})
+}
 
-nvim_tree.setup({
+nvim_tree.setup {
   actions = { open_file = { resize_window = true } },
   diagnostics = { enable = false },
   disable_netrw = true,
@@ -60,4 +60,4 @@ nvim_tree.setup({
     auto_resize = true,
     number = true,
   },
-})
+}

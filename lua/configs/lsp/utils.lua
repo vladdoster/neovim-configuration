@@ -1,16 +1,16 @@
-local K = require('keymap')
+local K = require 'keymap'
 local U = {}
 U.flags = { allow_incremental_sync = true, debounce_text_changes = 200 }
 ---Common format-on-save for lsp servers that implements formatting
 ---@param client table
 function U.fmt_on_save(client)
   if client.resolved_capabilities.document_formatting then
-    vim.cmd([[
+    vim.cmd [[
             augroup FORMATTING
                 autocmd! * <buffer>
                 autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
             augroup END
-        ]])
+        ]]
   end
 end
 ---LSP servers capabilities w/ nvim-cmp
@@ -57,7 +57,7 @@ function U.get_luajit_path()
 end
 ---Make neovim runtime files discoverable to the server
 function U.get_nvim_rtp_path()
-  return { os.getenv('VIMRUNTIME') }
+  return { os.getenv 'VIMRUNTIME' }
   -- local result = {}
   -- for _, path in pairs(A.nvim_get_runtime_file('lua/', true)) do
   --     -- Don't load the `packer.nvim` path

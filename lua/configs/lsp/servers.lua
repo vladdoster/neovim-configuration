@@ -1,12 +1,12 @@
-local lsp = require('lspconfig')
-local U = require('configs.lsp.utils')
+local lsp = require 'lspconfig'
+local U = require 'configs.lsp.utils'
 local capabilities = U.capabilities()
 local flags = { allow_incremental_sync = true, debounce_text_changes = 200 }
-vim.diagnostic.config({
+vim.diagnostic.config {
   virtual_text = { source = 'always' },
   float = { source = 'always' },
-})
-lsp.sumneko_lua.setup({
+}
+lsp.sumneko_lua.setup {
   flags = flags,
   capabilities = capabilities,
   on_attach = function(client, buf)
@@ -31,9 +31,9 @@ lsp.sumneko_lua.setup({
       telemetry = { enable = false },
     },
   },
-})
+}
 
-local lsp_installer = require('nvim-lsp-installer')
+local lsp_installer = require 'nvim-lsp-installer'
 lsp_installer.on_server_ready(function(server)
   local opts = {
     flags = flags,

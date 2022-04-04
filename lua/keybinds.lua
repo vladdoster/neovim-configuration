@@ -1,4 +1,4 @@
-local K = require('keymap')
+local K = require 'keymap'
 local map = vim.api.nvim_set_keymap
 map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
@@ -92,8 +92,14 @@ K.n('gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
 K.n('go', '<cmd>lua vim.diagnostic.open_float()<CR>')
 K.n('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 -- Comment
-K.n('<leader>/', '<cmd>lua require(\'Comment.api\').toggle_current_linewise()<cr>')
-K.n('<leader>/', '<esc><cmd>lua require(\'Comment.api\').toggle_linewise_op(vim.fn.visualmode())<CR>')
+K.n(
+  '<leader>/',
+  '<cmd>lua require(\'Comment.api\').toggle_current_linewise()<cr>'
+)
+K.n(
+  '<leader>/',
+  '<esc><cmd>lua require(\'Comment.api\').toggle_linewise_op(vim.fn.visualmode())<CR>'
+)
 -- ForceWrite
 K.n('<C-s>', '<cmd>w!<CR>')
 -- ForceQuit
