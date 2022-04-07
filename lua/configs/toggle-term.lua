@@ -1,11 +1,9 @@
 local M = {}
-
 function M.config()
   local status_ok, toggleterm = pcall(require, 'toggleterm')
   if not status_ok then
     return
   end
-
   toggleterm.setup(
     require('core.utils').user_plugin_opts('plugins.toggleterm', {
       close_on_exit = true,
@@ -37,13 +35,10 @@ function M.config()
       start_in_insert = true,
     })
   )
-
   local Terminal = toggleterm.terminal.Terminal
-
   local python = Terminal:new { cmd = 'python', hidden = true }
   function _pythonTermToggle()
     python:toggle()
   end
 end
-
 return

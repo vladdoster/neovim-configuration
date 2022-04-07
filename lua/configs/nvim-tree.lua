@@ -2,9 +2,7 @@ local status_ok, nvim_tree = pcall(require, 'nvim-tree')
 if not status_ok then
   return
 end
-
 local g = vim.g
-
 g.nvim_tree_add_trailing = 0
 g.nvim_tree_git_hl = 0
 g.nvim_tree_highlight_opened_files = 0
@@ -26,7 +24,6 @@ g.nvim_tree_root_folder_modifier = table.concat {
   string.rep(' ', 1000),
   '?:gs?^??',
 }
-
 nvim_tree.setup {
   actions = { open_file = { resize_window = true } },
   diagnostics = { enable = false },

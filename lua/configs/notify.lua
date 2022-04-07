@@ -1,10 +1,8 @@
 local M = {}
-
 local present, notify = pcall(require, 'notify')
 if not present then
   return
 end
-
 notify.setup {
   background_colour = 'Normal',
   max_height = nil,
@@ -23,6 +21,5 @@ notify.setup {
     WARN = 'warn:',
   },
 }
-
 vim.notify = notify
 return M
