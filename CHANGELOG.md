@@ -1,3 +1,14 @@
+# [1.19.0](https://github.com/vladdoster/neovim-configuration/compare/v1.18.0...v1.19.0) (2022-04-07)
+
+
+### style
+
+* format telescope config ([b1a8867](https://github.com/vladdoster/neovim-configuration/commit/b1a8867e052bc328619957c4dc6c11baf331617b))
+
+### update
+
+* flesh out `gitsigns` functionality ([123cb26](https://github.com/vladdoster/neovim-configuration/commit/123cb265420246cca5ba42decfd17ec0afd53ae0))
+
 # [1.18.0](https://github.com/vladdoster/neovim-configuration/compare/v1.17.0...v1.18.0) (2022-04-04)
 
 
