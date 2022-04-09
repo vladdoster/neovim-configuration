@@ -5,6 +5,7 @@ if not present then
 end
 notify.setup {
   background_colour = 'Normal',
+  icons = { DEBUG = 'debug:', ERROR = 'err:', INFO = 'info:', TRACE = 'trace:', WARN = 'warn:' },
   max_height = nil,
   max_width = nil,
   minimum_width = 50,
@@ -13,13 +14,6 @@ notify.setup {
   render = 'default',
   stages = 'fade',
   timeout = 5000,
-  icons = {
-    DEBUG = 'debug:',
-    ERROR = 'err:',
-    INFO = 'info:',
-    TRACE = 'trace:',
-    WARN = 'warn:',
-  },
 }
 vim.notify = notify
 return M

@@ -1,3 +1,4 @@
+local M = {}
 local autopairs_status_ok, auto_pairs = pcall(require, 'nvim-autopairs')
 if not autopairs_status_ok then
   return
@@ -24,3 +25,4 @@ if not cmp_status_ok then
 end
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = '' } })
+return M
