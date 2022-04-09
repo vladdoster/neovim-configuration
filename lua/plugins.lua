@@ -1,7 +1,6 @@
 local warm_boot, packer = pcall(require, 'packer')
 if not warm_boot then
-  local packer_path = vim.fn.stdpath 'data'
-    .. '/site/pack/packer/opt/packer.nvim'
+  local packer_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
   vim.fn.delete(packer_path, 'rf')
   vim.fn.system {
     'git',
@@ -17,7 +16,12 @@ end
 packer.init {
   auto_clean = true,
   compile_on_sync = true,
-  git = { clone_timeout = 6000 },
+  git = {
+    clone_timeout = 6000,
+    subcommands = {
+      update = 'pull --ff-only --progress --rebase=true',
+    },
+  },
   profile = { enable = true, threshold = 0.0001 },
 }
 local cfg = function(name)
@@ -25,7 +29,13 @@ local cfg = function(name)
 end
 return packer.startup(function(use)
   use { 'lewis6991/impatient.nvim' }
-  use { 'nathom/filetype.nvim' }
+  use {
+    'antoinemadec/FixCursorHold.nvim',
+    event = { 'BufRead', 'BufNewFile' },
+    config = function()
+      vim.g.cursorhold_updatetime = 100
+    end,
+  }
   use { 'wbthomason/packer.nvim' }
   use { 'nvim-lua/plenary.nvim' }
   use { 'folke/tokyonight.nvim', config = cfg 'color-scheme' }
@@ -61,28 +71,26 @@ return packer.startup(function(use)
   use { 'junegunn/vim-easy-align' }
   use { 'sQVe/sort.nvim', config = [[require 'sort'.setup()]] }
   use { 'numToStr/Comment.nvim', config = cfg 'comment', event = 'BufRead' }
-  use {
-    'tpope/vim-surround',
-    event = 'BufRead',
-    requires = { { 'tpope/vim-repeat', event = 'BufRead' } },
-  }
+  use { 'tpope/vim-surround', event = 'BufRead' }
+  use { 'tpope/vim-repeat', event = 'BufRead' }
   use { 'akinsho/toggleterm.nvim', config = cfg 'toggle-term' }
   use {
     'nvim-treesitter/nvim-treesitter',
-    event = 'BufRead',
     cmd = {
+      'TSDisableAll',
+      'TSEnableAll',
       'TSInstall',
       'TSInstallInfo',
       'TSInstallSync',
       'TSUninstall',
       'TSUpdate',
       'TSUpdateSync',
-      'TSDisableAll',
-      'TSEnableAll',
     },
     config = cfg 'treesitter',
+    event = 'BufRead',
     run = ':TSUpdate',
   }
+  -- TELESCOPE
   use {
     'nvim-telescope/telescope.nvim',
     config = cfg 'telescope',
@@ -104,31 +112,24 @@ return packer.startup(function(use)
     event = 'BufRead',
   }
   use { 'folke/trouble.nvim', config = cfg 'trouble' }
+  use { 'rafamadriz/friendly-snippets', after = 'nvim-cmp' }
   use {
-    {
-      'hrsh7th/nvim-cmp',
-      config = cfg 'lsp.nvim-cmp',
-      event = 'InsertEnter',
-      requires = {
-        {
-          'L3MON4D3/LuaSnip',
-          config = cfg 'lsp.luasnip',
-          event = 'CursorHold',
-          requires = { 'rafamadriz/friendly-snippets' },
-        },
-        { 'onsails/lspkind-nvim' },
-      },
-    },
-    { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-    { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-    {
-      'j-hui/fidget.nvim',
-      after = 'nvim-cmp',
-      config = [[require('fidget').setup{}]],
-    },
-    { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-    { 'windwp/nvim-autopairs', after = 'nvim-cmp', config = cfg 'pairs' },
+    'L3MON4D3/LuaSnip',
+    after = 'friendly-snippets',
+    config = cfg 'lsp.luasnip',
   }
+  use { 'hrsh7th/nvim-cmp', config = cfg 'lsp.cmp', event = 'InsertEnter' }
+  use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
+  use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
+  use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
+  use {
+    'j-hui/fidget.nvim',
+    after = 'nvim-cmp',
+    config = [[require('fidget').setup{}]],
+  }
+  use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
+  use { 'windwp/nvim-autopairs', after = 'nvim-cmp', config = cfg 'pairs' }
   if not warm_boot then
     packer.sync()
   end

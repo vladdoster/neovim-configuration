@@ -100,4 +100,5 @@ cmp.setup {
     }),
   },
 }
+
 return M
