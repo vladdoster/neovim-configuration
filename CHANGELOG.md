@@ -1,3 +1,14 @@
+# [1.20.0](https://github.com/vladdoster/neovim-configuration/compare/v1.19.0...v1.20.0) (2022-04-09)
+
+
+### style
+
+* format notify, nvim-tree, and toggleterm config ([77ea55f](https://github.com/vladdoster/neovim-configuration/commit/77ea55f4be4a0b0662243796979a76de13fb3a95))
+
+### update
+
+* flesh out treesitter configuration ([f08ac1d](https://github.com/vladdoster/neovim-configuration/commit/f08ac1d3a62852e3e890a047f31cfc7eba41f4f4))
+
 # [1.19.0](https://github.com/vladdoster/neovim-configuration/compare/v1.18.0...v1.19.0) (2022-04-07)
 
 
