@@ -64,9 +64,9 @@ return packer.startup(function(use)
     {'saadparwaiz1/cmp_luasnip'},
     after='nvim-cmp'
   }
-  use {'hrsh7th/nvim-cmp', config=cfg 'cmp'}
+  use {'hrsh7th/nvim-cmp', event='InsertEnter', config=cfg 'cmp'}
   use {'williamboman/nvim-lsp-installer'}
-  use {'neovim/nvim-lspconfig', after='cmp-nvim-lsp', config=cfg 'lsp'}
+  use {'neovim/nvim-lspconfig', event='BufWinEnter', config=cfg 'lsp'}
   use {'simrat39/symbols-outline.nvim', cmd='SymbolsOutline', setup=cfg 'symbols-outline'}
 
   use {'nvim-telescope/telescope.nvim', cmd='Telescope', module='telescope', config=cfg 'telescope'}
