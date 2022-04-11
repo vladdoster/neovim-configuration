@@ -1,3 +1,17 @@
+# [1.21.0](https://github.com/vladdoster/neovim-configuration/compare/v1.20.0...v1.21.0) (2022-04-11)
+
+
+### feat
+
+* break out lsp cmp handlers config ([fc677f2](https://github.com/vladdoster/neovim-configuration/commit/fc677f2a404f0312987789c0a938ee2d79082155))
+* update modules ([69bb4cf](https://github.com/vladdoster/neovim-configuration/commit/69bb4cf54bd6d8a8b436d1db3d07a18d84e9123d))
+* update modules ([70fc38d](https://github.com/vladdoster/neovim-configuration/commit/70fc38da85be26cd14dcf3dd71eb70241614eb4e))
+
+### style
+
+* adjust stylua line length ([fde0eac](https://github.com/vladdoster/neovim-configuration/commit/fde0eacfbe75e419544ae6eea62070071375d7b6))
+* adjust stylua line length ([65fd8b5](https://github.com/vladdoster/neovim-configuration/commit/65fd8b5598abb6935339e513487463322af7b46b))
+
 # [1.20.0](https://github.com/vladdoster/neovim-configuration/compare/v1.19.0...v1.20.0) (2022-04-09)
 
 
