@@ -8,15 +8,15 @@ neotree.setup {
   default_component_configs={
     git_status={
       symbols={
-        added='',
+        added='⊞',
         conflict='',
-        deleted='',
+        deleted='⊟',
         ignored='◌',
-        modified='',
-        renamed='',
-        staged='✓',
-        unstaged='',
-        untracked='★'
+        modified='⧆',
+        renamed='↔',
+        staged='☑',
+        unstaged='☐',
+        untracked='☒'
       }
     },
     icon={default='', folder_closed='', folder_empty='', folder_open=''},
@@ -68,7 +68,6 @@ neotree.setup {
     }
   },
   nesting_rules={},
-  popup_border_style='rounded',
   window={
     position='left',
     width=25,
@@ -76,7 +75,7 @@ neotree.setup {
       ['.']='set_root',
       ['/']='fuzzy_finder',
       ['<2-LeftMouse>']='open',
-      ['<bs>']='navigate_up',
+      ['-']='navigate_up',
       ['<c-x>']='clear_filter',
       ['<cr>']='open',
       ['C']='close_node',
