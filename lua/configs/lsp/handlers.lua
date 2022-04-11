@@ -1,18 +1,15 @@
 local M = {}
-
 function M.setup()
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = 'DiagnosticSignError', text = '' },
+    { name = 'DiagnosticSignWarn', text = '' },
+    { name = 'DiagnosticSignHint', text = '' },
+    { name = 'DiagnosticSignInfo', text = '' },
   }
-
   for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
   end
-
-  local config = {
+  vim.diagnostic.config {
     virtual_text = true,
     signs = {
       active = signs,
@@ -22,21 +19,15 @@ function M.setup()
     severity_sort = true,
     float = {
       focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
+      style = 'minimal',
+      border = 'rounded',
+      source = 'always',
+      header = '',
+      prefix = '',
     },
   }
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
 end
 
 local function lsp_highlight_document(client)
@@ -54,29 +45,22 @@ local function lsp_highlight_document(client)
   end
 end
 
-M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
+M.on_attach = function(client)
+  if client.name == 'tsserver' then
     client.resolved_capabilities.document_formatting = false
-  elseif client.name == "jsonls" then
+  elseif client.name == 'jsonls' then
     client.resolved_capabilities.document_formatting = false
-  elseif client.name == "html" then
+  elseif client.name == 'html' then
     client.resolved_capabilities.document_formatting = false
-  elseif client.name == "sumneko_lua" then
+  elseif client.name == 'sumneko_lua' then
     client.resolved_capabilities.document_formatting = false
   end
-
-
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
   lsp_highlight_document(client)
 end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if status_ok then
+  M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-
 return M

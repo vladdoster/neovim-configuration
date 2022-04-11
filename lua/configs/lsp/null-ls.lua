@@ -17,9 +17,7 @@ nls.setup {
     dgn.zsh,
     fmt.gofmt,
     fmt.shfmt.with { extra_args = { '-i', 2, '-s', '-ci', '-sr', '-bn' } },
-    fmt.stylua.with {
-      extra_args = { '-f', '$HOME/.config/nvim/.stylua.toml' },
-    },
+    fmt.stylua.with { extra_args = { '-f', '$HOME/.config/nvim/.stylua.toml' } },
     fmt.terraform_fmt,
     fmt.trim_newlines,
     fmt.trim_whitespace,

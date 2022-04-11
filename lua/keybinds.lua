@@ -43,9 +43,9 @@ K.n('<leader>pu', '<cmd>PackerUpdate<cr>')
 K.n('<leader>lf', '<cmd>lua vim.lsp.buf.formatting_sync()<cr>')
 K.n('<leader>li', '<cmd>LspInfo<cr>')
 K.n('<leader>lI', '<cmd>LspInstallInfo<cr>')
--- NvimTree
-K.n('<leader>e', '<cmd>NvimTreeToggle<CR>')
-K.n('<leader>o', '<cmd>NvimTreeFocus<CR>')
+-- NeoTree
+K.n('<C-n>',     '<cmd>Neotree toggle<CR>')
+K.n('<leader>o', '<cmd>Neotree focus<CR>')
 -- GitSigns
 K.n('<leader>gd', '<cmd>Gitsigns diffthis HEAD<cr>')
 K.n('<leader>gh', '<cmd>lua require \'gitsigns\'.reset_hunk()<cr>')
@@ -91,6 +91,8 @@ K.n('gk', '<cmd>lua vim.diagnostic.goto_prev({ border = \'rounded\' })<cr>')
 K.n('gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
 K.n('go', '<cmd>lua vim.diagnostic.open_float()<CR>')
 K.n('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+-- Symbol Outline
+K.n('<leader>lS', '<cmd>SymbolsOutline<CR>')
 -- Comment
 K.n('<leader>/', '<cmd>lua require(\'Comment.api\').toggle_current_linewise()<cr>')
 K.n('<leader>/', '<esc><cmd>lua require(\'Comment.api\').toggle_linewise_op(vim.fn.visualmode())<CR>')
@@ -102,6 +104,11 @@ K.n('<C-q>', '<cmd>q!<CR>')
 K.n('<C-\\>', '<cmd>ToggleTerm<CR>')
 K.n('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
 K.n('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
+K.n('<leader>tl', '<cmd>lua require(\'core.utils\').toggle_term_cmd(\'lazygit\')<CR>')
+K.n('<leader>tn', '<cmd>lua require(\'core.utils\').toggle_term_cmd(\'node\')<CR>')
+K.n('<leader>tp', '<cmd>lua require(\'core.utils\').toggle_term_cmd(\'python\')<CR>')
+K.n('<leader>tt', '<cmd>lua require(\'core.utils\').toggle_term_cmd(\'htop\')<CR>')
+K.n('<leader>tu', '<cmd>lua require(\'core.utils\').toggle_term_cmd(\'ncdu\')<CR>')
 K.n('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
 -- Trouble
 K.n('<leader>xx', '<cmd>Trouble<cr>')
