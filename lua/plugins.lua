@@ -55,6 +55,7 @@ return packer.startup(function(use)
   -- COMPLETION
   use {'L3MON4D3/LuaSnip', after='friendly-snippets', config=cfg 'luasnip'}
   use {
+    {'onsails/lspkind-nvim'},
     {'tamago324/cmp-zsh'},
     {'hrsh7th/cmp-buffer'},
     {'hrsh7th/cmp-nvim-lsp'},
