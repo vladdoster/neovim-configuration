@@ -1,6 +1,6 @@
 local K = require 'keymap'
 local map = vim.api.nvim_set_keymap
-map('', '<Space>', '<Nop>', { noremap = true, silent = true })
+map('', '<Space>', '<Nop>', {noremap=true, silent=true})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- [[ Modes ]]
@@ -44,7 +44,7 @@ K.n('<leader>lf', '<cmd>lua vim.lsp.buf.formatting_sync()<cr>')
 K.n('<leader>li', '<cmd>LspInfo<cr>')
 K.n('<leader>lI', '<cmd>LspInstallInfo<cr>')
 -- NeoTree
-K.n('<C-n>',     '<cmd>Neotree toggle<CR>')
+K.n('<C-n>', '<cmd>Neotree toggle<CR>')
 K.n('<leader>o', '<cmd>Neotree focus<CR>')
 -- GitSigns
 K.n('<leader>gd', '<cmd>Gitsigns diffthis HEAD<cr>')

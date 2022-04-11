@@ -27,47 +27,27 @@ function M.nui_input()
     local default_value = opts.default
 
     input_ui = Input({
-      relative = 'cursor',
-      position = {
-        row = 1,
-        col = 0,
-      },
-      size = {
+      relative='cursor',
+      position={row=1, col=0},
+      size={
         -- minimum width 20
-        width = math.max(20, type(default_value) == 'string' and #default_value or 0),
+        width=math.max(20, type(default_value) == 'string' and #default_value or 0)
       },
-      border = {
-        style = 'rounded',
-        highlight = 'Normal',
-        text = {
-          top = border_top_text,
-          top_align = 'left',
-        },
-      },
-      win_options = {
-        winhighlight = 'Normal:Normal',
-      },
+      border={style='rounded', highlight='Normal', text={top=border_top_text, top_align='left'}},
+      win_options={winhighlight='Normal:Normal'}
     }, {
-      default_value = default_value,
-      on_close = function()
-        on_done(nil)
-      end,
-      on_submit = function(value)
-        on_done(value)
-      end,
+      default_value=default_value,
+      on_close=function() on_done(nil) end,
+      on_submit=function(value) on_done(value) end
     })
 
     input_ui:mount()
 
     -- cancel operation if cursor leaves input
-    input_ui:on(event.BufLeave, function()
-      on_done(nil)
-    end, { once = true })
+    input_ui:on(event.BufLeave, function() on_done(nil) end, {once=true})
 
     -- cancel operation if <Esc> is pressed
-    input_ui:map('n', '<Esc>', function()
-      on_done(nil)
-    end, { noremap = true, nowait = true })
+    input_ui:map('n', '<Esc>', function() on_done(nil) end, {noremap=true, nowait=true})
   end
 end
 
@@ -84,33 +64,24 @@ function M.telescope_select()
 
     if opts.format_item then
       local format_item = opts.format_item
-      opts.format_item = function(item)
-        return tostring(format_item(item))
-      end
+      opts.format_item = function(item) return tostring(format_item(item)) end
     else
       opts.format_item = tostring
     end
 
     local entry_maker = function(item)
       local formatted = opts.format_item(item)
-      return {
-        display = formatted,
-        ordinal = formatted,
-        value = item,
-      }
+      return {display=formatted, ordinal=formatted, value=item}
     end
 
     local picker_opts = themes.get_dropdown()
 
     pickers.new(picker_opts, {
-      prompt_title = opts.prompt,
-      previewer = false,
-      finder = finders.new_table {
-        results = items,
-        entry_maker = entry_maker,
-      },
-      sorter = conf.generic_sorter(opts),
-      attach_mappings = function(prompt_bufnr)
+      prompt_title=opts.prompt,
+      previewer=false,
+      finder=finders.new_table {results=items, entry_maker=entry_maker},
+      sorter=conf.generic_sorter(opts),
+      attach_mappings=function(prompt_bufnr)
         actions.select_default:replace(function()
           local selection = state.get_selected_entry()
           actions._close(prompt_bufnr, false)
@@ -135,7 +106,7 @@ function M.telescope_select()
         end)
 
         return true
-      end,
+      end
     }):find()
   end)
 end
