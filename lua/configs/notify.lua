@@ -1,6 +1,6 @@
 local M = {}
-local present, notify = pcall(require, 'notify')
-if not present then return end
+local notify_ok, notify = pcall(require, 'notify')
+if not notify_ok then return end
 notify.setup {
   background_colour='Normal',
   icons={DEBUG='debug:', ERROR='err:', INFO='info:', TRACE='trace:', WARN='warn:'},

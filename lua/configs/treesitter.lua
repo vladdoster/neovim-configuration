@@ -1,6 +1,6 @@
 local M = {}
-local loaded, treesitter = pcall(require, 'nvim-treesitter.configs')
-if not loaded then return end
+local treesitter_ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+if not treesitter_ok then return end
 treesitter.setup {
   autopairs={enable=true},
   autotag={enable=true},

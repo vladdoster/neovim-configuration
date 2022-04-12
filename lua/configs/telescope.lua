@@ -31,12 +31,12 @@ M.mergeMaps = function(keymaps)
 end
 
 telescope.setup {
+  layout_strategy='horizontal',
+  path_display={'truncate'},
   prompt_prefix='ᐳ ',
   selection_caret='―',
-  path_display={'truncate'},
   selection_strategy='reset',
   sorting_strategy='ascending',
-  layout_strategy='horizontal',
   layout_config={
     horizontal={prompt_position='top', preview_width=0.55, results_width=0.8},
     vertical={mirror=false},
