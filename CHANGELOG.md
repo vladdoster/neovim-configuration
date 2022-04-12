@@ -1,3 +1,14 @@
+# [1.22.0](https://github.com/vladdoster/neovim-configuration/compare/v1.21.0...v1.22.0) (2022-04-12)
+
+
+### feat
+
+* correct cmp module ([5dab656](https://github.com/vladdoster/neovim-configuration/commit/5dab6560b6397e6b82d1cc96afb51271aa5dc2ef))
+* correct lualine, notify, telescope, toggleterm, and treesitter configs ([606b24e](https://github.com/vladdoster/neovim-configuration/commit/606b24ebb0b6291175aab419ca4ce4982d621616))
+* update cmp capabilities ([cfd65b1](https://github.com/vladdoster/neovim-configuration/commit/cfd65b1fddb400be38a1026c6e67214084b0f686))
+* update modules ([977d025](https://github.com/vladdoster/neovim-configuration/commit/977d025711ca8e3fdc0104a15db31a44117c0d0c))
+* update neo-tree git icons & keymaps ([3965aef](https://github.com/vladdoster/neovim-configuration/commit/3965aefa33ce505e463bcf59c4c92f97fbeff833))
+
 # [1.21.0](https://github.com/vladdoster/neovim-configuration/compare/v1.20.0...v1.21.0) (2022-04-11)
 
 
