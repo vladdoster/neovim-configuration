@@ -4,7 +4,6 @@ local cmp_ok, cmp = pcall(require, 'cmp')
 if not cmp_ok then return end
 local snip_ok, luasnip = pcall(require, 'luasnip')
 if not snip_ok then return end
-
 cmp.setup {
   preselect=cmp.PreselectMode.None,
   formatting={format=require'lspkind'.cmp_format({mode='symbol', maxwidth=50})},
