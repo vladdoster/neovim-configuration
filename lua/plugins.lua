@@ -29,6 +29,11 @@ return packer.startup(function(use)
   use {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
   use {'folke/tokyonight.nvim', config=cfg 'color-scheme'}
   use {'rcarriga/nvim-notify', config=cfg 'notify'}
+  use {
+    'antoinemadec/FixCursorHold.nvim',
+    event={'BufRead', 'BufNewFile'},
+    config=[[vim.g.cursorhold_updatetime = 100]]
+  }
   -- PRODUCTIVITY
   use {'junegunn/vim-easy-align', 'tpope/vim-repeat', 'tpope/vim-surround'}
   use {'akinsho/nvim-toggleterm.lua', config=cfg 'toggle-term'}
@@ -37,6 +42,7 @@ return packer.startup(function(use)
   use {'numToStr/Comment.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'comment'}
   use {'nvim-neo-tree/neo-tree.nvim', config=cfg 'neo-tree'}
   use {'sQVe/sort.nvim', config=[[require 'sort'.setup()]]}
+  use {'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=cfg 'null-ls'}
   -- use_rocks {'luaformatter', server = 'https://luarocks.org/dev'}
   -- TREESITTER
   use {'p00f/nvim-ts-rainbow', after='nvim-treesitter'}
@@ -83,17 +89,14 @@ return packer.startup(function(use)
   use {'neovim/nvim-lspconfig', event='BufWinEnter', config=cfg 'lsp'}
   use {'simrat39/symbols-outline.nvim', cmd='SymbolsOutline', setup=cfg 'symbols-outline'}
   -- FUZZY FINDER
-  use {'nvim-telescope/telescope.nvim', cmd='Telescope', module='telescope', config=cfg 'telescope'}
   use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    after='telescope.nvim',
-    run='make',
-    config=[[require('telescope').load_extension 'fzf']]
-  }
-  use {
-    'antoinemadec/FixCursorHold.nvim',
-    event={'BufRead', 'BufNewFile'},
-    config=[[vim.g.cursorhold_updatetime = 100]]
+    'nvim-telescope/telescope.nvim',
+    config=cfg 'telescope',
+    requires={
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-github.nvim'},
+      {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
+    }
   }
   if not warm_boot then packer.sync() end
 end)

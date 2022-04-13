@@ -31,19 +31,31 @@ M.mergeMaps = function(keymaps)
 end
 
 telescope.setup {
-  layout_strategy='horizontal',
-  path_display={'truncate'},
-  prompt_prefix='ᐳ ',
-  selection_caret='―',
-  selection_strategy='reset',
-  sorting_strategy='ascending',
-  layout_config={
-    horizontal={prompt_position='top', preview_width=0.55, results_width=0.8},
-    vertical={mirror=false},
-    width=0.87,
-    height=0.80,
-    preview_cutoff=120
+  border={},
+  borderchars={'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+  buffer_previewer_maker=require('telescope.previewers').buffer_previewer_maker,
+  color_devicons=true,
+  extensions={
+        fzf = {
+            case_mode = 'smart_case', -- "smart_case" | "ignore_case" | "respect_case"
+            fuzzy = true,
+            override_file_sorter = true, -- override the file sorter
+            override_generic_sorter = true, -- override the generic sorter
+        },
   },
+  file_ignore_patterns={'node_modules'},
+  file_previewer=require'telescope.previewers'.vim_buffer_cat.new,
+  file_sorter=require'telescope.sorters'.get_fuzzy_file,
+  generic_sorter=require('telescope.sorters').get_generic_fuzzy_sorter,
+  grep_previewer=require('telescope.previewers').vim_buffer_vimgrep.new,
+  layout_config={
+    horizontal={preview_width=0.55, prompt_position='top', results_width=0.8},
+    vertical={mirror=false},
+    height=0.80,
+    preview_cutoff=120,
+    width=0.87
+  },
+  layout_strategy='horizontal',
   mappings={
     i=M.mergeMaps {
       ['<C-c>']=actions.close,
@@ -65,8 +77,25 @@ telescope.setup {
       ['k']=actions.move_selection_previous
     }
   },
-  pickers={},
-  extensions={}
+  path_display={'truncate'},
+  prompt_prefix='ᐳ ',
+  qflist_previewer=require('telescope.previewers').vim_buffer_qflist.new,
+  selection_caret='―',
+  selection_strategy='reset',
+  set_env={['COLORTERM']='truecolor'}, -- default = nil,
+  sorting_strategy='ascending',
+  use_less=true,
+  vimgrep_arguments={
+    'rg',
+    '--color=never',
+    '--no-heading',
+    '--with-filename',
+    '--line-number',
+    '--column',
+    '--smart-case'
+  },
+  winblend=0
 }
-
+telescope.load_extension('fzf')
+telescope.load_extension('gh')
 return M
