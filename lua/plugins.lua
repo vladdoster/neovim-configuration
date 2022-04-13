@@ -35,6 +35,8 @@ return packer.startup(function(use)
     config=[[vim.g.cursorhold_updatetime = 100]]
   }
   -- PRODUCTIVITY
+  use {'vladdoster/remember.nvim'}
+  use {'obreitwi/vim-sort-folds'}
   use {'junegunn/vim-easy-align', 'tpope/vim-repeat', 'tpope/vim-surround'}
   use {'akinsho/nvim-toggleterm.lua', config=cfg 'toggle-term'}
   use {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'}

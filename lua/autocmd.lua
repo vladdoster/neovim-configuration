@@ -5,7 +5,6 @@ vim.cmd [[
     autocmd!
 
     autocmd BufEnter * set fo-=c fo-=r fo-=o
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
     autocmd BufWinEnter * :set formatoptions-=cro
 
     autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>
