@@ -1,3 +1,17 @@
+## [1.22.1](https://github.com/vladdoster/neovim-configuration/compare/v1.22.0...v1.22.1) (2022-04-17)
+
+
+### fix
+
+* neovim v.0.7.0 breaking changes ([57d63fd](https://github.com/vladdoster/neovim-configuration/commit/57d63fd771f4dec0038568e7fb742b7f5b1e1cb5))
+* telescope config ([09a17b2](https://github.com/vladdoster/neovim-configuration/commit/09a17b20dd4ad47527389b190f7915906fc0513c))
+
+### maint
+
+* add folds to keybinds ([e164281](https://github.com/vladdoster/neovim-configuration/commit/e164281187a63e2ff9f4b8a0e9521998629545f1))
+* add remember plugin ([9e6f070](https://github.com/vladdoster/neovim-configuration/commit/9e6f070c64387337f46b9fa31873fa88db031945))
+* fix ToggleTerm and NeoTree keymappings ([03760fc](https://github.com/vladdoster/neovim-configuration/commit/03760fc72336d560e9b1ad755b83b6aee340f54f))
+
 # [1.22.0](https://github.com/vladdoster/neovim-configuration/compare/v1.21.0...v1.22.0) (2022-04-12)
 
 
