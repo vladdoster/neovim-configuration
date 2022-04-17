@@ -36,12 +36,12 @@ telescope.setup {
   buffer_previewer_maker=require('telescope.previewers').buffer_previewer_maker,
   color_devicons=true,
   extensions={
-        fzf = {
-            case_mode = 'smart_case', -- "smart_case" | "ignore_case" | "respect_case"
-            fuzzy = true,
-            override_file_sorter = true, -- override the file sorter
-            override_generic_sorter = true, -- override the generic sorter
-        },
+    fzf={
+      case_mode='smart_case', -- "smart_case" | "ignore_case" | "respect_case"
+      fuzzy=true,
+      override_file_sorter=true, -- override the file sorter
+      override_generic_sorter=true -- override the generic sorter
+    }
   },
   file_ignore_patterns={'node_modules'},
   file_previewer=require'telescope.previewers'.vim_buffer_cat.new,

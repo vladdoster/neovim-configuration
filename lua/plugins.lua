@@ -35,9 +35,14 @@ return packer.startup(function(use)
     config=[[vim.g.cursorhold_updatetime = 100]]
   }
   -- PRODUCTIVITY
-  use {'numToStr/Buffers.nvim', event = 'BufRead'}
+  use {'numToStr/Buffers.nvim', event='BufRead'}
   use {'vladdoster/remember.nvim', config=[[require 'remember']]}
-  use {'junegunn/vim-easy-align', 'obreitwi/vim-sort-folds', 'tpope/vim-repeat', 'tpope/vim-surround'}
+  use {
+    'junegunn/vim-easy-align',
+    'obreitwi/vim-sort-folds',
+    'tpope/vim-repeat',
+    'tpope/vim-surround'
+  }
   use {'akinsho/nvim-toggleterm.lua', config=cfg 'toggle-term'}
   use {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'}
   use {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline'}
