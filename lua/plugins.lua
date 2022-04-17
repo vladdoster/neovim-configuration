@@ -26,8 +26,8 @@ return packer.startup(function(use)
   -- UI
   use {'MunifTanjim/nui.nvim'}
   use {'nvim-lua/popup.nvim'}
-  use {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
   use {'folke/tokyonight.nvim', config=cfg 'color-scheme'}
+  use {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
   use {'rcarriga/nvim-notify', config=cfg 'notify'}
   use {
     'antoinemadec/FixCursorHold.nvim',
@@ -35,9 +35,9 @@ return packer.startup(function(use)
     config=[[vim.g.cursorhold_updatetime = 100]]
   }
   -- PRODUCTIVITY
-  use {'vladdoster/remember.nvim'}
-  use {'obreitwi/vim-sort-folds'}
-  use {'junegunn/vim-easy-align', 'tpope/vim-repeat', 'tpope/vim-surround'}
+  use {'numToStr/Buffers.nvim', event = 'BufRead'}
+  use {'vladdoster/remember.nvim', config=[[require 'remember']]}
+  use {'junegunn/vim-easy-align', 'obreitwi/vim-sort-folds', 'tpope/vim-repeat', 'tpope/vim-surround'}
   use {'akinsho/nvim-toggleterm.lua', config=cfg 'toggle-term'}
   use {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'}
   use {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline'}

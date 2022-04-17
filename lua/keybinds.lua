@@ -18,17 +18,17 @@ K.n('<leader>x', '<cmd>lua require("Buffers").only()<CR>')
 K.n('<leader>X', '<cmd>lua require("Buffers").clear()<CR>')
 K.n('<leader>q', '<cmd>lua require("Buffers").delete()<CR>')--}}}
 -- buffer navigation  {{{
-K.n('<s-l>', ':bnext<cr>')
-K.n('<s-h>', ':bprevious<cr>')--}}}
+K.n('<S-l>', ':bnext<cr>')
+K.n('<S-h>', ':bprevious<cr>')--}}}
 -- comment {{{
 K.n('<leader>/', '<cmd>lua require(\'comment.api\').toggle_current_linewise()<cr>')
 K.n('<leader>/', '<esc><cmd>lua require(\'comment.api\').toggle_linewise_op(vim.fn.visualmode())<cr>')--}}}
 -- disable ex mode {{{
 K.n('n', 'q', '<nop>')--}}}
 -- force quit {{{
-K.n('<c-q>', '<cmd>q!<cr>')--}}}
+K.n('<C-q>', '<cmd>q!<cr>')--}}}
 -- force write {{{
-K.n('<c-s>', '<cmd>w!<cr>')--}}}
+K.n('<C-s>', '<cmd>w!<cr>')--}}}
 -- gitsigns {{{
 K.n('<leader>gd', '<cmd>gitsigns diffthis head<cr>')
 K.n('<leader>gh', '<cmd>lua require "gitsigns".reset_hunk()<cr>')
@@ -50,7 +50,7 @@ K.n('<leader>gk', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 K.n('<leader>gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
 K.n('<leader>go', '<cmd>lua vim.diagnostic.open_float()<cr>')
 K.n('<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-K.n('<leader>k', '<cmd>lua vim.lsp.buf.hover()<cr>')
+K.n('<leader>k',  '<cmd>lua vim.lsp.buf.hover()<cr>')
 K.n('<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>')
 K.n('<leader>ld', '<cmd>lua vim.diagnostic.open_float()<cr>')
 K.n('<leader>lf', '<cmd>lua vim.lsp.buf.formatting_sync()<cr>')
@@ -59,14 +59,11 @@ K.n('<leader>li', '<cmd>lspinstallinfo<cr>')
 K.n('<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>')
 K.n('<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')-- }}}
 -- move text up and down {{{
-K.n('<a-j>', ':m .+1<cr>==gi')
-K.n('<a-k>', ':m .-2<cr>==gi')--}}}
--- navigate buffers {{{
-K.n('<s-l>', ':bnext<cr>')
-K.n('<s-h>', ':bprevious<cr>')--}}}
+K.n('<A-j>', ':m .+1<cr>==gi')
+K.n('<A-k>', ':m .-2<cr>==gi')--}}}
 -- neotree {{{
-K.n('<c-n>', '<cmd>neotree toggle<cr>')
-K.n('<leader>o', '<cmd>neotree focus<cr>')--}}}
+K.n('<C-n>', '<cmd>Neotree toggle<cr>')
+K.n('<leader>o', '<cmd>Neotree focus<cr>')--}}}
 -- packer {{{
 K.n('<leader>pc', '<cmd>packercompile<cr>')
 K.n('<leader>pi', '<cmd>packerinstall<cr>')
@@ -100,27 +97,20 @@ K.n('<leader>sm', '<cmd>telescope man_pages<cr>')
 K.n('<leader>sn', '<cmd>telescope notifications<cr>')
 K.n('<leader>sr', '<cmd>telescope registers<cr>')--}}}
 -- terminal {{{
-K.n('<c-\\>', '<cmd>toggleterm<cr>')
-K.n('<leader>tf', '<cmd>toggleterm direction=float<cr>')
-K.n('<leader>th', '<cmd>toggleterm size=10 direction=horizontal<cr>')
-K.n('<leader>tv', '<cmd>toggleterm size=80 direction=vertical<cr>')--}}}
--- trouble {{{
-K.n('<leader>xx', '<cmd>trouble<cr>')
-K.n('<leader>xw', '<cmd>trouble workspace_diagnostics<cr>')
-K.n('<leader>xd', '<cmd>trouble document_diagnostics<cr>')
-K.n('<leader>xl', '<cmd>trouble loclist<cr>')
-K.n('<leader>xq', '<cmd>trouble quickfix<cr>')
-K.n('gr', '<cmd>trouble lsp_references<cr>')--}}}
+K.n('<C-\\>', '<cmd>ToggleTerm<cr>')
+K.n('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
+K.n('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
+K.n('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')--}}}
 -- window navigation {{{
-K.n('<c-h>', '<c-w>h')
-K.n('<c-j>', '<c-w>j')
-K.n('<c-k>', '<c-w>k')
-K.n('<c-l>', '<c-w>l')--}}}
+K.n('<C-h>', '<c-w>h')
+K.n('<C-j>', '<c-w>j')
+K.n('<C-k>', '<c-w>k')
+K.n('<C-l>', '<c-w>l')--}}}
 -- window resizing {{{
-K.n('<c-down>', ':resize +2<cr>')
-K.n('<c-left>', ':vertical resize -2<cr>')
-K.n('<c-right>', ':vertical resize +2<cr>')
-K.n('<c-up>', ':resize -2<cr>')--}}}}}}
+K.n('<C-down>', ':resize +2<cr>')
+K.n('<C-left>', ':vertical resize -2<cr>')
+K.n('<C-right>', ':vertical resize +2<cr>')
+K.n('<C-up>', ':resize -2<cr>')--}}}}}}
 -- [[ TERMINAL ]] {{{
 -- navigation
 K.t('<C-h>', '<C-\\><C-N><C-w>h')
