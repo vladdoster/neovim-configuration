@@ -26,7 +26,6 @@ return packer.startup(function(use)
     'lewis6991/impatient.nvim',
     'nvim-lua/plenary.nvim',
     'tweekmonster/startuptime.vim',
-    'nathom/filetype.nvim',
     {
       'antoinemadec/FixCursorHold.nvim',
       event={'BufRead', 'BufNewFile'},
@@ -64,22 +63,25 @@ return packer.startup(function(use)
   use {'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=cfg 'null-ls'}
   -- use_rocks {'luaformatter', server = 'https://luarocks.org/dev'}
   -- TREESITTER
-  use {'p00f/nvim-ts-rainbow', after='nvim-treesitter'}
-  use {'windwp/nvim-ts-autotag', after='nvim-treesitter'}
-  use {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'}
+  use {
+    {'p00f/nvim-ts-rainbow'},
+    {'windwp/nvim-ts-autotag'},
+    {'JoosepAlviste/nvim-ts-context-commentstring'},
+    after='nvim-treesitter'
+  }
   use {
     'nvim-treesitter/nvim-treesitter',
     run=':TSUpdate',
     event={'BufRead', 'BufNewFile'},
     cmd={
+      'TSDisableAll',
+      'TSEnableAll',
       'TSInstall',
       'TSInstallInfo',
       'TSInstallSync',
       'TSUninstall',
       'TSUpdate',
-      'TSUpdateSync',
-      'TSDisableAll',
-      'TSEnableAll'
+      'TSUpdateSync'
     },
     config=cfg 'treesitter'
   }
@@ -110,6 +112,7 @@ return packer.startup(function(use)
   -- FUZZY FINDER
   use {
     'nvim-telescope/telescope.nvim',
+    cmd='Telescope',
     config=cfg 'telescope',
     module='Telescope',
     requires={

@@ -1,6 +1,4 @@
 local nls = require 'null-ls'
-local fmt = nls.builtins.formatting
-local dgn = nls.builtins.diagnostics
 local function fmt_on_save(client)
   if client.resolved_capabilities.document_formatting then
     vim.cmd([[
@@ -12,6 +10,7 @@ local function fmt_on_save(client)
   end
 end
 -- CONFIGURING NULL-LS
+local fmt, dgn = nls.builtins.formatting, nls.builtins.diagnostics
 nls.setup {
   sources={ -- # FORMATTING #
     dgn.hadolint,
@@ -24,10 +23,9 @@ nls.setup {
     dgn.zsh,
     fmt.gofmt,
     fmt.shfmt.with {extra_args={'-i', 2, '-s', '-ci', '-sr', '-bn'}},
-    fmt.stylua.with {extra_args={'-f', '$HOME/.config/nvim/.stylua.toml'}},
     fmt.terraform_fmt,
     fmt.trim_newlines,
-    fmt.trim_whitespace.with({filetypes={'text', 'sh', 'zsh', 'toml', 'make', 'conf', 'tmux'}})
+    fmt.trim_whitespace
   },
-  on_attach=function(client, bufnr) fmt_on_save(client) end
+  on_attach=function(client, _) fmt_on_save(client) end
 }

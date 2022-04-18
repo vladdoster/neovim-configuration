@@ -1,18 +1,18 @@
 local K = require 'keymap'
 
--- [[ Modes ]]
--- normal_mode = "n", insert_mode       = "i",
--- visual_mode = "v", visual_block_mode = "x",
--- term_mode   = "t", command_mode      = "c",
-
--- Remap leader {{{
+-- Leader {{{
 local map = vim.api.nvim_set_keymap
 map('', '<Space>', '<Nop>', {noremap=true, silent=true})
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' ' -- }}}
--- [[ INSERT ]] {{{
-K.i('jk', '<ESC>') -- }}}
--- [[ NORMAL ]] {{{
+-- }}}
+
+-- [[ COMMAND -> 'c' ]] {{{
+
+-- }}}
+-- [[ INSERT -> 'i' ]] {{{
+K.i('jk', '<ESC>')
+-- }}}
+-- [[ NORMAL -> 'n' ]] {{{
 -- buffer management {{{
 K.n('<leader>x', '<cmd>lua require("Buffers").only()<CR>')
 K.n('<leader>X', '<cmd>lua require("Buffers").clear()<CR>')
@@ -110,8 +110,9 @@ K.n('<C-l>', '<c-w>l') -- }}}
 K.n('<C-down>', ':resize +2<cr>')
 K.n('<C-left>', ':vertical resize -2<cr>')
 K.n('<C-right>', ':vertical resize +2<cr>')
-K.n('<C-up>', ':resize -2<cr>') -- }}}}}}
--- [[ TERMINAL ]] {{{
+K.n('<C-up>', ':resize -2<cr>') -- }}}
+-- }}}
+-- [[ TERMINAL -> 't']] {{{
 -- navigation
 K.t('<C-h>', '<C-\\><C-N><C-w>h')
 K.t('<C-j>', '<C-\\><C-N><C-w>j')
@@ -120,14 +121,9 @@ K.t('<C-l>', '<C-\\><C-N><C-w>l')
 -- toggle terminal
 K.t('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
 K.t('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
-K.t('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>') -- }}}
--- [[ VISUAL BLOCK ]] {{{
--- move text up and down
-K.x('<A-j>', ':move \'>+1<CR>gv-gv')
-K.x('<A-k>', ':move \'<-2<CR>gv-gv')
-K.x('J', ':move \'>+1<CR>gv-gv')
-K.x('K', ':move \'<-2<CR>gv-gv') -- }}}
--- [[ VISUAL ]] {{{
+K.t('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
+-- }}}
+-- [[ VISUAL -> 'v' ]] {{{
 -- persistent indent mode
 K.v('<', '<gv')
 K.v('>', '>gv')
@@ -136,6 +132,14 @@ K.v('<C-s>', ':Sort<CR>')
 -- move text up and down
 K.v('<A-j>', ':m .+1<CR>==')
 K.v('<A-k>', ':m .-2<CR>==')
-K.v('p', '"_dP') -- }}}
+K.v('p', '"_dP')
+-- }}}
+-- [[ VISUAL BLOCK -> 'x' ]] {{{
+-- move text up and down
+K.x('<A-j>', ':move \'>+1<CR>gv-gv')
+K.x('<A-k>', ':move \'<-2<CR>gv-gv')
+K.x('J', ':move \'>+1<CR>gv-gv')
+K.x('K', ':move \'<-2<CR>gv-gv')
+-- }}}
 
 -- vim:ft=lua:sw=4:sts=4:et:foldmethod=marker
