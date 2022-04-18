@@ -22,33 +22,45 @@ packer.init {
 local cfg = function(name) return string.format([[require("configs.%s")]], name) end
 return packer.startup(function(use)
   use {'wbthomason/packer.nvim'}
-  use {'lewis6991/impatient.nvim', 'nvim-lua/plenary.nvim'}
-  -- UI
-  use {'MunifTanjim/nui.nvim'}
-  use {'nvim-lua/popup.nvim'}
-  use {'folke/tokyonight.nvim', config=cfg 'color-scheme'}
-  use {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
-  use {'rcarriga/nvim-notify', config=cfg 'notify'}
   use {
-    'antoinemadec/FixCursorHold.nvim',
-    event={'BufRead', 'BufNewFile'},
-    config=[[vim.g.cursorhold_updatetime = 100]]
+    'lewis6991/impatient.nvim',
+    'nvim-lua/plenary.nvim',
+    'tweekmonster/startuptime.vim',
+    'nathom/filetype.nvim',
+    {
+      'antoinemadec/FixCursorHold.nvim',
+      event={'BufRead', 'BufNewFile'},
+      config=[[vim.g.cursorhold_updatetime = 100]]
+    }
+  }
+  -- UI
+  use {
+    {'folke/tokyonight.nvim', config=cfg 'color-scheme'},
+    {'nvim-lualine/lualine.nvim', config=cfg 'lualine'},
+    {'rcarriga/nvim-notify', config=cfg 'notify'},
+    'MunifTanjim/nui.nvim',
+    'nvim-lua/popup.nvim'
   }
   -- PRODUCTIVITY
-  use {'numToStr/Buffers.nvim', event='BufRead'}
-  use {'vladdoster/remember.nvim', config=[[require 'remember']]}
   use {
     'junegunn/vim-easy-align',
     'obreitwi/vim-sort-folds',
     'tpope/vim-repeat',
-    'tpope/vim-surround'
+    'tpope/vim-surround',
+    {'numToStr/Buffers.nvim', event='BufRead'},
+    {'vladdoster/remember.nvim', config=[[require 'remember']]},
+    {'numToStr/Comment.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'comment'},
+    {'sQVe/sort.nvim', config=[[require 'sort'.setup()]]}
   }
-  use {'akinsho/nvim-toggleterm.lua', config=cfg 'toggle-term'}
+  use {
+    'akinsho/nvim-toggleterm.lua',
+    module='toggle-term',
+    cmd='ToggleTerm',
+    config=cfg 'toggle-term'
+  }
   use {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'}
   use {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline'}
-  use {'numToStr/Comment.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'comment'}
-  use {'nvim-neo-tree/neo-tree.nvim', config=cfg 'neo-tree'}
-  use {'sQVe/sort.nvim', config=[[require 'sort'.setup()]]}
+  use {'nvim-neo-tree/neo-tree.nvim', module='neo-tree', cmd='Neotree', config=cfg 'neo-tree'}
   use {'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=cfg 'null-ls'}
   -- use_rocks {'luaformatter', server = 'https://luarocks.org/dev'}
   -- TREESITTER
@@ -99,8 +111,8 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     config=cfg 'telescope',
+    module='Telescope',
     requires={
-      {'nvim-lua/plenary.nvim'},
       {'nvim-telescope/telescope-github.nvim'},
       {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
     }
