@@ -1,3 +1,19 @@
+# [1.23.0](https://github.com/vladdoster/neovim-configuration/compare/v1.22.1...v1.23.0) (2022-04-19)
+
+
+### maint
+
+* condense plugins to improve performance ([2436430](https://github.com/vladdoster/neovim-configuration/commit/2436430d237f46a346906491072f3d79fe6301b9))
+* update configs for v0.7.0 and telescope config ([9d162d0](https://github.com/vladdoster/neovim-configuration/commit/9d162d0adf45e0c5acfa99da44dd7d654fd0afc5))
+
+### style
+
+* revert lualine change and fmt ([b0474a7](https://github.com/vladdoster/neovim-configuration/commit/b0474a7ffdef144e40645fd4be63f54ea94e5f0c))
+
+### update
+
+* colorscheme, telescope, keymap, & settings ([68edc3d](https://github.com/vladdoster/neovim-configuration/commit/68edc3d7451f3aca472938d744a5deec250625ef))
+
 ## [1.22.1](https://github.com/vladdoster/neovim-configuration/compare/v1.22.0...v1.22.1) (2022-04-17)
 
 
