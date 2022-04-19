@@ -31,8 +31,8 @@ return packer.startup(function(use, use_rocks)
     'tweekmonster/startuptime.vim',
     {
       'antoinemadec/FixCursorHold.nvim',
-      event={'BufRead', 'BufNewFile'},
-      config=[[vim.g.cursorhold_updatetime = 100]]
+      config=[[vim.g.cursorhold_updatetime = 100]],
+      event={'BufRead', 'BufNewFile'}
     }
   }
   -- UI
@@ -57,23 +57,23 @@ return packer.startup(function(use, use_rocks)
   }
   use {
     'akinsho/nvim-toggleterm.lua',
-    module='toggle-term',
     cmd='ToggleTerm',
-    config=cfg 'toggle-term'
+    config=cfg 'toggle-term',
+    module='toggle-term'
   }
   use {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'}
   use {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline'}
   use {'nvim-neo-tree/neo-tree.nvim', module='neo-tree', cmd='Neotree', config=cfg 'neo-tree'}
   use {'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=cfg 'null-ls'}
-  -- use_rocks {'luaformatter', server = 'https://luarocks.org/dev'}
+  use_rocks {'luaformatter', server='https://luarocks.org/dev'}
   -- TREESITTER
   use {
     'nvim-treesitter/nvim-treesitter',
-    run=':TSUpdate',
-    event={'BufRead', 'BufNewFile'},
     cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
     config=cfg 'treesitter',
-    requires={'p00f/nvim-ts-rainbow'}
+    event={'BufRead', 'BufNewFile'},
+    run=':TSUpdate',
+    wants={'p00f/nvim-ts-rainbow'}
   }
   -- COMPLETION
   use {'rafamadriz/friendly-snippets', after='nvim-cmp'}
@@ -84,14 +84,14 @@ return packer.startup(function(use, use_rocks)
   use {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'}
   use {
     'hrsh7th/nvim-cmp',
-    event='InsertEnter',
     config=cfg 'lsp.cmp',
-    requires={'onsails/lspkind-nvim'}
+    event='InsertEnter',
+    wants={'onsails/lspkind-nvim'}
   }
   use {
     'williamboman/nvim-lsp-installer',
-    module='nvim-lsp-installer',
-    cmd={'LspInstall', 'LspUninstall'}
+    cmd={'LspInstall', 'LspUninstall'},
+    module='nvim-lsp-installer'
   }
   use {'neovim/nvim-lspconfig', event='BufWinEnter', config=cfg 'lsp'}
   use {'simrat39/symbols-outline.nvim', cmd='SymbolsOutline', setup=cfg 'symbols-outline'}
@@ -101,9 +101,9 @@ return packer.startup(function(use, use_rocks)
     cmd='Telescope',
     config=cfg 'telescope',
     module='Telescope',
-    requires={
-      {'nvim-telescope/telescope-github.nvim'},
-      {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
+    wants={
+      {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
+      {'nvim-telescope/telescope-github.nvim'}
     }
   }
   if not warm_boot then packer.sync() end
