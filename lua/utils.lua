@@ -1,6 +1,6 @@
 local M = {}
 function M.openDirectory(path)
-  require'telescope.builtin'.git_files {
+  require'Telescope.builtin'.git_files {
     shorten_path=true,
     cwd=path,
     prompt='ᐳ ',
@@ -10,4 +10,5 @@ function M.openDirectory(path)
   }
 end
 return M
--- vim:ft=lua:sw=4:sts=4:et:foldmarker={{{,}}}:foldmethod=marker
+
+-- vim:ft=lua:sw=2:sts=2:et:foldmarker=function,end:foldmethod=marker
