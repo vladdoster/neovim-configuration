@@ -1,11 +1,8 @@
 local M = {}
 local telescope_ok, telescope = pcall(require, 'telescope')
 if not telescope_ok then return end
-local actions = require 'telescope.actions'
-
-local notify_ok, _ = pcall(require, 'notify')
-if notify_ok then telescope.load_extension 'notify' end
-
+local actions, previewers, sorters = require 'telescope.actions', require 'telescope.previewers',
+                                     require 'telescope.sorters'
 M.common_keymaps = {
   ['<C-q>']=actions.send_to_qflist + actions.open_qflist,
   ['<C-t>']=actions.select_tab,
@@ -17,11 +14,11 @@ M.common_keymaps = {
   ['<M-q>']=actions.send_selected_to_qflist + actions.open_qflist,
   ['<PageDown>']=actions.results_scrolling_down,
   ['<PageUp>']=actions.results_scrolling_up,
-  ['<S-Tab>']=actions.toggle_selection + actions.move_selection_better,
-  ['<Tab>']=actions.toggle_selection + actions.move_selection_worse,
+  ['<S-Tab>']=actions.results_scrolling_down,
+  ['<Space>']=actions.toggle_selection + actions.move_selection_worse,
+  ['<Tab>']=actions.results_scrolling_up,
   ['<Up>']=actions.move_selection_previous
 }
-
 -- merge function that takes functional approach
 M.mergeMaps = function(keymaps)
   local c = {}
@@ -29,25 +26,24 @@ M.mergeMaps = function(keymaps)
   for k, v in pairs(keymaps) do c[k] = v end
   return c
 end
-
 telescope.setup {
   border={},
   borderchars={'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
   buffer_previewer_maker=require('telescope.previewers').buffer_previewer_maker,
-  color_devicons=true,
+  color_devicons=false,
   extensions={
     fzf={
-      case_mode='smart_case', -- "smart_case" | "ignore_case" | "respect_case"
+      case_mode='respect_case', -- "smart_case" | "ignore_case" | "respect_case"
       fuzzy=true,
-      override_file_sorter=true, -- override the file sorter
-      override_generic_sorter=true -- override the generic sorter
+      override_file_sorter=true,
+      override_generic_sorter=true
     }
   },
-  file_ignore_patterns={'node_modules'},
-  file_previewer=require'telescope.previewers'.vim_buffer_cat.new,
-  file_sorter=require'telescope.sorters'.get_fuzzy_file,
-  generic_sorter=require('telescope.sorters').get_generic_fuzzy_sorter,
-  grep_previewer=require('telescope.previewers').vim_buffer_vimgrep.new,
+  file_ignore_patterns={'node_modules', 'venv'},
+  file_previewer=previewers.vim_buffer_cat.new,
+  file_sorter=sorters.get_fuzzy_file,
+  generic_sorter=sorters.get_generic_fuzzy_sorter,
+  grep_previewer=previewers.vim_buffer_vimgrep.new,
   layout_config={
     horizontal={preview_width=0.55, prompt_position='top', results_width=0.8},
     vertical={mirror=false},
@@ -79,15 +75,15 @@ telescope.setup {
   },
   path_display={'truncate'},
   prompt_prefix='ᐳ ',
-  qflist_previewer=require('telescope.previewers').vim_buffer_qflist.new,
+  qflist_previewer=previewers.vim_buffer_qflist.new,
   selection_caret='―',
   selection_strategy='reset',
-  set_env={['COLORTERM']='truecolor'}, -- default = nil,
+  set_env={['COLORTERM']='truecolor'},
   sorting_strategy='ascending',
   use_less=true,
   vimgrep_arguments={
     'rg',
-    '--color=never',
+    '--color=always',
     '--no-heading',
     '--with-filename',
     '--line-number',
@@ -96,6 +92,5 @@ telescope.setup {
   },
   winblend=0
 }
-telescope.load_extension('fzf')
-telescope.load_extension('gh')
+for _, x in pairs({'fzf', 'gh', 'notify'}) do telescope.load_extension(x) end
 return M

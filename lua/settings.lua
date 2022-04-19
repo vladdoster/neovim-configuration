@@ -1,8 +1,6 @@
 local M = {}
-
-local set = vim.opt
+-- GLOBAL EDITOR VARIABLES [
 local g = vim.g
-
 g.loaded_2html_plugin = false
 g.loaded_getscript = false
 g.loaded_getscriptPlugin = false
@@ -19,10 +17,12 @@ g.loaded_vimballPlugin = false
 g.loaded_zip = false
 g.loaded_zipPlugin = false
 g.zipPlugin = false
-
-g.did_load_filetypes = 0 -- don't use filetype.vim
-g.do_filetype_lua = 1 -- use filetype.lua
-
+g.did_load_filetypes = 0
+g.do_filetype_lua = 1
+g.python3_host_prog = '/usr/local/bin/python3'
+-- ]
+-- OPTIONS [
+local set = vim.opt
 set.backup = false -- disable making a backup file
 set.clipboard = 'unnamedplus' -- connection to the system clipboard
 set.cmdheight = 1 -- number of screen lines to use for the command line
@@ -60,5 +60,6 @@ set.undofile = true -- enable persistent undo
 set.updatetime = 300 -- length of time to wait before triggering the plugin
 set.wrap = false -- disable wrapping of lines longer than the width of window
 set.writebackup = false -- disable creating a backup before overwriting a file
-
+-- ]
 return M
+-- vim:ft=lua:sw=4:sts=4:et:foldmarker=[,]:foldmethod=marker

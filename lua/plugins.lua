@@ -1,3 +1,4 @@
+-- PACKER BOOTSTRAP [
 local warm_boot, packer = pcall(require, 'packer')
 if not warm_boot then
   local packer_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
@@ -20,8 +21,10 @@ packer.init {
   profile={enable=true, threshold=0.0001}
 }
 local cfg = function(name) return string.format([[require("configs.%s")]], name) end
-return packer.startup(function(use)
-  use {'wbthomason/packer.nvim'}
+-- ]
+-- PLUGINS[
+return packer.startup(function(use, use_rocks)
+  use 'wbthomason/packer.nvim'
   use {
     'lewis6991/impatient.nvim',
     'nvim-lua/plenary.nvim',
@@ -34,11 +37,12 @@ return packer.startup(function(use)
   }
   -- UI
   use {
-    {'folke/tokyonight.nvim', config=cfg 'color-scheme'},
-    {'nvim-lualine/lualine.nvim', config=cfg 'lualine'},
-    {'rcarriga/nvim-notify', config=cfg 'notify'},
+    'rktjmp/lush.nvim',
+    {'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'},
     'MunifTanjim/nui.nvim',
-    'nvim-lua/popup.nvim'
+    'nvim-lua/popup.nvim',
+    {'nvim-lualine/lualine.nvim', config=cfg 'lualine'},
+    {'rcarriga/nvim-notify', config=cfg 'notify'}
   }
   -- PRODUCTIVITY
   use {
@@ -64,26 +68,12 @@ return packer.startup(function(use)
   -- use_rocks {'luaformatter', server = 'https://luarocks.org/dev'}
   -- TREESITTER
   use {
-    {'p00f/nvim-ts-rainbow'},
-    {'windwp/nvim-ts-autotag'},
-    {'JoosepAlviste/nvim-ts-context-commentstring'},
-    after='nvim-treesitter'
-  }
-  use {
     'nvim-treesitter/nvim-treesitter',
     run=':TSUpdate',
     event={'BufRead', 'BufNewFile'},
-    cmd={
-      'TSDisableAll',
-      'TSEnableAll',
-      'TSInstall',
-      'TSInstallInfo',
-      'TSInstallSync',
-      'TSUninstall',
-      'TSUpdate',
-      'TSUpdateSync'
-    },
-    config=cfg 'treesitter'
+    cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
+    config=cfg 'treesitter',
+    requires={'p00f/nvim-ts-rainbow'}
   }
   -- COMPLETION
   use {'rafamadriz/friendly-snippets', after='nvim-cmp'}
@@ -92,20 +82,16 @@ return packer.startup(function(use)
   use {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}
   use {'hrsh7th/cmp-path', after='nvim-cmp'}
   use {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'}
-  use {'hrsh7th/nvim-cmp', event='InsertEnter', config=cfg 'cmp', requires={'onsails/lspkind-nvim'}}
+  use {
+    'hrsh7th/nvim-cmp',
+    event='InsertEnter',
+    config=cfg 'lsp.cmp',
+    requires={'onsails/lspkind-nvim'}
+  }
   use {
     'williamboman/nvim-lsp-installer',
     module='nvim-lsp-installer',
-    cmd={
-      'LspInstall',
-      'LspInstallInfo',
-      'LspPrintInstalled',
-      'LspRestart',
-      'LspStart',
-      'LspStop',
-      'LspUninstall',
-      'LspUninstallAll'
-    }
+    cmd={'LspInstall', 'LspUninstall'}
   }
   use {'neovim/nvim-lspconfig', event='BufWinEnter', config=cfg 'lsp'}
   use {'simrat39/symbols-outline.nvim', cmd='SymbolsOutline', setup=cfg 'symbols-outline'}
@@ -122,3 +108,5 @@ return packer.startup(function(use)
   }
   if not warm_boot then packer.sync() end
 end)
+-- ]
+-- vim:ft=lua:sw=4:sts=4:et:foldmarker=[,]:foldmethod=marker

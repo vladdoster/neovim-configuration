@@ -1,18 +1,30 @@
-local K = require 'keymap'
-
+-- Keymap method {{{
+local K = setmetatable({
+  nore={noremap=true, silent=true, expr=false},
+  remap={noremap=false, silent=true, expr=false}
+}, {
+  __index=function(p, mode)
+    return setmetatable({
+      map=function(key, action) vim.api.nvim_set_keymap(mode, key, action, p.remap) end,
+      nmap=function(key, action) vim.api.nvim_set_keymap(mode, key, action, p.nore) end,
+      bmap=function(buf, key, action) vim.api.nvim_buf_set_keymap(buf, mode, key, action, p.nore) end
+    }, {__call=function(this, key, action) this.nmap(key, action) end})
+  end
+})
+-- }}}
 -- Leader {{{
 local map = vim.api.nvim_set_keymap
 map('', '<Space>', '<Nop>', {noremap=true, silent=true})
 vim.g.mapleader = ' '
 -- }}}
 
--- [[ COMMAND -> 'c' ]] {{{
+-- [[ COMMAND  ⮕ 'c' ]] {{{
 
 -- }}}
--- [[ INSERT -> 'i' ]] {{{
+-- [[ INSERT   ⮕ 'i' ]] {{{
 K.i('jk', '<ESC>')
 -- }}}
--- [[ NORMAL -> 'n' ]] {{{
+-- [[ NORMAL   ⮕ 'n' ]] {{{
 -- buffer management {{{
 K.n('<leader>x', '<cmd>lua require("Buffers").only()<CR>')
 K.n('<leader>X', '<cmd>lua require("Buffers").clear()<CR>')
@@ -111,8 +123,13 @@ K.n('<C-down>', ':resize +2<cr>')
 K.n('<C-left>', ':vertical resize -2<cr>')
 K.n('<C-right>', ':vertical resize +2<cr>')
 K.n('<C-up>', ':resize -2<cr>') -- }}}
+-- edit configurations {{{
+K.n('<leader>df', '<cmd>lua require "utils".openDirectory("~/.config/dotfiles")<cr>')
+K.n('<leader>vd', '<cmd>lua require "utils".openDirectory("~/.config/nvim")<cr>')
+K.n('<leader>zd', '<cmd>lua require "utils".openDirectory("~/.config/zsh")<cr>')
+K.n('<leader>cd', '<cmd>lua require "utils".openDirectory("~/code")<cr>') -- }}}
 -- }}}
--- [[ TERMINAL -> 't']] {{{
+-- [[ TERMINAL ⮕ 't']] {{{
 -- navigation
 K.t('<C-h>', '<C-\\><C-N><C-w>h')
 K.t('<C-j>', '<C-\\><C-N><C-w>j')
@@ -123,7 +140,7 @@ K.t('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
 K.t('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
 K.t('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
 -- }}}
--- [[ VISUAL -> 'v' ]] {{{
+-- [[ VISUAL   ⮕ 'v' ]] {{{
 -- persistent indent mode
 K.v('<', '<gv')
 K.v('>', '>gv')
@@ -134,7 +151,7 @@ K.v('<A-j>', ':m .+1<CR>==')
 K.v('<A-k>', ':m .-2<CR>==')
 K.v('p', '"_dP')
 -- }}}
--- [[ VISUAL BLOCK -> 'x' ]] {{{
+-- [[ VISUAL BLOCK ⮕ 'x' ]] {{{
 -- move text up and down
 K.x('<A-j>', ':move \'>+1<CR>gv-gv')
 K.x('<A-k>', ':move \'<-2<CR>gv-gv')
@@ -142,4 +159,4 @@ K.x('J', ':move \'>+1<CR>gv-gv')
 K.x('K', ':move \'<-2<CR>gv-gv')
 -- }}}
 
--- vim:ft=lua:sw=4:sts=4:et:foldmethod=marker
+-- vim:ft=lua:sw=4:sts=4:et:foldmarker={{{,}}}:foldmethod=marker
