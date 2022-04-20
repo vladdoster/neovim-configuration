@@ -22,8 +22,9 @@ packer.init {
 } -- >>
 local cfg = function(name) return string.format([[require("configs.%s")]], name) end
 return packer.startup(function(use)
-  -- PERFORMANCE<<
+  -- PERFORMANCE <<
   use {
+    'wbthomason/packer.nvim',
     'nvim-lua/plenary.nvim',
     'lewis6991/impatient.nvim',
     'tweekmonster/startuptime.vim',
@@ -31,20 +32,17 @@ return packer.startup(function(use)
       'antoinemadec/FixCursorHold.nvim',
       config=[[vim.g.cursorhold_updatetime = 100]],
       event={'BufRead', 'BufNewFile'}
-    },
-    {'wbthomason/packer.nvim', event='VimEnter'}
-  }
-  -- >>
+    }
+  } -- >>
   -- UI<<
   use {
     'MunifTanjim/nui.nvim',
     'nvim-lua/popup.nvim',
-    {'nvim-lualine/lualine.nvim', config=cfg 'lualine'},
-    {'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'},
     {'rcarriga/nvim-notify', config=cfg 'notify'},
-    {'rktjmp/lush.nvim'}
-  } -- >>
-  -- PRODUCTIVITY<<
+    {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
+  }
+  use {'rktjmp/lush.nvim', {'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}} -- >>
+  -- PRODUCTIVITY <<
   use {
     'LudoPinelli/comment-box.nvim',
     'junegunn/vim-easy-align',
@@ -66,7 +64,7 @@ return packer.startup(function(use)
     config=cfg 'toggle-term',
     module='toggle-term'
   } -- >>
-  -- TREESITTER<<
+  -- TREESITTER <<
   use {
     'nvim-treesitter/nvim-treesitter',
     cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
@@ -74,7 +72,7 @@ return packer.startup(function(use)
     event={'BufRead', 'BufNewFile'},
     run=':TSUpdate'
   } -- >>
-  -- COMPLETION<<
+  -- COMPLETION <<
   use {
     'onsails/lspkind-nvim',
     {'rafamadriz/friendly-snippets', after='nvim-cmp'},
