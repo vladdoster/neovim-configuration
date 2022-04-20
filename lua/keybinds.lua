@@ -38,10 +38,11 @@ K.n('<leader>/', '<esc><cmd>lua require(\'comment.api\').toggle_linewise_op(vim.
 -- disable ex mode {{{
 K.n('n', 'q', '<nop>') -- }}}
 -- edit configurations {{{
-K.n('<leader>df', '<cmd>lua require "utils".openDirectory("~/.config/dotfiles")<cr>')
-K.n('<leader>vd', '<cmd>lua require "utils".openDirectory("~/.config/nvim")<cr>')
-K.n('<leader>zd', '<cmd>lua require "utils".openDirectory("~/.config/zsh")<cr>')
-K.n('<leader>cd', '<cmd>lua require "utils".openDirectory("~/code")<cr>') -- }}}
+local U = require 'utils'
+K.n('<leader>df', '<cmd>U.openDirectory("~/.config/dotfiles")<cr>')
+K.n('<leader>vd', '<cmd>U.openDirectory("~/.config/nvim")<cr>')
+K.n('<leader>zd', '<cmd>U.openDirectory("~/.config/zsh")<cr>')
+K.n('<leader>cd', '<cmd>U.openDirectory("~/code")<cr>') -- }}}
 -- force quit {{{
 K.n('<C-q>', '<cmd>q!<cr>') -- }}}
 -- force write {{{

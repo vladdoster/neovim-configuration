@@ -33,7 +33,7 @@ telescope.setup {
   color_devicons=false,
   extensions={
     fzf={
-      case_mode='respect_case', -- "smart_case" | "ignore_case" | "respect_case"
+      case_mode='respect_case',
       fuzzy=true,
       override_file_sorter=true,
       override_generic_sorter=true
@@ -92,5 +92,5 @@ telescope.setup {
   },
   winblend=0
 }
-for _, x in pairs({'fzf', 'gh', 'notify'}) do telescope.load_extension(x) end
+for _, x in pairs({'fzf', 'notify'}) do telescope.load_extension(x) end
 return M

@@ -1,12 +1,12 @@
 local M = {}
 function M.openDirectory(path)
   require'Telescope.builtin'.git_files {
-    shorten_path=true,
     cwd=path,
-    prompt='ᐳ ',
     height=10,
+    layout_options={preview_width=0.75},
     layout_strategy='horizontal',
-    layout_options={preview_width=0.75}
+    prompt='ᐳ ',
+    shorten_path=true
   }
 end
 return M
