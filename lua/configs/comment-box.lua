@@ -1,8 +1,8 @@
 local comment_box_ok, comment_box = pcall(require, 'comment-box')
 if not comment_box_ok then return end
 comment_box.setup({
-  doc_width=80, -- width of the document
-  box_width=60, -- width of the boxes
+  doc_width=41, -- width of the document
+  box_width=3, -- width of the boxes
   borders={ -- symbols used to draw a box
     top='─',
     bottom='─',
