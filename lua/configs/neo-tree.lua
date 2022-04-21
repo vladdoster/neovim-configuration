@@ -6,36 +6,18 @@ neotree.setup {
   buffers={show_unloaded=true, window={mappings={['bd']='buffer_delete'}}},
   close_if_last_window=true,
   default_component_configs={
-    git_status={
-      symbols={
-        added='⊞',
-        conflict='',
-        deleted='⊟',
-        ignored='◌',
-        modified='⧆',
-        renamed='↔',
-        staged='☑',
-        unstaged='☐',
-        untracked='☒'
-      }
-    },
-    icon={default='', folder_closed='', folder_empty='', folder_open=''},
+    icon={default='', folder_closed='‑', folder_open='⋁'},
     indent={
-      expander_collapsed='>',
-      expander_expanded='',
       expander_highlight='NeoTreeExpander',
       highlight='NeoTreeIndentMarker',
       indent_marker='│',
       indent_size=2,
       last_indent_marker='└',
-      padding=0,
-      with_expanders=false,
       with_markers=true
     },
-    name={trailing_slash=false, use_git_status_colors=true}
+    name={trailing_slash=true, use_git_status_colors=true}
   },
-  enable_diagnostics=false,
-  enable_git_status=true,
+  enable_git_status=false,
   event_handlers={
     {
       event='vim_buffer_enter',
@@ -45,8 +27,8 @@ neotree.setup {
   filesystem={
     filtered_items={
       hide_by_name={'.DS_Store', 'node_modules', '__pycache__'},
-      hide_dotfiles=true,
-      hide_gitignored=false,
+      hide_dotfiles=false,
+      hide_gitignored=true,
       visible=false
     },
     follow_current_file=true,
@@ -70,7 +52,7 @@ neotree.setup {
   nesting_rules={},
   window={
     position='left',
-    width=25,
+    width=30,
     mappings={
       ['.']='set_root',
       ['/']='fuzzy_finder',
