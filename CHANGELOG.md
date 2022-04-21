@@ -1,3 +1,30 @@
+# [1.24.0](https://github.com/vladdoster/neovim-configuration/compare/v1.23.0...v1.24.0) (2022-04-21)
+
+
+### feat
+
+* add comment-box plugin ([afbadbf](https://github.com/vladdoster/neovim-configuration/commit/afbadbf1c9c3b9186f8ca723d3866dac8535edb5))
+* add unit tests ([2a03ab0](https://github.com/vladdoster/neovim-configuration/commit/2a03ab077dfe4e470e10268e4e2efc71ab550ac0))
+
+### fix
+
+* change packer option from `require` to `wants` for plugin dependencies ([4ad45fe](https://github.com/vladdoster/neovim-configuration/commit/4ad45febeb414de228b8552ae85e412306e5233d))
+* packer sync on every BufEnter ([8e3a6f0](https://github.com/vladdoster/neovim-configuration/commit/8e3a6f0c79faaf229290d2655f8f93263793cacd))
+* partially fix telescope loading ([d8b9660](https://github.com/vladdoster/neovim-configuration/commit/d8b9660f0dbace6a3ca29e831eb662d60ebad061))
+
+### maint
+
+* add vim modeline settings and fix loading of Telescope ([55d2fd6](https://github.com/vladdoster/neovim-configuration/commit/55d2fd62ecd26df369f7d8946d19189fec7ad1db))
+* clean up Makefile ([208a58e](https://github.com/vladdoster/neovim-configuration/commit/208a58edad071d0e79a8747dcfdce2a453a10b2a))
+
+### new
+
+* add .editorconfig ([9ff64b8](https://github.com/vladdoster/neovim-configuration/commit/9ff64b86b1e9235aa6914017629be36858ec26b8))
+
+### style
+
+* remove outermost fold around vim modes ([1f6ed45](https://github.com/vladdoster/neovim-configuration/commit/1f6ed45a65d84553a1ab766a91b81b28da1df83b))
+
 # [1.23.0](https://github.com/vladdoster/neovim-configuration/compare/v1.22.1...v1.23.0) (2022-04-19)
 
 
