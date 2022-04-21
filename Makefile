@@ -1,18 +1,28 @@
 all: fmt
+
 deps:
-	luarocks install --server=https://luarocks.org/dev luaformatter
-fmt:
+	luarocks install \
+		--server https://luarocks.org/dev luaformatter
 
 fmt:
-	@find . -name '*.lua' -print -exec \
+	@find . -name '*.lua' -print0 \
+	| xargs -0 -n1 -P4 \
 		lua-format \
-		--config .lua_format.yml \
-		--in-place \
-		-- {} \;
-# @find . \
-# 	-name '*.lua' \
-# 	-print \
-# 	-exec stylua -f /Users/anonymous/.config/nvim/.stylua.toml  {} \;
+			--config .lua_format.yml \
+			--in-place
+	$(info formatted files)
+
+test:
+	./scripts/test
+
 clean:
-	@find . -name 'packer_compiled*' -type f -print -delete
-	@find $$HOME/.local/share/ -maxdepth 1 -name 'nvim' -type d -print -exec rm -rf {} \;
+	@find . -name 'packer_compiled*' -type f -delete
+	@find $$HOME/.local/share/ \
+		-maxdepth 1 \
+		-name 'nvim' \
+		-type d \
+		-exec rm -rf {} \
+	\;
+	$(info cleaned neovim artifacts)
+
+.PHONY: deps fmt test clean
