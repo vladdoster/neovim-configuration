@@ -1,5 +1,6 @@
 local M = {}
 local g, o, wo = vim.g, vim.o, vim.wo
+
 -- GLOBAL EDITOR VARIABLES [
 g.cursorhold_updatetime = 150 -- antoinemadec/FixCursorHold.nvim
 g.did_load_filetypes = 0
@@ -7,7 +8,6 @@ g.do_filetype_lua = 1
 g.mapleader = ' '
 g.maplocalleader = ','
 g.no_man_maps = 1
-g.python3_host_prog = '/usr/bin/python3'
 g.zipPlugin = false
 
 g.loaded_2html_plugin = false
@@ -89,5 +89,6 @@ wo.number = true
 wo.numberwidth = 1
 wo.relativenumber = true
 -- ]
+
 return M
 -- vim:ft=lua:sw=4:sts=4:et:foldmarker=[,]:foldmethod=marker
