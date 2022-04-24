@@ -33,9 +33,6 @@ K.n('<leader>q', '<cmd>lua require("Buffers").delete()<CR>') --
 -- buffer navigation  {{{
 K.n('<S-l>', ':bnext<cr>')
 K.n('<S-h>', ':bprevious<cr>') -- }}}
--- comment
-K.n('<leader>/', '<cmd>lua require(\'comment.api\').toggle_current_linewise()<cr>')
-K.n('<leader>/', '<esc><cmd>lua require(\'comment.api\').toggle_linewise_op(vim.fn.visualmode())<cr>') --
 -- disable ex mode
 K.n('n', 'q', '<nop>') --
 -- edit configurations
@@ -44,7 +41,7 @@ K.n('<leader>vd', '<cmd>U.openDirectory("~/.config/nvim")<cr>')
 K.n('<leader>zd', '<cmd>U.openDirectory("~/.config/zsh")<cr>')
 K.n('<leader>cd', '<cmd>U.openDirectory("~/code")<cr>') --
 -- comment-box
-K.n('<leader>bc', '<cmd>lua require(\'comment-box\').accbox()<CR>')
+K.n('<leader>bc', [[<cmd>lua require('comment-box').accbox()<CR>]])
 -- force quit
 K.n('<C-q>', '<cmd>q!<cr>') --
 -- force write
@@ -60,24 +57,24 @@ K.n('<leader>gr', '<cmd>lua require "gitsigns".reset_buffer()<cr>')
 K.n('<leader>gs', '<cmd>lua require "gitsigns".stage_hunk()<cr>')
 K.n('<leader>gu', '<cmd>lua require "gitsigns".undo_stage_hunk()<cr>') --
 -- lsp
-K.n('<leader>[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-K.n('<leader>]d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-K.n('<leader>gd', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-K.n('<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-K.n('<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-K.n('<leader>gj', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-K.n('<leader>gk', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-K.n('<leader>gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-K.n('<leader>go', '<cmd>lua vim.diagnostic.open_float()<cr>')
-K.n('<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-K.n('<leader>k', '<cmd>lua vim.lsp.buf.hover()<cr>')
-K.n('<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-K.n('<leader>ld', '<cmd>lua vim.diagnostic.open_float()<cr>')
-K.n('<leader>lf', '<cmd>lua vim.lsp.buf.formatting_sync()<cr>')
-K.n('<leader>li', '<cmd>lspinfo<cr>')
-K.n('<leader>li', '<cmd>lspinstallinfo<cr>')
-K.n('<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>')
-K.n('<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>') --
+K.n('<Leader>[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+K.n('<Leader>]d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+K.n('<Leader>gd', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+K.n('<Leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+K.n('<Leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+K.n('<Leader>gj', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+K.n('<Leader>gk', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+K.n('<Leader>gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+K.n('<Leader>go', '<cmd>lua vim.diagnostic.open_float()<cr>')
+K.n('<Leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+K.n('<Leader>k', '<cmd>lua vim.lsp.buf.hover()<cr>')
+K.n('<Leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+K.n('<Leader>ld', '<cmd>lua vim.diagnostic.open_float()<cr>')
+K.n('<Leader>lf', '<cmd>lua vim.lsp.buf.formatting_sync()<cr>')
+K.n('<Leader>li', '<cmd>lspinfo<cr>')
+K.n('<Leader>li', '<cmd>lspinstallinfo<cr>')
+K.n('<Leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>')
+K.n('<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>') --
 -- move text up and down
 K.n('<A-j>', ':m .+1<cr>==gi')
 K.n('<A-k>', ':m .-2<cr>==gi') --
@@ -85,15 +82,19 @@ K.n('<A-k>', ':m .-2<cr>==gi') --
 K.n('<leader>f', '<cmd>Neotree toggle<cr>')
 K.n('<leader>o', '<cmd>Neotree focus<cr>') --
 -- packer
-K.n('<leader>pc', '<cmd>PackerCompile<cr>')
-K.n('<leader>pi', '<cmd>PackerInstall<cr>')
-K.n('<leader>ps', '<cmd>PackerSync<cr>')
-K.n('<leader>pu', '<cmd>PackerUpdate<cr>') --
+K.n('<Leader>pc', ':PackerCompile')
+K.n('<Leader>pi', ':PackerInstall')
+K.n('<Leader>ps', ':PackerSync')
+K.n('<Leader>pu', ':PackerUpdate') --
 -- standard operations
-K.n('<leader>w', '<cmd>w<cr>')
-K.n('<leader>q', '<cmd>q<cr>')
-K.n('<leader>c', '<cmd>bdelete!<cr>')
-K.n('<leader>h', '<cmd>nohlsearch<cr>') --
+K.n('<Leader>w', '<cmd>w<cr>')
+K.n('<Leader>q', '<cmd>q<cr>')
+K.n('<Leader>c', '<cmd>bdelete!<cr>')
+K.n('<Leader>h', '<cmd>nohlsearch<cr>') --
+
+K.n ('<Leader>/', ':%s/')
+K.n ('<Leader>?', ':%S/')
+
 -- telescope
 K.n('<leader>fb', '<cmd>Telescope buffers<cr>')
 K.n('<leader>ff', '<cmd>Telescope find_files<cr>')
@@ -157,7 +158,10 @@ K.v('>', '>gv') --
 -- sort
 K.v('<C-s>', ':Sort<CR>') --
 -- comment-box
-K.v('<leader>bc', '<Cmd>lua require(\'comment-box\').accbox()<CR>')
+K.v('<leader>bc', [[<Cmd>lua require('comment-box').accbox()<CR>]])
+-- substiture
+K.v([[<leader>/]], [[:s/]])
+K.v([[<leader>?]], [[:S/]])
 -- }}}
 -- ╭────────────────────╮
 -- │ VISUAL BLOCK ⮕ 'x' │
