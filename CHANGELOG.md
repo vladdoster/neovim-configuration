@@ -1,3 +1,28 @@
+# [1.25.0](https://github.com/vladdoster/neovim-configuration/compare/v1.24.0...v1.25.0) (2022-04-24)
+
+
+### fix
+
+* comment-box sizing and location ([19e72b4](https://github.com/vladdoster/neovim-configuration/commit/19e72b494f475c9ebca050b0d11c990a10a7f3bf))
+
+### maint
+
+* misc neo-tree config update ([84a158a](https://github.com/vladdoster/neovim-configuration/commit/84a158a10fed49931665820d4e7bd84773ef3b2d))
+* remove folds and add various keybinds & comment-box ([7e3eb8a](https://github.com/vladdoster/neovim-configuration/commit/7e3eb8a1bca0c4e7dbd3a5ebe62b8636bdbe1dfc))
+* remove python3 prog host variable" ([de1d9d0](https://github.com/vladdoster/neovim-configuration/commit/de1d9d09a304345f8dcaffed0bf656834d1cfe16))
+
+### new
+
+* add 'update' Make target to pull upstream changes ([9d930c1](https://github.com/vladdoster/neovim-configuration/commit/9d930c1dc9841780b70fb1b3b56cd10c5addf144))
+* add b0o/mapx for more ergonomic keymaps ([b84d488](https://github.com/vladdoster/neovim-configuration/commit/b84d488d3c98f5202370f5e1380b1a5c78a94086))
+* add substitute shortcut keybind "<leader>/" ([2160f89](https://github.com/vladdoster/neovim-configuration/commit/2160f892ba999c535eda395f0982cbcc1b1c07af))
+
+### style
+
+* add folds and sort ([8262cb2](https://github.com/vladdoster/neovim-configuration/commit/8262cb2d83e5ddca18aeabc6ae0f56e87cb3f467))
+* remove blank lines from color-scheme.lua ([e20b7cc](https://github.com/vladdoster/neovim-configuration/commit/e20b7cc7d918cfa6bad0587f2463669587c5bca9))
+* remove git status & increase width for neo-tree ([be57dcb](https://github.com/vladdoster/neovim-configuration/commit/be57dcbdcf5fe70678acbfd8c4116af7aa68c3a4))
+
 # [1.24.0](https://github.com/vladdoster/neovim-configuration/compare/v1.23.0...v1.24.0) (2022-04-21)
 
 
