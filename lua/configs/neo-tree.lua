@@ -18,12 +18,7 @@ neotree.setup {
     name={trailing_slash=true, use_git_status_colors=true}
   },
   enable_git_status=false,
-  event_handlers={
-    {
-      event='vim_buffer_enter',
-      handler=function(_) if vim.bo.filetype == 'neo-tree' then vim.wo.signcolumn = 'auto' end end
-    }
-  },
+  event_handlers={{event='neo_tree_buffer_enter', handler=function() vim.wo.signcolumn = 'no' end}},
   filesystem={
     filtered_items={
       hide_by_name={'.DS_Store', 'node_modules', '__pycache__'},
@@ -32,7 +27,7 @@ neotree.setup {
       visible=false
     },
     follow_current_file=true,
-    hijack_netrw_behavior='open_current',
+    hijack_netrw_behavior='open_default',
     use_libuv_file_watcher=true
   },
   git_status={
@@ -54,10 +49,10 @@ neotree.setup {
     position='left',
     width=30,
     mappings={
+      ['-']='navigate_up',
       ['.']='set_root',
       ['/']='fuzzy_finder',
       ['<2-LeftMouse>']='open',
-      ['-']='navigate_up',
       ['<c-x>']='clear_filter',
       ['<cr>']='open',
       ['C']='close_node',
