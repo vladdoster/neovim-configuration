@@ -30,32 +30,26 @@ return packer.startup(function(use)
     'nvim-lua/plenary.nvim',
     'lewis6991/impatient.nvim',
     'tweekmonster/startuptime.vim'
-    -- {
-    --   'antoinemadec/FixCursorHold.nvim',
-    --   config=[[vim.g.cursorhold_updatetime = 100]],
-    --   event={'BufRead', 'BufNewFile'}
-    -- }
   } --
   -- ╭────╮
   -- │ UI │
   -- ╰────╯
-  use {
-    'MunifTanjim/nui.nvim',
-    'nvim-lua/popup.nvim',
-    {'b0o/incline.nvim', config=[[require 'incline'.setup()]]},
-    {'rcarriga/nvim-notify', config=cfg 'notify'},
-    {'nvim-lualine/lualine.nvim', config=cfg 'lualine'},
-    {'rktjmp/lush.nvim', {'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}
-  }
+   use {'MunifTanjim/nui.nvim'}
+   use {'b0o/incline.nvim', config=[[require 'incline'.setup()]]}
+   use {'nvim-lua/popup.nvim'}
+   use {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
+   use {'rcarriga/nvim-notify', config=cfg 'notify'}
+   use {'rktjmp/lush.nvim', {'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}
   -- ╭──────────────╮
   -- │ PRODUCTIVITY │
   -- ╰──────────────╯
+  use {'junegunn/vim-easy-align'}
+  use {'obreitwi/vim-sort-folds'}
+  use {'tpope/vim-repeat'}
+  use {'tpope/vim-surround'}
+  use {'sQVe/sort.nvim', config=[[require 'sort'.setup()]]}
+
   use {
-    'b0o/mapx.nvim',
-    'junegunn/vim-easy-align',
-    'obreitwi/vim-sort-folds',
-    'tpope/vim-repeat',
-    'tpope/vim-surround',
     {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
     {'jose-elias-alvarez/null-ls.nvim', event={'BufRead'}, config=cfg 'null-ls'},
     {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'},
@@ -63,7 +57,6 @@ return packer.startup(function(use)
     {'numToStr/Buffers.nvim', event={'BufRead'}},
     {'numToStr/Comment.nvim', config=cfg('comment'), event='BufRead'},
     {'nvim-neo-tree/neo-tree.nvim', module='neo-tree', cmd='Neotree', config=cfg 'neo-tree'},
-    {'sQVe/sort.nvim', config=[[require 'sort'.setup()]]},
     {'vladdoster/remember.nvim', config=[[require 'remember']]}
   }
   use {

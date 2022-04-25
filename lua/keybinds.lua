@@ -56,6 +56,9 @@ K.n('<leader>gp', '<cmd>lua require "gitsigns".preview_hunk()<cr>')
 K.n('<leader>gr', '<cmd>lua require "gitsigns".reset_buffer()<cr>')
 K.n('<leader>gs', '<cmd>lua require "gitsigns".stage_hunk()<cr>')
 K.n('<leader>gu', '<cmd>lua require "gitsigns".undo_stage_hunk()<cr>') --
+K.v('<leader><Enter>', '<Plug>(EasyAlign)')
+K.n('<leader><Enter>', '<Plug>(EasyAlign)')
+
 -- lsp
 K.n('<Leader>[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 K.n('<Leader>]d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
@@ -92,8 +95,8 @@ K.n('<Leader>q', '<cmd>q<cr>')
 K.n('<Leader>c', '<cmd>bdelete!<cr>')
 K.n('<Leader>h', '<cmd>nohlsearch<cr>') --
 
-K.n ('<Leader>/', ':%s/')
-K.n ('<Leader>?', ':%S/')
+K.n('<Leader>/', ':%s/')
+K.n('<Leader>?', ':%S/')
 
 -- telescope
 K.n('<leader>fb', '<cmd>Telescope buffers<cr>')
