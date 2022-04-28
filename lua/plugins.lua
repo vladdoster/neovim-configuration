@@ -34,12 +34,12 @@ return packer.startup(function(use)
   -- ╭────╮
   -- │ UI │
   -- ╰────╯
-   use {'MunifTanjim/nui.nvim'}
-   use {'b0o/incline.nvim', config=[[require 'incline'.setup()]]}
-   use {'nvim-lua/popup.nvim'}
-   use {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
-   use {'rcarriga/nvim-notify', config=cfg 'notify'}
-   use {'rktjmp/lush.nvim', {'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}
+  use {'MunifTanjim/nui.nvim'}
+  use {'b0o/incline.nvim', config=[[require 'incline'.setup()]]}
+  use {'nvim-lua/popup.nvim'}
+  use {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
+  use {'rcarriga/nvim-notify', config=cfg 'notify'}
+  use {'rktjmp/lush.nvim', {'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}
   -- ╭──────────────╮
   -- │ PRODUCTIVITY │
   -- ╰──────────────╯
