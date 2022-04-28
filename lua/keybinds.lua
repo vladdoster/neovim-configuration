@@ -34,7 +34,7 @@ K.n('<leader>q', '<cmd>lua require("Buffers").delete()<CR>') --
 K.n('<S-l>', ':bnext<cr>')
 K.n('<S-h>', ':bprevious<cr>') -- }}}
 -- disable ex mode
-K.n('n', 'q', '<nop>') --
+K.n("<Esc>", "<cmd> :noh <CR>")
 -- edit configurations
 K.n('<leader>df', '<cmd>U.openDirectory("~/.config/dotfiles")<cr>')
 K.n('<leader>vd', '<cmd>U.openDirectory("~/.config/nvim")<cr>')
