@@ -1,10 +1,10 @@
 local nls = require 'null-ls'
 local function fmt_on_save(client)
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     vim.cmd([[
             augroup FORMATTING
                 autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
             augroup END
         ]])
   end
