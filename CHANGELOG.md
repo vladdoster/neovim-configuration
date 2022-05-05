@@ -1,3 +1,19 @@
+## [1.25.1](https://github.com/vladdoster/neovim-configuration/compare/v1.25.0...v1.25.1) (2022-05-05)
+
+
+### fix
+
+* update configs to use updated v0.7.0 API ([8c36612](https://github.com/vladdoster/neovim-configuration/commit/8c36612a042d9bb8cc041548837656ce05c80e6f))
+
+### maint
+
+* fix keybinds and switch back to nvim-tree ([326c9d2](https://github.com/vladdoster/neovim-configuration/commit/326c9d2f4210d326b61447aa7f0edcfb7bfbf243))
+* use esc to stop search hl & remove ex removal ([2298650](https://github.com/vladdoster/neovim-configuration/commit/22986507b6e9d050bf0f0105ae4de40ba376755e))
+
+### style
+
+* fix indenting for plugins.lua ([6afbae0](https://github.com/vladdoster/neovim-configuration/commit/6afbae03e512ccfff7d3845fbe7aa91959d9454e))
+
 # [1.25.0](https://github.com/vladdoster/neovim-configuration/compare/v1.24.0...v1.25.0) (2022-04-24)
 
 
