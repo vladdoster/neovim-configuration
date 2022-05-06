@@ -25,6 +25,7 @@ nls.setup {
     fmt.shfmt.with {extra_args={'-i', 2, '-s', '-ci', '-sr', '-bn'}},
     fmt.terraform_fmt,
     fmt.trim_newlines,
+    fmt.trim_whitespace,
     fmt.trim_whitespace
   },
   on_attach=function(client, _) fmt_on_save(client) end

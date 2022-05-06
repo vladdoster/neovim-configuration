@@ -1,4 +1,4 @@
--- PACKER BOOTSTRAP <<
+-- PACKER BOOTSTRAP 
 local warm_boot, packer = pcall(require, 'packer')
 if not warm_boot then
   local packer_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
@@ -15,11 +15,12 @@ if not warm_boot then
   packer = require 'packer'
 end
 packer.init {
+  max_jobs=tonumber(vim.fn.system 'nproc 2>/dev/null || echo 8'),
   auto_clean=true,
   compile_on_sync=true,
   git={clone_timeout=6000, subcommands={update='pull --ff-only --progress --rebase=true'}},
   profile={enable=true, threshold=0.0001}
-} -- >>
+} -- 
 local cfg = function(name) return string.format([[require("configs.%s")]], name) end
 return packer.startup(function(use)
   -- ╭─────────────╮
@@ -35,7 +36,7 @@ return packer.startup(function(use)
   -- │ UI │
   -- ╰────╯
   use {'MunifTanjim/nui.nvim'}
-  use {'b0o/incline.nvim', config=[[require 'incline'.setup()]]}
+  use {'b0o/incline.nvim', config=cfg('incline')}
   use {'nvim-lua/popup.nvim'}
   use {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
   use {'rcarriga/nvim-notify', config=cfg 'notify'}
@@ -98,6 +99,7 @@ return packer.startup(function(use)
   --  │ FUZZY FINDER │
   --  ╰──────────────╯
   use {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
+  use {'tzachar/cmp-fuzzy-path', requires={'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim'}}
   use {'nvim-telescope/telescope.nvim', cmd='Telescope', config=cfg 'telescope'}
   if not warm_boot then packer.sync() end
 end)

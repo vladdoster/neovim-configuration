@@ -1,5 +1,40 @@
-vim.g.did_load_filetypes = 0 -- Disable vim-based filetype plugin
-vim.g.do_filetype_lua = 1 -- Enable lua-based filetype plugin
+-- -- Set local highlight overrides on non-current windows
+-- autocmd({ 'WinNew', 'WinLeave' }, { command = [[setlocal winhl=CursorLine:CursorLineNC,CursorLineNr:CursorLineNrNC]] })
+-- autocmd('WinEnter', { command = [[setlocal winhl=]] })
+--
+-- autocmd('TextYankPost', {
+--   callback = function()
+--     vim.highlight.on_yank()
+--   end,
+-- })
+--
+-- ---- kyazdani42/nvim-tree.lua
+-- autocmd('BufEnter', {
+--   nested = true,
+--   callback = function()
+--     if
+--       #vim.api.nvim_tabpage_list_wins(0) == 1
+--       and vim.fn.bufname() == 'NvimTree_' .. vim.api.nvim_get_current_tabpage()
+--     then
+--       vim.api.nvim_win_close(0, false)
+--     end
+--   end,
+-- })
+--
+-- ---- wbthomason/packer.nvim
+-- autocmd('BufWritePost', {
+--   pattern = vim.fn.stdpath 'config' .. '/lua/user/plugins.lua',
+--   callback = function()
+--     vim.schedule(require('user.fn').packer_compile)
+--   end,
+-- })
+--
+-- autocmd('User', {
+--   pattern = 'PackerCompileDone',
+--   callback = function()
+--     vim.notify 'Packer configuration recompiled'
+--   end,
+-- })
 vim.cmd [[
   augroup _global_settings
     autocmd!
@@ -20,8 +55,6 @@ vim.cmd [[
 
     autocmd InsertLeave * set relativenumber
     autocmd InsertLeave,WinEnter * set cursorline
-
-    autocmd TextYankPost * lua vim.highlight.on_yank {}
   augroup end
 
   augroup _git_and_md_settings
