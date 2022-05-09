@@ -1,5 +1,5 @@
 local function clock()
-  return "" .. os.date("%H:%M")
+  return '' .. os.date '%H:%M'
 end
 
 local function lsp_progress(_, is_active)
@@ -8,57 +8,57 @@ local function lsp_progress(_, is_active)
   end
   local messages = vim.lsp.util.get_progress_messages()
   if #messages == 0 then
-    return ""
+    return ''
   end
   -- dump(messages)
   local status = {}
   for _, msg in pairs(messages) do
-    local title = ""
+    local title = ''
     if msg.title then
       title = msg.title
     end
     -- if msg.message then
     --   title = title .. " " .. msg.message
     -- end
-    table.insert(status, (msg.percentage or 0) .. "%% " .. title)
+    table.insert(status, (msg.percentage or 0) .. '%% ' .. title)
   end
-  local spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+  local spinners = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
   local ms = vim.loop.hrtime() / 1000000
   local frame = math.floor(ms / 120) % #spinners
-  return table.concat(status, "  ") .. " " .. spinners[frame + 1]
+  return table.concat(status, ' | ') .. ' ' .. spinners[frame + 1]
 end
 
-vim.cmd("au User LspProgressUpdate let &ro = &ro")
+vim.cmd 'au User LspProgressUpdate let &ro = &ro'
 
 local config = {
   options = {
-    theme = "tokyonight",
-    section_separators = { left = "|", right = "|" },
-    component_separators = { left = "|", right = "|" },
+    theme = 'tokyonight',
+    section_separators = { left = '', right = '' },
+    component_separators = { left = '', right = '' },
     icons_enabled = false,
     globalstatus = true,
   },
   sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "branch" },
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch' },
     lualine_c = {
-      { "diagnostics", sources = { "nvim_diagnostic" } },
-      { "filetype", icon_only = false, separator = "", padding = { left = 1, right = 0 } },
-      { "filename", path = 1, symbols = { modified = " * ", readonly = "", unnamed = "" } },
+      { 'diagnostics', sources = { 'nvim_diagnostic' } },
+      { 'filetype', icon_only = false, separator = '', padding = { left = 1, right = 0 } },
+      { 'filename', path = 1, symbols = { modified = ' * ', readonly = '', unnamed = '' } },
       {
         function()
-          local gps = require("nvim-gps")
+          local gps = require 'nvim-gps'
           return gps.get_location()
         end,
         cond = function()
-          local gps = require("nvim-gps")
-          return pcall(require, "nvim-treesitter.parsers") and gps.is_available()
+          local gps = require 'nvim-gps'
+          return pcall(require, 'nvim-treesitter.parsers') and gps.is_available()
         end,
-        color = { fg = "#ff9e64" },
+        color = { fg = '#ff9e64' },
       },
     },
     lualine_x = { lsp_progress },
-    lualine_y = { "location" },
+    lualine_y = { 'location' },
     lualine_z = { clock },
   },
   inactive_sections = {
@@ -69,7 +69,7 @@ local config = {
     lualine_y = {},
     lualine_z = {},
   },
-  extensions = { "nvim-tree" },
+  extensions = { 'nvim-tree' },
 }
 
 -- try to load matching lualine theme
@@ -77,12 +77,12 @@ local config = {
 local M = {}
 
 function M.load()
-  local name = vim.g.colors_name or ""
-  local ok, _ = pcall(require, "lualine.themes." .. name)
+  local name = vim.g.colors_name or ''
+  local ok, _ = pcall(require, 'lualine.themes.' .. name)
   if ok then
     config.options.theme = name
   end
-  require("lualine").setup(config)
+  require('lualine').setup(config)
 end
 
 M.load()
