@@ -1,3 +1,18 @@
+# [1.26.0](https://github.com/vladdoster/neovim-configuration/compare/v1.25.1...v1.26.0) (2022-05-09)
+
+
+### feat
+
+* add b0o/incline plugin ([7254e30](https://github.com/vladdoster/neovim-configuration/commit/7254e308c8df99f4c3a23bcdd2c360c1d81579d0))
+
+### maint
+
+* update neotree, keybinds, plugins, and lsp configs ([8e0c76f](https://github.com/vladdoster/neovim-configuration/commit/8e0c76f4b5dafcb4ea44d468e46dfc9cedbe2b11))
+
+### new
+
+* overhaul configuration (#1) ([3297b17](https://github.com/vladdoster/neovim-configuration/commit/3297b17d0a9d38da8566ef226d8b2ea4c9b7cb3e)), closes [#1](https://github.com/vladdoster/neovim-configuration/issues/1)
+
 ## [1.25.1](https://github.com/vladdoster/neovim-configuration/compare/v1.25.0...v1.25.1) (2022-05-05)
 
 
