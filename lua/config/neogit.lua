@@ -1,10 +1,10 @@
-require("neogit").setup({
-  kind = "split",
+require('neogit').setup {
+  kind = 'split',
   signs = {
     -- { CLOSED, OPENED }
-    section = { "", "" },
-    item = { "", "" },
-    hunk = { "", "" },
+    section = { '', '' },
+    item = { '', '' },
+    hunk = { '', '' },
   },
-  integrations = { diffview = true },
-})
+  integrations = { diffview = false },
+}

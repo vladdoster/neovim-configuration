@@ -9,17 +9,11 @@ local function on_attach(client, bufnr)
 end
 
 local servers = {
-  ansiblels = {},
   bashls = {},
-  clangd = {},
-  cssls = {},
   dockerls = {},
-  eslint = {},
   html = {},
-  jsonls = {},
   pyright = {},
   sumneko_lua = {},
-  vimls = {},
 }
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
