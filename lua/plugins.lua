@@ -91,10 +91,7 @@ local function plugins(use)
       },
     },
   }
-  use {
-    'simrat39/symbols-outline.nvim',
-    cmd = { 'SymbolsOutline' },
-  }
+  use { 'simrat39/symbols-outline.nvim', cmd = { 'SymbolsOutline' } }
 
   use {
     'numToStr/Comment.nvim',
@@ -118,47 +115,12 @@ local function plugins(use)
 
   -- Theme: color schemes
   -- use("tjdevries/colorbuddy.vim")
-  use {
-    -- "shaunsingh/nord.nvim",
-    -- "shaunsingh/moonlight.nvim",
-    -- { "olimorris/onedark.nvim", requires = "rktjmp/lush.nvim" },
-    -- "joshdick/onedark.vim",
-    -- "wadackel/vim-dogrun",
-    -- { "npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim" },
-    -- "bluz71/vim-nightfly-guicolors",
-    -- { "marko-cerovac/material.nvim" },
-    -- "sainnhe/edge",
-    -- { "embark-theme/vim", as = "embark" },
-    -- "norcalli/nvim-base16.lua",
-    -- "RRethy/nvim-base16",
-    -- "novakne/kosmikoa.nvim",
-    -- "glepnir/zephyr-nvim",
-    -- "ghifarit53/tokyonight-vim"
-    -- "sainnhe/sonokai",
-    -- "morhetz/gruvbox",
-    -- "arcticicestudio/nord-vim",
-    -- "drewtempelmeyer/palenight.vim",
-    -- "Th3Whit3Wolf/onebuddy",
-    -- "christianchiarulli/nvcode-color-schemes.vim",
-    -- "Th3Whit3Wolf/one-nvim"
-
-    'folke/tokyonight.nvim',
-    opt = false,
-    -- event = "VimEnter",
-    config = function()
-      require 'config.theme'
-    end,
-  }
+  use { 'folke/tokyonight.nvim', opt = false, config = [[require 'config.theme']] }
   -- Dashboard
   use { 'glepnir/dashboard-nvim', opt = false, config = [[require('config.dashboard')]] }
-  use {
-    'norcalli/nvim-terminal.lua',
-    ft = 'terminal',
-    config = function()
-      require('terminal').setup()
-    end,
-  }
+  use { 'norcalli/nvim-terminal.lua', ft = 'terminal', config = [[require('terminal').setup()]] }
   use { 'nvim-lua/plenary.nvim', module = 'plenary' }
+  use { 'MunifTanjim/nui.nvim', module = 'nui' }
   use { 'nvim-lua/popup.nvim', module = 'popup' }
 
   use {
@@ -167,21 +129,19 @@ local function plugins(use)
     wants = { 'plenary.nvim', 'popup.nvim' },
     requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
   }
-
+  -- use { 'kyazdani42/nvim-tree.lua', cmd = { 'NvimTreeToggle', 'NvimTreeClose' }, config = [[require 'config.tree']] }
   use {
-    'kyazdani42/nvim-tree.lua',
-    cmd = { 'NvimTreeToggle', 'NvimTreeClose' },
-    config = function()
-      require 'config.tree'
-    end,
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
+    config = [[require 'config.neo-tree']],
+    cmd = { 'NeoTree', 'NeoTreeFocus', 'NeoTreeFocusToggle' },
+    requires = { 'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim' },
   }
 
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
-    config = function()
-      require 'config.telescope'
-    end,
+    config = [[require 'config.telescope']],
     cmd = { 'Telescope' },
     module = 'telescope',
     keys = { '<leader><space>', '<leader>fz', '<leader>pp' },
@@ -205,25 +165,10 @@ local function plugins(use)
       -- { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" }
     },
   }
-
   -- Indent Guides and rainbow brackets
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    event = 'BufReadPre',
-    config = function()
-      require 'config.blankline'
-    end,
-  }
-
+  use { 'lukas-reineke/indent-blankline.nvim', event = 'BufReadPre', config = [[require 'config.blankline']] }
   -- Tabs
-  use {
-    'akinsho/nvim-bufferline.lua',
-    event = 'BufReadPre',
-    config = function()
-      require 'config.bufferline'
-    end,
-  }
-
+  use { 'akinsho/nvim-bufferline.lua', event = 'BufReadPre', config = [[require 'config.bufferline']] }
   -- Terminal
   use {
     'akinsho/nvim-toggleterm.lua',
@@ -232,7 +177,6 @@ local function plugins(use)
       require 'config.terminal'
     end,
   }
-
   -- Smooth Scrolling
   use {
     'karb94/neoscroll.nvim',
@@ -314,7 +258,6 @@ local function plugins(use)
       require 'config.lightspeed'
     end,
   }
-
   use {
     'folke/trouble.nvim',
     event = 'BufReadPre',
@@ -326,7 +269,6 @@ local function plugins(use)
       }
     end,
   }
-
   use {
     'folke/persistence.nvim',
     event = 'BufReadPre',
@@ -339,7 +281,6 @@ local function plugins(use)
   use { 'mbbill/undotree', cmd = 'UndotreeToggle' }
   use { 'mjlbach/babelfish.nvim', module = 'babelfish' }
   use { 'folke/twilight.nvim', module = 'twilight' }
-
   use {
     'folke/which-key.nvim',
     event = 'VimEnter',
@@ -347,7 +288,6 @@ local function plugins(use)
       require 'config.keys'
     end,
   }
-
   use {
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewClose', 'DiffviewFocusFiles', 'DiffviewOpen', 'DiffviewToggleFiles' },

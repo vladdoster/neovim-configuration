@@ -193,7 +193,8 @@ local leader = {
   },
   f = {
     name = '+file',
-    t = { '<cmd>NvimTreeToggle<cr>', 'NvimTree' },
+    t = { '<cmd>NeoTreeFocusToggle<cr>', 'NeoTree Toggle' },
+    o = { '<cmd>NeoTreeFocus<cr>', 'NeoTree Focus' },
     f = { '<cmd>Telescope find_files<cr>', 'Find File' },
     r = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
     n = { '<cmd>enew<cr>', 'New File' },
