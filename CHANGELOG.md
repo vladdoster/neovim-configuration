@@ -1,3 +1,22 @@
+# [1.27.0](https://github.com/vladdoster/neovim-configuration/compare/v1.26.0...v1.27.0) (2022-05-10)
+
+
+### feat
+
+* add easy-align, sort-folds, surround, and sort plugins ([a2545e9](https://github.com/vladdoster/neovim-configuration/commit/a2545e9640b471e730a1f59a1411d95ae59dcf83))
+
+### maint
+
+* add sessions dir to gitignore ([b292532](https://github.com/vladdoster/neovim-configuration/commit/b292532c2d53587733e02dced95067b8741b84bf))
+* clean up whichkey config ([c53fe10](https://github.com/vladdoster/neovim-configuration/commit/c53fe10df6c1748d952b0d1a3adfe6f5bdf4cacc))
+* remove commented out config code from telescope ([f769b83](https://github.com/vladdoster/neovim-configuration/commit/f769b8319224dc02ff93e1a9bfdfd7146edc800c))
+* remove unused languages from treesitter ([53f78e7](https://github.com/vladdoster/neovim-configuration/commit/53f78e7af99f41eeb41ce42f2bb2d69c368b348c))
+* update key mappings ([83a46e0](https://github.com/vladdoster/neovim-configuration/commit/83a46e07132f730c6bfce5551d3df49aa03bbb06))
+
+### style
+
+* remove lualine seperators ([1225e14](https://github.com/vladdoster/neovim-configuration/commit/1225e1413e4bb6a0c519c8b1732c567b348fa111))
+
 # [1.26.0](https://github.com/vladdoster/neovim-configuration/compare/v1.25.1...v1.26.0) (2022-05-09)
 
 
