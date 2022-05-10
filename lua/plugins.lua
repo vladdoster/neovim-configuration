@@ -252,8 +252,8 @@ local function plugins(use)
   use {
     'lewis6991/gitsigns.nvim',
     event = 'BufReadPre',
-    wants = 'plenary.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
+    wants = 'plenary.nvim',
     config = function()
       require 'config.gitsigns'
     end,
@@ -350,7 +350,7 @@ local function plugins(use)
 
   use {
     'sindrets/diffview.nvim',
-    cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
+    cmd = { 'DiffviewClose', 'DiffviewFocusFiles', 'DiffviewOpen', 'DiffviewToggleFiles' },
     module = 'diffview',
     config = function()
       require 'config.diffview'
@@ -365,6 +365,12 @@ local function plugins(use)
       vim.g.Illuminate_delay = 1000
     end,
   }
+
+  use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
+  use { 'obreitwi/vim-sort-folds', cmd = 'SortFolds' }
+  use { 'tpope/vim-repeat' }
+  use { 'tpope/vim-surround' }
+  use { 'sQVe/sort.nvim', cmd = 'Sort', config = [[require 'sort'.setup()]] }
 
   use {
     'andymass/vim-matchup',
