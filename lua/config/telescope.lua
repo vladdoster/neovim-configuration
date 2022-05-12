@@ -58,6 +58,6 @@ util.nnoremap('<leader>fz', function()
   require('telescope').extensions.z.list { cmd = { vim.o.shell, '-c', 'zoxide query -ls' } }
 end)
 
-util.nnoremap('<leader>pp', ':lua require\'telescope\'.extensions.project.project{}<CR>')
+util.nnoremap('<leader>pp', [[:lua require'telescope'.extensions.project.project{}<CR>]])
 
 return M

@@ -1,6 +1,6 @@
 local ts_configs = require 'nvim-treesitter.configs'
 ts_configs.setup {
-  ensure_installed = { 'bash', 'comment', 'go', 'lua', 'markdown', 'python', 'toml', 'yaml' },
+  ensure_installed = { 'bash', 'go', 'lua', 'markdown', 'python', 'toml', 'yaml' },
   highlight = { enable = true, use_languagetree = true },
   indent = { enable = false },
   context_commentstring = { enable = true, enable_autocmd = false },
