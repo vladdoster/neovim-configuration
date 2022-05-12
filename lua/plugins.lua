@@ -1,10 +1,6 @@
 local packer = require 'util.packer'
-
 local config = {
-  profile = {
-    enable = true,
-    threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
-  },
+  profile = { enable = true, threshold = 0 },
   display = {
     open_fn = function()
       return require('packer.util').float { border = 'single' }
@@ -13,9 +9,7 @@ local config = {
   opt_default = true,
   local_plugins = {},
 }
-
 local function plugins(use)
-  -- Packer can manage itself as an optional plugin
   use { 'wbthomason/packer.nvim' }
   use {
     'nathom/filetype.nvim',
@@ -60,7 +54,6 @@ local function plugins(use)
       require('nvim-gps').setup { separator = ' ' }
     end,
   }
-
   use { 'kazhala/close-buffers.nvim', cmd = 'BDelete' }
   use {
     'hrsh7th/nvim-cmp',
@@ -92,7 +85,6 @@ local function plugins(use)
     },
   }
   use { 'simrat39/symbols-outline.nvim', cmd = { 'SymbolsOutline' } }
-
   use {
     'numToStr/Comment.nvim',
     keys = { 'gc', 'gcc', 'gbc' },
@@ -100,7 +92,6 @@ local function plugins(use)
       require 'config.comments'
     end,
   }
-
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -112,17 +103,13 @@ local function plugins(use)
     },
     config = [[require('config.treesitter')]],
   }
-
   -- Theme: color schemes
-  -- use("tjdevries/colorbuddy.vim")
   use { 'folke/tokyonight.nvim', opt = false, config = [[require 'config.theme']] }
-  -- Dashboard
   use { 'glepnir/dashboard-nvim', opt = false, config = [[require('config.dashboard')]] }
   use { 'norcalli/nvim-terminal.lua', ft = 'terminal', config = [[require('terminal').setup()]] }
   use { 'nvim-lua/plenary.nvim', module = 'plenary' }
   use { 'MunifTanjim/nui.nvim', module = 'nui' }
   use { 'nvim-lua/popup.nvim', module = 'popup' }
-
   use {
     'windwp/nvim-spectre',
     module = 'spectre',
@@ -137,7 +124,6 @@ local function plugins(use)
     cmd = { 'NeoTree', 'NeoTreeFocus', 'NeoTreeFocusToggle' },
     requires = { 'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim' },
   }
-
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
@@ -149,7 +135,6 @@ local function plugins(use)
       'plenary.nvim',
       'popup.nvim',
       'telescope-z.nvim',
-      -- "telescope-frecency.nvim",
       'telescope-fzy-native.nvim',
       'telescope-project.nvim',
       'trouble.nvim',
@@ -162,7 +147,6 @@ local function plugins(use)
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-symbols.nvim',
       'nvim-telescope/telescope-fzy-native.nvim',
-      -- { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" }
     },
   }
   -- Indent Guides and rainbow brackets
@@ -202,14 +186,6 @@ local function plugins(use)
       require 'config.gitsigns'
     end,
   }
-  use {
-    'TimUntersberger/neogit',
-    cmd = 'Neogit',
-    config = function()
-      require 'config.neogit'
-    end,
-  }
-  use { 'rlch/github-notifications.nvim', module = 'github-notifications' }
   -- Statusline
   use {
     'nvim-lualine/lualine.nvim',
@@ -223,22 +199,6 @@ local function plugins(use)
       require 'config.colorizer'
     end,
   }
-
-  use { 'npxbr/glow.nvim', cmd = 'Glow' }
-  use {
-    'plasticboy/vim-markdown',
-    requires = 'godlygeek/tabular',
-    ft = 'markdown',
-  }
-  use {
-    'iamcco/markdown-preview.nvim',
-    run = function()
-      vim.fn['mkdp#util#install']()
-    end,
-    ft = 'markdown',
-    cmd = { 'MarkdownPreview' },
-  }
-
   use {
     'phaazon/hop.nvim',
     keys = { 'gh' },
@@ -250,7 +210,6 @@ local function plugins(use)
       require('hop').setup {}
     end,
   }
-
   use {
     'ggandor/lightspeed.nvim',
     keys = { 's', 'S', 'f', 'F', 't', 'T' },
@@ -296,7 +255,6 @@ local function plugins(use)
       require 'config.diffview'
     end,
   }
-
   use {
     'RRethy/vim-illuminate',
     event = 'CursorHold',
@@ -305,13 +263,11 @@ local function plugins(use)
       vim.g.Illuminate_delay = 1000
     end,
   }
-
   use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
   use { 'obreitwi/vim-sort-folds', cmd = 'SortFolds' }
   use { 'tpope/vim-repeat' }
   use { 'tpope/vim-surround' }
   use { 'sQVe/sort.nvim', cmd = 'Sort', config = [[require 'sort'.setup()]] }
-
   use {
     'andymass/vim-matchup',
     event = 'CursorMoved',
