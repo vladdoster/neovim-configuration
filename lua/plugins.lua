@@ -101,7 +101,7 @@ local function plugins(use)
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
     },
-    config = [[require('config.treesitter')]],
+    config = function() require('config.treesitter') end,
   }
   -- Theme: color schemes
   use { 'folke/tokyonight.nvim', opt = false, config = [[require 'config.theme']] }
