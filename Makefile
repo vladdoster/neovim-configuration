@@ -11,10 +11,11 @@ clean:
 	$(info cleaned neovim artifacts)
 
 deps:
-	luarocks install \
-		--server https://luarocks.org/dev luaformatter
+ ifeq (, $(shell which lua-format))
+	luarocks install --server https://luarocks.org/dev luaformatter
+ endif
 
-fmt:
+fmt: deps
 	@find . -name '*.lua' -print0 \
 	| xargs -0 -n1 -P4 \
 		lua-format \
