@@ -1,5 +1,3 @@
--- local util = require("util")
-
 vim.o.completeopt = 'menuone,noselect'
 
 -- Setup nvim-cmp.
@@ -27,19 +25,47 @@ cmp.setup {
   },
   snippet = {
     expand = function(args)
-      -- For `luasnip` user.
       require('luasnip').lsp_expand(args.body)
     end,
   },
   mapping = {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm { select = true },
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif require("luasnip").expand_or_jumpable() then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif require("luasnip").jumpable(-1) then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
   },
   sources = cmp.config.sources({
-    { name = 'buffer', keyword_length = 5 },
+    { name = 'buffer', keyword_length = 2 },
     { name = 'luasnip' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
@@ -62,17 +88,7 @@ cmp.setup {
       end,
     },
   },
-  sorting = {
-    comparators = {
-      cmp.config.compare.sort_text,
-      cmp.config.compare.offset,
-      -- cmp.config.compare.exact,
-      cmp.config.compare.score,
-      -- cmp.config.compare.kind,
-      -- cmp.config.compare.length,
-      cmp.config.compare.order,
-    },
-  },
+  sorting = { comparators = { cmp.config.compare.offset, cmp.config.compare.order, cmp.config.compare.score, cmp.config.compare.sort_text } },
 }
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = '' } })
