@@ -11,22 +11,9 @@ local config = {
 }
 local function plugins(use)
   use { 'wbthomason/packer.nvim' }
-  use {
-    'nathom/filetype.nvim',
-    opt = false,
-    config = function()
-      require 'config.filetype'
-    end,
-  }
+  use { 'nathom/filetype.nvim', opt = false, config = [[require 'config.filetype']] }
   use { 'stevearc/dressing.nvim', event = 'BufReadPre' }
-  use {
-    'rcarriga/nvim-notify',
-    event = 'VimEnter',
-    config = function()
-      vim.notify = require 'notify'
-    end,
-  }
-  -- LSP
+  use { 'rcarriga/nvim-notify', event = 'VimEnter', config = [[vim.notify = require 'notify']] }
   use {
     'neovim/nvim-lspconfig',
     event = 'BufReadPre',
@@ -36,9 +23,7 @@ local function plugins(use)
       'cmp-nvim-lsp',
       'nvim-lsp-installer',
     },
-    config = function()
-      require 'config.lsp'
-    end,
+    config = [[require 'config.lsp']],
     requires = {
       'jose-elias-alvarez/null-ls.nvim',
       'folke/lua-dev.nvim',
@@ -47,12 +32,10 @@ local function plugins(use)
   }
   use {
     'SmiteshP/nvim-gps',
+    config = [[require('nvim-gps').setup { separator = ' ' }]],
+    module = 'nvim-gps',
     requires = 'nvim-treesitter/nvim-treesitter',
     wants = 'nvim-treesitter',
-    module = 'nvim-gps',
-    config = function()
-      require('nvim-gps').setup { separator = ' ' }
-    end,
   }
   use { 'kazhala/close-buffers.nvim', cmd = 'BDelete' }
   use {
@@ -85,38 +68,19 @@ local function plugins(use)
     },
   }
   use { 'simrat39/symbols-outline.nvim', cmd = { 'SymbolsOutline' } }
-  use {
-    'numToStr/Comment.nvim',
-    keys = { 'gc', 'gcc', 'gbc' },
-    config = function()
-      require 'config.comments'
-    end,
-  }
+  use { 'numToStr/Comment.nvim', keys = { 'gc', 'gcc', 'gbc' }, config = [[require 'config.comments']] }
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    event = 'BufRead',
-    requires = {
-      { 'nvim-treesitter/playground', cmd = 'TSHighlightCapturesUnderCursor' },
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'RRethy/nvim-treesitter-textsubjects',
-    },
-    config = function() require('config.treesitter') end,
+    event = { 'BufRead', 'BufNewFile' },
+    config = [[require 'config.treesitter']],
   }
-  -- Theme: color schemes
-  use { 'folke/tokyonight.nvim', opt = false, config = [[require 'config.theme']] }
+  use { 'marko-cerovac/material.nvim', opt = false, config = [[require 'config.theme']] }
   use { 'glepnir/dashboard-nvim', opt = false, config = [[require('config.dashboard')]] }
   use { 'norcalli/nvim-terminal.lua', ft = 'terminal', config = [[require('terminal').setup()]] }
   use { 'nvim-lua/plenary.nvim', module = 'plenary' }
   use { 'MunifTanjim/nui.nvim', module = 'nui' }
   use { 'nvim-lua/popup.nvim', module = 'popup' }
-  use {
-    'windwp/nvim-spectre',
-    module = 'spectre',
-    wants = { 'plenary.nvim', 'popup.nvim' },
-    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
-  }
-  -- use { 'kyazdani42/nvim-tree.lua', cmd = { 'NvimTreeToggle', 'NvimTreeClose' }, config = [[require 'config.tree']] }
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
@@ -124,7 +88,6 @@ local function plugins(use)
     cmd = { 'NeoTree', 'NeoTreeFocus', 'NeoTreeFocusToggle' },
     requires = { 'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim' },
   }
-  -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
     config = [[require 'config.telescope']],
@@ -149,74 +112,29 @@ local function plugins(use)
       'nvim-telescope/telescope-fzy-native.nvim',
     },
   }
-  -- Indent Guides and rainbow brackets
   use { 'lukas-reineke/indent-blankline.nvim', event = 'BufReadPre', config = [[require 'config.blankline']] }
-  -- Tabs
   use { 'akinsho/nvim-bufferline.lua', event = 'BufReadPre', config = [[require 'config.bufferline']] }
-  -- Terminal
-  use {
-    'akinsho/nvim-toggleterm.lua',
-    keys = '<M-`>',
-    config = function()
-      require 'config.terminal'
-    end,
-  }
-  -- Smooth Scrolling
-  use {
-    'karb94/neoscroll.nvim',
-    keys = { '<C-u>', '<C-d>', 'gg', 'G' },
-    config = function()
-      require 'config.scroll'
-    end,
-  }
-  use {
-    'edluffy/specs.nvim',
-    after = 'neoscroll.nvim',
-    config = function()
-      require 'config.specs'
-    end,
-  }
-  -- Git Gutter
+  use { 'akinsho/nvim-toggleterm.lua', keys = '<M-`>', config = [[ require 'config.terminal' ]] }
+  use { 'karb94/neoscroll.nvim', keys = { '<C-u>', '<C-d>', 'gg', 'G' }, config = [[ require 'config.scroll']] }
   use {
     'lewis6991/gitsigns.nvim',
     event = 'BufReadPre',
     requires = { 'nvim-lua/plenary.nvim' },
     wants = 'plenary.nvim',
-    config = function()
-      require 'config.gitsigns'
-    end,
+    config = [[require 'config.gitsigns']],
   }
-  -- Statusline
-  use {
-    'nvim-lualine/lualine.nvim',
-    event = 'VimEnter',
-    config = [[require('config.lualine')]],
-  }
-  use {
-    'norcalli/nvim-colorizer.lua',
-    event = 'BufReadPre',
-    config = function()
-      require 'config.colorizer'
-    end,
-  }
+  use { 'nvim-lualine/lualine.nvim', event = 'VimEnter', config = [[require('config.lualine')]] }
+  use { 'norcalli/nvim-colorizer.lua', event = 'BufReadPre', config = [[require 'config.colorizer']] }
   use {
     'phaazon/hop.nvim',
     keys = { 'gh' },
     cmd = { 'HopWord', 'HopChar1' },
     config = function()
       require('util').nmap('gh', '<cmd>HopWord<CR>')
-      -- require("util").nmap("s", "<cmd>HopChar1<CR>")
-      -- you can configure Hop the way you like here; see :h hop-config
       require('hop').setup {}
     end,
   }
-  use {
-    'ggandor/lightspeed.nvim',
-    keys = { 's', 'S', 'f', 'F', 't', 'T' },
-    config = function()
-      require 'config.lightspeed'
-    end,
-  }
+  use { 'ggandor/lightspeed.nvim', keys = { 's', 'S', 'f', 'F', 't', 'T' }, config = [[require 'config.lightspeed']] }
   use {
     'folke/trouble.nvim',
     event = 'BufReadPre',
@@ -228,53 +146,25 @@ local function plugins(use)
       }
     end,
   }
-  use {
-    'folke/persistence.nvim',
-    event = 'BufReadPre',
-    module = 'persistence',
-    config = function()
-      require('persistence').setup()
-    end,
-  }
+  use { 'folke/persistence.nvim', event = 'BufReadPre', module = 'persistence', config = [[require('persistence').setup()]] }
   use { 'tweekmonster/startuptime.vim', cmd = 'StartupTime' }
   use { 'mbbill/undotree', cmd = 'UndotreeToggle' }
   use { 'mjlbach/babelfish.nvim', module = 'babelfish' }
   use { 'folke/twilight.nvim', module = 'twilight' }
-  use {
-    'folke/which-key.nvim',
-    event = 'VimEnter',
-    config = function()
-      require 'config.keys'
-    end,
-  }
+  use { 'folke/which-key.nvim', event = 'VimEnter', config = [[require 'config.keys']] }
   use {
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewClose', 'DiffviewFocusFiles', 'DiffviewOpen', 'DiffviewToggleFiles' },
     module = 'diffview',
-    config = function()
-      require 'config.diffview'
-    end,
+    config = [[require 'config.diffview']],
   }
-  use {
-    'RRethy/vim-illuminate',
-    event = 'CursorHold',
-    module = 'illuminate',
-    config = function()
-      vim.g.Illuminate_delay = 1000
-    end,
-  }
+  use { 'RRethy/vim-illuminate', event = 'CursorHold', module = 'illuminate', config = [[vim.g.Illuminate_delay = 1000]] }
   use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
   use { 'obreitwi/vim-sort-folds', cmd = 'SortFolds' }
   use { 'tpope/vim-repeat' }
   use { 'tpope/vim-surround' }
   use { 'sQVe/sort.nvim', cmd = 'Sort', config = [[require 'sort'.setup()]] }
-  use {
-    'andymass/vim-matchup',
-    event = 'CursorMoved',
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = 'status_manual' }
-    end,
-  }
+  use { 'andymass/vim-matchup', event = 'CursorMoved', config = [[vim.g.matchup_matchparen_offscreen = { method = 'status_manual' }]] }
 end
 
 return packer.setup(config, plugins)
