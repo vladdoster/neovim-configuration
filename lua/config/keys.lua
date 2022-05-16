@@ -32,10 +32,6 @@ util.nnoremap('<A-k>', ':m .-2<CR>==')
 util.vnoremap('<A-k>', ':m \'<-2<CR>gv=gv')
 util.inoremap('<A-k>', '<Esc>:m .-2<CR>==gi')
 
--- Switch buffers with tab
-util.nnoremap('<Tab>', ':bprevious<cr>')
-util.nnoremap('<S-Tab>', ':bnext<cr>')
-
 -- Easier pasting
 util.nnoremap('[p', ':pu!<cr>')
 util.nnoremap(']p', ':pu<cr>')
@@ -80,16 +76,16 @@ end, {
   expr = true,
 })
 
-wk.register {
-  [']'] = {
-    name = 'next',
-    r = { '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>', 'Next Reference' },
-  },
-  ['['] = {
-    name = 'previous',
-    r = { '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>', 'Next Reference' },
-  },
-}
+-- wk.register {
+--   [']'] = {
+--     name = 'next',
+--     r = { '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>', 'Next Reference' },
+--   },
+--   ['['] = {
+--     name = 'previous',
+--     r = { '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>', 'Next Reference' },
+--   },
+-- }
 
 -- makes * and # work on visual mode too.
 vim.api.nvim_exec(
@@ -127,7 +123,7 @@ local leader = {
     ['s'] = { '<C-W>s', 'split-window-below' },
     ['v'] = { '<C-W>v', 'split-window-right' },
   },
-  c = { v = { '<cmd>Vista!!<CR>', 'Vista' }, o = { '<cmd>SymbolsOutline<cr>', 'Symbols Outline' } },
+  -- c = { v = { '<cmd>Vista!!<CR>', 'Vista' }, o = { '<cmd>SymbolsOutline<cr>', 'Symbols Outline' } },
   b = {
     name = '+buffer',
     ['b'] = { '<cmd>:e #<cr>', 'Switch to Other Buffer' },
@@ -139,21 +135,21 @@ local leader = {
     ['D'] = { '<cmd>:bd<CR>', 'Delete Buffer & Window' },
     ['g'] = { '<cmd>:BufferLinePick<CR>', 'Goto Buffer' },
   },
-  g = {
-    name = '+git',
-    g = { '<cmd>Neogit kind=split<CR>', 'NeoGit' },
-    l = {
-      function()
-        require('util').float_terminal 'lazygit'
-      end,
-      'LazyGit',
-    },
-    c = { '<Cmd>Telescope git_commits<CR>', 'commits' },
-    b = { '<Cmd>Telescope git_branches<CR>', 'branches' },
-    s = { '<Cmd>Telescope git_status<CR>', 'status' },
-    d = { '<cmd>DiffviewOpen<cr>', 'DiffView' },
-    h = { name = '+hunk' },
-  },
+  -- g = {
+  --   name = '+git',
+  --   g = { '<cmd>Neogit kind=split<CR>', 'NeoGit' },
+  --   l = {
+  --     function()
+  --       require('util').float_terminal 'lazygit'
+  --     end,
+  --     'LazyGit',
+  --   },
+  --   c = { '<Cmd>Telescope git_commits<CR>', 'commits' },
+  --   b = { '<Cmd>Telescope git_branches<CR>', 'branches' },
+  --   s = { '<Cmd>Telescope git_status<CR>', 'status' },
+  --   d = { '<cmd>DiffviewOpen<cr>', 'DiffView' },
+  --   h = { name = '+hunk' },
+  -- },
   ['h'] = {
     name = '+help',
     a = { '<cmd>:Telescope autocommands<cr>', 'Auto Commands' },
@@ -174,7 +170,7 @@ local leader = {
       s = { '<cmd>PackerStatus<cr>', 'Status' },
     },
   },
-  u = { '<cmd>UndotreeToggle<CR>', 'Undo Tree' },
+  -- u = { '<cmd>UndotreeToggle<CR>', 'Undo Tree' },
   s = {
     name = '+search',
     g = { '<cmd>Telescope live_grep<cr>', 'Grep' },
@@ -189,7 +185,7 @@ local leader = {
     },
     h = { '<cmd>Telescope command_history<cr>', 'Command History' },
     m = { '<cmd>Telescope marks<cr>', 'Jump to Mark' },
-    r = { '<cmd>lua require(\'spectre\').open()<CR>', 'Replace (Spectre)' },
+    -- r = { '<cmd>lua require(\'spectre\').open()<CR>', 'Replace (Spectre)' },
   },
   f = {
     name = '+file',
@@ -198,21 +194,20 @@ local leader = {
     f = { '<cmd>Telescope find_files<cr>', 'Find File' },
     r = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
     n = { '<cmd>enew<cr>', 'New File' },
-    z = 'Zoxide',
     d = 'Dot Files',
   },
   o = {
     name = '+open',
-    p = { '<cmd>MarkdownPreview<cr>', 'Markdown Preview' },
-    g = { '<cmd>Glow<cr>', 'Markdown Glow' },
-    n = { '<cmd>lua require(\'github-notifications.menu\').notifications()<cr>', 'GitHub Notifications' },
+    -- p = { '<cmd>MarkdownPreview<cr>', 'Markdown Preview' },
+    -- g = { '<cmd>Glow<cr>', 'Markdown Glow' },
+    -- n = { '<cmd>lua require(\'github-notifications.menu\').notifications()<cr>', 'GitHub Notifications' },
   },
   p = {
     name = '+project',
     p = 'Open Projects',
-    v = { ':Telescope file_browser cwd=~/.config/nvim<CR>', 'Browse Neovim config' },
-    d = { ':Telescope file_browser cwd=~/.config/dotfiles<CR>', 'Browse dotfiles' },
     c = { ':Telescope file_browser cwd=~/code<CR>', 'Browse code' },
+    d = { ':Telescope file_browser cwd=~/.config/dotfiles<CR>', 'Browse dotfiles' },
+    v = { ':Telescope file_browser cwd=~/.config/nvim<CR>', 'Browse Neovim config' },
     z = { ':Telescope file_browser cwd=~/.local/share/zsh/zinit.git<CR>', 'Browse zinit.git' },
   },
   t = {
@@ -243,8 +238,6 @@ local leader = {
   },
   ['<tab>'] = {
     name = 'workspace',
-    ['<tab>'] = { '<cmd>tabnew<CR>', 'New Tab' },
-
     n = { '<cmd>tabnext<CR>', 'Next' },
     d = { '<cmd>tabclose<CR>', 'Close' },
     p = { '<cmd>tabprevious<CR>', 'Previous' },
@@ -263,26 +256,12 @@ local leader = {
     name = '+quit/session',
     q = { '<cmd>:qa<cr>', 'Quit' },
     ['!'] = { '<cmd>:qa!<cr>', 'Quit without saving' },
-    s = { [[<cmd>lua require("persistence").load()<cr>]], 'Restore Session' },
-    l = { [[<cmd>lua require("persistence").load({last=true})<cr>]], 'Restore Last Session' },
-    d = { [[<cmd>lua require("persistence").stop()<cr>]], 'Stop Current Session' },
   },
   x = {
     name = '+errors',
-    x = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Trouble' },
-    t = { '<cmd>TodoTrouble<cr>', 'Todo Trouble' },
-    T = { '<cmd>TodoTelescope<cr>', 'Todo Telescope' },
     l = { '<cmd>lopen<cr>', 'Open Location List' },
     q = { '<cmd>copen<cr>', 'Open Quickfix List' },
-  },
-  Z = { [[<cmd>lua require("zen-mode").reset()<cr>]], 'Zen Mode' },
-  z = { [[<cmd>ZenMode<cr>]], 'Zen Mode' },
-  T = { [[<Plug>PlenaryTestFile]], 'Plenary Test' },
-  D = {
-    function()
-      util.docs()
-    end,
-    'Create Docs from README.md',
+    x = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Trouble' },
   },
 }
 
