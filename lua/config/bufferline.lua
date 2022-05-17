@@ -16,7 +16,7 @@ local severities = {
 
 require("bufferline").setup({
   options = {
-    show_close_icon = false,
+    show_close_icon = true,
     diagnostics = "nvim_lsp",
     always_show_bufferline = false,
     separator_style = "thick",

@@ -6,19 +6,44 @@ local function on_attach(client, bufnr)
   require("config.lsp.keys").setup(client, bufnr)
   -- require("config.lsp.completion").setup(client, bufnr)
   require("config.lsp.highlighting").setup(client)
+
+  -- TypeScript specific stuff
+  if client.name == "typescript" or client.name == "tsserver" then
+    require("config.lsp.ts-utils").setup(client)
+  end
 end
 
 local servers = {
+  ansiblels = {},
   bashls = {},
+  clangd = {},
+  cssls = {},
   dockerls = {},
+  eslint = {},
   html = {},
+  jsonls = {},
   pyright = {},
+  rust_analyzer = {
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = { allFeatures = true },
+        -- enable clippy on save
+        checkOnSave = {
+          command = "clippy",
+          extraArgs = { "--no-deps" },
+        },
+      },
+    },
+  },
   sumneko_lua = {},
+  tsserver = {},
+  vimls = {},
+  -- tailwindcss = {},
 }
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- require("workspace").setup()
+require("workspace").setup()
 require("lua-dev").setup()
 
 local options = {

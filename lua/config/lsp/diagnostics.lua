@@ -1,6 +1,6 @@
 local M = {}
 
-M.signs = { Error = "E ", Warn = "W ", Hint = "H ", Info = "I " }
+M.signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 function M.setup()
   -- Automatically update diagnostics
