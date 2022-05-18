@@ -19,7 +19,6 @@ vim.opt.expandtab = true -- Use spaces instead of tabs
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- TreeSitter folding
 -- vim.opt.foldlevel = 6
 -- vim.opt.foldmethod = "expr" -- TreeSitter folding
-vim.opt.guifont = "FiraCode Nerd Font:h12"
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.hidden = true -- Enable modified buffers in background
@@ -64,31 +63,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_matchit = 1
 vim.g.loaded_matchparen = 1
 
--- Use proper syntax highlighting in code blocks
-local fences = {
-  "lua",
-  -- "vim",
-  "json",
-  "typescript",
-  "javascript",
-  "js=javascript",
-  "ts=typescript",
-  "shell=sh",
-  "python",
-  "sh",
-  "console=sh",
-}
-vim.g.markdown_fenced_languages = fences
-
--- plasticboy/vim-markdown
-vim.g.vim_markdown_folding_level = 10
-vim.g.vim_markdown_fenced_languages = fences
-vim.g.vim_markdown_folding_style_pythonic = 1
-vim.g.vim_markdown_conceal_code_blocks = 0
-vim.g.vim_markdown_frontmatter = 1
-vim.g.vim_markdown_strikethrough = 1
-
-vim.cmd([[autocmd FileType markdown nnoremap gO <cmd>Toc<cr>]])
 vim.cmd([[autocmd FileType markdown setlocal spell]])
 
 -- Check if we need to reload the file when it changed
@@ -98,11 +72,6 @@ cmd("au FocusGained * :checktime")
 cmd([[
   autocmd InsertLeave,WinEnter * set cursorline
   autocmd InsertEnter,WinLeave * set nocursorline
-]])
-
--- go to last loc when opening a buffer
-cmd([[
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
 ]])
 
 -- Highlight on yank

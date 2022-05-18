@@ -175,13 +175,6 @@ local function plugins(use)
   -- Dashboard
   use({ "glepnir/dashboard-nvim", opt = false, config = [[require('config.dashboard')]] })
 
-  use({
-    "norcalli/nvim-terminal.lua",
-    ft = "terminal",
-    config = function()
-      require("terminal").setup()
-    end,
-  })
   use({ "nvim-lua/plenary.nvim", module = "plenary" })
   use({ "nvim-lua/popup.nvim", module = "popup" })
 
@@ -246,15 +239,6 @@ local function plugins(use)
     wants = "nvim-web-devicons",
     config = function()
       require("config.bufferline")
-    end,
-  })
-
-  -- Terminal
-  use({
-    "akinsho/nvim-toggleterm.lua",
-    keys = "<M-`>",
-    config = function()
-      require("config.terminal")
     end,
   })
 
