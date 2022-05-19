@@ -1,4 +1,6 @@
-require('util')
-require('options')
--- no need to load this immediately, since we have packer_compiled
-vim.defer_fn(function() require('plugins') end, 0)
+local present, impatient = pcall(require, 'impatient')
+if present then impatient.enable_profile() end
+require 'settings'
+require 'plugins'
+require 'keybinds'
+require 'autocmd'
