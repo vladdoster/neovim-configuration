@@ -51,7 +51,7 @@ return packer.startup(function(use)
 
   use {
     {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
-    {'jose-elias-alvarez/null-ls.nvim', event={'BufRead'}, config=cfg 'null-ls'},
+    {'jose-elias-alvarez/null-ls.nvim'},
     {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'},
     {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline'},
     {'numToStr/Buffers.nvim', event={'BufRead'}},

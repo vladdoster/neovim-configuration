@@ -1,4 +1,5 @@
 local M = {}
+
 local function goto_definition(split_cmd)
   local util = vim.lsp.util
   local log = require('vim.lsp.log')
@@ -23,6 +24,7 @@ local function goto_definition(split_cmd)
   end
   return handler
 end
+
 function M.setup()
   local signs = {
     {name='DiagnosticSignError', text=''},
@@ -57,6 +59,7 @@ function M.setup()
     border='rounded'
   })
 end
+
 local function lsp_highlight_document(client)
   if client.server_capabilities.document_highlight then
     vim.api.nvim_exec([[
@@ -68,15 +71,12 @@ local function lsp_highlight_document(client)
     ]], false)
   end
 end
+
 M.on_attach = function(client, bufnr)
-  if client.name == 'jsonls' then
-    client.server_capabilities.document_formatting = false
-  elseif client.name == 'sumneko_lua' then
-    client.server_capabilities.document_formatting = false
-  end
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  require('configs.lsp.formatting').setup(client, bufnr)
   lsp_highlight_document(client)
 end
+
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.documentationFormat = {
   'markdown',

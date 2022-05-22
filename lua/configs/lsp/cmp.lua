@@ -6,13 +6,14 @@ local snip_ok, luasnip = pcall(require, 'luasnip')
 if not snip_ok then return end
 cmp.setup {
   preselect=cmp.PreselectMode.None,
+  completion={keyword_length=1},
+  confirm_opts={behavior=cmp.ConfirmBehavior.Replace, select=false},
+  duplicates={nvim_lsp=1, luasnip=1, buffer=1, path=1},
+  experimental={ghost_text=false, native_menu=false},
   formatting={format=require'lspkind'.cmp_format({mode='symbol', maxwidth=50})},
   snippet={expand=function(args) luasnip.lsp_expand(args.body) end},
-  duplicates={nvim_lsp=1, luasnip=1, buffer=1, path=1},
-  confirm_opts={behavior=cmp.ConfirmBehavior.Replace, select=false},
-  experimental={ghost_text=false, native_menu=false},
-  completion={keyword_length=1},
   sources={{name='nvim_lsp'}, {name='buffer'}, {name='nvim_lua'}, {name='path'}, {name='luasnip'}},
+  window={completion=cmp.config.window.bordered(), documentation=cmp.config.window.bordered()},
   mapping={
     ['<C-Space>']=cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
     ['<C-d>']=cmp.mapping(cmp.mapping.scroll_docs(-1), {'i', 'c'}),
