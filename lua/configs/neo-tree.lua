@@ -18,54 +18,52 @@ neotree.setup {
     name={trailing_slash=true, use_git_status_colors=true}
   },
   enable_git_status=false,
-   event_handlers = {
+  event_handlers={
     {
-      event = "file_open_requested",
-      handler = function(args)
+      event='file_open_requested',
+      handler=function(args)
         local state = args.state
         local path = args.path
-        local open_cmd = args.open_cmd or "edit"
+        local open_cmd = args.open_cmd or 'edit'
 
         -- use last window if possible
         local suitable_window_found = false
-        local nt = require("neo-tree")
+        local nt = require('neo-tree')
         if nt.config.open_files_in_last_window then
           local prior_window = nt.get_prior_window()
           if prior_window > 0 then
             local success = pcall(vim.api.nvim_set_current_win, prior_window)
-            if success then
-              suitable_window_found = true
-            end
+            if success then suitable_window_found = true end
           end
         end
 
         -- find a suitable window to open the file in
         if not suitable_window_found then
-          if state.window.position == "right" then
-            vim.cmd("wincmd t")
+          if state.window.position == 'right' then
+            vim.cmd('wincmd t')
           else
-            vim.cmd("wincmd w")
+            vim.cmd('wincmd w')
           end
         end
         local attempts = 0
-        while attempts < 4 and vim.bo.filetype == "neo-tree" do
+        while attempts < 4 and vim.bo.filetype == 'neo-tree' do
           attempts = attempts + 1
-          vim.cmd("wincmd w")
+          vim.cmd('wincmd w')
         end
-        if vim.bo.filetype == "neo-tree" then
+        if vim.bo.filetype == 'neo-tree' then
           -- Neo-tree must be the only window, restore it's status as a sidebar
           local winid = vim.api.nvim_get_current_win()
-          local width = require("neo-tree.utils").get_value(state, "window.width", 40)
-          vim.cmd("vsplit " .. path)
+          local width = require('neo-tree.utils').get_value(state, 'window.width', 40)
+          vim.cmd('vsplit ' .. path)
           vim.api.nvim_win_set_width(winid, width)
         else
-          vim.cmd(open_cmd .. " " .. path)
+          vim.cmd(open_cmd .. ' ' .. path)
         end
 
         -- If you don't return this, it will proceed to open the file using built-in logic.
-        return { handled = true }
+        return {handled=true}
       end
-    },
+    }
   },
   filesystem={
     filtered_items={
@@ -83,13 +81,13 @@ neotree.setup {
     position='left',
     width=30,
     mappings={
-      ['<tab>'] = function (state)
+      ['<tab>']=function(state)
         local node = state.tree:get_node()
-        if require("neo-tree.utils").is_expandable(node) then
-          state.commands["toggle_node"](state)
+        if require('neo-tree.utils').is_expandable(node) then
+          state.commands['toggle_node'](state)
         else
           state.commands['open'](state)
-          vim.cmd('Neotree reveal')                  
+          vim.cmd('Neotree reveal')
           -- vim.cmd('Neotree float toggle reveal_force_cwd dir=' .. vim.fn.getcwd()) -- I use this one.
         end
       end,
