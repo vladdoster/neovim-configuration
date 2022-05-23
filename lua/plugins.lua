@@ -55,7 +55,7 @@ return packer.startup(function(use)
     {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'},
     {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline'},
     {'numToStr/Buffers.nvim', event={'BufRead'}},
-    {'numToStr/Comment.nvim', config=cfg('comment'), event='BufRead'},
+    {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'},
     {'nvim-neo-tree/neo-tree.nvim', module='neo-tree', cmd='Neotree', config=cfg 'neo-tree'},
     {'vladdoster/remember.nvim', config=[[require 'remember']]}
   }
@@ -89,11 +89,15 @@ return packer.startup(function(use)
     {'hrsh7th/nvim-cmp', config=cfg 'lsp.cmp', event='InsertEnter'},
     {
       'williamboman/nvim-lsp-installer',
-      cmd={'LspInstall', 'LspUninstall'},
-      module='nvim-lsp-installer'
+      {
+        'neovim/nvim-lspconfig',
+        config=function()
+          require('nvim-lsp-installer').setup {}
+          cfg = 'lsp'
+        end
+      }
     }
   }
-  use {'neovim/nvim-lspconfig', event='BufWinEnter', config=cfg 'lsp'}
   --  ╭──────────────╮
   --  │ FUZZY FINDER │
   --  ╰──────────────╯
