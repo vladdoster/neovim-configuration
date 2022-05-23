@@ -9,7 +9,7 @@ function M.setup(options)
     debounce = 150,
     save_after_format = false,
     sources = {
-      diagnostics.markdownlint,
+      diagnostics.mdformat,
       diagnostics.shellcheck,
       format.black,
       format.reorder_python_imports,

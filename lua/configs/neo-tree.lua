@@ -6,7 +6,7 @@ neotree.setup {
   buffers={show_unloaded=true, window={mappings={['bd']='buffer_delete'}}},
   close_if_last_window=true,
   default_component_configs={
-    icon={default='', folder_closed='>', folder_open='⋁'},
+    icon={default='•', folder_closed='▷', folder_open='🗁'},
     indent={
       expander_highlight='NeoTreeExpander',
       highlight='NeoTreeIndentMarker',

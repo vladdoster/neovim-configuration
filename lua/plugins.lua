@@ -1,4 +1,4 @@
--- PACKER BOOTSTRAP <<
+-- PACKER BOOTSTRAP
 local warm_boot, packer = pcall(require, 'packer')
 if not warm_boot then
   local packer_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
@@ -80,17 +80,15 @@ return packer.startup(function(use)
   --  ╭────────────╮
   --  │ COMPLETION │
   --  ╰────────────╯
-  use {
-    'onsails/lspkind-nvim',
-    { 'rafamadriz/friendly-snippets', after = 'nvim-cmp' },
-    { 'L3MON4D3/LuaSnip', after = 'friendly-snippets', config = cfg 'luasnip' },
-    { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-    { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
-    { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-    { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-    { 'hrsh7th/nvim-cmp', config = cfg 'lsp.cmp', event = 'InsertEnter' },
-    { 'williamboman/nvim-lsp-installer', { 'neovim/nvim-lspconfig', config = cfg 'lsp' } },
-  }
+  use { 'onsails/lspkind-nvim'}
+  use { 'rafamadriz/friendly-snippets', after = 'nvim-cmp' }
+  use { 'L3MON4D3/LuaSnip', after = 'friendly-snippets', config = cfg 'luasnip' }
+  use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
+  use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
+  use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
+  use { 'hrsh7th/nvim-cmp', config = cfg 'lsp.cmp', event = 'InsertEnter' }
+  use { 'williamboman/nvim-lsp-installer', { 'neovim/nvim-lspconfig', config = cfg 'lsp' } }
 
   --  ╭──────────────╮
   --  │ FUZZY FINDER │
