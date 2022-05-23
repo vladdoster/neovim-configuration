@@ -87,17 +87,9 @@ return packer.startup(function(use)
     {'hrsh7th/cmp-path', after='nvim-cmp'},
     {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
     {'hrsh7th/nvim-cmp', config=cfg 'lsp.cmp', event='InsertEnter'},
-    {
-      'williamboman/nvim-lsp-installer',
-      {
-        'neovim/nvim-lspconfig',
-        config=function()
-          require('nvim-lsp-installer').setup {}
-          cfg = 'lsp'
-        end
-      }
-    }
+    {'williamboman/nvim-lsp-installer', {'neovim/nvim-lspconfig', config=cfg 'lsp'}}
   }
+
   --  ╭──────────────╮
   --  │ FUZZY FINDER │
   --  ╰──────────────╯
@@ -106,4 +98,4 @@ return packer.startup(function(use)
   if not warm_boot then packer.sync() end
 end)
 
--- vim:ft=lua:sw=2:sts=2:et:foldmarker=<<,>>:foldmethod=marker
+-- vim:ft=lua:sw=2:sts=2:et:

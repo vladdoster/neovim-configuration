@@ -2,7 +2,7 @@ local status_ok, lsp_cfg = pcall(require, 'lspconfig')
 if not status_ok then return end
 
 require 'configs.lsp.lsp-installer'
-require('configs.lsp.handlers').setup()
+require'configs.lsp.handlers'.setup {}
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
