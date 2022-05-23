@@ -1,31 +1,41 @@
--- Keymap method {{{
+-- Keymap method
 local K = setmetatable({
-  nore={noremap=true, silent=true, expr=false},
-  remap={noremap=false, silent=true, expr=false}
+  nore = { noremap = true, silent = true, expr = false },
+  remap = { noremap = false, silent = true, expr = false },
 }, {
-  __index=function(p, mode)
+  __index = function(p, mode)
     return setmetatable({
-      map=function(key, action) vim.api.nvim_set_keymap(mode, key, action, p.remap) end,
-      nmap=function(key, action) vim.api.nvim_set_keymap(mode, key, action, p.nore) end,
-      bmap=function(buf, key, action) vim.api.nvim_buf_set_keymap(buf, mode, key, action, p.nore) end
-    }, {__call=function(this, key, action) this.nmap(key, action) end})
-  end
+      map = function(key, action)
+        vim.api.nvim_set_keymap(mode, key, action, p.remap)
+      end,
+      nmap = function(key, action)
+        vim.api.nvim_set_keymap(mode, key, action, p.nore)
+      end,
+      bmap = function(buf, key, action)
+        vim.api.nvim_buf_set_keymap(buf, mode, key, action, p.nore)
+      end,
+    }, {
+      __call = function(this, key, action)
+        this.nmap(key, action)
+      end,
+    })
+  end,
 })
--- }}}
--- Leader {{{
+--
+-- Leader
 local map = vim.api.nvim_set_keymap
-map('', '<Space>', '<Nop>', {noremap=true, silent=true})
+map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
--- }}}
+--
 -- ╭──────────────╮
 -- │ INSERT ⮕ 'i' │
 -- ╰──────────────╯
--- quick normal mode{{{
-K.i('jk', '<ESC>') -- }}}
+-- quick normal mode
+K.i('jk', '<ESC>') --
 -- ╭──────────────╮
 -- │ NORMAL ⮕ 'n' │
 -- ╰──────────────╯
--- {{{
+--
 -- buffer management
 K.n('<leader>x', '<cmd>lua require("Buffers").only()<CR>')
 K.n('<leader>X', '<cmd>lua require("Buffers").clear()<CR>')
@@ -35,11 +45,18 @@ K.n('<S-l>', ':bnext<cr>')
 K.n('<S-h>', ':bprevious<cr>') -- }}}
 -- disable ex mode
 K.n('<Esc>', '<cmd> :noh <CR>')
+K.n([[Q]], [[<Nop>]])
+-- Disable command-line window
+-- K.n([[q:]], [[<Nop>]])
+-- K.n([[q/]], [[<Nop>]])
+-- K.n([[q?]], [[<Nop>]])
+-- Quickly enter substitution mode
+K.n('<leader>/', '<cmd>:%s/<CR>')
+K.n('<leader>?', '<cmd>:%S/<CR>')
+K.v('<leader>/', '<cmd>:s/<CR>')
+K.v('<leader>?', '<cmd>:S/<CR>')
 -- edit configurations
-K.n('<leader>df', '<cmd>U.openDirectory("~/.config/dotfiles")<cr>')
-K.n('<leader>vd', '<cmd>U.openDirectory("~/.config/nvim")<cr>')
-K.n('<leader>zd', '<cmd>U.openDirectory("~/.config/zsh")<cr>')
-K.n('<leader>cd', '<cmd>U.openDirectory("~/code")<cr>') --
+
 -- comment-box
 K.n('<leader>bc', [[<cmd>lua require('comment-box').accbox()<CR>]])
 -- force quit
@@ -94,10 +111,6 @@ K.n('<Leader>w', '<cmd>w<cr>')
 K.n('<Leader>q', '<cmd>q<cr>')
 K.n('<Leader>c', '<cmd>bdelete!<cr>')
 K.n('<Leader>h', '<cmd>nohlsearch<cr>') --
-
-K.n('<Leader>/', ':%s/')
-K.n('<Leader>?', ':%S/')
-
 -- telescope
 K.n('<leader>fb', '<cmd>Telescope buffers<cr>')
 K.n('<leader>ff', '<cmd>Telescope find_files<cr>')
@@ -106,17 +119,15 @@ K.n('<leader>fo', '<cmd>Telescope oldfiles<cr>')
 K.n('<leader>fw', '<cmd>Telescope live_grep<cr>')
 K.n('<leader>gb', '<cmd>Telescope git_branches<cr>')
 K.n('<leader>gc', '<cmd>Telescope git_commits<cr>')
-K.n('<leader>gt', '<cmd>Telescope git_status<cr>')
 K.n('<leader>ld', '<cmd>Telescope diagnostics<cr>')
 K.n('<leader>lr', '<cmd>Telescope lsp_references<cr>')
 K.n('<leader>ls', '<cmd>Telescope lsp_document_symbols<cr>')
-K.n('<leader>sb', '<cmd>Telescope git_branches<cr>')
 K.n('<leader>sc', '<cmd>Telescope commands<cr>')
-K.n('<leader>sh', '<cmd>Telescope help_tags<cr>')
 K.n('<leader>sk', '<cmd>Telescope keymaps<cr>')
 K.n('<leader>sm', '<cmd>Telescope man_pages<cr>')
 K.n('<leader>sn', '<cmd>Telescope notifications<cr>')
 K.n('<leader>sr', '<cmd>Telescope registers<cr>') --
+K.n('<leader>tfd', '<cmd>Telescope terraform_doc modules<cr>')
 -- terminal
 K.n('<C-\\>', '<cmd>ToggleTerm<cr>')
 K.n('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
@@ -132,11 +143,9 @@ K.n('<C-down>', ':resize +2<cr>')
 K.n('<C-left>', ':vertical resize -2<cr>')
 K.n('<C-right>', ':vertical resize +2<cr>')
 K.n('<C-up>', ':resize -2<cr>') --
--- }}}
 -- ╭────────────────╮
 -- │ TERMINAL ⮕ 't' │
 -- ╰────────────────╯
--- {{{
 -- navigation
 K.t('<C-h>', '<C-\\><C-N><C-w>h')
 K.t('<C-j>', '<C-\\><C-N><C-w>j')
@@ -146,11 +155,9 @@ K.t('<C-l>', '<C-\\><C-N><C-w>l') --
 K.t('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
 K.t('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
 K.t('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>') --
--- }}}
 -- ╭──────────────╮
 -- │ VISUAL ⮕ 'v' │
 -- ╰──────────────╯
--- {{{
 -- move text up and down
 K.v('<A-j>', ':m .+1<CR>==')
 K.v('<A-k>', ':m .-2<CR>==')
@@ -162,17 +169,13 @@ K.v('>', '>gv') --
 K.v('<C-s>', ':Sort<CR>') --
 -- comment-box
 K.v('<leader>bc', [[<Cmd>lua require('comment-box').accbox()<CR>]])
--- substiture
-K.v([[<leader>/]], [[:s/]])
-K.v([[<leader>?]], [[:S/]])
--- }}}
 -- ╭────────────────────╮
 -- │ VISUAL BLOCK ⮕ 'x' │
 -- ╰────────────────────╯
--- move text up and down{{{
+-- move text up and down
 K.x('<A-j>', ':move \'>+1<CR>gv-gv')
 K.x('<A-k>', ':move \'<-2<CR>gv-gv')
 K.x('J', ':move \'>+1<CR>gv-gv')
-K.x('K', ':move \'<-2<CR>gv-gv') -- }}}
+K.x('K', ':move \'<-2<CR>gv-gv') --
 
--- vim:ft=lua:sw=4:sts=4:et:foldmarker={{{,}}}:foldmethod=marker
+-- vim:ft=lua:sw=4:sts=4:et:
