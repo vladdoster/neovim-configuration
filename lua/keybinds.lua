@@ -1,30 +1,20 @@
 -- Keymap method
 local K = setmetatable({
-  nore = { noremap = true, silent = true, expr = false },
-  remap = { noremap = false, silent = true, expr = false },
+  nore={noremap=true, silent=true, expr=false},
+  remap={noremap=false, silent=true, expr=false}
 }, {
-  __index = function(p, mode)
+  __index=function(p, mode)
     return setmetatable({
-      map = function(key, action)
-        vim.api.nvim_set_keymap(mode, key, action, p.remap)
-      end,
-      nmap = function(key, action)
-        vim.api.nvim_set_keymap(mode, key, action, p.nore)
-      end,
-      bmap = function(buf, key, action)
-        vim.api.nvim_buf_set_keymap(buf, mode, key, action, p.nore)
-      end,
-    }, {
-      __call = function(this, key, action)
-        this.nmap(key, action)
-      end,
-    })
-  end,
+      map=function(key, action) vim.api.nvim_set_keymap(mode, key, action, p.remap) end,
+      nmap=function(key, action) vim.api.nvim_set_keymap(mode, key, action, p.nore) end,
+      bmap=function(buf, key, action) vim.api.nvim_buf_set_keymap(buf, mode, key, action, p.nore) end
+    }, {__call=function(this, key, action) this.nmap(key, action) end})
+  end
 })
 --
 -- Leader
 local map = vim.api.nvim_set_keymap
-map('', '<Space>', '<Nop>', { noremap = true, silent = true })
+map('', '<Space>', '<Nop>', {noremap=true, silent=true})
 vim.g.mapleader = ' '
 --
 -- ╭──────────────╮
@@ -84,16 +74,11 @@ K.n('<Leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
 K.n('<Leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
 K.n('<Leader>gj', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 K.n('<Leader>gk', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-K.n('<Leader>gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
 K.n('<Leader>go', '<cmd>lua vim.diagnostic.open_float()<cr>')
 K.n('<Leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')
 K.n('<Leader>k', '<cmd>lua vim.lsp.buf.hover()<cr>')
 K.n('<Leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-K.n('<Leader>ld', '<cmd>lua vim.diagnostic.open_float()<cr>')
 K.n('<Leader>lf', '<cmd>lua vim.lsp.buf.format()<cr>')
-K.n('<Leader>li', '<cmd>lspinfo<cr>')
-K.n('<Leader>li', '<cmd>lspinstallinfo<cr>')
-K.n('<Leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>')
 K.n('<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>') --
 -- move text up and down
 K.n('<A-j>', ':m .+1<cr>==gi')
