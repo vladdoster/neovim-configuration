@@ -1,3 +1,55 @@
+# [1.28.0](https://github.com/vladdoster/neovim-configuration/compare/v1.27.0...v1.28.0) (2022-05-29)
+
+
+### feat
+
+* add terraform-docs_telescope plugin ([5d90091](https://github.com/vladdoster/neovim-configuration/commit/5d9009120915214c5d9d62a49956ebfb80f365a7))
+* neotree tab and focus functionality ([0d28981](https://github.com/vladdoster/neovim-configuration/commit/0d28981b8650ac0ecd94f5a5404b7dcd5ff5aa4e))
+* switch to neo-tree, remove nvim-tree, and update key mappings ([2f5bd32](https://github.com/vladdoster/neovim-configuration/commit/2f5bd32b92bbe621d43fe2ea859a15e3416a4706))
+
+### fix
+
+* add cmp_nvim_lsp module name ([f0c6352](https://github.com/vladdoster/neovim-configuration/commit/f0c6352118dfaa433da5b0010853e8f8049835fd))
+* change to material theme which is activley maintained ([5860172](https://github.com/vladdoster/neovim-configuration/commit/5860172bcdd4d9bb6e87a777022e26094d5d28ab))
+* check if lua-format before attempting to install ([8ccb4d7](https://github.com/vladdoster/neovim-configuration/commit/8ccb4d74e63288a9a349db1f00f19fb4066198c0))
+* cmp_nvim_lsp config loading with lsp-installer ([04b5c9d](https://github.com/vladdoster/neovim-configuration/commit/04b5c9d5224600b30ba989b50e064fd0e38345bb))
+* compilation errors ([0383615](https://github.com/vladdoster/neovim-configuration/commit/038361543fa8dd9254c4b27f730f0f863a08885d))
+* loading of treesitter config in packer ([2f4f810](https://github.com/vladdoster/neovim-configuration/commit/2f4f810688c87fbf995e6a44283ec75b205f5b02))
+* lsp formatting errors ([8a3aa05](https://github.com/vladdoster/neovim-configuration/commit/8a3aa05e4c1ea2f488cb75d7c7ca7a7d1f53f018))
+* mdformat changed to format ([72028f1](https://github.com/vladdoster/neovim-configuration/commit/72028f11080e6441f100f4a180acb3efee8457d5))
+* null-ls and lsp-installer config ([315df30](https://github.com/vladdoster/neovim-configuration/commit/315df3014a351a98978de36bf1de06f0f0cefb54))
+* nvim-cmp completion ([f49845c](https://github.com/vladdoster/neovim-configuration/commit/f49845c588d60a6566a26a15d14894b3a05a3aa1))
+* nvim-cmp mappings use tab now ([f0921c5](https://github.com/vladdoster/neovim-configuration/commit/f0921c5bb8d0cf39d8ed19e32082c87116a2afee))
+* nvim-installer & lspconfig loading & null-ls ([5d426d4](https://github.com/vladdoster/neovim-configuration/commit/5d426d40482195f446277695413136bfd6379378))
+* remove majority of treeitter config until bug breaking syntax highlighting is found ([66f1156](https://github.com/vladdoster/neovim-configuration/commit/66f1156250407b63bd8d36a2a3d9e7f4aaa5425b))
+
+### maint
+
+* add neo-tree to lualine extensions ([0020ff3](https://github.com/vladdoster/neovim-configuration/commit/0020ff3d04963bd179eb2ca46810426047b23348))
+* add partial tab to view keymap to mimic nvim-tree ([7d1f16b](https://github.com/vladdoster/neovim-configuration/commit/7d1f16b26eb1cffc80391bbcd5e3f8688f2b9160))
+* add tab completion to nvim-cmp ([1afe3b4](https://github.com/vladdoster/neovim-configuration/commit/1afe3b4d8f15f83754b2ee17aa8c8e56227ca108))
+* fix bazel issue ([d15ae2a](https://github.com/vladdoster/neovim-configuration/commit/d15ae2a4a0f23de2398d1efbdd80fa9ae22d8d9e))
+* increase nvim formatter timeout ([c1bd386](https://github.com/vladdoster/neovim-configuration/commit/c1bd3867a5ab32beaeb668d04cf15aada01be6f9))
+* remove escape \ and comment parser from treesitter config ([a6d38ed](https://github.com/vladdoster/neovim-configuration/commit/a6d38ed0e22c916bd6b0a88b029f549b698b1950))
+* remove removed plugin keymaps ([ed9654c](https://github.com/vladdoster/neovim-configuration/commit/ed9654ca9da10a9c89d86ed4b66eff96c87ed5da))
+* remove selene configuration ([5b11fef](https://github.com/vladdoster/neovim-configuration/commit/5b11fefa3f781800697ec281c2c3808093e2c08f))
+* remove unused plugin configuration files ([35195b1](https://github.com/vladdoster/neovim-configuration/commit/35195b12612b03fd0b4e37a3c468dac07dc5c566))
+* remove unused plugins and change to condensed config syntax for plugin config ([816676b](https://github.com/vladdoster/neovim-configuration/commit/816676b7dfbe2275597a3c7a5cdc2e376a3732be))
+* remove unused symbols-outline.nvim config ([0457a34](https://github.com/vladdoster/neovim-configuration/commit/0457a344f0a48f2ceba5d4de17bf240b303a9e12))
+* remove unused treesitter config code ([bd2f708](https://github.com/vladdoster/neovim-configuration/commit/bd2f70882adc1b91e4a906f201d22cb971fe1465))
+* update notify.nvim size and show duration ([2b219b0](https://github.com/vladdoster/neovim-configuration/commit/2b219b017d23c0802634d5055b0e69aab517acc9))
+* update nvim-cmp configuration ([d2b5062](https://github.com/vladdoster/neovim-configuration/commit/d2b50624664657c8ac2d175b9358b70960c74227))
+* use mdformat in null-ls ([de7c2ea](https://github.com/vladdoster/neovim-configuration/commit/de7c2eac76920bbd3c71cf35bf63d36c633be7ba))
+
+### refactor
+
+* "<tab>, h & l nav, and keep focused in neo-tree config ([bfef060](https://github.com/vladdoster/neovim-configuration/commit/bfef06080004ab9e3efc58171fe59ae29fe604bb))
+
+### style
+
+* add checkmake and fix trim whitespace null-ls sources ([ab119f2](https://github.com/vladdoster/neovim-configuration/commit/ab119f2d77edcd67cfffcee626f267b317450a44))
+* remove blank lines and markdown plugins ([ab2d6d0](https://github.com/vladdoster/neovim-configuration/commit/ab2d6d0d54ebc9934d1b9946b5161d4b4d677310))
+
 # [1.27.0](https://github.com/vladdoster/neovim-configuration/compare/v1.26.0...v1.27.0) (2022-05-10)
 
 
