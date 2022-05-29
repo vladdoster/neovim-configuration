@@ -14,11 +14,12 @@ local conditions = {
 }
 local config = {
   options={
-    globalstatus=true,
     always_divide_middle=true,
     component_separators={left='', right=''},
+    globalstatus=true,
     icons_enabled=false,
     section_separators={left='', right=''},
+    -- theme = 'onedark',
     theme={normal={c={fg=colors.green, bg=colors.bg}}, inactive={c={fg=colors.fg, bg=colors.bg}}}
   },
   sections={lualine_a={}, lualine_b={}, lualine_y={}, lualine_z={}, lualine_c={}, lualine_x={}},
@@ -30,10 +31,12 @@ local config = {
     lualine_c={},
     lualine_x={}
   },
-  extensions={'quickfix', 'nvim-tree'}
+  extensions={'neo-tree', 'quickfix', 'toggle-term'}
 }
 local function ins_left(component) table.insert(config.sections.lualine_c, component) end
+
 local function ins_right(component) table.insert(config.sections.lualine_x, component) end
+
 ins_left {
   function()
     local function format_file_size(file)
@@ -46,6 +49,7 @@ ins_left {
       end
       return string.format('%.1f%s', size, sufixes[i])
     end
+
     local file = vim.fn.expand '%:p'
     if string.len(file) == 0 then return '' end
     return format_file_size(file)
