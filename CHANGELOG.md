@@ -1,3 +1,19 @@
+# [1.29.0](https://github.com/vladdoster/neovim-configuration/compare/v1.28.0...v1.29.0) (2022-05-31)
+
+
+### feat
+
+* add telescope-project plugin ([f1e532f](https://github.com/vladdoster/neovim-configuration/commit/f1e532fa74c38fa4eef909485c3f81ee838f058b))
+
+### fix
+
+* nvim-cmp load order ([22e96a2](https://github.com/vladdoster/neovim-configuration/commit/22e96a2d422a4527a76ffac2f942be8c9f678531))
+* rm redundant keybinds ([d07777c](https://github.com/vladdoster/neovim-configuration/commit/d07777c7cfc4354ed6d4522348c6022294fe1bd7))
+
+### style
+
+* format null-ls, telescope, and lsp-installer configs ([30a7682](https://github.com/vladdoster/neovim-configuration/commit/30a7682ef7d7d17ebdc710cb1d72dd1f5521649b))
+
 # [1.28.0](https://github.com/vladdoster/neovim-configuration/compare/v1.27.0...v1.28.0) (2022-05-29)
 
 
