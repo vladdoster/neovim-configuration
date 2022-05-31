@@ -1,20 +1,30 @@
 -- Keymap method
 local K = setmetatable({
-  nore={noremap=true, silent=true, expr=false},
-  remap={noremap=false, silent=true, expr=false}
+  nore = { noremap = true, silent = true, expr = false },
+  remap = { noremap = false, silent = true, expr = false },
 }, {
-  __index=function(p, mode)
+  __index = function(p, mode)
     return setmetatable({
-      map=function(key, action) vim.api.nvim_set_keymap(mode, key, action, p.remap) end,
-      nmap=function(key, action) vim.api.nvim_set_keymap(mode, key, action, p.nore) end,
-      bmap=function(buf, key, action) vim.api.nvim_buf_set_keymap(buf, mode, key, action, p.nore) end
-    }, {__call=function(this, key, action) this.nmap(key, action) end})
-  end
+      map = function(key, action)
+        vim.api.nvim_set_keymap(mode, key, action, p.remap)
+      end,
+      nmap = function(key, action)
+        vim.api.nvim_set_keymap(mode, key, action, p.nore)
+      end,
+      bmap = function(buf, key, action)
+        vim.api.nvim_buf_set_keymap(buf, mode, key, action, p.nore)
+      end,
+    }, {
+      __call = function(this, key, action)
+        this.nmap(key, action)
+      end,
+    })
+  end,
 })
 --
 -- Leader
 local map = vim.api.nvim_set_keymap
-map('', '<Space>', '<Nop>', {noremap=true, silent=true})
+map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 --
 -- ╭──────────────╮
@@ -54,15 +64,6 @@ K.n('<C-q>', '<cmd>q!<cr>') --
 -- force write
 K.n('<C-s>', '<cmd>w!<cr>') --
 -- gitsigns
-K.n('<leader>gd', '<cmd>gitsigns diffthis head<cr>')
-K.n('<leader>gh', '<cmd>lua require "gitsigns".reset_hunk()<cr>')
-K.n('<leader>gj', '<cmd>lua require "gitsigns".next_hunk()<cr>')
-K.n('<leader>gk', '<cmd>lua require "gitsigns".prev_hunk()<cr>')
-K.n('<leader>gl', '<cmd>lua require "gitsigns".blame_line()<cr>')
-K.n('<leader>gp', '<cmd>lua require "gitsigns".preview_hunk()<cr>')
-K.n('<leader>gr', '<cmd>lua require "gitsigns".reset_buffer()<cr>')
-K.n('<leader>gs', '<cmd>lua require "gitsigns".stage_hunk()<cr>')
-K.n('<leader>gu', '<cmd>lua require "gitsigns".undo_stage_hunk()<cr>') --
 K.v('<leader><Enter>', '<Plug>(EasyAlign)')
 K.n('<leader><Enter>', '<Plug>(EasyAlign)')
 
@@ -113,6 +114,8 @@ K.n('<leader>sm', '<cmd>Telescope man_pages<cr>')
 K.n('<leader>sn', '<cmd>Telescope notifications<cr>')
 K.n('<leader>sr', '<cmd>Telescope registers<cr>') --
 K.n('<leader>tfd', '<cmd>Telescope terraform_doc modules<cr>')
+K.n('<leader>p', '<cmd>Telescope project<CR>')
+
 -- terminal
 K.n('<C-\\>', '<cmd>ToggleTerm<cr>')
 K.n('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
