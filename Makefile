@@ -1,4 +1,4 @@
-all: fmt
+all: format
 
 clean:
 	@find . -name 'packer_compiled*' -type f -delete
@@ -6,21 +6,21 @@ clean:
 		-maxdepth 1 \
 		-name 'nvim' \
 		-type d \
-		-exec rm -rf {} \
-	\;
+		-exec rm -rf \
+		-- {} \;
 	$(info cleaned neovim artifacts)
 
 deps:
- ifeq (, $(shell which lua-format))
-	luarocks install --server https://luarocks.org/dev luaformatter
- endif
+	ifeq (, $(shell which lua-format))
+		luarocks install --server https://luarocks.org/dev luaformatter
+	endif
 
-fmt: deps
-	@find . -name '*.lua' -print0 \
+format:
+	find . -name '*.lua' -print0 \
 	| xargs -0 -n1 -P4 \
 		lua-format \
-			--config .lua_format.yml \
-			--in-place
+		--config $$(PWD)/.lua_format.yml \
+		--in-place
 	$(info formatted files)
 
 test:
@@ -31,5 +31,5 @@ update: clean
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 	$(info -- updated nvim configuration)
 
-.PHONY: clean deps fmt test update
-.SILENT: clean deps fmt test update
+.PHONY: clean deps format test update
+.SILENT: clean deps format test update

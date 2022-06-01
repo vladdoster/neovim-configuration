@@ -15,11 +15,10 @@ local conditions = {
 local config = {
   options={
     always_divide_middle=true,
-    component_separators={left='', right=''},
+    section_separators='',
+    component_separators='',
     globalstatus=true,
     icons_enabled=false,
-    section_separators={left='', right=''},
-    -- theme = 'onedark',
     theme={normal={c={fg=colors.green, bg=colors.bg}}, inactive={c={fg=colors.fg, bg=colors.bg}}}
   },
   sections={lualine_a={}, lualine_b={}, lualine_y={}, lualine_z={}, lualine_c={}, lualine_x={}},
@@ -30,8 +29,7 @@ local config = {
     lualine_z={},
     lualine_c={},
     lualine_x={}
-  },
-  extensions={'neo-tree', 'quickfix', 'toggle-term'}
+  }
 }
 local function ins_left(component) table.insert(config.sections.lualine_c, component) end
 
@@ -56,15 +54,21 @@ ins_left {
   end,
   condition=conditions.buffer_not_empty
 }
-ins_left {'filename', condition=conditions.buffer_not_empty}
+ins_left {'filename'}
 ins_left {'location'}
 ins_left {
   'diagnostics',
-  sources={'nvim_diagnostic'},
-  symbols={error='E: ', warn='W: ', info='I: '},
-  color_error=colors.red,
-  color_warn=colors.yellow,
-  color_info=colors.green
+  sources={'nvim_diagnostic', 'nvim_lsp'},
+  sections={'error', 'hint', 'info', 'warn'},
+  diagnostics_color={
+    error='#DiagnosticError',
+    hint='DiagnosticHint',
+    info='DiagnosticInfo',
+    warn='DiagnosticWarn'
+  },
+  always_visible=true,
+  colored=true,
+  symbols={error='E:', hint='H:', info='I:', warn='W:'}
 }
 ins_left {
   function()
