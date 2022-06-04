@@ -19,7 +19,7 @@ packer.init {
   compile_on_sync=true,
   git={clone_timeout=6000, subcommands={update='pull --ff-only --progress --rebase=true'}},
   profile={enable=true, threshold=0.0001}
-} -- >>
+}
 local cfg = function(name) return string.format([[require("configs.%s")]], name) end
 return packer.startup(function(use)
   -- ╭─────────────╮
@@ -37,26 +37,28 @@ return packer.startup(function(use)
   use {'MunifTanjim/nui.nvim'}
   use {'b0o/incline.nvim', config=cfg 'incline'}
   use {'nvim-lua/popup.nvim'}
-  use {'nvim-lualine/lualine.nvim', config=cfg 'lualine'}
+  use {
+    {'nvim-lualine/lualine.nvim', event='BufEnter', config=cfg 'lualine'},
+    {'j-hui/fidget.nvim', after='lualine.nvim', config=function() require('fidget').setup() end}
+  }
   use {'rcarriga/nvim-notify', config=cfg 'notify'}
-  use {'rktjmp/lush.nvim', {'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}
+  use {'rktjmp/lush.nvim', requires={{'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}}
   -- ╭──────────────╮
   -- │ PRODUCTIVITY │
   -- ╰──────────────╯
   use {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true}
   use {'obreitwi/vim-sort-folds', cmd='SortFolds', opt=true}
-  use {'tpope/vim-repeat'}
-  use {'tpope/vim-surround'}
-  use {'sQVe/sort.nvim', cmd='Sort', config=[[require 'sort'.setup()]], opt=true}
+  use {'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}}
+  use {'sQVe/sort.nvim', cmd='Sort', config=function() require('sort').setup() end, opt=true}
   use {'monaqa/dial.nvim', config=cfg 'dial'}
 
   use {
     {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
     {'jose-elias-alvarez/null-ls.nvim'},
-    {'norcalli/nvim-colorizer.lua', config=[[require 'colorizer'.setup()]]},
+    {'norcalli/nvim-colorizer.lua', config=function() require('colorizer').setup() end},
     {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'},
     {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline'},
-    {'numToStr/Buffers.nvim', event={'BufRead'}},
+    {'numToStr/Buffers.nvim', event='BufRead'},
     {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'},
     {'nvim-neo-tree/neo-tree.nvim', module='neo-tree', cmd='Neotree', config=cfg 'neo-tree'},
     {'vladdoster/remember.nvim', config=[[require 'remember']]}
@@ -87,7 +89,7 @@ return packer.startup(function(use)
     {'hrsh7th/cmp-buffer', after='nvim-cmp'},
     {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'},
     {'hrsh7th/cmp-path', after='nvim-cmp'},
-    {'hrsh7th/nvim-cmp', config=cfg 'lsp.cmp', event='InsertEnter'},
+    {'hrsh7th/nvim-cmp', config=cfg 'lsp.cmp', event='BufEnter'},
     {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
     {
       'williamboman/nvim-lsp-installer',
