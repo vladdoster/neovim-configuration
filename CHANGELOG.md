@@ -1,3 +1,19 @@
+# [1.30.0](https://github.com/vladdoster/neovim-configuration/compare/v1.29.0...v1.30.0) (2022-06-04)
+
+
+### docs
+
+* updates for plugins.lua ([4c48722](https://github.com/vladdoster/neovim-configuration/commit/4c487226efaa0b6cb4bdb53fd278557df5852cd4))
+
+### feat
+
+* add dial incrementing plugin ([a43a54c](https://github.com/vladdoster/neovim-configuration/commit/a43a54c8a18f1e9bf5a0d1edfee106def8289609))
+* add dial.nvim to add {in,de}rement features ([1a14cd1](https://github.com/vladdoster/neovim-configuration/commit/1a14cd1d32cc7dcc2c06dc045321feb4d4c9e324))
+
+### fix
+
+* format Make target updated && telescope config ([f454a7f](https://github.com/vladdoster/neovim-configuration/commit/f454a7f2b2fe21668c8586093c6d05052af7bd2e))
+
 # [1.29.0](https://github.com/vladdoster/neovim-configuration/compare/v1.28.0...v1.29.0) (2022-05-31)
 
 
