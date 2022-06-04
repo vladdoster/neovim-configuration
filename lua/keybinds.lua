@@ -56,6 +56,20 @@ K.n('<C-s>', '<cmd>w!<cr>') --
 -- gitsigns
 K.v('<leader><Enter>', '<Plug>(EasyAlign)')
 K.n('<leader><Enter>', '<Plug>(EasyAlign)')
+-- dial
+-- K.n('<C-a>', [[<cmd>lua require("dial.map").inc_normal()<cr>]])
+-- K.n('<C-x>', [[<cmd>lua require("dial.map").dec_normal()<cr>]])
+
+-- K.v('<C-a>', [[<cmd>lua require('dial.map').inc_visual()<cr>]])
+-- K.v('<C-x>', [[<cmd>lua require('dial.map').dec_visual()<cr>]])
+-- K.v('g<C-a>', [[<cmd>lua require('dial.map').inc_gvisual()<cr>]])
+-- K.v('g<C-x>', [[<cmd>lua require('dial.map').dec_gvisual()<cr>]])
+vim.api.nvim_set_keymap('n', '<C-a>', require('dial.map').inc_normal(), {noremap=true})
+vim.api.nvim_set_keymap('n', '<C-x>', require('dial.map').dec_normal(), {noremap=true})
+-- vim.api.nvim_set_keymap('v', '<C-a>', require('dial.map').inc_visual(), { noremap = true })
+-- vim.api.nvim_set_keymap('v', '<C-x>', require('dial.map').dec_visual(), { noremap = true })
+-- vim.api.nvim_set_keymap('v', 'g<C-a>', require('dial.map').inc_gvisual(), { noremap = true })
+-- vim.api.nvim_set_keymap('v', 'g<C-x>', require('dial.map').dec_gvisual(), { noremap = true })
 
 -- lsp
 K.n('<Leader>[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')

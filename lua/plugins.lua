@@ -48,6 +48,7 @@ return packer.startup(function(use)
   use {'tpope/vim-repeat'}
   use {'tpope/vim-surround'}
   use {'sQVe/sort.nvim', cmd='Sort', config=[[require 'sort'.setup()]], opt=true}
+  use {'monaqa/dial.nvim', config=cfg 'dial'}
 
   use {
     {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
