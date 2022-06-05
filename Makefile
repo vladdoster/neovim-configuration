@@ -8,7 +8,7 @@ clean:
 		-type d \
 		-exec rm -rf \
 		-- {} \;
-	$(info cleaned neovim artifacts)
+	$(info --- cleaned neovim artifacts)
 
 deps:
 	ifeq (, $(shell which lua-format))
@@ -21,15 +21,15 @@ format:
 		lua-format \
 		--config $$(PWD)/.lua_format.yml \
 		--in-place
-	$(info formatted files)
-
-test:
-	./scripts/test
+	$(info --- formatted files)
 
 update: clean
 	git pull --autostash --quiet
+	$(info --- fetched latest changes)
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-	$(info -- updated nvim configuration)
+	$(info --- synced packer config)
+	nvim --headless -c "autocmd User PackerComplete :qall"
+	$(info --- updated packer)
 
 .PHONY: clean deps format test update
 .SILENT: clean deps format test update

@@ -2,7 +2,7 @@ local M = {}
 
 local function goto_definition(split_cmd)
   local util = vim.lsp.util
-  local log = require('vim.lsp.log')
+  local log = require 'vim.lsp.log'
   local api = vim.api
   -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
   local handler = function(_, result, ctx)
@@ -15,8 +15,8 @@ local function goto_definition(split_cmd)
       util.jump_to_location(result[1])
       if #result > 1 then
         util.set_qflist(util.locations_to_items(result))
-        api.nvim_command('copen')
-        api.nvim_command('wincmd p')
+        api.nvim_command 'copen'
+        api.nvim_command 'wincmd p'
       end
     else
       util.jump_to_location(result)
@@ -53,7 +53,7 @@ function M.setup()
     }
   }
   vim.diagnostic.config(config)
-  vim.lsp.handlers['textDocument/definition'] = goto_definition('split')
+  vim.lsp.handlers['textDocument/definition'] = goto_definition 'split'
   vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {border='rounded'})
   vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border='rounded'

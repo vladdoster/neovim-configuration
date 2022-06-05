@@ -12,8 +12,10 @@ function M.setup(options)
       format.mdformat,
       diagnostics.shellcheck,
       format.black,
+      format.lua_format.with {
+        extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}
+      },
       format.reorder_python_imports,
-      format.stylua,
       format.terraform_fmt,
       format.trim_whitespace
     },
