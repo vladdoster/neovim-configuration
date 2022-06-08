@@ -27,10 +27,10 @@ end
 
 function M.setup()
   local signs = {
-    {name='DiagnosticSignError', text=''},
-    {name='DiagnosticSignWarn', text=''},
-    {name='DiagnosticSignHint', text=''},
-    {name='DiagnosticSignInfo', text=''}
+    {name='DiagnosticSignError', text='E'},
+    {name='DiagnosticSignWarn', text='W'},
+    {name='DiagnosticSignHint', text='H'},
+    {name='DiagnosticSignInfo', text='I'}
   }
   for _, sign in ipairs(signs) do vim.fn.sign_define(sign.name, {
     texthl=sign.name,
@@ -78,18 +78,19 @@ M.on_attach = function(client, bufnr)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+M.capabilities.textDocument.completion.completionItem.deprecatedSupport = true
 M.capabilities.textDocument.completion.completionItem.documentationFormat = {
   'markdown',
   'plaintext'
 }
-M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-M.capabilities.textDocument.completion.completionItem.preselectSupport = true
 M.capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
 M.capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-M.capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-M.capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-M.capabilities.textDocument.completion.completionItem.tagSupport = {valueSet={1}}
+M.capabilities.textDocument.completion.completionItem.preselectSupport = true
 M.capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties={'documentation', 'detail', 'additionalTextEdits'}
 }
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities.textDocument.completion.completionItem.tagSupport = {valueSet={1}}
+
 return M

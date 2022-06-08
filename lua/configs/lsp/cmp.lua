@@ -1,5 +1,4 @@
 local M = {}
-
 local cmp_ok, cmp = pcall(require, 'cmp')
 if not cmp_ok then return end
 local snip_ok, luasnip = pcall(require, 'luasnip')
