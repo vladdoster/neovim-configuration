@@ -16,6 +16,7 @@ deps:
 	endif
 
 format:
+	find . -name '*.lua' -print
 	find . -name '*.lua' -print0 \
 	| xargs -0 -n1 -P4 \
 		lua-format \
