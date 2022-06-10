@@ -1,3 +1,16 @@
+## [1.30.1](https://github.com/vladdoster/neovim-configuration/compare/v1.30.0...v1.30.1) (2022-06-10)
+
+
+### fix
+
+* lua lsp init, lsp keybinds, and telescope config ([276f29d](https://github.com/vladdoster/neovim-configuration/commit/276f29d6dd164cac6dfadb3ab99b6a2ac72bb5e0))
+
+### maint
+
+* print which lua files are found for formatting ([dd8505f](https://github.com/vladdoster/neovim-configuration/commit/dd8505f35a714cfda14f6d9fefbf7ba94ff3ffba))
+* update lsp related configurations ([5dbdc19](https://github.com/vladdoster/neovim-configuration/commit/5dbdc1984d8236a25b9e6c863334870b9b5ba37f))
+* update target, formatting, null-ls lua formatting, and dial keymaps ([f695738](https://github.com/vladdoster/neovim-configuration/commit/f695738d3bae724f6aa2ffd9093348c003c67a24))
+
 # [1.30.0](https://github.com/vladdoster/neovim-configuration/compare/v1.29.0...v1.30.0) (2022-06-04)
 
 
