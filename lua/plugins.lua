@@ -35,6 +35,11 @@ return packer.startup(function(use)
   -- │ UI │
   -- ╰────╯
   use {'MunifTanjim/nui.nvim'}
+  use {
+    's1n7ax/nvim-window-picker',
+    tag='v1.*',
+    config=function() require'window-picker'.setup() end
+  }
   use {'b0o/incline.nvim', config=cfg 'incline'}
   use {'nvim-lua/popup.nvim'}
   use {
