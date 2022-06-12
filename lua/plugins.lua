@@ -30,15 +30,12 @@ return packer.startup(function(use)
     'wbthomason/packer.nvim',
     'nvim-lua/plenary.nvim',
     'lewis6991/impatient.nvim',
-    'tweekmonster/startuptime.vim',
-    'muniftanjim/nui.nvim',
-    'nvim-lua/popup.nvim',
-    {'s1n7ax/nvim-window-picker', tag='v1.*', config=setup('window-picker')}
+    'tweekmonster/startuptime.vim'
   }
+  use {'nvim-lua/popup.nvim'}
   -- ╭────╮
   -- │ UI │
   -- ╰────╯
-  use {'b0o/incline.nvim', config=cfg 'incline'}
   use {
     {'nvim-lualine/lualine.nvim', event='BufEnter', config=cfg 'lualine'},
     {'j-hui/fidget.nvim', after='lualine.nvim', config=setup('fidget')},
@@ -53,7 +50,14 @@ return packer.startup(function(use)
   use {'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}}
   use {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true}
   use {'monaqa/dial.nvim', config=cfg 'dial'}
-
+  use {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch='v2.x',
+    module='neo-tree',
+    cmd='Neotree',
+    config=cfg 'neo-tree',
+    requires={'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim'}
+  }
   use {
     {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
     {'norcalli/nvim-colorizer.lua', config=setup('colorizer')},
@@ -61,7 +65,6 @@ return packer.startup(function(use)
     {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline', event='BufEnter'},
     {'numToStr/Buffers.nvim', event='BufRead'},
     {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'},
-    {'nvim-neo-tree/neo-tree.nvim', module='neo-tree', cmd='Neotree', config=cfg 'neo-tree'},
     {'vladdoster/remember.nvim', config=[[require 'remember']]}
   }
   use {
@@ -83,7 +86,8 @@ return packer.startup(function(use)
   --  ╭────────────╮
   --  │ COMPLETION │
   --  ╰────────────╯
-  use {'onsails/lspkind-nvim', 'williamboman/nvim-lsp-installer'}
+  use {'onsails/lspkind-nvim'}
+  use {'williamboman/nvim-lsp-installer'}
   use {
     'neovim/nvim-lspconfig',
     event='BufRead',
@@ -95,7 +99,7 @@ return packer.startup(function(use)
     {
       'hrsh7th/nvim-cmp',
       event='InsertEnter',
-      config=cfg('cmp'),
+      config=cfg('lsp.cmp'),
       requires={
         {
           'L3MON4D3/LuaSnip',
@@ -109,7 +113,6 @@ return packer.startup(function(use)
     {'hrsh7th/cmp-path', after='nvim-cmp'},
     {'hrsh7th/cmp-buffer', after='nvim-cmp'}
   }
-  use {'windwp/nvim-autopairs', event='InsertCharPre', after='nvim-cmp', config=cfg('pairs')}
   --  ╭──────────────╮
   --  │ FUZZY FINDER │
   --  ╰──────────────╯
@@ -126,6 +129,7 @@ return packer.startup(function(use)
       {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
     }
   }
+  use {'windwp/nvim-autopairs', config=cfg('pairs')}
   if not warm_boot then packer.sync() end
 end)
 
