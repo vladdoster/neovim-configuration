@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/vladdoster/neovim-configuration/compare/v1.30.1...v2.0.0) (2022-06-12)
+
+
+### fix
+
+* remove icons for nvim-cmp ([ada3707](https://github.com/vladdoster/neovim-configuration/commit/ada370706cd90ad3623cdbe885a36c87cd61e705))
+
+### maint
+
+* add refactor commit tag and format ([a9ab3bc](https://github.com/vladdoster/neovim-configuration/commit/a9ab3bcf4144152ea75188d3866145917c7a5899))
+
+### refactor
+
+* lsp configuration simplified ([fa65959](https://github.com/vladdoster/neovim-configuration/commit/fa6595980f697ce097586d8a0d9b2c826164eb7a))
+
 ## [1.30.1](https://github.com/vladdoster/neovim-configuration/compare/v1.30.0...v1.30.1) (2022-06-10)
 
 
