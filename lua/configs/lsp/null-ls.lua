@@ -1,33 +1,29 @@
-local M = {}
+local nls, U = require('null-ls'), require('configs.lsp.utils')
 
-function M.setup(options)
-  local nls = require 'null-ls'
-  local format, diagnostics = nls.builtins.formatting, nls.builtins.diagnostics
-  vim.lsp.buf.format {timeout_ms=2000} -- nvim v0.8.0
-  -- vim.lsp.buf.formatting_sync(nil, 2000) -- v0.7.0
-  nls.setup {
-    debounce=150,
-    save_after_format=false,
-    sources={
-      format.mdformat,
-      diagnostics.shellcheck,
-      format.black,
-      format.lua_format.with {
-        extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}
-      },
-      format.reorder_python_imports,
-      format.terraform_fmt,
-      format.trim_whitespace
+local dgn, fmt = nls.builtins.diagnostics, nls.builtins.formatting
+
+-- vim.lsp.buf.format {timeout_ms=2000} -- nvim v0.8.0
+
+nls.setup({
+  debounce=150,
+  save_after_format=false,
+  sources={
+    dgn.luacheck.with({extra_args={'--globals', 'vim', '--std', 'luajit'}}),
+    dgn.shellcheck,
+    fmt.black,
+    fmt.gofmt,
+    fmt.lua_format.with {
+      extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}
     },
-    on_attach=options.on_attach,
-    root_dir=require('null-ls.utils').root_pattern('.null-ls-root', '.nvim.settings.json', '.git')
-  }
-end
+    fmt.mdformat,
+    fmt.reorder_python_imports,
+    fmt.shfmt.with({extra_args={'-i', 2, '-ci', '-sr'}}),
+    fmt.terraform_fmt,
+    fmt.trim_whitespace
+  },
+  on_attach=function(client, bufnr)
+    U.fmt_on_save(client, bufnr)
+    U.mappings(bufnr)
+  end
+})
 
-function M.has_formatter(ft)
-  local sources = require 'null-ls.sources'
-  local available = sources.get_available(ft, 'NULL_LS_FORMATTING')
-  return #available > 0
-end
-
-return M

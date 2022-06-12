@@ -21,6 +21,7 @@ packer.init {
   profile={enable=true, threshold=0.0001}
 }
 local cfg = function(name) return string.format([[require("configs.%s")]], name) end
+local setup = function(name) return string.format([[require("%s").setup()]], name) end
 return packer.startup(function(use)
   -- ╭─────────────╮
   -- │ PERFORMANCE │
@@ -29,40 +30,35 @@ return packer.startup(function(use)
     'wbthomason/packer.nvim',
     'nvim-lua/plenary.nvim',
     'lewis6991/impatient.nvim',
-    'tweekmonster/startuptime.vim'
+    'tweekmonster/startuptime.vim',
+    'muniftanjim/nui.nvim',
+    'nvim-lua/popup.nvim',
+    {'s1n7ax/nvim-window-picker', tag='v1.*', config=setup('window-picker')}
   }
   -- ╭────╮
   -- │ UI │
   -- ╰────╯
-  use {'MunifTanjim/nui.nvim'}
-  use {
-    's1n7ax/nvim-window-picker',
-    tag='v1.*',
-    config=function() require'window-picker'.setup() end
-  }
   use {'b0o/incline.nvim', config=cfg 'incline'}
-  use {'nvim-lua/popup.nvim'}
   use {
     {'nvim-lualine/lualine.nvim', event='BufEnter', config=cfg 'lualine'},
-    {'j-hui/fidget.nvim', after='lualine.nvim', config=function() require('fidget').setup() end}
+    {'j-hui/fidget.nvim', after='lualine.nvim', config=setup('fidget')},
+    {'rcarriga/nvim-notify', config=cfg 'notify'},
+    {'rktjmp/lush.nvim', requires={{'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}}
   }
-  use {'rcarriga/nvim-notify', config=cfg 'notify'}
-  use {'rktjmp/lush.nvim', requires={{'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}}
   -- ╭──────────────╮
   -- │ PRODUCTIVITY │
   -- ╰──────────────╯
   use {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true}
   use {'obreitwi/vim-sort-folds', cmd='SortFolds', opt=true}
   use {'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}}
-  use {'sQVe/sort.nvim', cmd='Sort', config=function() require('sort').setup() end, opt=true}
+  use {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true}
   use {'monaqa/dial.nvim', config=cfg 'dial'}
 
   use {
     {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
-    {'jose-elias-alvarez/null-ls.nvim'},
-    {'norcalli/nvim-colorizer.lua', config=function() require('colorizer').setup() end},
+    {'norcalli/nvim-colorizer.lua', config=setup('colorizer')},
     {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'},
-    {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline'},
+    {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline', event='BufEnter'},
     {'numToStr/Buffers.nvim', event='BufRead'},
     {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'},
     {'nvim-neo-tree/neo-tree.nvim', module='neo-tree', cmd='Neotree', config=cfg 'neo-tree'},
@@ -87,33 +83,47 @@ return packer.startup(function(use)
   --  ╭────────────╮
   --  │ COMPLETION │
   --  ╰────────────╯
+  use {'onsails/lspkind-nvim', 'williamboman/nvim-lsp-installer'}
   use {
-    'onsails/lspkind-nvim',
-    {'rafamadriz/friendly-snippets', after='nvim-cmp'},
-    {'L3MON4D3/LuaSnip', after='friendly-snippets', config=cfg 'luasnip'},
-    {'hrsh7th/cmp-buffer', after='nvim-cmp'},
-    {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'},
-    {'hrsh7th/cmp-path', after='nvim-cmp'},
-    {'hrsh7th/nvim-cmp', config=cfg 'lsp.cmp', event='BufEnter'},
-    {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
-    {
-      'williamboman/nvim-lsp-installer',
-      {'neovim/nvim-lspconfig', config=cfg 'lsp', after='nvim-cmp'}
-    }
+    'neovim/nvim-lspconfig',
+    event='BufRead',
+    config=cfg('lsp.servers'),
+    requires={{'hrsh7th/cmp-nvim-lsp'}}
   }
-
+  use {'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=cfg('lsp.null-ls')}
+  use {
+    {
+      'hrsh7th/nvim-cmp',
+      event='InsertEnter',
+      config=cfg('cmp'),
+      requires={
+        {
+          'L3MON4D3/LuaSnip',
+          event='CursorHold',
+          config=cfg('lsp.luasnip'),
+          requires={'rafamadriz/friendly-snippets'}
+        }
+      }
+    },
+    {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
+    {'hrsh7th/cmp-path', after='nvim-cmp'},
+    {'hrsh7th/cmp-buffer', after='nvim-cmp'}
+  }
+  use {'windwp/nvim-autopairs', event='InsertCharPre', after='nvim-cmp', config=cfg('pairs')}
   --  ╭──────────────╮
   --  │ FUZZY FINDER │
   --  ╰──────────────╯
   use {
     'nvim-telescope/telescope.nvim',
+    config=cfg('telescope'),
     cmd='Telescope',
-    config=cfg 'telescope',
+    event='CursorHold',
     requires={
       {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-project.nvim'},
       {'ANGkeith/telescope-terraform-doc.nvim'},
-      {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
-      {'nvim-telescope/telescope-project.nvim'}
+      {'nvim-telescope/telescope-symbols.nvim'},
+      {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
     }
   }
   if not warm_boot then packer.sync() end
