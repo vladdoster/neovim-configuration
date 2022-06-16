@@ -6,9 +6,9 @@ if not warm_boot then
   vim.fn.system {
     'git',
     'clone',
-    'https://github.com/wbthomason/packer.nvim',
     '--depth',
     '1',
+    'https://github.com/wbthomason/packer.nvim',
     packer_path
   }
   vim.cmd 'packadd packer.nvim'
@@ -53,10 +53,8 @@ return packer.startup(function(use)
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch='v2.x',
-    module='neo-tree',
-    cmd='Neotree',
     config=cfg 'neo-tree',
-    requires={'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim'}
+    requires={'MunifTanjim/nui.nvim'}
   }
   use {
     {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},

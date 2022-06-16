@@ -1,12 +1,13 @@
 local M = {}
 local neotree_ok, neotree = pcall(require, 'neo-tree')
 if not neotree_ok then return end
-vim.g.neo_tree_legacy_commands = 1
+-- vim.g.neo_tree_legacy_commands = 1
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 neotree.setup {
   buffers={show_unloaded=true, window={mappings={['bd']='buffer_delete'}}},
   close_if_last_window=true,
   default_component_configs={
-    icon={default='•', folder_closed='▷', folder_open='🗁'},
+    icon={default='•', folder_closed='▷', folder_open='V'},
     indent={
       expander_highlight='NeoTreeExpander',
       highlight='NeoTreeIndentMarker',
@@ -74,7 +75,7 @@ neotree.setup {
     },
     follow_current_file=true,
     hijack_netrw_behavior='open_current',
-    use_libuv_file_watcher=false
+    use_libuv_file_watcher=true
   },
   nesting_rules={},
   window={
