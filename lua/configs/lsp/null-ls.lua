@@ -8,6 +8,7 @@ nls.setup({
   debounce=150,
   save_after_format=false,
   sources={
+    dgn.checkmake,
     dgn.luacheck.with({extra_args={'--globals', 'vim', '--std', 'luajit'}}),
     dgn.shellcheck,
     fmt.black,
@@ -26,4 +27,3 @@ nls.setup({
     U.mappings(bufnr)
   end
 })
-
