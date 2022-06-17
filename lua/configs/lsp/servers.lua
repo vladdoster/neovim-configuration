@@ -1,9 +1,6 @@
 local status_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
 if not status_ok then return end
-local lsp = require('lspconfig')
-local U = require('configs.lsp.utils')
--- ensure_installed={'pyright', 'dockerls', 'bashls', 'terraform', 'sumneko_lua', 'go'},
-
+local lsp, U = require('lspconfig'), require('configs.lsp.utils')
 lsp_installer.setup {
   automatic_installation=true,
   ensure_installed={},
@@ -11,13 +8,12 @@ lsp_installer.setup {
   pip={install_args={}},
   ui={icons={server_installed='+', server_pending='~', server_uninstalled='-'}}
 }
-
-local capabilities = U.capabilities()
-local flags = {allow_incremental_sync=true, debounce_text_changes=200}
-
+local capabilities, flags = U.capabilities(), {
+  allow_incremental_sync=true,
+  debounce_text_changes=200
+}
 -- native diagnostics
 vim.diagnostic.config({virtual_text={source='always'}, float={source='always'}})
-
 -- Lua
 lsp.sumneko_lua.setup({
   flags=flags,
@@ -33,7 +29,7 @@ lsp.sumneko_lua.setup({
     }
   }
 })
-
+-- Use default configuration
 for _, server in pairs {'gopls', 'jsonls', 'yamlls', 'terraformls'} do
   lsp[server].setup({
     flags=flags,
@@ -41,31 +37,3 @@ for _, server in pairs {'gopls', 'jsonls', 'yamlls', 'terraformls'} do
     on_attach=function(_, buf) U.mappings(buf) end
   })
 end
---
--- -- Golang
--- lsp.gopls.setup({
---   flags = flags,
---   capabilities = capabilities,
---   on_attach = function(_, buf) U.mappings(buf) end
--- })
---
--- -- Json
--- lsp.jsonls.setup({
---   flags = flags,
---   capabilities = capabilities,
---   on_attach = function(_, buf) U.mappings(buf) end
--- })
---
--- -- YAML
--- lsp.yamlls.setup({
---   flags = flags,
---   capabilities = capabilities,
---   on_attach = function(_, buf) U.mappings(buf) end
--- })
---
--- -- Terraform
--- lsp.terraformls.setup({
---   flags = flags,
---   capabilities = capabilities,
---   on_attach = function(_, buf) U.mappings(buf) end
--- })
