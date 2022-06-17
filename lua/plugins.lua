@@ -102,7 +102,7 @@ return packer.startup(function(use)
         {
           'L3MON4D3/LuaSnip',
           event='CursorHold',
-          config=cfg('lsp.luasnip'),
+          config=cfg('lsp.lua-snip'),
           requires={'rafamadriz/friendly-snippets'}
         }
       }
