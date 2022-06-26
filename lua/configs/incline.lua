@@ -18,11 +18,5 @@ require('incline').setup {
     padding_char=' ',
     zindex=100
   },
-  ignore={
-    floating_wins=true,
-    unlisted_buffers=true,
-    filetypes={},
-    buftypes='special',
-    wintypes='special'
-  }
+  ignore={floating_wins=true, unlisted_buffers=true, filetypes={}, buftypes='special', wintypes='special'}
 }

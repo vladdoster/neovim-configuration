@@ -1,8 +1,5 @@
 -- Keymap method
-local K = setmetatable({
-  nore={noremap=true, silent=true, expr=false},
-  remap={noremap=false, silent=true, expr=false}
-}, {
+local K = setmetatable({nore={noremap=true, silent=true, expr=false}, remap={noremap=false, silent=true, expr=false}}, {
   __index=function(p, mode)
     return setmetatable({
       map=function(key, action) vim.api.nvim_set_keymap(mode, key, action, p.remap) end,

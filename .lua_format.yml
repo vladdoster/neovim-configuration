@@ -12,8 +12,8 @@ chop_down_kv_table: true
 chop_down_parameter: false
 chop_down_table: true
 column_limit: 120
-column_table_limit: 100
-continuation_indent_width: 4
+column_table_limit: 120
+continuation_indent_width: 2
 double_quote_to_single_quote: true
 extra_sep_at_table_end: false
 indent_width: 2

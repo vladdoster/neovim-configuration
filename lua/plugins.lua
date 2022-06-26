@@ -3,14 +3,7 @@ local warm_boot, packer = pcall(require, 'packer')
 if not warm_boot then
   local packer_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
   vim.fn.delete(packer_path, 'rf')
-  vim.fn.system {
-    'git',
-    'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    packer_path
-  }
+  vim.fn.system {'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_path}
   vim.cmd 'packadd packer.nvim'
   packer = require 'packer'
 end
@@ -26,12 +19,7 @@ return packer.startup(function(use)
   -- ╭─────────────╮
   -- │ PERFORMANCE │
   -- ╰─────────────╯
-  use {
-    'wbthomason/packer.nvim',
-    'nvim-lua/plenary.nvim',
-    'lewis6991/impatient.nvim',
-    'tweekmonster/startuptime.vim'
-  }
+  use {'wbthomason/packer.nvim', 'nvim-lua/plenary.nvim', 'lewis6991/impatient.nvim', 'tweekmonster/startuptime.vim'}
   use {'nvim-lua/popup.nvim'}
   -- ╭────╮
   -- │ UI │
@@ -50,12 +38,7 @@ return packer.startup(function(use)
   use {'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}}
   use {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true}
   use {'monaqa/dial.nvim', config=cfg 'dial'}
-  use {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch='v2.x',
-    config=cfg 'neo-tree',
-    requires={'MunifTanjim/nui.nvim'}
-  }
+  use {'nvim-neo-tree/neo-tree.nvim', branch='v2.x', config=cfg 'neo-tree', requires={'MunifTanjim/nui.nvim'}}
   use {
     {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
     {'norcalli/nvim-colorizer.lua', config=setup('colorizer')},
@@ -65,12 +48,7 @@ return packer.startup(function(use)
     {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'},
     {'vladdoster/remember.nvim', config=[[require 'remember']]}
   }
-  use {
-    'akinsho/nvim-toggleterm.lua',
-    cmd='ToggleTerm',
-    config=cfg 'toggle-term',
-    module='toggle-term'
-  }
+  use {'akinsho/nvim-toggleterm.lua', cmd='ToggleTerm', config=cfg 'toggle-term', module='toggle-term'}
   --  ╭────────────╮
   --  │ TREESITTER │
   --  ╰────────────╯
@@ -86,12 +64,7 @@ return packer.startup(function(use)
   --  ╰────────────╯
   use {'onsails/lspkind-nvim'}
   use {'williamboman/nvim-lsp-installer'}
-  use {
-    'neovim/nvim-lspconfig',
-    event='BufRead',
-    config=cfg('lsp.servers'),
-    requires={{'hrsh7th/cmp-nvim-lsp'}}
-  }
+  use {'neovim/nvim-lspconfig', event='BufRead', config=cfg('lsp.servers'), requires={{'hrsh7th/cmp-nvim-lsp'}}}
   use {'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=cfg('lsp.null-ls')}
   use {
     {
@@ -99,12 +72,7 @@ return packer.startup(function(use)
       event='InsertEnter',
       config=cfg('lsp.cmp'),
       requires={
-        {
-          'L3MON4D3/LuaSnip',
-          event='CursorHold',
-          config=cfg('lsp.lua-snip'),
-          requires={'rafamadriz/friendly-snippets'}
-        }
+        {'L3MON4D3/LuaSnip', event='CursorHold', config=cfg('lsp.lua-snip'), requires={'rafamadriz/friendly-snippets'}}
       }
     },
     {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},

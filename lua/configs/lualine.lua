@@ -1,13 +1,6 @@
 local lualine_ok, lualine = pcall(require, 'lualine')
 if not lualine_ok then return end
-local colors = {
-  bg='#202328',
-  black='#000000',
-  fg='#bbc2cf',
-  green='#20C20E',
-  red='#FF0000',
-  yellow='#FFFF00'
-}
+local colors = {bg='#202328', black='#000000', fg='#bbc2cf', green='#20C20E', red='#FF0000', yellow='#FFFF00'}
 local conditions = {
   buffer_not_empty=function() return vim.fn.empty(vim.fn.expand '%:t') ~= 1 end,
   hide_in_width=function() return vim.fn.winwidth(0) > 80 end
@@ -22,14 +15,7 @@ local config = {
     theme={normal={c={fg=colors.green, bg=colors.bg}}, inactive={c={fg=colors.fg, bg=colors.bg}}}
   },
   sections={lualine_a={}, lualine_b={}, lualine_y={}, lualine_z={}, lualine_c={}, lualine_x={}},
-  inactive_sections={
-    lualine_a={},
-    lualine_v={},
-    lualine_y={},
-    lualine_z={},
-    lualine_c={},
-    lualine_x={}
-  }
+  inactive_sections={lualine_a={}, lualine_v={}, lualine_y={}, lualine_z={}, lualine_c={}, lualine_x={}}
 }
 local function ins_left(component) table.insert(config.sections.lualine_c, component) end
 
@@ -60,12 +46,7 @@ ins_left {
   'diagnostics',
   sources={'nvim_diagnostic', 'nvim_lsp'},
   sections={'error', 'hint', 'info', 'warn'},
-  diagnostics_color={
-    error='#DiagnosticError',
-    hint='DiagnosticHint',
-    info='DiagnosticInfo',
-    warn='DiagnosticWarn'
-  },
+  diagnostics_color={error='#DiagnosticError', hint='DiagnosticHint', info='DiagnosticInfo', warn='DiagnosticWarn'},
   always_visible=true,
   colored=true,
   symbols={error='E:', hint='H:', info='I:', warn='W:'}

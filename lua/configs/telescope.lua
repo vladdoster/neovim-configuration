@@ -19,17 +19,8 @@ telescope.setup {
     buffer_previewer_maker=require('telescope.previewers').buffer_previewer_maker,
     color_devicons=false,
     extensions={
-      fzf={
-        case_mode='respect_case',
-        fuzzy=true,
-        override_file_sorter=true,
-        override_generic_sorter=true
-      },
-      project={
-        base_dirs={'~/code', {'~/.config/dotfiles'}, {'~/.config/nvim'}},
-        hidden_files=false,
-        theme='dropdown'
-      }
+      fzf={case_mode='respect_case', fuzzy=true, override_file_sorter=true, override_generic_sorter=true},
+      project={base_dirs={'~/code', {'~/.config/dotfiles'}, {'~/.config/nvim'}}, hidden_files=false, theme='dropdown'}
     },
     file_ignore_patterns={'node_modules', 'venv'},
     file_previewer=previewers.vim_buffer_cat.new,
@@ -89,17 +80,13 @@ for _, x in pairs {'fzf', 'notify', 'project', 'terraform_doc'} do telescope.loa
 
 -- Add leader shortcuts
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers)
-vim.keymap.set('n', '<leader>sf', function() require('telescope.builtin').find_files {
-  previewer=false
-} end)
+vim.keymap.set('n', '<leader>sf', function() require('telescope.builtin').find_files {previewer=false} end)
 vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find)
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)
 vim.keymap.set('n', '<leader>st', require('telescope.builtin').tags)
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string)
 vim.keymap.set('n', '<leader>sp', require('telescope.builtin').live_grep)
-vim.keymap.set('n', '<leader>so', function() require('telescope.builtin').tags {
-  only_current_buffer=true
-} end)
+vim.keymap.set('n', '<leader>so', function() require('telescope.builtin').tags {only_current_buffer=true} end)
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
 
 return M

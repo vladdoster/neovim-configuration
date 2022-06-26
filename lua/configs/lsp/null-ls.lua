@@ -13,14 +13,14 @@ nls.setup({
     dgn.shellcheck,
     fmt.black,
     fmt.gofmt,
-    fmt.lua_format.with {
-      extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}
-    },
+    fmt.lua_format.with {extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}},
     fmt.mdformat,
     fmt.reorder_python_imports,
     fmt.shfmt.with({extra_args={'-i', 2, '-ci', '-sr'}}),
     fmt.terraform_fmt,
-    fmt.trim_whitespace
+    fmt.trim_whitespace,
+    fmt.zsh
+
   },
   on_attach=function(client, bufnr)
     U.fmt_on_save(client, bufnr)
