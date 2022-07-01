@@ -1,3 +1,20 @@
+## [2.0.1](https://github.com/vladdoster/neovim-configuration/compare/v2.0.0...v2.0.1) (2022-07-01)
+
+
+### fix
+
+* null-ls formatter selection ([aa5dd2c](https://github.com/vladdoster/neovim-configuration/commit/aa5dd2c256242d4b130973f446c1a11379aecdc1))
+
+### maint
+
+* add checkmake to null-ls diagnostic linters ([2173fc6](https://github.com/vladdoster/neovim-configuration/commit/2173fc6d02f93154e26354c93c94da9c341e3be6))
+* open neo-tree when opening a dir ([e9382e8](https://github.com/vladdoster/neovim-configuration/commit/e9382e85d6f64bf76ffbe722f9a91109f602f9a8))
+* remove cruft lsp setup & condense var init logic ([21b782d](https://github.com/vladdoster/neovim-configuration/commit/21b782d36f238a0452ff3352d5d2c6dc2965d95e))
+
+### style
+
+* update lua-format config and re-format code ([b7f36e9](https://github.com/vladdoster/neovim-configuration/commit/b7f36e976db30b12b680e6f5779c39ac02043894))
+
 # [2.0.0](https://github.com/vladdoster/neovim-configuration/compare/v1.30.1...v2.0.0) (2022-06-12)
 
 
