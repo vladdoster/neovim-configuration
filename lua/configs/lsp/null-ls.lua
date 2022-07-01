@@ -1,11 +1,9 @@
 local nls, U = require('null-ls'), require('configs.lsp.utils')
-
 local dgn, fmt = nls.builtins.diagnostics, nls.builtins.formatting
-
--- vim.lsp.buf.format {timeout_ms=2000} -- nvim v0.8.0
-
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 nls.setup({
   debounce=150,
+  debug=false,
   save_after_format=false,
   sources={
     dgn.checkmake,
@@ -20,10 +18,18 @@ nls.setup({
     fmt.terraform_fmt,
     fmt.trim_whitespace,
     fmt.zsh
-
   },
   on_attach=function(client, bufnr)
-    U.fmt_on_save(client, bufnr)
+    if client.supports_method('textDocument/formatting') then
+      vim.api.nvim_clear_autocmds({group=augroup, buffer=bufnr})
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group=augroup,
+        buffer=bufnr,
+        callback=function()
+          vim.lsp.buf.format({bufnr=bufnr, filter=function(client) return client.name == 'null-ls' end})
+        end
+      })
+    end
     U.mappings(bufnr)
   end
 })

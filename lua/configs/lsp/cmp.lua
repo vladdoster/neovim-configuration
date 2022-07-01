@@ -3,7 +3,7 @@ local cmp = require('cmp')
 cmp.setup({
   behavior=cmp.SelectBehavior.Insert,
   completion={keyword_length=1},
-  confirm_opts={behavior=cmp.ConfirmBehavior.Replace, select=false},
+  confirm_opts={behavior=cmp.ConfirmBehavior.Replace, select=true},
   duplicates={nvim_lsp=1, luasnip=1, buffer=1, path=1},
   experimental={ghost_text=false, native_menu=false},
   snippet={expand=function(args) require('luasnip').lsp_expand(args.body) end},
