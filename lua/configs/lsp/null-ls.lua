@@ -1,6 +1,19 @@
 local nls, U = require('null-ls'), require('configs.lsp.utils')
 local dgn, fmt = nls.builtins.diagnostics, nls.builtins.formatting
+
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+local lsp_fmt = function(bufnr)
+  vim.lsp.buf.format({filter=function(client) return client.name == 'null-ls' end, bufnr=bufnr})
+end
+
+local on_attach = function(client, bufnr)
+  U.mappings(bufnr)
+  if client.supports_method('textDocument/formatting') then
+    vim.api.nvim_clear_autocmds({group=augroup, buffer=bufnr})
+    vim.api.nvim_create_autocmd('BufWritePre', {group=augroup, buffer=bufnr, callback=function() lsp_fmt(bufnr) end})
+  end
+end
+
 nls.setup({
   debounce=150,
   debug=false,
@@ -19,17 +32,5 @@ nls.setup({
     fmt.trim_whitespace,
     fmt.zsh
   },
-  on_attach=function(client, bufnr)
-    if client.supports_method('textDocument/formatting') then
-      vim.api.nvim_clear_autocmds({group=augroup, buffer=bufnr})
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group=augroup,
-        buffer=bufnr,
-        callback=function()
-          vim.lsp.buf.format({bufnr=bufnr, filter=function(client) return client.name == 'null-ls' end})
-        end
-      })
-    end
-    U.mappings(bufnr)
-  end
+  on_attach=on_attach
 })
