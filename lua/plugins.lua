@@ -28,6 +28,7 @@ return packer.startup(function(use)
     {'nvim-lualine/lualine.nvim', event='BufEnter', config=cfg 'lualine'},
     {'j-hui/fidget.nvim', after='lualine.nvim', config=setup('fidget')},
     {'rcarriga/nvim-notify', config=cfg 'notify'},
+    {'editorconfig/editorconfig-vim'},
     {'rktjmp/lush.nvim', requires={{'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}}
   }
   -- ╭──────────────╮
