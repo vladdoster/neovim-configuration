@@ -23,14 +23,14 @@ nls.setup({
     dgn.luacheck.with({extra_args={'--globals', 'vim', '--std', 'luajit'}}),
     dgn.shellcheck,
     fmt.black,
+    fmt.beautysh,
     fmt.gofmt,
     fmt.lua_format.with {extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}},
     fmt.mdformat,
     fmt.reorder_python_imports,
     fmt.shfmt.with({extra_args={'-i', 2, '-ci', '-sr'}}),
     fmt.terraform_fmt,
-    fmt.trim_whitespace,
-    fmt.zsh
+    fmt.trim_whitespace
   },
   on_attach=on_attach
 })
