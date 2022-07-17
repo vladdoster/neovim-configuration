@@ -78,6 +78,7 @@ o.timeoutlen = 300
 o.title = true
 o.titlestring = '%F'
 o.undodir = vim.fn.stdpath 'cache' .. '/undo'
+o.shadafile = vim.fn.stdpath 'cache' .. 'nvim.shada'
 o.undofile = true
 o.updatetime = 500
 o.wildchar = 9 -- equivalent to 'set wildchar=<Tab>'

@@ -19,7 +19,7 @@ return packer.startup(function(use)
   -- ╭─────────────╮
   -- │ PERFORMANCE │
   -- ╰─────────────╯
-  use {'wbthomason/packer.nvim', 'nvim-lua/plenary.nvim', 'lewis6991/impatient.nvim', 'tweekmonster/startuptime.vim'}
+  use {'wbthomason/packer.nvim', 'nvim-lua/plenary.nvim', 'lewis6991/impatient.nvim','dstein64/vim-startuptime'}
   use {'nvim-lua/popup.nvim'}
   -- ╭────╮
   -- │ UI │
