@@ -1,3 +1,20 @@
+# [2.1.0](https://github.com/vladdoster/neovim-configuration/compare/v2.0.1...v2.1.0) (2022-07-17)
+
+
+### feat
+
+* add bashls, dockerls, pyright, pylsp LSP servers ([871a1f0](https://github.com/vladdoster/neovim-configuration/commit/871a1f02f551261d5a03575a9762711d0f75c44a))
+* add editorconfig/editorconfig-vim plugin ([c711c73](https://github.com/vladdoster/neovim-configuration/commit/c711c73c49c7c2983b47b94fbc65f474a4635ab4))
+
+### fix
+
+* remove null-ls fmt source zsh & add beautysh ([4b029dd](https://github.com/vladdoster/neovim-configuration/commit/4b029dda3abf1b1727286d2bdbd1afe91b7e8743))
+
+### maint
+
+* add indent and func style to beautysh in null-ls ([71e83d8](https://github.com/vladdoster/neovim-configuration/commit/71e83d82ab631004d2602bdc49729f7404c2e369))
+* null-ls config uses new nvim v0.8.0 api ([fc42f4e](https://github.com/vladdoster/neovim-configuration/commit/fc42f4eaea5a3b425bbb87981882ca849cd1477a))
+
 ## [2.0.1](https://github.com/vladdoster/neovim-configuration/compare/v2.0.0...v2.0.1) (2022-07-01)
 
 
