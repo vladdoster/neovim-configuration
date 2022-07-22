@@ -11,9 +11,7 @@ clean:
 	$(info --- cleaned neovim artifacts)
 
 deps:
-	ifeq (, $(shell which lua-format))
-		luarocks install --server https://luarocks.org/dev luaformatter
-	endif
+	luarocks install --server https://luarocks.org/dev luaformatter
 
 format:
 	find . -name '*.lua' -print
