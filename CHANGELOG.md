@@ -1,3 +1,21 @@
+# [2.2.0](https://github.com/vladdoster/neovim-configuration/compare/v2.1.0...v2.2.0) (2022-07-22)
+
+
+### feat
+
+* enabled SHADA (shared data) option ([7cb91bb](https://github.com/vladdoster/neovim-configuration/commit/7cb91bb0aa082797eb4d1c9e5adb84b70e2c75eb))
+
+### fix
+
+* lua-format install Makefile target ([91ffa78](https://github.com/vladdoster/neovim-configuration/commit/91ffa785161f2b1ca4e46e8f31ea6e9be3e1f42d))
+* set commentstrings for certain filetypes ([0b8576a](https://github.com/vladdoster/neovim-configuration/commit/0b8576a0503d1ccbbc13a254c535e3798eea4e20))
+* use v0.8.0 api for null-ls formatting ([60d8da6](https://github.com/vladdoster/neovim-configuration/commit/60d8da66fd054c07b5d4e199f3983f4b38267f0a))
+
+### maint
+
+* add servers for lsp-installer ([c5d42c5](https://github.com/vladdoster/neovim-configuration/commit/c5d42c53aee2f4a7d437527a1454da2b0036f945))
+* update comment and neo-tree packer config ([0f35751](https://github.com/vladdoster/neovim-configuration/commit/0f35751056e1a08084a3a20afc6f16085e7bf42e))
+
 # [2.1.0](https://github.com/vladdoster/neovim-configuration/compare/v2.0.1...v2.1.0) (2022-07-17)
 
 
