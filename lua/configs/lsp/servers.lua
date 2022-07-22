@@ -27,6 +27,6 @@ lsp.sumneko_lua.setup({
   }
 })
 -- Use default configuration
-for _, server in pairs {'bashls', 'dockerls', 'gopls', 'jsonls', 'pyright','pylsp', 'terraformls', 'yamlls'} do
+for _, server in pairs {'bashls', 'dockerls', 'gopls', 'jsonls', 'pyright', 'pylsp', 'terraformls', 'yamlls'} do
   lsp[server].setup({flags=flags, capabilities=capabilities, on_attach=function(_, buf) U.mappings(buf) end})
 end
