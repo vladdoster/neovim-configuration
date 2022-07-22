@@ -19,7 +19,7 @@ return packer.startup(function(use)
   -- ╭─────────────╮
   -- │ PERFORMANCE │
   -- ╰─────────────╯
-  use {'wbthomason/packer.nvim', 'nvim-lua/plenary.nvim', 'lewis6991/impatient.nvim','dstein64/vim-startuptime'}
+  use {'wbthomason/packer.nvim', 'nvim-lua/plenary.nvim', 'lewis6991/impatient.nvim', 'dstein64/vim-startuptime'}
   use {'nvim-lua/popup.nvim'}
   -- ╭────╮
   -- │ UI │
@@ -39,17 +39,20 @@ return packer.startup(function(use)
   use {'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}}
   use {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true}
   use {'monaqa/dial.nvim', config=cfg 'dial'}
-  use {'nvim-neo-tree/neo-tree.nvim', branch='v2.x', config=cfg 'neo-tree', requires={'MunifTanjim/nui.nvim'}}
   use {
-    {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
-    {'norcalli/nvim-colorizer.lua', config=setup('colorizer')},
-    {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'},
-    {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline', event='BufEnter'},
-    {'numToStr/Buffers.nvim', event='BufRead'},
-    {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'},
-    {'vladdoster/remember.nvim', config=[[require 'remember']]}
+    'nvim-neo-tree/neo-tree.nvim',
+    branch='v2.x',
+    config=cfg 'neo-tree',
+    requires={'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim'}
   }
+  use {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'}
   use {'akinsho/nvim-toggleterm.lua', cmd='ToggleTerm', config=cfg 'toggle-term', module='toggle-term'}
+  use {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'}
+  use {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline', event='BufEnter'}
+  use {'norcalli/nvim-colorizer.lua', config=setup('colorizer')}
+  use {'numToStr/Buffers.nvim', event='BufRead'}
+  use {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'}
+  use {'vladdoster/remember.nvim', config=[[require 'remember']]}
   --  ╭────────────╮
   --  │ TREESITTER │
   --  ╰────────────╯
