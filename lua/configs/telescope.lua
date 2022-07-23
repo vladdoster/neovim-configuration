@@ -4,6 +4,7 @@ if not telescope_ok then return end
 local actions, previewers, sorters = require 'telescope.actions', require 'telescope.previewers',
                                      require 'telescope.sorters'
 
+require('telescope').load_extension('aerial')
 telescope.setup {
   defaults={
     vimgrep_arguments={
@@ -19,6 +20,7 @@ telescope.setup {
     buffer_previewer_maker=require('telescope.previewers').buffer_previewer_maker,
     color_devicons=false,
     extensions={
+      aerial={show_nesting=true},
       fzf={case_mode='respect_case', fuzzy=true, override_file_sorter=true, override_generic_sorter=true},
       project={base_dirs={'~/code', {'~/.config/dotfiles'}, {'~/.config/nvim'}}, hidden_files=false, theme='dropdown'}
     },

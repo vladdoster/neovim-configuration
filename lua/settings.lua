@@ -3,8 +3,6 @@ local g, o, wo = vim.g, vim.o, vim.wo
 
 -- GLOBAL EDITOR VARIABLES [
 g.cursorhold_updatetime = 150 -- antoinemadec/FixCursorHold.nvim
-g.did_load_filetypes = 0
-g.do_filetype_lua = 1
 g.mapleader = ' '
 g.maplocalleader = ','
 g.no_man_maps = 1

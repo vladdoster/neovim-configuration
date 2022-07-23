@@ -87,6 +87,12 @@ K.n('<Leader>w', '<cmd>w<cr>')
 K.n('<Leader>q', '<cmd>q<cr>')
 K.n('<Leader>c', '<cmd>bdelete!<cr>')
 K.n('<Leader>h', '<cmd>nohlsearch<cr>')
+-- Toggle the aerial window with <leader>a
+K.n('<leader>a', '<cmd>AerialToggle!<CR>', {})
+K.n('{', '<cmd>AerialPrev<CR>')
+K.n('}', '<cmd>AerialNext<CR>')
+K.n('[[', '<cmd>AerialPrevUp<CR>')
+K.n(']]', '<cmd>AerialNextUp<CR>')
 -- +───────────+
 -- │ telescope │
 -- +───────────+

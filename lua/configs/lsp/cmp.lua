@@ -4,8 +4,10 @@ cmp.setup({
   behavior=cmp.SelectBehavior.Insert,
   completion={keyword_length=1},
   confirm_opts={behavior=cmp.ConfirmBehavior.Replace, select=true},
+  window={documentation=false},
   duplicates={nvim_lsp=1, luasnip=1, buffer=1, path=1},
-  experimental={ghost_text=false, native_menu=false},
+  experimental={ghost_text=false},
+  view={entries='native'},
   snippet={expand=function(args) require('luasnip').lsp_expand(args.body) end},
   mapping={
     ['<C-p>']=cmp.mapping(cmp.mapping.select_prev_item({behavior=cmp.SelectBehavior.Insert}), {'i', 'c'}),
@@ -24,7 +26,18 @@ cmp.setup({
     {name='path', max_item_count=10}
   })
 })
-cmp.setup.cmdline('/', {sources={{name='buffer'}}})
-cmp.setup.cmdline(':', {sources=cmp.config.sources({{name='path'}}, {{name='cmdline'}})})
-cmp.setup.filetype('gitcommit', {sources=cmp.config.sources({{name='cmp_git'}}, {{name='buffer'}})})
-cmp.setup.filetype('zsh', {sources=cmp.config.sources({{name='cmp_zsh'}}, {{name='buffer'}})})
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources=cmp.config.sources({
+    {name='cmp_git'} -- You can specify the `cmp_git` source if you were installed it.
+  }, {{name='buffer'}})
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {mapping=cmp.mapping.preset.cmdline(), sources={{name='buffer'}}})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  mapping=cmp.mapping.preset.cmdline(),
+  sources=cmp.config.sources({{name='path'}}, {{name='cmdline'}})
+})
