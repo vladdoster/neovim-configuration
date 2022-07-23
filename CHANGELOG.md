@@ -1,3 +1,14 @@
+# [2.3.0](https://github.com/vladdoster/neovim-configuration/compare/v2.2.0...v2.3.0) (2022-07-23)
+
+
+### feat
+
+* add aerial code outline plugin ([3a654f6](https://github.com/vladdoster/neovim-configuration/commit/3a654f641ad9517b5ee18e255e5adb2a214f28a3))
+
+### fix
+
+* Lsp config, null-ls, telescope, and comment ([d0e56b3](https://github.com/vladdoster/neovim-configuration/commit/d0e56b30d843d5ce79cfa4cbb384bb584f911609))
+
 # [2.2.0](https://github.com/vladdoster/neovim-configuration/compare/v2.1.0...v2.2.0) (2022-07-22)
 
 
