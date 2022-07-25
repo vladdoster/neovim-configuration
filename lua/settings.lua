@@ -76,7 +76,7 @@ o.timeoutlen = 300
 o.title = true
 o.titlestring = '%F'
 o.undodir = vim.fn.stdpath 'cache' .. '/undo'
-o.shadafile = vim.fn.stdpath 'cache' .. 'nvim.shada'
+-- o.shadafile = vim.fn.stdpath 'cache' .. 'nvim.shada'
 o.undofile = true
 o.updatetime = 500
 o.wildchar = 9 -- equivalent to 'set wildchar=<Tab>'
@@ -88,6 +88,11 @@ wo.number = true
 wo.numberwidth = 1
 wo.relativenumber = true
 -- ]
+-- set shada path
+vim.schedule(function()
+  vim.opt.shadafile = vim.fn.expand '$HOME' .. '/.local/share/nvim/shada/main.shada'
+  vim.cmd [[ silent! rsh ]]
+end)
 
 return M
 -- vim:ft=lua:sw=4:sts=4:et:foldmarker=[,]:foldmethod=marker

@@ -5,21 +5,8 @@ local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
 local lsp_formatting = function(bufnr)
   -- vim.lsp.buf.formatting_sync({ filter = function(client) return client.name == "null-ls" end, bufnr = bufnr, })
-  vim.lsp.buf.format({filter=function(client) return client.name == 'null-ls' end, bufnr=bufnr})
 end
 
--- if you want to set up formatting on save, you can use this as a callback
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-
--- add to your shared on_attach callback
-local on_attach = function(client, bufnr)
-  if client.supports_method('textDocument/formatting') then
-    vim.api.nvim_clear_autocmds({group=augroup, buffer=bufnr})
-    vim.api.nvim_create_autocmd('BufWritePre',
-                                {group=augroup, buffer=bufnr, callback=function() lsp_formatting(bufnr) end})
-  end
-end
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 require('null-ls').setup({
   -- you can reuse a shared lspconfig on_attach callback here
   debounce=150,
@@ -32,6 +19,7 @@ require('null-ls').setup({
     fmt.beautysh.with({extra_args={'--indent-size', '2', '--force-function-style', 'paronly'}}),
     fmt.black,
     fmt.gofmt,
+    fmt.jq,
     fmt.lua_format.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}}),
     fmt.mdformat,
     fmt.reorder_python_imports,
@@ -40,19 +28,14 @@ require('null-ls').setup({
     fmt.trim_whitespace
   },
   on_attach=function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
+    local opts = {noremap=true, silent=true}
     require('aerial').on_attach(client, bufnr)
     if client.supports_method('textDocument/formatting') then
-      vim.api.nvim_clear_autocmds({group=augroup, buffer=bufnr})
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group=augroup,
-        buffer=bufnr,
-        callback=function()
-          -- nvim 0.8 -> vim.lsp.buf.format({ bufnr = bufnr })
-          -- nvim 0.7 -> vim.lsp.buf.formatting_sync()
-          -- vim.lsp.buf.formatting_sync()
-          vim.lsp.buf.format({buf=bufnr})
-        end
-      })
+      buf_set_keymap('n', '<leader>F',
+                     '<cmd>lua vim.lsp.buf.format({filter=function(client) return client.name == \'null-ls\' end, bufnr=bufnr})<CR>',
+                     opts)
     end
   end
 })

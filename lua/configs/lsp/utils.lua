@@ -27,6 +27,7 @@ function U.mappings(buf)
   map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+
 end
 
 return U
