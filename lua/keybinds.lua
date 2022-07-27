@@ -27,28 +27,28 @@ K.i('jk', '<ESC>')
 -- ╰──────────────╯
 --
 -- buffer management
-K.n('<leader>x', '<cmd>lua require("Buffers").only()<CR>')
-K.n('<leader>X', '<cmd>lua require("Buffers").clear()<CR>')
-K.n('<leader>q', '<cmd>lua require("Buffers").delete()<CR>')
+K.n('<leader>x"', ':bdelete<cr>')
+K.n('<leader>q', '<cmd>lua require("Buffers").delete()<cr>')
+K.n('<leader>X', '<cmd>lua require("Buffers").clear()<cr>')
 -- buffer navigation
 K.n('<S-l>', ':bnext<cr>')
 K.n('<S-h>', ':bprevious<cr>')
 -- disable ex mode
-K.n('<Esc>', '<cmd> :noh <CR>')
+K.n('<Esc>', '<cmd> :noh <cr>')
 K.n([[Q]], [[<Nop>]])
 -- Disable command-line window
--- K.n([[q:]], [[<Nop>]])
--- K.n([[q/]], [[<Nop>]])
--- K.n([[q?]], [[<Nop>]])
+K.n([[q:]], [[<Nop>]])
+K.n([[q/]], [[<Nop>]])
+K.n([[q?]], [[<Nop>]])
 -- Quickly enter substitution mode
-K.n('<leader>/', '<cmd>:%s/<CR>')
-K.n('<leader>?', '<cmd>:%S/<CR>')
-K.v('<leader>/', '<cmd>:s/<CR>')
-K.v('<leader>?', '<cmd>:S/<CR>')
+K.n('<leader>/', ':%s/')
+K.n('<leader>?', ':%S/')
+K.v('<leader>/', ':s/')
+K.v('<leader>?', ':S/')
 -- edit configurations
 
 -- comment-box
-K.n('<leader>bc', [[<cmd>lua require('comment-box').accbox()<CR>]])
+K.n('<leader>bc', [[<cmd>lua require('comment-box').accbox()<cr>]])
 -- force quit
 K.n('<C-q>', '<cmd>q!<cr>')
 -- force write
@@ -57,20 +57,8 @@ K.n('<C-s>', '<cmd>w!<cr>')
 K.v('<leader><Enter>', '<Plug>(EasyAlign)')
 K.n('<leader><Enter>', '<Plug>(EasyAlign)')
 -- dial
--- K.n('<C-a>', [[<cmd>lua require("dial.map").inc_normal()<cr>]])
--- K.n('<C-x>', [[<cmd>lua require("dial.map").dec_normal()<cr>]])
-
--- K.v('<C-a>', [[<cmd>lua require('dial.map').inc_visual()<cr>]])
--- K.v('<C-x>', [[<cmd>lua require('dial.map').dec_visual()<cr>]])
--- K.v('g<C-a>', [[<cmd>lua require('dial.map').inc_gvisual()<cr>]])
--- K.v('g<C-x>', [[<cmd>lua require('dial.map').dec_gvisual()<cr>]])
-K.n('<C-a>', [[<cmd>lua require('dial.map').inc_normal()<CR>]])
-K.n('<C-x>', [[<cmd>lua require('dial.map').dec_normal()<CR>]])
--- vim.api.nvim_set_keymap('v', '<C-a>', require('dial.map').inc_visual(), { noremap = true })
--- vim.api.nvim_set_keymap('v', '<C-x>', require('dial.map').dec_visual(), { noremap = true })
--- vim.api.nvim_set_keymap('v', 'g<C-a>', require('dial.map').inc_gvisual(), { noremap = true })
--- vim.api.nvim_set_keymap('v', 'g<C-x>', require('dial.map').dec_gvisual(), { noremap = true })
-
+K.n('<C-a>', '<cmd>lua require("dial.map").inc_normal()<cr>')
+K.n('<C-x>', '<cmd>lua require("dial.map").dec_normal()<cr>')
 -- move text up and down
 K.n('<A-j>', ':m .+1<cr>==gi')
 K.n('<A-k>', ':m .-2<cr>==gi')
@@ -78,21 +66,21 @@ K.n('<A-k>', ':m .-2<cr>==gi')
 K.n('<leader>f', '<cmd>Neotree toggle<cr>')
 K.n('<leader>o', '<cmd>Neotree focus<cr>')
 -- packer
-K.n('<Leader>pc', ':PackerCompile')
-K.n('<Leader>pi', ':PackerInstall')
-K.n('<Leader>ps', ':PackerSync')
-K.n('<Leader>pu', ':PackerUpdate')
+K.n('<leader>pc', ':PackerCompile')
+K.n('<leader>pi', ':PackerInstall')
+K.n('<leader>ps', ':PackerSync')
+K.n('<leader>pu', ':PackerUpdate')
 -- standard operations
-K.n('<Leader>w', '<cmd>w<cr>')
-K.n('<Leader>q', '<cmd>q<cr>')
-K.n('<Leader>c', '<cmd>bdelete!<cr>')
-K.n('<Leader>h', '<cmd>nohlsearch<cr>')
+K.n('<leader>w', '<cmd>w<cr>')
+K.n('<leader>q', '<cmd>q<cr>')
+K.n('<leader>c', '<cmd>bdelete!<cr>')
+K.n('<leader>h', '<cmd>nohlsearch<cr>')
 -- Toggle the aerial window with <leader>a
-K.n('<leader>a', '<cmd>AerialToggle!<CR>', {})
-K.n('{', '<cmd>AerialPrev<CR>')
-K.n('}', '<cmd>AerialNext<CR>')
-K.n('[[', '<cmd>AerialPrevUp<CR>')
-K.n(']]', '<cmd>AerialNextUp<CR>')
+K.n('<leader>a', '<cmd>AerialToggle!<cr>', {})
+K.n('{', '<cmd>AerialPrev<cr>')
+K.n('}', '<cmd>AerialNext<cr>')
+K.n('[[', '<cmd>AerialPrevUp<cr>')
+K.n(']]', '<cmd>AerialNextUp<cr>')
 -- +───────────+
 -- │ telescope │
 -- +───────────+
@@ -109,7 +97,7 @@ K.n('<leader>ld', '<cmd>Telescope diagnostics<cr>')
 K.n('<leader>lr', '<cmd>Telescope lsp_references<cr>')
 K.n('<leader>ls', '<cmd>Telescope lsp_document_symbols<cr>')
 
-K.n('<leader>p', '<cmd>Telescope project<CR>')
+K.n('<leader>p', '<cmd>Telescope project<cr>')
 
 K.n('<leader>sc', '<cmd>Telescope commands<cr>')
 K.n('<leader>sk', '<cmd>Telescope keymaps<cr>')
@@ -151,23 +139,23 @@ K.t('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
 -- │ VISUAL ⮕ 'v' │
 -- ╰──────────────╯
 -- move text up and down
-K.v('<A-j>', ':move .+1<CR>==')
-K.v('<A-k>', ':move .-2<CR>==')
+K.v('<A-j>', ':move .+1<cr>==')
+K.v('<A-k>', ':move .-2<cr>==')
 K.v('p', '"_dP') --
 -- persistent indent mode
 K.v('<', '<gv')
 K.v('>', '>gv') --
 -- sort
-K.v('<C-s>', ':Sort<CR>')
+K.v('<C-s>', ':Sort<cr>')
 -- comment-box
-K.v('<leader>bc', [[<Cmd>lua require('comment-box').accbox()<CR>]])
+K.v('<leader>bc', [[<cmd>lua require('comment-box').accbox()<cr>]])
 -- ╭────────────────────╮
 -- │ VISUAL BLOCK ⮕ 'x' │
 -- ╰────────────────────╯
 -- move text up and down
-K.x('<A-j>', ':move \'>+1<CR>gv-gv')
-K.x('<A-k>', ':move \'<-2<CR>gv-gv')
-K.x('J', ':move \'>+1<CR>gv-gv')
-K.x('K', ':move \'<-2<CR>gv-gv')
+K.x('<A-j>', ':move \'>+1<cr>gv-gv')
+K.x('<A-k>', ':move \'<-2<cr>gv-gv')
+K.x('J', ':move \'>+1<cr>gv-gv')
+K.x('K', ':move \'<-2<cr>gv-gv')
 
--- vim:ft=lua:sw=4:sts=4:et:
+-- vim:ft=lua:sw=2:sts=2:et:
