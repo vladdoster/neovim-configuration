@@ -10,7 +10,7 @@ end
 packer.init {
   auto_clean=true,
   compile_on_sync=true,
-  git={clone_timeout=6000, subcommands={update='pull --ff-only --progress --rebase=true'}},
+  git={clone_timeout=6000, subcommands={update='pull --ff-only --progress --rebase'}},
   profile={enable=true, threshold=0.0001}
 }
 local cfg = function(name) return string.format([[require("configs.%s")]], name) end
@@ -22,6 +22,11 @@ return packer.startup(function(use)
   use {'wbthomason/packer.nvim', 'nvim-lua/plenary.nvim', 'lewis6991/impatient.nvim', 'dstein64/vim-startuptime'}
   use {'nvim-lua/popup.nvim'}
   use {'nathom/filetype.nvim'}
+  use {
+    'antoinemadec/FixCursorHold.nvim',
+    event={'BufRead', 'BufNewFile'},
+    config=function() vim.g.cursorhold_updatetime = 100 end
+  }
   -- ╭────╮
   -- │ UI │
   -- ╰────╯
@@ -39,13 +44,13 @@ return packer.startup(function(use)
   use {'obreitwi/vim-sort-folds', cmd='SortFolds', opt=true}
   use {'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}}
   use {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true}
-  use {'monaqa/dial.nvim', config=cfg 'dial'}
 
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch='v2.x',
     config=cfg 'neo-tree',
-    requires={'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim'}
+    requires={'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', {'MunifTanjim/nui.nvim', module='nui'}}
+
   }
   use {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'}
   use {'akinsho/nvim-toggleterm.lua', cmd='ToggleTerm', config=cfg 'toggle-term', module='toggle-term'}
@@ -55,6 +60,7 @@ return packer.startup(function(use)
   use {'numToStr/Buffers.nvim', event='BufRead'}
   use {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'}
   use {'vladdoster/remember.nvim', config=[[require 'remember']]}
+  use {'stevearc/aerial.nvim', module='aerial', cmd={'AerialToggle', 'AerialOpen', 'AerialInfo'}, config=cfg 'aerial'}
   --  ╭────────────╮
   --  │ TREESITTER │
   --  ╰────────────╯
@@ -70,22 +76,13 @@ return packer.startup(function(use)
   --  ╰────────────╯
   use {'onsails/lspkind-nvim'}
   use {'williamboman/nvim-lsp-installer'}
+  use {'neovim/nvim-lspconfig', event='BufRead', config=cfg('lsp.servers'), requires={{'hrsh7th/cmp-nvim-lsp'}}}
+  use {'jose-elias-alvarez/null-ls.nvim', event={'BufRead', 'BufNewFile'}, config=cfg('lsp.null-ls')}
+  -- Snippets
+  use {'rafamadriz/friendly-snippets', opt=true}
+  use {'L3MON4D3/LuaSnip', module='luasnip', wants='friendly-snippets', config=cfg('lsp.lua-snip')}
   use {
-    'neovim/nvim-lspconfig',
-    event='BufRead',
-    config=cfg('lsp.servers'),
-    requires={{'hrsh7th/cmp-nvim-lsp', {'stevearc/aerial.nvim', config=cfg 'aerial'}}}
-  }
-  use {'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=cfg('lsp.null-ls')}
-  use {
-    {
-      'hrsh7th/nvim-cmp',
-      event='InsertEnter',
-      config=cfg('lsp.cmp'),
-      requires={
-        {'L3MON4D3/LuaSnip', event='CursorHold', config=cfg('lsp.lua-snip'), requires={'rafamadriz/friendly-snippets'}}
-      }
-    },
+    {'hrsh7th/nvim-cmp', event='InsertEnter', config=cfg('lsp.cmp')},
     {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
     {'hrsh7th/cmp-path', after='nvim-cmp'},
     {'hrsh7th/cmp-buffer', after='nvim-cmp'}
@@ -95,17 +92,17 @@ return packer.startup(function(use)
   --  ╰──────────────╯
   use {
     'nvim-telescope/telescope.nvim',
-    config=cfg('telescope'),
     cmd='Telescope',
+    config=cfg('telescope'),
     event='CursorHold',
-    requires={
-      {'ANGkeith/telescope-terraform-doc.nvim'},
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
-      {'nvim-telescope/telescope-project.nvim'},
-      {'nvim-telescope/telescope-symbols.nvim'},
-      {'stevearc/aerial.nvim', config=cfg 'aerial'}
-    }
+    requires={'nvim-telescope/telescope-project.nvim', 'nvim-telescope/telescope-symbols.nvim', 'stevearc/aerial.nvim'}
+  }
+  -- Fuzzy finder syntax support
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    after='telescope.nvim',
+    config=function() require('telescope').load_extension('fzf') end,
+    run='make'
   }
   use {'windwp/nvim-autopairs', config=cfg('pairs')}
   if not warm_boot then packer.sync() end
