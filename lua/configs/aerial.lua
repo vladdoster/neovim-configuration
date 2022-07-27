@@ -1,15 +1,38 @@
 local status_ok, aerial = pcall(require, 'aerial')
 if not status_ok then return end
-
 aerial.setup({
-  on_attach=function(bufnr)
-    -- toggle the aerial window with <leader>a
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<cmd>AerialToggle!<CR>', {})
-    -- jump forwards/backwards with '{' and '}'
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '{', '<cmd>AerialPrev<CR>', {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '}', '<cmd>AerialNext<CR>', {})
-    -- jump up the tree with '[[' or ']]'
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
-  end
+  backends={'lsp', 'treesitter', 'markdown'},
+  close_behavior='global',
+  filter_kind=false,
+  min_width=40,
+  show_guides=true,
+  icons={
+    Array='arr',
+    Boolean='bool',
+    Class='class',
+    Constant='const',
+    Constructor='constructor',
+    Enum='enum',
+    EnumMember='enum member',
+    Event='event',
+    Field='field',
+    File='file',
+    Function='func',
+    Interface='interface',
+    Key='key',
+    Method='method',
+    Module='module',
+    Namespace='namespace',
+    Null='null',
+    Number='num',
+    Object='obj',
+    Operator='operator',
+    Package='pkg',
+    Property='prop',
+    String='str',
+    Struct='struct',
+    TypeParameter='type',
+    Variable='var'
+  },
+  guides={last_item='└ ', mid_item='├ ', nested_top='│ ', whitespace='  '}
 })
