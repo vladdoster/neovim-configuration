@@ -27,7 +27,7 @@ g.loaded_zipPlugin = false
 -- OPTIONS [
 -- o.completeopt = {'menuone', 'noselect'} -- options for insert mode completion
 o.backup = true
-o.backupdir = vim.fn.stdpath 'data' .. '/backup'
+o.backupdir = vim.fn.stdpath 'cache' .. '/nvim/backup'
 o.breakindent = true
 o.clipboard = 'unnamedplus' -- Enable yanking between vim sessions and system
 o.cmdheight = 1 -- number of screen lines to use for the command line
@@ -52,14 +52,14 @@ o.mouse = 'n' -- enable mouse support
 o.number = true -- show numberline
 o.pumheight = 10 -- height of the pop up menu
 o.ruler = 0
-o.scrolloff = 8 -- number of lines to keep above and below the cursor
+o.scrolloff = 10 -- number of lines to keep above and below the cursor
 o.sessionoptions = 'globals,blank,buffers,curdir,folds,help,tabpages,winsize'
 o.shiftwidth = 2 -- number of space inserted for indentation
 o.showcmd = true
 o.showmatch = true
 o.showmode = false -- disable showing modes in command line
 o.showtabline = 2
-o.sidescrolloff = 8 -- number of columns to keep at the sides of the cursor
+o.sidescrolloff = 10 -- number of columns to keep at the sides of the cursor
 o.signcolumn = 'auto:2-5'
 o.signcolumn = 'yes' -- always show the sign column
 o.smartcase = true -- don't ignore case if user types an uppercase letter
@@ -75,8 +75,8 @@ o.termguicolors = true -- enable 24-bit rgb color in the tui
 o.timeoutlen = 300
 o.title = true
 o.titlestring = '%F'
-o.undodir = vim.fn.stdpath 'cache' .. '/undo'
--- o.shadafile = vim.fn.stdpath 'cache' .. 'nvim.shada'
+o.undodir = vim.fn.stdpath 'cache' .. '/nvim/undo'
+o.shadafile = vim.fn.stdpath 'cache' .. '/nvim/nvim.shada'
 o.undofile = true
 o.updatetime = 500
 o.wildchar = 9 -- equivalent to 'set wildchar=<Tab>'
@@ -88,11 +88,6 @@ wo.number = true
 wo.numberwidth = 1
 wo.relativenumber = true
 -- ]
--- set shada path
-vim.schedule(function()
-  vim.opt.shadafile = vim.fn.expand '$HOME' .. '/.local/share/nvim/shada/main.shada'
-  vim.cmd [[ silent! rsh ]]
-end)
 
 return M
--- vim:ft=lua:sw=4:sts=4:et:foldmarker=[,]:foldmethod=marker
+-- vim:ft=lua:sw=2:sts=2:et:foldmarker=[,]:foldmethod=marker
