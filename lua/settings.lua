@@ -75,8 +75,7 @@ o.termguicolors = true -- enable 24-bit rgb color in the tui
 o.timeoutlen = 300
 o.title = true
 o.titlestring = '%F'
-o.undodir = vim.fn.stdpath 'cache' .. '/nvim/undo'
-o.shadafile = vim.fn.stdpath 'cache' .. '/nvim/nvim.shada'
+o.undodir = vim.fn.stdpath 'cache' .. '/undo'
 o.undofile = true
 o.updatetime = 500
 o.wildchar = 9 -- equivalent to 'set wildchar=<Tab>'
@@ -88,6 +87,9 @@ wo.number = true
 wo.numberwidth = 1
 wo.relativenumber = true
 -- ]
-
+-- SHARED DATA [
+o.shadafile = vim.fn.stdpath("data") .. "/shada/main.shada"
+vim.cmd [[ silent! rsh ]]
+-- ]
 return M
 -- vim:ft=lua:sw=2:sts=2:et:foldmarker=[,]:foldmethod=marker

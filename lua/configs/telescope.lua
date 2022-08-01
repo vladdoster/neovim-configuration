@@ -78,7 +78,7 @@ telescope.setup {
   },
   pickers={find_files={find_command={'fd', '--type', 'f', '--strip-cwd-prefix'}}}
 }
-for _, x in pairs {'fzf', 'notify', 'project', 'terraform_doc'} do telescope.load_extension(x) end
+for _, x in pairs {'notify', 'project'} do telescope.load_extension(x) end
 
 -- Add leader shortcuts
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers)
