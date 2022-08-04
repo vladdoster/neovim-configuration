@@ -25,7 +25,7 @@ format:
 update: clean
 	git pull --autostash --quiet
 	$(info --- fetched latest changes)
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 	$(info --- synced packer config)
 	nvim --headless -c "autocmd User PackerComplete :qall"
 	$(info --- updated packer)
