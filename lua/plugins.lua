@@ -44,7 +44,6 @@ return packer.startup(function(use)
   use {'obreitwi/vim-sort-folds', cmd='SortFolds', opt=true}
   use {'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}}
   use {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true}
-
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch='v2.x',
@@ -60,7 +59,6 @@ return packer.startup(function(use)
   use {'numToStr/Buffers.nvim', event='BufRead'}
   use {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'}
   use {'vladdoster/remember.nvim', config=[[require 'remember']]}
-  use {'stevearc/aerial.nvim', module='aerial', cmd={'AerialToggle', 'AerialOpen', 'AerialInfo'}, config=cfg 'aerial'}
   --  ╭────────────╮
   --  │ TREESITTER │
   --  ╰────────────╯
@@ -76,17 +74,17 @@ return packer.startup(function(use)
   --  ╰────────────╯
   use {'onsails/lspkind-nvim'}
   use {'williamboman/nvim-lsp-installer'}
+  use {'williamboman/mason.nvim', config=cfg('mason')}
   use {'neovim/nvim-lspconfig', event='BufRead', config=cfg('lsp.servers'), requires={{'hrsh7th/cmp-nvim-lsp'}}}
   use {'jose-elias-alvarez/null-ls.nvim', event={'BufRead', 'BufNewFile'}, config=cfg('lsp.null-ls')}
   -- Snippets
   use {'rafamadriz/friendly-snippets', opt=true}
   use {'L3MON4D3/LuaSnip', module='luasnip', wants='friendly-snippets', config=cfg('lsp.lua-snip')}
-  use {
-    {'hrsh7th/nvim-cmp', event='InsertEnter', config=cfg('lsp.cmp')},
-    {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
-    {'hrsh7th/cmp-path', after='nvim-cmp'},
-    {'hrsh7th/cmp-buffer', after='nvim-cmp'}
-  }
+  use {'hrsh7th/cmp-buffer'}
+  use {'hrsh7th/cmp-cmdline'}
+  use {'hrsh7th/cmp-path'}
+  use {'saadparwaiz1/cmp_luasnip'}
+  use {'hrsh7th/nvim-cmp', event='InsertEnter', config=cfg('lsp.cmp')}
   --  ╭──────────────╮
   --  │ FUZZY FINDER │
   --  ╰──────────────╯
@@ -95,14 +93,12 @@ return packer.startup(function(use)
     cmd='Telescope',
     config=cfg('telescope'),
     event='CursorHold',
-    requires={'nvim-telescope/telescope-project.nvim', 'nvim-telescope/telescope-symbols.nvim', 'stevearc/aerial.nvim'}
-  }
-  -- Fuzzy finder syntax support
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    after='telescope.nvim',
-    config=function() require('telescope').load_extension('fzf') end,
-    run='make'
+    requires={
+      {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
+      {'nvim-telescope/telescope-project.nvim'},
+      {'nvim-telescope/telescope-symbols.nvim'},
+      {'stevearc/aerial.nvim', module='aerial', cmd={'AerialToggle', 'AerialOpen', 'AerialInfo'}, config=cfg 'aerial'}
+    }
   }
   use {'windwp/nvim-autopairs', config=cfg('pairs')}
   if not warm_boot then packer.sync() end
