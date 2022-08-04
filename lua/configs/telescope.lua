@@ -4,7 +4,6 @@ if not telescope_ok then return end
 local actions, previewers, sorters = require 'telescope.actions', require 'telescope.previewers',
                                      require 'telescope.sorters'
 
-require('telescope').load_extension('aerial')
 telescope.setup {
   defaults={
     vimgrep_arguments={
@@ -78,7 +77,7 @@ telescope.setup {
   },
   pickers={find_files={find_command={'fd', '--type', 'f', '--strip-cwd-prefix'}}}
 }
-for _, x in pairs {'notify', 'project'} do telescope.load_extension(x) end
+for _, x in pairs {'aerial', 'notify', 'project'} do telescope.load_extension(x) end
 
 -- Add leader shortcuts
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers)
