@@ -1,4 +1,4 @@
-local status_ok, cmp = pcall(require, 'cmp')
+local status_ok, cmp = pcall(require, 'nvim-cmp')
 if not status_ok then return end
 
 vim.opt.completeopt = 'menuone,noselect'
