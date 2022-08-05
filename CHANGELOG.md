@@ -1,3 +1,21 @@
+## [2.3.1](https://github.com/vladdoster/neovim-configuration/compare/v2.3.0...v2.3.1) (2022-08-05)
+
+
+### fix
+
+* autopairs uses correct name to load nvim-cmp module ([1eac6ba](https://github.com/vladdoster/neovim-configuration/commit/1eac6ba13fb545f35f9e0324d6507a7b9fc151f4))
+
+### maint
+
+* add error handling to loading config ([33d3c7b](https://github.com/vladdoster/neovim-configuration/commit/33d3c7bd3efd1c7ce400b18d5399b4643d00fd58))
+* add hs (hammerspoon) to luacheck globals ([1e9e1a4](https://github.com/vladdoster/neovim-configuration/commit/1e9e1a4ecea9be3661d729e872e661e27f72968a))
+* expand aerial configuration ([5590599](https://github.com/vladdoster/neovim-configuration/commit/55905996625ef722f6da5f778d45d10a23d52f0d))
+* update & delete various keybinds ([5343ff1](https://github.com/vladdoster/neovim-configuration/commit/5343ff170cc608c1fe39a9753782fce5f6ba4c98))
+* update autocmd, settings, treesitter, and telescope ([416375c](https://github.com/vladdoster/neovim-configuration/commit/416375c905b70e5974338bfea99cc261a0c4cda4))
+* update autocmds to new Lua API ([2db55bf](https://github.com/vladdoster/neovim-configuration/commit/2db55bfa8349ec0934dd677aa486f1fd39a9a578))
+* update cmp,plugins and reformat autocmd.lua ([0f6101d](https://github.com/vladdoster/neovim-configuration/commit/0f6101ddadbac8d990c3d26a2c6f2d7f15cedc3d))
+* update scrolloff & shada/undo dir locations ([dd2612f](https://github.com/vladdoster/neovim-configuration/commit/dd2612fe068939d02e9012a6fcbc075f80c6ab3e))
+
 # [2.3.0](https://github.com/vladdoster/neovim-configuration/compare/v2.2.0...v2.3.0) (2022-07-23)
 
 
