@@ -20,6 +20,7 @@ require('null-ls').setup({
     fmt.black,
     fmt.gofmt,
     fmt.jq,
+    fmt.npm_groovy_lint,
     fmt.lua_format.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}}),
     fmt.mdformat,
     fmt.reorder_python_imports,
