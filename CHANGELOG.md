@@ -1,3 +1,17 @@
+# [2.4.0](https://github.com/vladdoster/neovim-configuration/compare/v2.3.1...v2.4.0) (2022-08-06)
+
+
+### feat
+
+* add filetype configuration ([c76828a](https://github.com/vladdoster/neovim-configuration/commit/c76828a1c97891ae54f1a3451a958328b4896c34))
+* add npm-groovy-lint formatter to null-ls ([edaa43a](https://github.com/vladdoster/neovim-configuration/commit/edaa43a4787dbf6320e005510c266a937263708c))
+
+### maint
+
+* add terrafmt to null-ls ([23b02aa](https://github.com/vladdoster/neovim-configuration/commit/23b02aaaa9d6beb77dc2a04721c39228c73a49e8))
+* remove cruft in treesitter configuration ([38d5748](https://github.com/vladdoster/neovim-configuration/commit/38d5748ba7198bb27afbe4adc9e7031d225b20d3))
+* remove Stylua configuration ([8883ccb](https://github.com/vladdoster/neovim-configuration/commit/8883ccb2ab4f04baead6eacd51843be2d978bab5))
+
 ## [2.3.1](https://github.com/vladdoster/neovim-configuration/compare/v2.3.0...v2.3.1) (2022-08-05)
 
 
