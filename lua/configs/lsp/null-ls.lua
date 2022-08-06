@@ -24,6 +24,7 @@ require('null-ls').setup({
     fmt.mdformat,
     fmt.reorder_python_imports,
     fmt.shfmt.with({extra_args={'-i', 2, '-ci', '-sr'}}),
+    fmt.terrafmt,
     fmt.terraform_fmt,
     fmt.trim_whitespace
   },
