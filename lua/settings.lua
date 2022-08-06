@@ -1,12 +1,13 @@
-local M = {}
 local g, o, wo = vim.g, vim.o, vim.wo
-
 -- GLOBAL EDITOR VARIABLES [
 g.cursorhold_updatetime = 150 -- antoinemadec/FixCursorHold.nvim
+g.did_load_filetypes = 0
+g.do_filetype_lua = 1
 g.mapleader = ' '
 g.maplocalleader = ','
 g.no_man_maps = 1
--- disable some builtin vim plugins
+-- ]
+-- DISABLE VIM PLUGINS [
 local default_plugins = {
   '2html_plugin',
   'bugreport',
@@ -103,5 +104,4 @@ wo.relativenumber = true
 o.shadafile = vim.fn.stdpath('data') .. '/shada/main.shada'
 vim.cmd [[ silent! rsh ]]
 -- ]
-return M
--- vim:ft=lua:sw=2:sts=2:et:foldmarker=[,]:foldmethod=marker
+-- vim: ft=lua sw=2 sts=2 et foldmarker=[,] foldmethod=marker

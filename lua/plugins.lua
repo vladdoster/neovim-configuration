@@ -20,13 +20,20 @@ return packer.startup(function(use)
   -- ╭─────────────╮
   -- │ PERFORMANCE │
   -- ╰─────────────╯
-  use {'wbthomason/packer.nvim', 'nvim-lua/plenary.nvim', 'lewis6991/impatient.nvim', 'dstein64/vim-startuptime'}
-  use {'nvim-lua/popup.nvim'}
-  use {'nathom/filetype.nvim'}
   use {
-    'antoinemadec/FixCursorHold.nvim',
-    event={'BufRead', 'BufNewFile'},
-    config=function() vim.g.cursorhold_updatetime = 100 end
+    'wbthomason/packer.nvim',
+    'nvim-lua/plenary.nvim',
+    'lewis6991/impatient.nvim',
+    'dstein64/vim-startuptime',
+    'nvim-lua/popup.nvim'
+  }
+  use {
+    {'nathom/filetype.nvim', config=cfg 'filetype'},
+    {
+      'antoinemadec/FixCursorHold.nvim',
+      event={'BufRead', 'BufNewFile'},
+      config=function() vim.g.cursorhold_updatetime = 100 end
+    }
   }
   -- ╭────╮
   -- │ UI │
@@ -51,31 +58,28 @@ return packer.startup(function(use)
     requires={'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', {'MunifTanjim/nui.nvim', module='nui'}}
 
   }
-  use {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'}
-  use {'akinsho/nvim-toggleterm.lua', cmd='ToggleTerm', config=cfg 'toggle-term', module='toggle-term'}
-  use {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'}
-  use {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline', event='BufEnter'}
-  use {'norcalli/nvim-colorizer.lua', config=setup('colorizer')}
-  use {'numToStr/Buffers.nvim', event='BufRead'}
-  use {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'}
-  use {'vladdoster/remember.nvim', config=[[require 'remember']]}
+  use {
+    {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
+    {'akinsho/nvim-toggleterm.lua', cmd='ToggleTerm', config=cfg 'toggle-term', module='toggle-term'},
+    {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'},
+    {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline', event='BufEnter'},
+    {'norcalli/nvim-colorizer.lua', config=setup('colorizer')},
+    {'numToStr/Buffers.nvim', event='BufRead'},
+    {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'},
+    {'vladdoster/remember.nvim', config=[[require 'remember']]},
+    {'hashivim/vim-terraform'}
+  }
   --  ╭────────────╮
   --  │ TREESITTER │
   --  ╰────────────╯
-  --  use {
-  --    'nvim-treesitter/nvim-treesitter',
-  --    cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
-  --    config=cfg 'treesitter',
-  --    event={'BufRead', 'BufNewFile'},
-  --    requires={
-  --      'nvim-treesitter/playground',
-  --      'nvim-treesitter/nvim-treesitter-textobjects',
-  --      'p00f/nvim-ts-rainbow',
-  --      'JoosepAlviste/nvim-ts-context-commentstring',
-  --      'windwp/nvim-ts-autotag'
-  --    },
-  --    run=':TSUpdate'
-  --  }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
+    config=cfg 'treesitter',
+    event={'BufRead', 'BufNewFile'},
+    requires={'nvim-treesitter/nvim-treesitter-textobjects', 'p00f/nvim-ts-rainbow'},
+    run=':TSUpdate'
+  }
   --  ╭────────────╮
   --  │ COMPLETION │
   --  ╰────────────╯
