@@ -66,10 +66,10 @@ K.n('<A-k>', ':m .-2<cr>==gi')
 K.n('<leader>f', '<cmd>Neotree toggle<cr>')
 K.n('<leader>o', '<cmd>Neotree focus<cr>')
 -- packer
-K.n('<leader>pc', ':PackerCompile')
-K.n('<leader>pi', ':PackerInstall')
-K.n('<leader>ps', ':PackerSync')
-K.n('<leader>pu', ':PackerUpdate')
+K.n('<leader>pc', ':PackerCompile<cr>')
+K.n('<leader>pi', ':PackerInstall<cr>')
+K.n('<leader>ps', ':PackerSync<cr>')
+K.n('<leader>pu', ':PackerUpdate<cr>')
 -- standard operations
 K.n('<leader>w', '<cmd>w<cr>')
 K.n('<leader>q', '<cmd>q<cr>')
@@ -84,28 +84,25 @@ K.n(']]', '<cmd>AerialNextUp<cr>')
 -- +───────────+
 -- │ telescope │
 -- +───────────+
-K.n('<leader>fb', '<cmd>Telescope buffers<cr>')
-K.n('<leader>ff', '<cmd>Telescope find_files {previewer=false}<cr>')
-K.n('<leader>fh', '<cmd>Telescope help_tags<cr>')
-K.n('<leader>fo', '<cmd>Telescope oldfiles<cr>')
-K.n('<leader>fw', '<cmd>Telescope live_grep<cr>')
+K.n('<leader>fb', ':Telescope file_browser<CR>')
+K.n('<leader>ff', ':Telescope find_files {previewer=false}<CR>')
+K.n('<leader>fh', ':Telescope help_tags<CR>')
+K.n('<leader>fo', ':Telescope oldfiles<CR>')
+K.n('<leader>fp', ':Telescope project<CR>')
+K.n('<leader>fw', ':Telescope live_grep<CR>')
 
-K.n('<leader>gb', '<cmd>Telescope git_branches<cr>')
-K.n('<leader>gc', '<cmd>Telescope git_commits<cr>')
+K.n('<leader>gb', ':Telescope git_branches<CR>')
+K.n('<leader>gc', ':Telescope git_commits<CR>')
 
-K.n('<leader>ld', '<cmd>Telescope diagnostics<cr>')
-K.n('<leader>lr', '<cmd>Telescope lsp_references<cr>')
-K.n('<leader>ls', '<cmd>Telescope lsp_document_symbols<cr>')
+K.n('<leader>ld', ':Telescope diagnostics<CR>')
+K.n('<leader>lr', ':Telescope lsp_references<CR>')
+K.n('<leader>ls', ':Telescope lsp_document_symbols<CR>')
 
-K.n('<leader>p', '<cmd>Telescope project<cr>')
-
-K.n('<leader>sc', '<cmd>Telescope commands<cr>')
-K.n('<leader>sk', '<cmd>Telescope keymaps<cr>')
-K.n('<leader>sm', '<cmd>Telescope man_pages<cr>')
-K.n('<leader>sn', '<cmd>Telescope notifications<cr>')
-K.n('<leader>sr', '<cmd>Telescope registers<cr>')
-
-K.n('<leader>tfd', '<cmd>Telescope terraform_doc modules<cr>')
+K.n('<leader>sc', ':Telescope commands<CR>')
+K.n('<leader>sk', ':Telescope keymaps<CR>')
+K.n('<leader>sm', ':Telescope man_pages<CR>')
+K.n('<leader>sn', ':Telescope notifications<CR>')
+K.n('<leader>sr', ':Telescope registers<CR>')
 -- +──────────+
 -- │ terminal │
 -- +──────────+

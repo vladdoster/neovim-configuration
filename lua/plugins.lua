@@ -1,3 +1,4 @@
+-- vim ft=lua sw=2 sts=2 et
 -- PACKER BOOTSTRAP
 local warm_boot, packer = pcall(require, 'packer')
 if not warm_boot then
@@ -31,10 +32,9 @@ return packer.startup(function(use)
   -- │ UI │
   -- ╰────╯
   use {
+    {'stevearc/aerial.nvim', config=cfg 'aerial'},
     {'nvim-lualine/lualine.nvim', event='BufEnter', config=cfg 'lualine'},
-    {'j-hui/fidget.nvim', after='lualine.nvim', config=setup('fidget')},
     {'rcarriga/nvim-notify', config=cfg 'notify'},
-    {'editorconfig/editorconfig-vim'},
     {'rktjmp/lush.nvim', requires={{'olimorris/onedarkpro.nvim', config=cfg 'color-scheme'}}}
   }
   -- ╭──────────────╮
@@ -62,46 +62,85 @@ return packer.startup(function(use)
   --  ╭────────────╮
   --  │ TREESITTER │
   --  ╰────────────╯
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
-    config=cfg 'treesitter',
-    event={'BufRead', 'BufNewFile'},
-    run=':TSUpdate'
-  }
+  --  use {
+  --    'nvim-treesitter/nvim-treesitter',
+  --    cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
+  --    config=cfg 'treesitter',
+  --    event={'BufRead', 'BufNewFile'},
+  --    requires={
+  --      'nvim-treesitter/playground',
+  --      'nvim-treesitter/nvim-treesitter-textobjects',
+  --      'p00f/nvim-ts-rainbow',
+  --      'JoosepAlviste/nvim-ts-context-commentstring',
+  --      'windwp/nvim-ts-autotag'
+  --    },
+  --    run=':TSUpdate'
+  --  }
   --  ╭────────────╮
   --  │ COMPLETION │
   --  ╰────────────╯
-  use {'onsails/lspkind-nvim'}
-  use {'williamboman/nvim-lsp-installer'}
-  use {'williamboman/mason.nvim', config=cfg('mason')}
-  use {'neovim/nvim-lspconfig', event='BufRead', config=cfg('lsp.servers'), requires={{'hrsh7th/cmp-nvim-lsp'}}}
-  use {'jose-elias-alvarez/null-ls.nvim', event={'BufRead', 'BufNewFile'}, config=cfg('lsp.null-ls')}
+  --
+  use {
+    {
+      'williamboman/mason.nvim',
+      config=cfg('mason'),
+      requires={'neovim/nvim-lspconfig', 'williamboman/mason-lspconfig.nvim'}
+    },
+    'folke/lua-dev.nvim',
+    'b0o/SchemaStore.nvim',
+    {'jose-elias-alvarez/null-ls.nvim', event={'BufRead', 'BufNewFile'}, config=cfg('lsp.null-ls')},
+    'ray-x/lsp_signature.nvim',
+    'lvimuser/lsp-inlayhints.nvim',
+    'j-hui/fidget.nvim',
+    'SmiteshP/nvim-navic'
+  }
   -- Snippets
-  use {'rafamadriz/friendly-snippets', opt=true}
-  use {'L3MON4D3/LuaSnip', module='luasnip', wants='friendly-snippets', config=cfg('lsp.lua-snip')}
-  use {'hrsh7th/cmp-buffer'}
-  use {'hrsh7th/cmp-cmdline'}
-  use {'hrsh7th/cmp-path'}
-  use {'saadparwaiz1/cmp_luasnip'}
-  use {'hrsh7th/nvim-cmp', event='InsertEnter', config=cfg('lsp.cmp')}
+  use {
+    'hrsh7th/nvim-cmp',
+    requires={
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'saadparwaiz1/cmp_luasnip',
+      'petertriho/cmp-git',
+      {
+        'L3MON4D3/LuaSnip',
+        requires={'rafamadriz/friendly-snippets'},
+        config=function() require('luasnip.loaders.from_vscode').lazy_load() end
+      },
+      {'onsails/lspkind-nvim', config=function() require('lspkind').init() end}
+    },
+    config=cfg 'lsp.cmp'
+  }
+  use {
+    'windwp/nvim-autopairs',
+    config=cfg('pairs'),
+    requires={{'s1n7ax/nvim-window-picker', config=function() require('window-picker').setup() end}}
+  }
+  use {
+    'editorconfig/editorconfig-vim',
+    setup=function()
+      vim.g.EditorConfig_max_line_indicator = ''
+      vim.g.EditorConfig_preserve_formatoptions = 1
+    end
+  }
   --  ╭──────────────╮
   --  │ FUZZY FINDER │
   --  ╰──────────────╯
+  -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
-    cmd='Telescope',
-    config=cfg('telescope'),
-    event='CursorHold',
     requires={
+      'nvim-telescope/telescope-file-browser.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-project.nvim',
       {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
-      {'nvim-telescope/telescope-project.nvim'},
       {'nvim-telescope/telescope-symbols.nvim'},
-      {'stevearc/aerial.nvim', module='aerial', cmd={'AerialToggle', 'AerialOpen', 'AerialInfo'}, config=cfg 'aerial'}
-    }
+      {'stevearc/aerial.nvim', config=cfg 'aerial'}
+    },
+    module='Telescope',
+    cmd='Telescope',
+    config=cfg 'telescope'
   }
-  use {'windwp/nvim-autopairs', config=cfg('pairs')}
   if not warm_boot then packer.sync() end
 end)
-
--- vim:ft=lua:sw=2:sts=2:et:
