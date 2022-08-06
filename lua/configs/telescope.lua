@@ -1,4 +1,3 @@
-local M = {}
 local telescope_ok, telescope = pcall(require, 'telescope')
 if not telescope_ok then return end
 local actions, previewers, sorters = require 'telescope.actions', require 'telescope.previewers',
@@ -20,8 +19,13 @@ telescope.setup {
     color_devicons=false,
     extensions={
       aerial={show_nesting=true},
+      file_browser={theme='ivy', hijack_netrw=true, mappings={['i']={}, ['n']={}}},
       fzf={case_mode='respect_case', fuzzy=true, override_file_sorter=true, override_generic_sorter=true},
-      project={base_dirs={'~/code', {'~/.config/dotfiles'}, {'~/.config/nvim'}}, hidden_files=false, theme='dropdown'}
+      project={
+        base_dirs={lua.vim.getenv('HOME') .. '/code',lua.vim.getenv('HOME') .. '/.config/dotfiles',lua.vim.getenv('HOME') .. '/.config/nvim'},
+        hidden_files=false,
+        theme='dropdown'
+      }
     },
     file_ignore_patterns={'node_modules', 'venv'},
     file_previewer=previewers.vim_buffer_cat.new,
@@ -77,17 +81,10 @@ telescope.setup {
   },
   pickers={find_files={find_command={'fd', '--type', 'f', '--strip-cwd-prefix'}}}
 }
-for _, x in pairs {'aerial', 'notify', 'project'} do telescope.load_extension(x) end
+for _, x in pairs {'aerial', 'file_browser', 'notify', 'project'} do telescope.load_extension(x) end
 
--- Add leader shortcuts
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers)
-vim.keymap.set('n', '<leader>sf', function() require('telescope.builtin').find_files {previewer=false} end)
-vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find)
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)
-vim.keymap.set('n', '<leader>st', require('telescope.builtin').tags)
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string)
-vim.keymap.set('n', '<leader>sp', require('telescope.builtin').live_grep)
-vim.keymap.set('n', '<leader>so', function() require('telescope.builtin').tags {only_current_buffer=true} end)
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
-
-return M
+vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope file_browser', {noremap=true})
+-- vim.api.nvim_set_keymap('n', '<leader><space>', ':lua require\'telescope\'.builtin.buffers{}<CR>', {noremap=true, silent=true})
+-- vim.api.nvim_set_keymap('n', '<leader>sf', ':lua require\'telescope\'.builtin.find_files {previewer=false}<CR>', {noremap=true, silent=true})
+-- vim.api.nvim_set_keymap('n', '<leader>sb', ':lua require\'telescope\'.builtin.current_buffer_fuzzy_find<CR>', {noremap=true, silent=true})
+-- vim.api.nvim_set_keymap('n', '<C-p>', ':lua require\'telescope\'.extensions.project.project{}<CR>', {noremap=true, silent=true})
