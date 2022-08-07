@@ -1,3 +1,14 @@
+# [2.5.0](https://github.com/vladdoster/neovim-configuration/compare/v2.4.0...v2.5.0) (2022-08-07)
+
+
+### feat
+
+* add lsp loadng in after dir ([79c8c5d](https://github.com/vladdoster/neovim-configuration/commit/79c8c5dcaeb95f464e84d60601f6ce44c49a0435))
+
+### style
+
+* re-format files to lua-formatter convention ([4d982f8](https://github.com/vladdoster/neovim-configuration/commit/4d982f854cebfd012825fbd1658e2d695bf8ce2d))
+
 # [2.4.0](https://github.com/vladdoster/neovim-configuration/compare/v2.3.1...v2.4.0) (2022-08-06)
 
 
