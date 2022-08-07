@@ -92,7 +92,7 @@ return packer.startup(function(use)
     },
     'folke/lua-dev.nvim',
     'b0o/SchemaStore.nvim',
-    {'vladdoster/null-ls.nvim',event={'BufRead', 'BufNewFile'}, config=cfg('lsp.null-ls')},
+    {'vladdoster/null-ls.nvim', event={'BufRead', 'BufNewFile'}, config=cfg('lsp.null-ls')},
     'ray-x/lsp_signature.nvim',
     'lvimuser/lsp-inlayhints.nvim',
     'j-hui/fidget.nvim',

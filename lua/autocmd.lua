@@ -37,7 +37,6 @@ M.autocmds = {
   {'VimResized', {group='_auto_resize', pattern='*', command='tabdo wincmd ='}}
 }
 
-
 function M.define_autocmds(definitions)
   for _, entry in ipairs(definitions) do
     local event = entry[1]

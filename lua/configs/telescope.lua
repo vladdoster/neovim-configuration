@@ -22,7 +22,11 @@ telescope.setup {
       file_browser={theme='ivy', hijack_netrw=true, mappings={['i']={}, ['n']={}}},
       fzf={case_mode='respect_case', fuzzy=true, override_file_sorter=true, override_generic_sorter=true},
       project={
-        base_dirs={lua.vim.getenv('HOME') .. '/code',lua.vim.getenv('HOME') .. '/.config/dotfiles',lua.vim.getenv('HOME') .. '/.config/nvim'},
+        base_dirs={
+          lua.vim.getenv('HOME') .. '/code',
+          lua.vim.getenv('HOME') .. '/.config/dotfiles',
+          lua.vim.getenv('HOME') .. '/.config/nvim'
+        },
         hidden_files=false,
         theme='dropdown'
       }
