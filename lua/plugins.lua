@@ -35,6 +35,7 @@ return packer.startup(function(use)
       config=function() vim.g.cursorhold_updatetime = 100 end
     }
   }
+  use {'lewis6991/spaceless.nvim', config=function() require'spaceless'.setup() end}
   -- ╭────╮
   -- │ UI │
   -- ╰────╯
@@ -47,10 +48,42 @@ return packer.startup(function(use)
   -- ╭──────────────╮
   -- │ PRODUCTIVITY │
   -- ╰──────────────╯
-  use {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true}
-  use {'obreitwi/vim-sort-folds', cmd='SortFolds', opt=true}
-  use {'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}}
-  use {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true}
+  use {
+    'tpope/vim-repeat',
+    'tpope/vim-surround',
+    'tpope/vim-fugitive',
+    'tpope/vim-unimpaired',
+    {'tpope/vim-sleuth', setup=function() vim.g.sleuth_automatic = 0 end},
+    {'tpope/vim-dispatch', requires={'radenling/vim-dispatch-neovim'}}
+  }
+
+  use {
+    {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'},
+    {
+      'lewis6991/hover.nvim',
+      config=function()
+        require('hover').setup {
+          init=function()
+            require('hover.providers.lsp')
+            require('hover.providers.gh')
+            require('hover.providers.man')
+            require('hover.providers.dictionary')
+          end,
+          preview_opts={border=nil},
+          title=true
+        }
+        vim.keymap.set('n', 'K', require('hover').hover, {desc='hover.nvim'})
+        vim.keymap.set('n', 'gK', require('hover').hover_select, {desc='hover.nvim (select)'})
+      end
+    }
+  }
+  use {{'numToStr/Buffers.nvim', event='BufRead'}, {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'}}
+
+  use {
+    {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true},
+    {'obreitwi/vim-sort-folds', cmd='SortFolds', opt=true},
+    {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true}
+  }
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch='v2.x',
@@ -61,24 +94,18 @@ return packer.startup(function(use)
   use {
     {'LudoPinelli/comment-box.nvim', config=cfg 'comment-box'},
     {'akinsho/nvim-toggleterm.lua', cmd='ToggleTerm', config=cfg 'toggle-term', module='toggle-term'},
-    {'lewis6991/gitsigns.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'gitsigns'},
     {'lukas-reineke/indent-blankline.nvim', config=cfg 'indentline', event='BufEnter'},
     {'norcalli/nvim-colorizer.lua', config=setup('colorizer')},
-    {'numToStr/Buffers.nvim', event='BufRead'},
-    {'numToStr/Comment.nvim', config=cfg 'comment', event='BufRead'},
-    {'vladdoster/remember.nvim', config=[[require 'remember']]},
-    {'hashivim/vim-terraform'}
+    {'vladdoster/remember.nvim', config=[[require 'remember']]}
   }
   --  ╭────────────╮
   --  │ TREESITTER │
   --  ╰────────────╯
   use {
-    'nvim-treesitter/nvim-treesitter',
-    cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
-    config=cfg 'treesitter',
-    event={'BufRead', 'BufNewFile'},
-    requires={'nvim-treesitter/nvim-treesitter-textobjects', 'p00f/nvim-ts-rainbow'},
-    run=':TSUpdate'
+      'nvim-treesitter/nvim-treesitter',
+      cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
+      config=cfg 'treesitter',
+      run=':TSUpdate',
   }
   --  ╭────────────╮
   --  │ COMPLETION │
@@ -87,16 +114,16 @@ return packer.startup(function(use)
   use {
     {
       'williamboman/mason.nvim',
-      config=cfg('mason'),
-      requires={'neovim/nvim-lspconfig', 'williamboman/mason-lspconfig.nvim'}
+      config=cfg 'mason',
+      requires={'neovim/nvim-lspconfig', 'williamboman/mason-lspconfig.nvim', 'WhoIsSethDaniel/mason-tool-installer.nvim' },
     },
-    'folke/lua-dev.nvim',
+    'SmiteshP/nvim-navic',
     'b0o/SchemaStore.nvim',
-    {'vladdoster/null-ls.nvim', event={'BufRead', 'BufNewFile'}, config=cfg('lsp.null-ls')},
-    'ray-x/lsp_signature.nvim',
-    'lvimuser/lsp-inlayhints.nvim',
+    'folke/lua-dev.nvim',
     'j-hui/fidget.nvim',
-    'SmiteshP/nvim-navic'
+    'lvimuser/lsp-inlayhints.nvim',
+    'ray-x/lsp_signature.nvim',
+    {'vladdoster/null-ls.nvim', event={'BufRead', 'BufNewFile'}, config=cfg 'lsp.null-ls'}
   }
   -- Snippets
   use {
@@ -146,5 +173,6 @@ return packer.startup(function(use)
     cmd='Telescope',
     config=cfg 'telescope'
   }
+  use 'wakatime/vim-wakatime'
   if not warm_boot then packer.sync() end
 end)
