@@ -28,9 +28,9 @@ require('mason-lspconfig').setup {}
 require('mason-lspconfig').setup_handlers {
   ---@param server_name string
   function(server_name) lspconfig[server_name].setup {} end,
-  ['bashls']=function() lspconfig.bashls.setup() end,
+  ['bashls']=function() lspconfig.bashls.setup {} end,
   ['jsonls']=function() lspconfig.jsonls.setup {settings={json={schemas=require('schemastore').json.schemas()}}} end,
-  ['pyright']=function() lspconfig.pyright.setup() end,
+  ['pyright']=function() lspconfig.pyright.setup {} end,
   ['sumneko_lua']=function()
     lspconfig.sumneko_lua.setup(require('lua-dev').setup {
       settings={
