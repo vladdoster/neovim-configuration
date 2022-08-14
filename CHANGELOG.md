@@ -1,3 +1,21 @@
+# [2.6.0](https://github.com/vladdoster/neovim-configuration/compare/v2.5.0...v2.6.0) (2022-08-14)
+
+
+### feat
+
+* add/remove/refactor plugins configuration ([ee89e4e](https://github.com/vladdoster/neovim-configuration/commit/ee89e4e99c9037a340731e8434d24276ee1fc6bb))
+* expand mason configuration ([6be9b3e](https://github.com/vladdoster/neovim-configuration/commit/6be9b3e79d0a0c6db3f19d8882498d4f64355a39))
+
+### fix
+
+* simplify treesitter configuration ([7342d4e](https://github.com/vladdoster/neovim-configuration/commit/7342d4e66ef5bed00a60120c2e16ff227fbc85f0))
+
+### maint
+
+* improve format Make target ([f36c331](https://github.com/vladdoster/neovim-configuration/commit/f36c3313d31507cca7fd22ce6fe32b53bde6f8d2))
+* misc. after LSP updates ([811644e](https://github.com/vladdoster/neovim-configuration/commit/811644e33ae98ac6cc6c83aee2c5a63a8e63d5fc))
+* remove unused utils.lua ([5008763](https://github.com/vladdoster/neovim-configuration/commit/50087633911f2c2742285d72770fe15fef5c4742))
+
 # [2.5.0](https://github.com/vladdoster/neovim-configuration/compare/v2.4.0...v2.5.0) (2022-08-07)
 
 
