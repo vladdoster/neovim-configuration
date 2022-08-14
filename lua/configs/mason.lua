@@ -19,3 +19,33 @@ mason_lspconfig.setup({
   },
   automatic_installation=true
 })
+
+local mason_tool_installer_ok, mason_tool_installer = pcall(require, 'mason-tool-installer')
+if not mason_tool_installer_ok then return end
+mason_tool_installer.setup {
+  ensure_installed={
+    'bash-language-server',
+    'black',
+    'dockerfile-language-server',
+    'editorconfig-checker',
+    'gofumpt',
+    'golangci-lint',
+    'golines',
+    'gomodifytags',
+    'gopls',
+    'gotests',
+    'hadolint',
+    'impl',
+    'json-to-struct',
+    'lua-language-server',
+    'luacheck',
+    'luaformatter',
+    'pyright',
+    'shellcheck',
+    'shfmt',
+    'taplo',
+  },
+  auto_update=true,
+  run_on_start=true,
+  start_delay=3000 -- 3 second delay
+}
