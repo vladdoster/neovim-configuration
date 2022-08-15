@@ -1,17 +1,20 @@
-local install_path = ('%s/site/pack/packer-lib/opt/packer.nvim'):format(vim.fn.stdpath 'data')
-local function install_packer()
-  vim.fn.termopen(('git clone https://github.com/wbthomason/packer.nvim %q'):format(install_path))
+local warm_boot, packer = pcall(require, 'packer')
+if not warm_boot then
+  local packer_path = ('%s/site/pack/packer-lib/opt/packer.nvim'):format(vim.fn.stdpath 'data')
+  vim.fn.delete(packer_path, 'rf')
+  vim.fn.system {'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_path}
+  vim.cmd 'packadd packer.nvim'
+  packer = require 'packer'
 end
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then install_packer() end
-vim.cmd [[packadd packer.nvim]]
-function _G.packer_upgrade()
-  vim.fn.delete(install_path, 'rf')
-  install_packer()
-end
-vim.cmd [[command! PackerUpgrade :call v:lua.packer_upgrade()]]
-local function spec(use)
+packer.init {
+  auto_clean=true,
+  compile_on_sync=true,
+  git={clone_timeout=6000, subcommands={update='pull --ff-only --progress --rebase'}},
+  profile={enable=true, threshold=0.0001}
+}
+return packer.startup(function(use)
   use {'lewis6991/impatient.nvim'}
-  use {'tpope/vim-repeat', 'tpope/vim-surround'}
+  use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
   use {
     'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     'lewis6991/hover.nvim',
@@ -28,18 +31,21 @@ local function spec(use)
     'windwp/nvim-autopairs',
     {'s1n7ax/nvim-window-picker', tag='v1.*'},
     {
-      {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true},
-      {'obreitwi/vim-sort-folds', cmd='SortFolds', opt=true},
-      {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true}
-    },
-    {
       'andymass/vim-matchup',
       setup=function()
         vim.g.matchup_matchparen_offscreen = {method='popup', fullwidth=1, highlight='OffscreenMatchPopup'}
       end
     },
+    -- Treesitter
     {
-      'hrsh7th/nvim-cmp',
+      'nvim-treesitter/nvim-treesitter',
+      opt=true,
+      cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
+      event={'BufRead', 'BufNewFile'}
+    },
+    {
+      'williamboman/nvim-cmp',
+      branch='feat/docs-preview-window',
       requires={
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
@@ -73,8 +79,6 @@ local function spec(use)
     'lukas-reineke/indent-blankline.nvim',
     'norcalli/nvim-colorizer.lua'
   }
-  -- Treesitter
-  use {'nvim-treesitter/nvim-treesitter', cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'}, run=':TSUpdate'}
   -- LSP
   use {
     'williamboman/mason.nvim',
@@ -97,8 +101,8 @@ local function spec(use)
       {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
     }
   }
-  use 'lewis6991/gitsigns.nvim'
+  use {'lewis6991/gitsigns.nvim'}
   use {'tweekmonster/startuptime.vim', cmd={'StartupTime'}}
-  use 'wakatime/vim-wakatime'
-end
-require('packer').startup {spec, config={display={open_fn=require('packer.util').float}, max_jobs=10}}
+  use {'wakatime/vim-wakatime'}
+  if not warm_boot then packer.sync() end
+end)

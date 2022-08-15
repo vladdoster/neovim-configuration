@@ -1,9 +1,7 @@
-local lualine_ok, lualine = pcall(require, 'lualine')
-if not lualine_ok then return end
+local ok, lualine = pcall(require, 'lualine')
+if not ok then return end
 
-local navic_ok, navic = pcall(require, 'navic')
-if not navic_ok then return end
-
+local navic = require 'nvim-navic'
 local colors = {bg='#202328', black='#000000', fg='#bbc2cf', green='#20C20E', red='#FF0000', yellow='#FFFF00'}
 
 local function attached_clients()
@@ -27,7 +25,6 @@ local function attached_clients()
     return 'LSP: ' .. names
   end
 end
-
 local function cwd() return vim.fn.fnamemodify(vim.loop.cwd(), ':~') end
 
 lualine.setup {
@@ -52,5 +49,5 @@ lualine.setup {
     }
   },
   inactive_sections={},
-  extensions={'quickfix', 'toggleterm'}
+  extensions={'quickfix', 'toggleterm', 'fugitive'}
 }

@@ -1,7 +1,6 @@
 local ts_utils = require 'nvim-treesitter.ts_utils'
 local lsp_signature = require 'lsp_signature'
 local navic = require 'nvim-navic'
-local aerial = require 'aerial'
 local telescope_lsp = require 'telescope.lsp'
 local function highlight_references()
   local node = ts_utils.get_node_at_cursor()
@@ -92,5 +91,5 @@ return function(client, bufnr)
   end
   lsp_signature.on_attach({bind=true, floating_window=false, hint_prefix='', hint_scheme='Comment'}, bufnr)
   if client.supports_method 'textDocument/documentSymbol' then navic.attach(client, bufnr) end
-  aerial.on_attach(client, bufnr)
+  require('aerial').on_attach(client, bufnr)
 end
