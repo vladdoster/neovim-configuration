@@ -2,4 +2,4 @@
 
 |                                version                                 |
 | :--------------------------------------------------------------------: |
-| [v2.6.0](https://github.com/vladdoster/neovim-configuration/releases) |
+| [v3.0.0](https://github.com/vladdoster/neovim-configuration/releases) |

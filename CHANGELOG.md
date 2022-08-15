@@ -1,3 +1,10 @@
+# [3.0.0](https://github.com/vladdoster/neovim-configuration/compare/v2.6.0...v3.0.0) (2022-08-15)
+
+
+### refactor
+
+* load plugin configs implicitlly ([91e9125](https://github.com/vladdoster/neovim-configuration/commit/91e91258eea6bef9408108cd9a7c6f4695ba6bc5))
+
 # [2.6.0](https://github.com/vladdoster/neovim-configuration/compare/v2.5.0...v2.6.0) (2022-08-14)
 
 
