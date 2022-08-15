@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/vladdoster/neovim-configuration/compare/v3.0.0...v3.0.1) (2022-08-15)
+
+
+### fix
+
+* correct syntax in plugin.lua ([d10436b](https://github.com/vladdoster/neovim-configuration/commit/d10436b6595550886c3913ea14edf6fd7a7e815e))
+
 # [3.0.0](https://github.com/vladdoster/neovim-configuration/compare/v2.6.0...v3.0.0) (2022-08-15)
 
 
