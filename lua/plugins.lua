@@ -12,6 +12,7 @@ packer.init {
   git={clone_timeout=6000, subcommands={update='pull --ff-only --progress --rebase'}},
   profile={enable=true, threshold=0.0001}
 }
+local setup = function(name) return string.format([[require("%s").setup()]], name) end
 return packer.startup(function(use)
   use {'lewis6991/impatient.nvim'}
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
@@ -20,7 +21,6 @@ return packer.startup(function(use)
     'lewis6991/hover.nvim',
     'lewis6991/satellite.nvim',
     'stevearc/aerial.nvim',
-    'ggandor/leap.nvim',
     'simnalamburt/vim-mundo',
     'airblade/vim-rooter',
     'stevearc/dressing.nvim',
@@ -29,7 +29,9 @@ return packer.startup(function(use)
     'nvim-lualine/lualine.nvim',
     'numToStr/Comment.nvim',
     'windwp/nvim-autopairs',
-    {'s1n7ax/nvim-window-picker', tag='v1.*'},
+    {'vladdoster/remember.nvim', config=[[require 'remember']]},
+    {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true},
+    {'s1n7ax/nvim-window-picker'},
     {
       'andymass/vim-matchup',
       setup=function()
@@ -37,23 +39,20 @@ return packer.startup(function(use)
       end
     },
     -- Treesitter
-    {
-      'nvim-treesitter/nvim-treesitter',
-      opt=true,
-      cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'},
-      event={'BufRead', 'BufNewFile'}
-    },
+    {'nvim-treesitter/nvim-treesitter', cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'}, event={'BufRead', 'BufNewFile'}},
     {
       'williamboman/nvim-cmp',
       branch='feat/docs-preview-window',
       requires={
-        'hrsh7th/cmp-nvim-lsp',
+        'Valodim/vim-zsh-completion',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-calc',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-omni',
         'hrsh7th/cmp-path',
-        'saadparwaiz1/cmp_luasnip',
-        'petertriho/cmp-git',
         'onsails/lspkind-nvim',
+        'petertriho/cmp-git',
+        'saadparwaiz1/cmp_luasnip',
         {'L3MON4D3/LuaSnip', requires={'rafamadriz/friendly-snippets'}}
       }
     },
@@ -73,11 +72,10 @@ return packer.startup(function(use)
   }
   -- UI
   use {
-    'olimorris/onedarkpro.nvim',
-    'kyazdani42/nvim-web-devicons',
     'lukas-reineke/headlines.nvim',
     'lukas-reineke/indent-blankline.nvim',
-    'norcalli/nvim-colorizer.lua'
+    'norcalli/nvim-colorizer.lua',
+    'olimorris/onedarkpro.nvim'
   }
   -- LSP
   use {

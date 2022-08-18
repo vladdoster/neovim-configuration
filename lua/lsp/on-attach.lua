@@ -48,7 +48,7 @@ local function buf_set_keymaps(bufnr)
   local function buf_set_keymap(mode, lhs, rhs) vim.keymap.set(mode, lhs, rhs, {buffer=bufnr, silent=true}) end
   local function format(client)
     vim.api.nvim_echo({{('Formatting with %s…'):format(client.name)}}, false, {})
-    vim.lsp.buf.format {id=client.id}
+    vim.lsp.buf.format({id=client.id, timeout_ms=2000})
   end
   buf_set_keymap('n', '<leader>p', function()
     local candidates = vim.tbl_filter(function(client)
