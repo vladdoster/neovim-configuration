@@ -1,6 +1,6 @@
 local g, o, wo = vim.g, vim.o, vim.wo
 -- GLOBAL EDITOR VARIABLES [
-g.cursorhold_updatetime = 150 -- antoinemadec/FixCursorHold.nvim
+g.cursorhold_updatetime = 150
 g.did_load_filetypes = 0
 g.do_filetype_lua = 1
 g.mapleader = ' '
@@ -39,8 +39,10 @@ for _, plugin in pairs(default_plugins) do g['loaded_' .. plugin] = 1 end
 -- ]
 -- OPTIONS [
 -- o.completeopt = {'menuone', 'noselect'} -- options for insert mode completion
+o.autoread = true
 o.backup = true
 o.backupdir = vim.fn.stdpath 'cache' .. '/nvim/backup'
+o.background = 'dark'
 o.breakindent = true
 o.clipboard = 'unnamedplus' -- Enable yanking between vim sessions and system
 o.cmdheight = 1 -- number of screen lines to use for the command line
