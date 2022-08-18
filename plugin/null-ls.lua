@@ -6,15 +6,15 @@ local dgn, fmt = null_ls.builtins.diagnostics, null_ls.builtins.formatting
 local editorconfig_checker = null_ls.builtins.diagnostics.editorconfig_checker
 editorconfig_checker._opts.command = 'editorconfig-checker'
 
+-- fmt.beautysh.with({extra_args={'--indent-size', '2', '--force-function-style', 'paronly'}}),
 null_ls.setup {
   debounce=150,
   debug=false,
   save_after_format=false,
   sources={
     dgn.checkmake,
-    dgn.luacheck.with({extra_args={'--globals', 'vim', '--std', 'luajit'}}),
+    dgn.selene,
     dgn.shellcheck,
-    fmt.beautysh.with({extra_args={'--indent-size', '2', '--force-function-style', 'paronly'}}),
     fmt.black,
     fmt.gofmt,
     fmt.jq,

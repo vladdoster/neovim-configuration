@@ -4,7 +4,7 @@ local types = require 'cmp.types'
 local luasnip = require 'luasnip'
 local mapping = cmp.mapping
 local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
 end
 cmp.setup {
@@ -46,6 +46,14 @@ cmp.setup {
       end
     end, {'i', 's'})
   },
-  sources={{name='nvim_lsp'}, {name='buffer'}, {name='path'}, {name='luasnip'}, {name='git'}, {name='calc'}}
+  sources={
+    {name='nvim_lsp'},
+    {name='buffer'},
+    {name='omni'},
+    {name='path'},
+    {name='luasnip'},
+    {name='git'},
+    {name='calc'}
+  }
 }
 require('cmp_git').setup {enableRemoteUrlRewrites=true}

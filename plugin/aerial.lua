@@ -4,4 +4,3 @@ aerial.setup {
   backends={'treesitter', 'lsp', 'markdown'},
   layout={width=40, default_direction='right', placement='right'}
 }
-vim.keymap.set('n', '<space>s', '<cmd>AerialToggle<CR>')

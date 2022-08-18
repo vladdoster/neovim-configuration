@@ -25,7 +25,6 @@ local function keymaps()
   map_uwu('s', git.status)
   map_uwu('S', git.stash)
 end
-local is_win = vim.fn.has 'win32' == 1
 if not is_win then require('telescope').load_extension 'fzf' end
 telescope.setup {
   defaults={
@@ -51,9 +50,7 @@ telescope.setup {
     sorting_strategy='descending',
     layout_strategy='flex',
     layout_config={
-      flex={
-        flip_columns=161 -- half 27" monitor, scientifically calculated
-      },
+      flex={flip_columns=161},
       horizontal={preview_cutoff=0, preview_width=0.6},
       vertical={preview_cutoff=0, preview_height=0.65}
     },
