@@ -1,13 +1,7 @@
 all: format
 
 clean:
-	@find . -name 'packer_compiled*' -type f -delete
-	@find $$HOME/.local/share/ \
-		-maxdepth 1 \
-		-name 'nvim' \
-		-type d \
-		-exec rm -rf \
-		-- {} \;
+	@rm -rf plugin/packer_compiled.lua ~/.local/share/nvim/ ~/.local/state/nvim
 	$(info --- cleaned neovim artifacts)
 
 deps:
