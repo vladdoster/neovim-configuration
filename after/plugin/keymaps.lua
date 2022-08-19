@@ -23,19 +23,12 @@ K.i('jk', '<ESC>')
 -- ╭──────────────╮
 -- │ NORMAL ⮕ 'n' │
 -- ╰──────────────╯
+-- neotree
+K.n('<C-a>', '<cmd>Neotree reveal left<cr>')
+K.n('<C-b>', '<cmd>Neotree toggle show buffers right<cr>')
+K.n('<C-n>', '<cmd>Neotree toggle left<cr>')
+-- aerial
 K.n('<leader>s', '<cmd>AerialToggle<CR>')
--- +──────────+
--- │ terminal │
--- +──────────+
-K.n('<C-\\>', '<cmd>ToggleTerm<cr>')
-K.n('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
-K.n('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
-K.n('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
--- window navigation
-K.n('<C-h>', '<c-w>h')
-K.n('<C-j>', '<c-w>j')
-K.n('<C-k>', '<c-w>k')
-K.n('<C-l>', '<c-w>l')
 -- buffer navigation
 K.n('<C-w>e', '<cmd>tab split<cr>')
 K.n('<C-x>', '<cmd>bd<cr>')
@@ -43,12 +36,12 @@ K.n('<S-h>', ':bprevious<cr>')
 K.n('<S-l>', ':bnext<cr>')
 -- disable ex mode
 K.n('<Esc>', '<cmd> :noh <cr>')
-K.n([[Q]], [[<Nop>]])
--- Disable command-line window
-K.n([[q:]], [[<Nop>]])
-K.n([[q/]], [[<Nop>]])
-K.n([[q?]], [[<Nop>]])
--- Quickly enter substitution mode
+K.n('Q', '<Nop>')
+-- disable command-line window
+K.n('q:', '<Nop>')
+K.n('q/', '<Nop>')
+K.n('q?', '<Nop>')
+-- quickly enter substitution mode
 K.n('<leader>/', ':%s/')
 K.n('<leader>?', ':%S/')
 K.v('<leader>/', ':s/')
@@ -75,15 +68,15 @@ K.n('<leader>sr', '<cmd>Telescope registers<cr>')
 -- +──────────+
 -- │ terminal │
 -- +──────────+
+K.n('<C-\\>', '<cmd>ToggleTerm<cr>')
+K.n('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
+K.n('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
+K.n('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
 -- navigation
 K.t('<C-h>', '<C-\\><C-N><C-w>h')
 K.t('<C-j>', '<C-\\><C-N><C-w>j')
 K.t('<C-k>', '<C-\\><C-N><C-w>k')
 K.t('<C-l>', '<C-\\><C-N><C-w>l')
--- toggle terminal
-K.t('<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
-K.t('<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
-K.t('<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
 -- +─────────+
 -- │ windows │
 -- +─────────+
