@@ -46,43 +46,40 @@ neotree.setup {
     position='left',
     width=40,
     mappings={
-      ['<CR>']='open',
-      ['o']='open_with_window_picker',
+      ['.']='',
+      ['/']='',
       ['<C-v>']='vsplit_with_window_picker',
       ['<C-x>']='split_with_window_picker',
-      ['t']='open_tabnew',
-      ['T']='open_tabnew',
-      ['X']='close_node',
-      ['K']='navigate_up',
+      ['<CR>']='open',
+      ['<bs>']='navigate_up',
+      ['<c-f>']='clear_filter',
+      ['A']='',
       ['C']='set_root',
       ['H']='toggle_hidden',
-      ['r']='refresh',
+      ['K']='navigate_up',
+      ['S']='split',
+      ['T']='open_tabnew',
+      ['V']='vsplit',
+      ['X']='close_node',
+      ['[g']='',
+      [']g']='',
+      ['a']='',
+      ['c']='copy_to_clipboard',
+      ['d']='',
       ['f']='filter_on_submit',
-      ['<c-f>']='clear_filter',
+      ['m']='',
       ['ma']='add',
       ['md']='delete',
-      ['mr']='rename',
       ['mm']='move',
-      ['c']='copy_to_clipboard',
-      ['x']='cut_to_clipboard',
+      ['mr']='rename',
+      ['o']='open_with_window_picker',
       ['p']='paste_from_clipboard',
       ['q']='close_window',
-      [']c']='next_git_modified',
-      ['[c']='prev_git_modified',
-      -- reset default mappings
-      ['space']='',
-      ['<2-LeftMouse>']='',
-      [']g']='',
-      ['[g']='',
-      ['S']='',
+      ['r']='refresh',
       ['s']='',
-      ['<bs>']='',
-      ['.']='',
-      ['a']='',
-      ['A']='',
-      ['d']='',
-      ['m']='',
-      ['/']=''
+      ['space']='',
+      ['t']='open_tabnew',
+      ['x']='cut_to_clipboard'
     },
     mapping_options={nowait=true}
   },
@@ -93,18 +90,10 @@ neotree.setup {
       hide_dotfiles=true,
       hide_gitignored=true,
       hide_by_name={'.DS_Store', 'thumbs.db'},
-      never_show={ -- remains hidden even if visible is toggled to true
-      }
+      never_show={'node_modules'}
     },
     follow_current_file=false, -- This will find and focus the file in the active buffer every
-    -- time the current file is changed while the tree is open.
     hijack_netrw_behavior='open_default' -- netrw disabled, opening a directory opens neo-tree
-    -- in whatever position is specified in window.position
-    -- "open_current",  -- netrw disabled, opening a directory opens within the
-    -- window like netrw would, regardless of window.position
-    -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-    -- use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
-    -- instead of relying on nvim autocmd events.
   },
   buffers={show_unloaded=true, window={mappings={['bd']='buffer_delete'}}}
 }
@@ -121,7 +110,3 @@ require('neo-tree.ui.inputs').input = function(message, default_value, callback,
   end
   callback(input)
 end
-
-vim.keymap.set('n', '<C-b>', '<cmd>Neotree toggle show buffers right<cr>')
-vim.keymap.set('n', '<C-a>', '<cmd>Neotree reveal left<cr>')
-vim.keymap.set('n', '<C-n>', '<cmd>Neotree toggle left<cr>')
