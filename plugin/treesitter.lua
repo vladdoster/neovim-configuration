@@ -1,10 +1,12 @@
-local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+local ok, _ = pcall(require, 'nvim-treesitter.configs')
 if not ok then return end
-
-treesitter.setup {
+require'nvim-treesitter.configs'.setup {
+  auto_install=true,
   ensure_installed={'bash', 'dockerfile', 'go', 'hcl', 'json', 'python', 'toml', 'yaml'},
-  highlight={enable=true, use_languagetree=true},
+  highlight={enable=true, disable={'c', 'rust'}, additional_vim_regex_highlighting=false},
+  ignore_install={'javascript'},
   indent={enable=true},
   matchup={enable=true},
-  rainbow={enable=true}
+  rainbow={enable=true},
+  sync_install=false
 }
