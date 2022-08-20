@@ -1,3 +1,26 @@
+# [3.1.0](https://github.com/vladdoster/neovim-configuration/compare/v3.0.1...v3.1.0) (2022-08-20)
+
+
+### feat
+
+* add selene config for vim std lib ([f272b24](https://github.com/vladdoster/neovim-configuration/commit/f272b2439dd7dc004b78cb99ecf27353728565f1))
+
+### fix
+
+* fix treesitter always running ([5186eee](https://github.com/vladdoster/neovim-configuration/commit/5186eee5fb92da27d94c24901ef701a01b80c4d3))
+* misc. config options ([f2a98bd](https://github.com/vladdoster/neovim-configuration/commit/f2a98bdbc53350043b1590b19ec9804f4cfd2bab))
+* winbar, lsp, Makefile bugs ([e2efc48](https://github.com/vladdoster/neovim-configuration/commit/e2efc48f454f8fae3d94b73f0238b6fd7b81f4eb))
+
+### maint
+
+* add keymap to navigate up a directory ([893ba5e](https://github.com/vladdoster/neovim-configuration/commit/893ba5edc2cbb00f5cdb6c7f2139c26fbfec59fb))
+* improve after dir configurations ([3d06c36](https://github.com/vladdoster/neovim-configuration/commit/3d06c36bd1a09e32baba98d3ce648ef18883e5e0))
+* improve clean Make target ([87b7d51](https://github.com/vladdoster/neovim-configuration/commit/87b7d514298d7b0a6537df51a5e3359c7fff32e1))
+* improve misc. plugin configurations ([50d63df](https://github.com/vladdoster/neovim-configuration/commit/50d63df224f2aaa91279a2a409da697dc2e50a6e))
+* improve packer and lsp configurations ([1e038fa](https://github.com/vladdoster/neovim-configuration/commit/1e038faf54979b79ce02c381a47d136f48ec13c6))
+* remove duplicate & add neotree keymaps ([63f5c8b](https://github.com/vladdoster/neovim-configuration/commit/63f5c8bbff82023dc86caf12493f6a06876374dd))
+* remove luacheck due to lack of activity ([6a19bc8](https://github.com/vladdoster/neovim-configuration/commit/6a19bc8f1c77ba0089cc47e93408f836486a40df))
+
 ## [3.0.1](https://github.com/vladdoster/neovim-configuration/compare/v3.0.0...v3.0.1) (2022-08-15)
 
 
