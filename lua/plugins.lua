@@ -34,6 +34,7 @@ return packer.startup(function(use)
     {'s1n7ax/nvim-window-picker'},
     {
       'andymass/vim-matchup',
+      event={'Bufenter', 'BufRead'},
       setup=function()
         vim.g.matchup_matchparen_offscreen = {method='popup', fullwidth=1, highlight='OffscreenMatchPopup'}
       end
@@ -44,7 +45,6 @@ return packer.startup(function(use)
       'williamboman/nvim-cmp',
       branch='feat/docs-preview-window',
       requires={
-        'Valodim/vim-zsh-completion',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-calc',
         'hrsh7th/cmp-nvim-lsp',
