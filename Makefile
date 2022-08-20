@@ -13,6 +13,7 @@ format:
 
 update: clean
 	git pull --autostash --quiet
+	nvim --headless -c "autocmd User PackerComplete :qall"
 	$(info --- fetched latest changes)
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 

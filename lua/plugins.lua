@@ -71,6 +71,7 @@ return packer.startup(function(use)
     }
   }
   -- UI
+  -- use {'rcarriga/nvim-notify', setup=function() vim.notify = require('notify') end}
   use {
     'lukas-reineke/headlines.nvim',
     'lukas-reineke/indent-blankline.nvim',
@@ -79,17 +80,19 @@ return packer.startup(function(use)
   }
   -- LSP
   use {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
     'folke/lua-dev.nvim',
     'b0o/SchemaStore.nvim',
     'ray-x/lsp_signature.nvim',
-    'jose-elias-alvarez/null-ls.nvim',
     'lvimuser/lsp-inlayhints.nvim',
     'j-hui/fidget.nvim',
     'SmiteshP/nvim-navic'
   }
+  use {'jose-elias-alvarez/null-ls.nvim', requires={'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig'}}
+
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',

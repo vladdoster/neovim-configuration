@@ -3,7 +3,7 @@ vim.o.clipboard = 'unnamedplus'
 vim.o.hlsearch = true
 vim.o.hidden = true
 vim.o.updatetime = 500
-vim.o.scrolloff = 5
+vim.o.scrolloff = 15
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undofile = true
@@ -33,9 +33,6 @@ vim.opt.formatoptions:remove 'o'
 vim.opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 vim.opt.laststatus = 3
 vim.o.completeopt = 'menu,menuone,noselect'
-
-if vim.fn.has 'win32' == 1 then vim.o.shell = 'powershell.exe' end
-
 -- Fixate cmdheight to 2
 vim.api.nvim_create_autocmd({'WinScrolled'}, {pattern='*', command='set cmdheight=2'})
 -- vim: ft=lua sw=2 sts=2 et foldmarker=[,] foldmethod=marker
