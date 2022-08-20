@@ -2,6 +2,7 @@ local ts_utils = require 'nvim-treesitter.ts_utils'
 local lsp_signature = require 'lsp_signature'
 local navic = require 'nvim-navic'
 local telescope_lsp = require 'telescope.lsp'
+local aerial = require('aerial')
 local function highlight_references()
   local node = ts_utils.get_node_at_cursor()
   while node ~= nil do
@@ -43,26 +44,9 @@ local function find_and_run_codelens()
   vim.lsp.codelens.run()
   vim.api.nvim_win_set_cursor(0, {row, col}) -- restore cursor, TODO: also restore position
 end
----@param bufnr number
 local function buf_set_keymaps(bufnr)
   local function buf_set_keymap(mode, lhs, rhs) vim.keymap.set(mode, lhs, rhs, {buffer=bufnr, silent=true}) end
-  local function format(client)
-    vim.api.nvim_echo({{('Formatting with %s…'):format(client.name)}}, false, {})
-    vim.lsp.buf.format({id=client.id, timeout_ms=2000})
-  end
-  buf_set_keymap('n', '<leader>p', function()
-    local candidates = vim.tbl_filter(function(client)
-      return client.name ~= 'sumneko_lua' and client.supports_method 'textDocument/formatting'
-    end, vim.lsp.get_active_clients {bufnr=vim.api.nvim_get_current_buf()})
-    if #candidates > 1 then
-      vim.ui.select(candidates, {prompt='Client', format_item=function(client) return client.name end},
-                    function(client) if client then format(client) end end)
-    elseif #candidates == 1 then
-      format(candidates[1])
-    else
-      vim.api.nvim_echo({{'No clients that support textDocument/formatting are attached.', 'WarningMsg'}}, false, {})
-    end
-  end)
+  buf_set_keymap('n', '<leader>p', vim.lsp.buf.formatting)
   -- Code actions
   buf_set_keymap('n', '<leader>r', vim.lsp.buf.rename)
   buf_set_keymap('n', '<space>f', vim.lsp.buf.code_action)
@@ -82,14 +66,14 @@ local function buf_set_keymaps(bufnr)
 end
 return function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  buf_set_keymaps(bufnr)
+  -- buf_set_keymaps(bufnr)
   if client.config.flags then client.config.flags.allow_incremental_sync = true end
-  -- if client.supports_method 'textDocument/documentHighlight' then buf_autocmd_document_highlight(bufnr) end
+  if client.supports_method 'textDocument/documentHighlight' then buf_autocmd_document_highlight(bufnr) end
   if client.supports_method 'textDocument/codeLens' then
     buf_autocmd_codelens(bufnr)
     vim.schedule(vim.lsp.codelens.refresh)
   end
   lsp_signature.on_attach({bind=true, floating_window=false, hint_prefix='', hint_scheme='Comment'}, bufnr)
   if client.supports_method 'textDocument/documentSymbol' then navic.attach(client, bufnr) end
-  require('aerial').on_attach(client, bufnr)
+  aerial.on_attach(client, bufnr)
 end

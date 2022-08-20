@@ -1,9 +1,7 @@
-local devicons = require 'nvim-web-devicons'
-local expand, bufname = vim.fn.expand, vim.fn.bufname
+local bufname = vim.fn.bufname
 function MyWinbar()
   local buffer_name = bufname()
   if #buffer_name == 0 then buffer_name = '[A Buffer Has No Name]' end
-  local icon = devicons.get_icon(buffer_name, expand '%:e', {default=true})
   local actual_curwin = tonumber(vim.g.actual_curwin)
   local curwin = vim.api.nvim_get_current_win()
   local sw = vim.o.sw

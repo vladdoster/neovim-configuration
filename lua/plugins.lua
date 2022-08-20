@@ -39,7 +39,7 @@ return packer.startup(function(use)
       end
     },
     -- Treesitter
-    {'nvim-treesitter/nvim-treesitter', cmd={'TSEnableAll', 'TSInstall', 'TSUpdate'}, event={'BufRead', 'BufNewFile'}},
+    {'nvim-treesitter/nvim-treesitter', run=function() require('nvim-treesitter.install').update({with_sync=true}) end},
     {
       'williamboman/nvim-cmp',
       branch='feat/docs-preview-window',
