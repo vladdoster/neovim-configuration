@@ -27,6 +27,10 @@
             "release": "minor"
           },
           {
+            "tag": "maint",
+            "release": "minor"
+          },
+          {
             "tag": "new",
             "release": "minor"
           },
