@@ -47,19 +47,19 @@ end
 M.document_symbols = function()
   local symbols = {
     'All',
-    'Variable',
-    'Function',
-    'Constant',
-    'Class',
-    'Property',
-    'Method',
-    'Enum',
-    'Interface',
-    'Boolean',
-    'Number',
-    'String',
     'Array',
-    'Constructor'
+    'Boolean',
+    'Class',
+    'Constant',
+    'Constructor',
+    'Enum',
+    'Function',
+    'Interface',
+    'Method',
+    'Number',
+    'Property',
+    'String',
+    'Variable',
   }
   vim.ui.select(symbols, {prompt='Select which symbol'}, function(item)
     if item == 'All' then
