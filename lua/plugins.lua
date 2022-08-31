@@ -17,7 +17,7 @@ return packer.startup(function(use)
   use {'lewis6991/impatient.nvim'}
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
   use {
-    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    -- 'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     'lewis6991/hover.nvim',
     'lewis6991/satellite.nvim',
     'stevearc/aerial.nvim',
@@ -87,7 +87,7 @@ return packer.startup(function(use)
     'folke/lua-dev.nvim',
     'b0o/SchemaStore.nvim',
     'ray-x/lsp_signature.nvim',
-    'lvimuser/lsp-inlayhints.nvim',
+    -- 'lvimuser/lsp-inlayhints.nvim',
     'j-hui/fidget.nvim',
     'SmiteshP/nvim-navic'
   }
