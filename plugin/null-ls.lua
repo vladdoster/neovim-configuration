@@ -20,7 +20,7 @@ null_ls.setup {
     fmt.jq,
     fmt.lua_format.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}}),
     fmt.mdformat,
-    fmt.npm_groovy_lint,
+    fmt.npm_groovy_lint.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/.groovylintrc.json')}}),
     fmt.reorder_python_imports,
     fmt.shfmt.with({extra_args={'-i', 2, '-ci', '-sr'}}),
     fmt.terrafmt,
