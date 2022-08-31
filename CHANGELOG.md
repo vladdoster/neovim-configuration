@@ -1,3 +1,21 @@
+# [3.2.0](https://github.com/vladdoster/neovim-configuration/compare/v3.1.0...v3.2.0) (2022-08-31)
+
+
+### maint
+
+* add `maint` as a minor release tag ([31b5b5e](https://github.com/vladdoster/neovim-configuration/commit/31b5b5eab62fe14c61678a9e981798017539a8c8))
+* add npm-groovy-lint formatter configuration ([8949afe](https://github.com/vladdoster/neovim-configuration/commit/8949afebac1cb6b27975497a7a178de79b76e2ab))
+* add npm-groovy-lint formatter to null-ls ([cf390b0](https://github.com/vladdoster/neovim-configuration/commit/cf390b096026fcfbffbe12df7c4b16cc87ffd082))
+* remove lsp-inlayhints.nvim & lsp_lines.nvim ([5dd3c6d](https://github.com/vladdoster/neovim-configuration/commit/5dd3c6de37ef37e5e100e304c18faa9b158c2943))
+* remove Valodim/vim-zsh-completion plugin ([43efcfd](https://github.com/vladdoster/neovim-configuration/commit/43efcfd2b8e4c6672202cd2440c688954977924d))
+* sort document symbols ([1b2fd77](https://github.com/vladdoster/neovim-configuration/commit/1b2fd779ad00e336af192dff3a907be427a752ee))
+* update fidget icons ([2f6fb95](https://github.com/vladdoster/neovim-configuration/commit/2f6fb955c159118e81d3243968e28fba1a0faa5d))
+* update neo-tree icons ([51fc2e4](https://github.com/vladdoster/neovim-configuration/commit/51fc2e439cb980111d93ffb11bf74a5d8ea5ce9d))
+
+### style
+
+* re-format files ([1ed44fa](https://github.com/vladdoster/neovim-configuration/commit/1ed44fad7cee550870c5475b5be43b74240e7376))
+
 # [3.1.0](https://github.com/vladdoster/neovim-configuration/compare/v3.0.1...v3.1.0) (2022-08-20)
 
 
