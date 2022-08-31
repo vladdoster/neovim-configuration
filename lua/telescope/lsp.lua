@@ -59,7 +59,7 @@ M.document_symbols = function()
     'Number',
     'Property',
     'String',
-    'Variable',
+    'Variable'
   }
   vim.ui.select(symbols, {prompt='Select which symbol'}, function(item)
     if item == 'All' then
