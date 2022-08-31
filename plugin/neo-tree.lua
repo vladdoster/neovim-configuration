@@ -23,17 +23,15 @@ neotree.setup {
       expander_expanded='',
       expander_highlight='NeoTreeExpander'
     },
-    icon={folder_closed='', folder_open='', folder_empty='ﰊ', default='*'},
+    icon={folder_closed='', folder_open='', folder_empty='', default='*'},
     modified={symbol='[+]', highlight='NeoTreeModified'},
     name={trailing_slash=true, use_git_status_colors=true},
     git_status={
       symbols={
-        -- Change type
-        added='', -- or "✚", but this is redundant info if you use git_status_colors on the name
-        modified='', -- or "", but this is redundant info if you use git_status_colors on the name
-        deleted='✖', -- this can only be used in the git_status source
-        renamed='', -- this can only be used in the git_status source
-        -- Status type
+        added='✚',
+        modified='',
+        deleted='',
+        renamed='',
         untracked='?',
         ignored='',
         unstaged='M',
