@@ -1,4 +1,11 @@
 local ok, fidget = pcall(require, 'fidget')
 if not ok then return end
 
-fidget.setup {window={relative='editor', blend=10}}
+fidget.setup {
+  text = { done = ""},
+  window = {
+    relative = "win",
+    blend = 100,
+    zindex = nil,
+  },
+}
