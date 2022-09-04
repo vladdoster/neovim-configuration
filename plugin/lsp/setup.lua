@@ -1,5 +1,5 @@
 local ok, lspconfig = pcall(require, 'lspconfig')
-local ok_1, cmp_lsp = pcall(require 'cmp_nvim_lsp')
+local ok_1, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
 if not ok or not ok_1 then return end
 
 local util = require 'lspconfig.util'
