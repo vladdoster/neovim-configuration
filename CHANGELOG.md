@@ -1,3 +1,22 @@
+# [4.0.0](https://github.com/vladdoster/neovim-configuration/compare/v3.2.0...v4.0.0) (2022-09-04)
+
+
+### fix
+
+* add missing comma in lsp setup pcall() ([8e2e62a](https://github.com/vladdoster/neovim-configuration/commit/8e2e62a7df1f5cf182a54475bf5537186b210e55))
+* move line(s) up/down keymaps ([28fb861](https://github.com/vladdoster/neovim-configuration/commit/28fb8619e852be675d297fbbb06fc517620496e7))
+* remove plugin/ rule from gitignore ([92586c6](https://github.com/vladdoster/neovim-configuration/commit/92586c6e933c4be8b1eaa7c1ee016a00a38a68ca))
+
+### maint
+
+* add `style` commit prefix a minor release  ([4b0db46](https://github.com/vladdoster/neovim-configuration/commit/4b0db46dd02e8e4f8cf83996bafc350521b864f7))
+* clean up option values and readability ([e3811f5](https://github.com/vladdoster/neovim-configuration/commit/e3811f5291812c209675ea89c3ceac47de932327))
+* remove lsp plugin & comment out wakatime ([67463e5](https://github.com/vladdoster/neovim-configuration/commit/67463e5bde7d72ad2e40ce507f3fe528d7d85f32))
+
+### refactor
+
+* move Mason cfg to Mason{'','-lspconfig'}.lua ([c45fe5e](https://github.com/vladdoster/neovim-configuration/commit/c45fe5ea7d32c7a86a94c2093bec3d8b341d5e17))
+
 # [3.2.0](https://github.com/vladdoster/neovim-configuration/compare/v3.1.0...v3.2.0) (2022-08-31)
 
 
