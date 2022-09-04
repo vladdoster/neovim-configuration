@@ -1,8 +1,6 @@
 # Compiled Lua sources
 luac.out
-plugin/
-!/after/plugin
-packer_compiled.lua
+plugin/packer_compiled.lua
 # luarocks build files
 *.src.rock
 *.zip
