@@ -8,7 +8,7 @@ deps:
 	luarocks install --server https://luarocks.org/dev luaformatter
 
 format:
-	find . -name '*.lua' -print -exec lua-format --config $$(PWD)/.lua_format.yml --in-place {} \+
+	find . -name '*.lua' -print -exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
 	$(info --- formatted files)
 
 update: clean
