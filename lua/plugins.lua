@@ -17,7 +17,6 @@ return packer.startup(function(use)
   use {'lewis6991/impatient.nvim'}
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
   use {
-    -- 'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     'lewis6991/hover.nvim',
     'lewis6991/satellite.nvim',
     'stevearc/aerial.nvim',
@@ -104,6 +103,6 @@ return packer.startup(function(use)
   }
   use {'lewis6991/gitsigns.nvim'}
   use {'tweekmonster/startuptime.vim', cmd={'StartupTime'}}
-  use {'wakatime/vim-wakatime'}
+  -- use {'wakatime/vim-wakatime'}
   if not warm_boot then packer.sync() end
 end)
