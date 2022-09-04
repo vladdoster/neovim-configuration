@@ -6,6 +6,7 @@ local function parse_edits(entries, bufnr, text_edits)
     table.insert(entries, {bufnr=bufnr, lnum=start_line, col=edit.range.start.character + 1, text=line})
   end
 end
+
 -- Populates the quickfix list with all rename locations.
 vim.lsp.handlers['textDocument/rename'] = function(err, result, ...)
   rename(err, result, ...)
