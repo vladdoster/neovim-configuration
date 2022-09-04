@@ -1,4 +1,3 @@
--- Keymap method
 local K = setmetatable({nore={noremap=true, silent=true, expr=false}, remap={noremap=false, silent=true, expr=false}}, {
   __index=function(p, mode)
     return setmetatable({
@@ -13,8 +12,8 @@ vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', {silent=true})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', {expr=true, silent=true})
-vim.keymap.set('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', {expr=true, silent=true})
+-- vim.keymap.set('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', {expr=true, silent=true})
+-- vim.keymap.set('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', {expr=true, silent=true})
 -- ╭──────────────╮
 -- │ INSERT ⮕ 'i' │
 -- ╰──────────────╯
@@ -81,23 +80,37 @@ K.t('<C-l>', '<C-\\><C-N><C-w>l')
 -- │ windows │
 -- +─────────+
 -- navigation
-K.n('<C-h>', '<c-w>h')
-K.n('<C-j>', '<c-w>j')
-K.n('<C-k>', '<c-w>k')
-K.n('<C-l>', '<c-w>l')
--- resizing
+K.n('<C-h>', '<C-w>h')
+K.n('<C-j>', '<C-w>j')
+K.n('<C-k>', '<C-w>k')
+K.n('<C-l>', '<C-w>l')
+-- Resize with arrows
+K.n('<C-Down>', ':resize -2<CR>')
+K.n('<C-Left>', ':vertical resize -2<CR>')
+K.n('<C-Right>', ':vertical resize +2<CR>')
+K.n('<C-Up>', ':resize +2<CR>')
+
 K.n('<S-down>', ':resize +2<cr>')
 K.n('<S-left>', ':vertical resize -2<cr>')
 K.n('<S-right>', ':vertical resize +2<cr>')
 K.n('<S-up>', ':resize -2<cr>')
+-- ╭──────────────╮
+-- │ VISUAL ⮕ 'v' │
+-- ╰──────────────╯
 -- move text up and down
-K.v('<C-j>', '<cmd>:m \'>+1<CR>gv=gv<cr>')
-K.v('<C-k>', '<cmd>:m \'<-2<CR>gv=gv<cr>')
-K.n('<C-j>', '<esc>:m .+1<CR>==')
-K.n('<C-k>', '<esc>:m .-2<CR>==')
-K.v('p', '"_dP') --
+K.v('<A-j>', ':m .+1<CR>==')
+K.v('<A-k>', ':m .-2<CR>==')
 -- persistent indent mode
 K.v('<', '<gv')
 K.v('>', '>gv') --
 -- sort
 K.v('<C-s>', ':Sort<cr>')
+K.v('p', '"_dP')
+-- ╭────────────────────╮
+-- │ VISUAL BLOCK ⮕ 'x' │
+-- ╰────────────────────╯
+-- move text up and down
+K.x('J', ':move \'>+1<CR>gv-gv')
+K.x('K', ':move \'<-2<CR>gv-gv')
+K.x('<A-j>', ':move \'>+1<CR>gv-gv')
+K.x('<A-k>', ':move \'<-2<CR>gv-gv')
