@@ -23,7 +23,6 @@ return packer.startup(function(use)
     'simnalamburt/vim-mundo',
     'airblade/vim-rooter',
     'stevearc/dressing.nvim',
-    'linty-org/readline.nvim',
     'akinsho/toggleterm.nvim',
     'nvim-lualine/lualine.nvim',
     'numToStr/Comment.nvim',
@@ -86,7 +85,6 @@ return packer.startup(function(use)
     'folke/lua-dev.nvim',
     'b0o/SchemaStore.nvim',
     'ray-x/lsp_signature.nvim',
-    -- 'lvimuser/lsp-inlayhints.nvim',
     'j-hui/fidget.nvim',
     'SmiteshP/nvim-navic'
   }
@@ -102,7 +100,8 @@ return packer.startup(function(use)
     }
   }
   use {'lewis6991/gitsigns.nvim'}
-  use {'tweekmonster/startuptime.vim', cmd={'StartupTime'}}
+  -- use {'tweekmonster/startuptime.vim', cmd={'StartupTime'}}
+  use {'dstein64/vim-startuptime', cmd={'StartupTime'}}
   -- use {'wakatime/vim-wakatime'}
   if not warm_boot then packer.sync() end
 end)
