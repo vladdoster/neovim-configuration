@@ -10,7 +10,7 @@ editorconfig_checker._opts.command = 'editorconfig-checker'
 null_ls.setup {
   debounce=150,
   debug=false,
-  save_after_format=false,
+  save_after_format=true,
   sources={
     dgn.checkmake,
     dgn.selene.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/selene.toml')}}),
@@ -23,8 +23,8 @@ null_ls.setup {
     fmt.npm_groovy_lint.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/.groovylintrc.json')}}),
     fmt.reorder_python_imports,
     fmt.shfmt.with({extra_args={'-i', 2, '-ci', '-sr'}}),
-    fmt.terrafmt,
-    fmt.terraform_fmt,
+    fmt.terrafmt.with({filetypes={'markdown'}}),
+    fmt.terraform_fmt.with({timeout=10000, to_temp_file=false, filetypes={'terraform', 'hcl'}}),
     fmt.trim_whitespace
   },
   on_attach=require 'lsp.on-attach'
