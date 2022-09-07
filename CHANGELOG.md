@@ -1,3 +1,19 @@
+# [4.2.0](https://github.com/vladdoster/neovim-configuration/compare/v4.1.0...v4.2.0) (2022-09-07)
+
+
+### feat
+
+* add kylechui/nvim-surround plugin ([62f89c3](https://github.com/vladdoster/neovim-configuration/commit/62f89c39f88322d9b2808d8d85b790a3a20c68c3))
+
+### maint
+
+* clean up treesitter cfg ([c38f194](https://github.com/vladdoster/neovim-configuration/commit/c38f194f60e9cf01c86948ba239ce8538fca3041))
+* clean up unused telescope configuration ([581b1c5](https://github.com/vladdoster/neovim-configuration/commit/581b1c575dd0e9f345f6de3d52b0dde8f5fdfde3))
+
+### style
+
+* reformat plugins list ([6b9f049](https://github.com/vladdoster/neovim-configuration/commit/6b9f0499c3f3f838069f35b0f98cec80684ffe46))
+
 # [4.1.0](https://github.com/vladdoster/neovim-configuration/compare/v4.0.0...v4.1.0) (2022-09-07)
 
 
