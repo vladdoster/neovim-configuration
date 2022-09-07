@@ -4,6 +4,7 @@ local ok_2, navic = pcall(require, 'nvim-navic')
 local ok_3, telescope_lsp = pcall(require, 'telescope.lsp')
 local ok_4, aerial = pcall(require, 'aerial')
 if not ok_0 or not ok_1 or not ok_2 or not ok_3 or not ok_4 then return end
+
 local function highlight_references()
   local node = ts_utils.get_node_at_cursor()
   while node ~= nil do

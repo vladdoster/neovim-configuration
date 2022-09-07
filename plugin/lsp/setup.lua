@@ -7,8 +7,17 @@ local util = require 'lspconfig.util'
 local function create_capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
-  vim.list_extend(capabilities.textDocument.completion.completionItem.resolveSupport.properties,
-                  {'documentation', 'detail', 'additionalTextEdits'})
+  capabilities.textDocument.completion.completionItem = {
+    documentationFormat={'markdown', 'plaintext'},
+    snippetSupport=true,
+    preselectSupport=true,
+    insertReplaceSupport=true,
+    labelDetailsSupport=true,
+    deprecatedSupport=true,
+    commitCharactersSupport=true,
+    tagSupport={valueSet={1}},
+    resolveSupport={properties={'documentation', 'detail', 'additionalTextEdits'}}
+  }
   return cmp_lsp.update_capabilities(capabilities)
 end
 
