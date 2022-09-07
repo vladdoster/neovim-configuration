@@ -1,10 +1,8 @@
-local ok, treesitter_configs = pcall(require, 'nvim-treesitter.configs')
-local ok_1, parser_configs = pcall(require, 'nvim-treesitter.parsers.get_parser_configs()')
+local ok, treesitter_cfg = pcall(require, 'nvim-treesitter.configs')
+local ok_1, parser_cfg = pcall(require, 'nvim-treesitter.parsers')
 if not ok or not ok_1 then return end
 
-parser_configs.hcl = {filetype='hcl', 'terraform'}
-
-treesitter_configs.setup {
+treesitter_cfg.setup {
   auto_install=true,
   ensure_installed={'bash', 'dockerfile', 'go', 'hcl', 'json', 'lua', 'python', 'toml', 'yaml'},
   highlight={enable=true, disable={'c', 'rust'}, additional_vim_regex_highlighting=false},
@@ -14,3 +12,5 @@ treesitter_configs.setup {
   rainbow={enable=true},
   sync_install=false
 }
+
+parser_cfg.get_parser_configs().hcl = {filetype='hcl', 'terraform'}
