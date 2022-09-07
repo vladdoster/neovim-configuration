@@ -2,31 +2,14 @@ local ok, telescope = pcall(require, 'telescope')
 if not ok then return end
 local actions = require 'telescope.actions'
 local layout_actions = require 'telescope.actions.layout'
-local files = require 'telescope.find_files'
-local git = require 'telescope.git'
----@param lhs string
-local function map_uwu(lhs, rhs)
-  for _, keymap in pairs {'<C-p>' .. lhs, '<C-p>' .. '<C-' .. lhs .. '>'} do vim.keymap.set('n', keymap, rhs) end
-end
-local function keymaps()
-  map_uwu('r', '<cmd>Telescope resume<CR>')
-  map_uwu('f', files.find)
-  map_uwu('.f', function() files.find {use_buffer_cwd=true} end)
-  map_uwu('p', files.git_files)
-  vim.keymap.set('n', '<space>p', files.git_files)
-  map_uwu('.p', function() files.git_files {use_buffer_cwd=true} end)
-  map_uwu('a', files.file_browser)
-  map_uwu('l', files.current_buffer_fuzzy_find)
-  map_uwu('o', files.project)
-  map_uwu('q', files.grep)
-  map_uwu('.q', function() files.grep {use_buffer_cwd=true} end)
-  map_uwu('h', files.oldfiles)
-  map_uwu('b', files.buffers)
-  map_uwu('s', git.status)
-  map_uwu('S', git.stash)
-end
-if not is_win then require('telescope').load_extension 'fzf' end
-telescope.setup {
+keymap = vim.api.nvim_set_keymap
+
+keymap('n', '<C-p>p', [[<cmd>lua require('telescope').extensions.project.project()<CR>]],
+       {noremap=true, silent=true})
+keymap('n', '<C-p>r', [[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]],
+       {noremap=true, silent=true})
+
+require('telescope').setup {
   defaults={
     file_sorter=require('telescope.sorters').get_fzy_sorter,
     generic_sorter=require('telescope.sorters').get_generic_fuzzy_sorter,
@@ -52,9 +35,8 @@ telescope.setup {
     layout_config={
       flex={flip_columns=161},
       horizontal={preview_cutoff=0, preview_width=0.6},
-      vertical={preview_cutoff=0, preview_height=0.65}
+      vertical={preview_cutoff=0, preview_height=0.75}
     },
-    path_display={truncate=3},
     color_devicons=true,
     winblend=5,
     set_env={['COLORTERM']='truecolor'},
@@ -76,8 +58,12 @@ telescope.setup {
     }
   },
   extensions={
-    project={hidden_files=false},
-    fzf=is_win and {} or {fuzzy=true, override_generic_sorter=true, override_file_sorter=true, case_mode='smart_case'}
+    fzf={fuzzy=true, override_generic_sorter=true, override_file_sorter=true, case_mode='smart_case'},
+    project={base_dirs={'~/.config/dotfiles/', '~/.config/nvim/', {path='~/code/', max_depth=2}}, hidden_files=true},
+    recent_files={},
   }
 }
-keymaps()
+
+require('telescope').load_extension('recent_files')
+require('telescope').load_extension 'fzf'
+require('telescope').load_extension 'project'
