@@ -4,6 +4,11 @@ function P(...)
   print(table.unpack(args))
 end
 
-if not pcall(require, 'impatient') then print '--- failed to load impatient' end
+if pcall(require, 'impatient') then
+  require'impatient'.enable_profile()
+else
+  print '--- failed to load impatient'
+end
+
 vim.o.termguicolors = true
 require 'plugins'
