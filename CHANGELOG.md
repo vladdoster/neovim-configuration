@@ -1,3 +1,28 @@
+# [4.1.0](https://github.com/vladdoster/neovim-configuration/compare/v4.0.0...v4.1.0) (2022-09-07)
+
+
+### feat
+
+* add MasonInstallAll cmd installs desired lsp ([6ac24f6](https://github.com/vladdoster/neovim-configuration/commit/6ac24f65c77db65c09b1819cb9a2a575899716e3))
+
+### fix
+
+* use $(CURDIR) Make var instead of $$(PWD) ([d6806dc](https://github.com/vladdoster/neovim-configuration/commit/d6806dca012f7ca738703b653096c0bf02ae210e))
+
+### maint
+
+* change startup plugins & cleanup cruft ([cfe9321](https://github.com/vladdoster/neovim-configuration/commit/cfe9321e8ca307d8e2217d58584a59609a9bd680))
+* enable lua cache profiling via impatient ([41aecd2](https://github.com/vladdoster/neovim-configuration/commit/41aecd2c5ca26fc6d451fcc024b9c0ae5bc38343))
+* enhance options & disable misc. vim plugins ([4e154bb](https://github.com/vladdoster/neovim-configuration/commit/4e154bb9e3475747213733648763f6c34a48cfd4))
+* expand lsp completion capability options ([daec133](https://github.com/vladdoster/neovim-configuration/commit/daec13302557b8304dfb7cfc9701c42d969b76e3))
+* format Mason-lspconfig.lua ([ab81838](https://github.com/vladdoster/neovim-configuration/commit/ab81838a51e223bd6088da57ed082942954c5d5f))
+* tf now use HCL treesitter parser ([69fdf7b](https://github.com/vladdoster/neovim-configuration/commit/69fdf7b1d60a58ab68f89cf6eb0323a6552ad69a))
+* tweak terraform fmt & global opts in null-ls ([73bf2ab](https://github.com/vladdoster/neovim-configuration/commit/73bf2ab0232af815767e53a6cea9d6bb5860d376))
+
+### style
+
+* change window border and behavior ([3b503a7](https://github.com/vladdoster/neovim-configuration/commit/3b503a73f7c2f9437a43933c442c216b6592f603))
+
 # [4.0.0](https://github.com/vladdoster/neovim-configuration/compare/v3.2.0...v4.0.0) (2022-09-04)
 
 
