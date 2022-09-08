@@ -15,7 +15,11 @@ update: clean
 	git pull --autostash --quiet
 	nvim --headless -c "autocmd User PackerComplete :qall"
 	$(info --- fetched latest changes)
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	nvim --headless \
+    -c 'autocmd User PackerComplete quitall' \
+    -c 'PackerSync' \
+    -c 'MasonInstallAll' \
+    -c 'qall'
 
 .PHONY: all clean deps format test update
 .SILENT: all clean deps format update
