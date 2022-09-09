@@ -1,7 +1,7 @@
 local opt = vim.opt
 local g = vim.g
 
-vim.cmd [[syntax on]]
+vim.cmd.syntax {'on'}
 
 opt.backspace = 'indent,eol,start'
 opt.backup = false

@@ -8,26 +8,38 @@ if not warm_boot then
 end
 packer.init {
   auto_clean=true,
+  auto_reload_compiled=true,
+  autoremove = false,
   compile_on_sync=true,
+  -- display={non_interactive=true},
   git={clone_timeout=6000, subcommands={update='pull --ff-only --progress --rebase'}},
-  profile={enable=true, threshold=0.0001}
+  profile={enable=true, threshold=0.0001},
+  transitive_disable=false,
+  transitive_opt=false
 }
-local setup = function(name) return string.format([[require("%s").setup()]], name) end
+local setup = function(name) return string.format([[require('%s').setup{}]], name) end
 return packer.startup(function(use)
   use {'lewis6991/impatient.nvim'}
+  use {  -- UI
+    'olimorris/onedarkpro.nvim',
+    'lukas-reineke/headlines.nvim',
+    'lukas-reineke/indent-blankline.nvim',
+    'norcalli/nvim-colorizer.lua',
+  }
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
   use {'kylechui/nvim-surround', tag='*'}
   use {
+    'airblade/vim-rooter',
+    'akinsho/toggleterm.nvim',
     'lewis6991/hover.nvim',
     'lewis6991/satellite.nvim',
-    'stevearc/aerial.nvim',
-    'simnalamburt/vim-mundo',
-    'airblade/vim-rooter',
-    'stevearc/dressing.nvim',
-    'akinsho/toggleterm.nvim',
-    'nvim-lualine/lualine.nvim',
     'numToStr/Comment.nvim',
+    'nvim-lualine/lualine.nvim',
+    'simnalamburt/vim-mundo',
+    'stevearc/aerial.nvim',
+    'stevearc/dressing.nvim',
     'windwp/nvim-autopairs',
+    {'lewis6991/gitsigns.nvim', event={"BufRead"}},
     {'vladdoster/remember.nvim', config=[[require 'remember']]},
     {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true},
     {'s1n7ax/nvim-window-picker'},
@@ -69,17 +81,7 @@ return packer.startup(function(use)
       end
     }
   }
-  -- UI
-  -- use {'rcarriga/nvim-notify', setup=function() vim.notify = require('notify') end}
-  use {
-    'lukas-reineke/headlines.nvim',
-    'lukas-reineke/indent-blankline.nvim',
-    'norcalli/nvim-colorizer.lua',
-    'olimorris/onedarkpro.nvim'
-  }
-  -- LSP
-  use {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+  use { -- LSP
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
@@ -87,22 +89,21 @@ return packer.startup(function(use)
     'b0o/SchemaStore.nvim',
     'ray-x/lsp_signature.nvim',
     'j-hui/fidget.nvim',
-    'SmiteshP/nvim-navic'
+    'SmiteshP/nvim-navic',
+    {'jose-elias-alvarez/null-ls.nvim', requires={'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig'}}
   }
-  use {'jose-elias-alvarez/null-ls.nvim', requires={'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig'}}
-
-  -- Telescope
-  use {
+  use { -- Telescope
     'nvim-telescope/telescope.nvim',
     requires={
+      "ptethng/telescope-makefile",
+      'cljoly/telescope-repo.nvim',
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-project.nvim',
       'smartpde/telescope-recent-files',
       {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
     }
   }
-  use {'lewis6991/gitsigns.nvim'}
-  -- use {'tweekmonster/startuptime.vim', cmd={'StartupTime'}}
+
   use {'dstein64/vim-startuptime', cmd={'StartupTime'}}
   -- use {'wakatime/vim-wakatime'}
   if not warm_boot then packer.sync() end

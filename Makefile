@@ -5,7 +5,7 @@ clean:
 	$(info --- cleaned neovim artifacts)
 
 deps:
-	luarocks install --server https://luarocks.org/dev luaformatter
+	nohup luarocks install --server https://luarocks.org/dev luaformatter & &>/dev/null
 
 format:
 	find . -name '*.lua' -print -exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
