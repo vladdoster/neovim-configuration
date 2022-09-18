@@ -1,17 +1,22 @@
-all: format
+all: help
 
-clean:
+help: ## Display all Makfile targets
+	@grep -E '^.*[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+	| sort \
+	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $$1, $$2}'
+
+clean: ## remove installed plugins & packer artifacts
 	rm -rvf plugin/packer_compiled.lua ~/.local/share/nvim/ ~/.local/state/nvim
 	$(info --- cleaned neovim artifacts)
 
-deps:
+deps: ## install lua-formatter system-wide
 	nohup luarocks install --server https://luarocks.org/dev luaformatter & &>/dev/null
 
-format:
+format: ## run lua-formatter using .lua_format.yml config
 	find . -name '*.lua' -print -exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
 	$(info --- formatted files)
 
-update: clean
+update: clean ## run clean target, pull git changes, and install plugins
 	git pull --autostash --quiet
 	nvim --headless -c "autocmd User PackerComplete :qall"
 	$(info --- fetched latest changes)
