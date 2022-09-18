@@ -1,3 +1,27 @@
+# [4.3.0](https://github.com/vladdoster/neovim-configuration/compare/v4.2.0...v4.3.0) (2022-09-18)
+
+
+### docs
+
+* add Make target descriptions to README.md ([b8ff1d0](https://github.com/vladdoster/neovim-configuration/commit/b8ff1d05701b3e8e38f4ed306b26aca227326bdc))
+
+### fix
+
+* git-signs init & remove vim-mundo ([3c7bb8a](https://github.com/vladdoster/neovim-configuration/commit/3c7bb8ae23b95c2cedb77cb04680591e3c5c9585))
+* use new aerial argument option ([0d19e56](https://github.com/vladdoster/neovim-configuration/commit/0d19e56df253a0d423736e63f1ac57e7ded9b74b))
+
+### maint
+
+* clean up telescope configuration ([7de3293](https://github.com/vladdoster/neovim-configuration/commit/7de3293b388ec2f3cfd43c3c00afbec1bd903b52))
+* Make update target runs MasonInstallAll cmd ([adbea2d](https://github.com/vladdoster/neovim-configuration/commit/adbea2db99d95371b65626a3fa64032ffb7512ce))
+* move colorscheme from after/ to plugins/ ([ae2dfb3](https://github.com/vladdoster/neovim-configuration/commit/ae2dfb3174a60a7281305b3649c7ce0da5bb3b3a))
+* remove terrafmt & update mdformat in null-ls ([c2a75dd](https://github.com/vladdoster/neovim-configuration/commit/c2a75ddfc9fc1fb667ea8dc1992d59b6fdbcdfc1))
+* telescope config cleanup & tweaks ([ae77750](https://github.com/vladdoster/neovim-configuration/commit/ae777507322d5fa77928447396881511eed7f7e7))
+
+### style
+
+* reformat plugin/onedarkpro.lua ([72c68e4](https://github.com/vladdoster/neovim-configuration/commit/72c68e4344c90258018325462a719697d3fca818))
+
 # [4.2.0](https://github.com/vladdoster/neovim-configuration/compare/v4.1.0...v4.2.0) (2022-09-07)
 
 
