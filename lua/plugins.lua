@@ -9,7 +9,7 @@ end
 packer.init {
   auto_clean=true,
   auto_reload_compiled=true,
-  autoremove = false,
+  autoremove=false,
   compile_on_sync=true,
   -- display={non_interactive=true},
   git={clone_timeout=6000, subcommands={update='pull --ff-only --progress --rebase'}},
@@ -20,11 +20,11 @@ packer.init {
 local setup = function(name) return string.format([[require('%s').setup{}]], name) end
 return packer.startup(function(use)
   use {'lewis6991/impatient.nvim'}
-  use {  -- UI
+  use { -- UI
     'olimorris/onedarkpro.nvim',
     'lukas-reineke/headlines.nvim',
     'lukas-reineke/indent-blankline.nvim',
-    'norcalli/nvim-colorizer.lua',
+    'norcalli/nvim-colorizer.lua'
   }
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
   use {'kylechui/nvim-surround', tag='*'}
@@ -35,14 +35,13 @@ return packer.startup(function(use)
     'lewis6991/satellite.nvim',
     'numToStr/Comment.nvim',
     'nvim-lualine/lualine.nvim',
-    'simnalamburt/vim-mundo',
     'stevearc/aerial.nvim',
     'stevearc/dressing.nvim',
     'windwp/nvim-autopairs',
-    {'lewis6991/gitsigns.nvim', event={"BufRead"}},
-    {'vladdoster/remember.nvim', config=[[require 'remember']]},
-    {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true},
+    {'lewis6991/gitsigns.nvim', config=function() require('gitsigns').setup() end},
     {'s1n7ax/nvim-window-picker'},
+    {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true},
+    {'vladdoster/remember.nvim', config=[[require 'remember']]},
     {
       'andymass/vim-matchup',
       event={'Bufenter', 'BufRead'},
@@ -95,7 +94,7 @@ return packer.startup(function(use)
   use { -- Telescope
     'nvim-telescope/telescope.nvim',
     requires={
-      "ptethng/telescope-makefile",
+      'ptethng/telescope-makefile',
       'cljoly/telescope-repo.nvim',
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-project.nvim',
