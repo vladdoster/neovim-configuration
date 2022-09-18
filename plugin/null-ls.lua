@@ -12,6 +12,7 @@ null_ls.setup {
   debug=false,
   save_after_format=true,
   sources={
+    -- fmt.terrafmt.with({filetypes={'markdown'}}),
     dgn.checkmake,
     dgn.selene.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/selene.toml')}}),
     dgn.shellcheck,
@@ -19,11 +20,10 @@ null_ls.setup {
     fmt.gofmt,
     fmt.jq,
     fmt.lua_format.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/.lua_format.yml'), '--in-place'}}),
-    fmt.mdformat,
+    fmt.mdformat.with({filetypes={'markdown'}}),
     fmt.npm_groovy_lint.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/.groovylintrc.json')}}),
     fmt.reorder_python_imports,
     fmt.shfmt.with({extra_args={'-i', 2, '-ci', '-sr'}}),
-    fmt.terrafmt.with({filetypes={'markdown'}}),
     fmt.terraform_fmt.with({timeout=10000, to_temp_file=false, filetypes={'terraform', 'hcl'}}),
     fmt.trim_whitespace
   },
