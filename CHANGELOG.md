@@ -1,3 +1,10 @@
+# [4.4.0](https://github.com/vladdoster/neovim-configuration/compare/v4.3.0...v4.4.0) (2022-10-04)
+
+
+### maint
+
+* add junegunn/vim-easy-align plugin ([3ec8ace](https://github.com/vladdoster/neovim-configuration/commit/3ec8ace6b634045f6c9031139ff373af1c40ea0c))
+
 # [4.3.0](https://github.com/vladdoster/neovim-configuration/compare/v4.2.0...v4.3.0) (2022-09-18)
 
 
