@@ -30,6 +30,7 @@ return packer.startup(function(use)
   use {'kylechui/nvim-surround', tag='*'}
   use {
     'airblade/vim-rooter',
+    'junegunn/vim-easy-align',
     'akinsho/toggleterm.nvim',
     'lewis6991/hover.nvim',
     'lewis6991/satellite.nvim',
