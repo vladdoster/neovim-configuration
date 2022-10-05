@@ -1,51 +1,62 @@
+-- vim: set ft=lua fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
 local opt = vim.opt
 local g = vim.g
 
+-- {{{ Set options
 vim.cmd.syntax {'on'}
 
-opt.backspace = 'indent,eol,start'
-opt.backup = false
-opt.clipboard = 'unnamedplus'
-opt.cmdheight = 2
-opt.completeopt = 'menu,menuone,noselect'
-opt.errorbells = false
-opt.formatoptions:remove 'o'
-opt.formatoptions:remove 't'
-opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
-opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
-opt.hidden = true
-opt.hlsearch = true
-opt.ignorecase = false
-opt.inccommand = 'split'
-opt.incsearch = true
-opt.laststatus = 3
-opt.mouse = 'a'
-opt.ruler = true
-opt.scrolloff = 15
-opt.showcmd = true
-opt.smartcase = true
-opt.splitbelow = true
-opt.splitright = true
-opt.startofline = false
-opt.swapfile = false
-opt.title = true
-opt.undofile = true
-opt.updatetime = 500
-opt.whichwrap:append '<>[]hl'
-opt.wildmenu = true
+local options = -- Option list
+{
+  autoindent=true,
+  compatible=false,
+  cursorcolumn=false,
+  cursorline=true,
+  expandtab=true,
+  foldlevel=0,
+  foldmethod='marker',
+  hidden=true,
+  ignorecase=true,
+  incsearch=true,
+  linebreak=true,
+  list=true,
+  listchars='trail:·',
+  modeline=true,
+  mouse='a',
+  number=true,
+  relativenumber=true,
+  scrolloff=5,
+  shellcmdflag='-ic',
+  shiftround=true,
+  shiftwidth=0,
+  showcmd=true,
+  showmatch=true,
+  showmode=false,
+  signcolumn='yes',
+  smartcase=true,
+  smartindent=true,
+  softtabstop=0,
+  splitbelow=true,
+  splitright=true,
+  tabstop=4,
+  termguicolors=true,
+  textwidth=0,
+  title=true,
+  titlestring='%f',
+  undofile=true,
+  wrap=false
+}
 
-vim.wo.cursorline = true
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.wo.signcolumn = 'yes'
-vim.wo.wrap = false
+opt.clipboard:append('unnamedplus') -- Use system clipboard (REQUIRES xclip or wl-clipboard)
+opt.iskeyword:append('-') -- Include the '-' character as a character from a word
 
--- set cmdheight to 2
-vim.api.nvim_create_autocmd({'WinScrolled'}, {pattern='*', command='set cmdheight=2'})
+for key, value in pairs(options) do opt[key] = value end
+-- }}}
 
+-- {{{ Set file extensions
 vim.filetype.add({extension={tf='hcl'}, pattern={['.*%.env.*']='sh', ['ignore$']='conf'}})
+-- }}}
 
--- disable builtin vim plugins
+-- {{{ Disable built-in vim plugins
 local default_plugins = {
   '2html_plugin',
   'bugreport',
@@ -76,9 +87,9 @@ local default_plugins = {
 }
 
 for _, plugin in pairs(default_plugins) do g['loaded_' .. plugin] = 1 end
+-- }}}
 
+-- {{{ Set default langiage providers
 local default_providers = {'node', 'perl', 'python3', 'ruby'}
-
 for _, provider in ipairs(default_providers) do vim.g['loaded_' .. provider .. '_provider'] = 0 end
-
--- vim: ft=lua sw=2 sts=2 et foldmarker=[,] foldmethod=marker
+-- }}}
