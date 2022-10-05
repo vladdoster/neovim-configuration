@@ -1,3 +1,14 @@
+# [5.1.0](https://github.com/vladdoster/neovim-configuration/compare/v5.0.0...v5.1.0) (2022-10-05)
+
+
+### feat
+
+* add GH action to cleanup old workflows ([345794b](https://github.com/vladdoster/neovim-configuration/commit/345794bba665caadcde5dd7e7cd83034b29fe699))
+
+### maint
+
+* change williamboman/nvim-cmp to hrsh7th/nvim-cmp ([de9dda3](https://github.com/vladdoster/neovim-configuration/commit/de9dda3de088343658fa13d492a146a9c3b5f5cb))
+
 # [5.0.0](https://github.com/vladdoster/neovim-configuration/compare/v4.4.0...v5.0.0) (2022-10-05)
 
 
