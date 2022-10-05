@@ -53,8 +53,7 @@ return packer.startup(function(use)
     -- Treesitter
     {'nvim-treesitter/nvim-treesitter', run=function() require('nvim-treesitter.install').update({with_sync=true}) end},
     {
-      'williamboman/nvim-cmp',
-      branch='feat/docs-preview-window',
+      'hrsh7th/nvim-cmp',
       requires={
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-calc',
