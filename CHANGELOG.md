@@ -1,3 +1,14 @@
+# [5.0.0](https://github.com/vladdoster/neovim-configuration/compare/v4.4.0...v5.0.0) (2022-10-05)
+
+
+### fix
+
+* commenting now ignores empty lines ([8ac4671](https://github.com/vladdoster/neovim-configuration/commit/8ac4671ffda303af8ecbfc24108ca69b4e2178f5))
+
+### refactor
+
+* simplify neovim options ([7f4aace](https://github.com/vladdoster/neovim-configuration/commit/7f4aace1e93eb2bde80b1c13af1444c9b45ff9f0))
+
 # [4.4.0](https://github.com/vladdoster/neovim-configuration/compare/v4.3.0...v4.4.0) (2022-10-04)
 
 

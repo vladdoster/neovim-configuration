@@ -2,7 +2,7 @@
 
 |                                version                                |
 | :-------------------------------------------------------------------: |
-| [v4.4.0](https://github.com/vladdoster/neovim-configuration/releases) |
+| [v5.0.0](https://github.com/vladdoster/neovim-configuration/releases) |
 
 ## Makefile
 
