@@ -6,10 +6,10 @@
 
 ## Makefile
 
-| Target | Description                                             |
-| :----: | ------------------------------------------------------- |
-| clean  | remove installed plugins & packer artifacts             |
-|  deps  | install lua-formatter system-wide                       |
-| format | run lua-formatter using .lua_format.yml config          |
-|  help  | Display all Makfile targets                             |
-| update | run clean target, pull git changes, and install plugins |
+| Target | Description                                                   |
+| :----: | ------------------------------------------------------------- |
+| clean  | Remove installed plugins & packer artifacts                   |
+|  deps  | Install lua-formatter system-wide                             |
+| format | Run lua-formatter using `.lua_format.yml` config              |
+|  help  | Display all Makfile targets                                   |
+| update | Clean plugin artifacts, pull git changes, and install plugins |
