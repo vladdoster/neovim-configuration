@@ -7,7 +7,7 @@ require('mason-lspconfig').setup_handlers {
   function(server_name) lspconfig[server_name].setup {} end,
   ['jsonls']=function() lspconfig.jsonls.setup {settings={json={schemas=require('schemastore').json.schemas()}}} end,
   ['sumneko_lua']=function()
-    lspconfig.sumneko_lua.setup(require('lua-dev').setup {
+    lspconfig.sumneko_lua.setup(require('neodev').setup {
       settings={
         Lua={
           format={enable=false},
