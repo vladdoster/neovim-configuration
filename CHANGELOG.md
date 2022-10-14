@@ -1,3 +1,10 @@
+## [5.2.1](https://github.com/vladdoster/neovim-configuration/compare/v5.2.0...v5.2.1) (2022-10-14)
+
+
+### docs
+
+* update markdown formatting & README info ([171b102](https://github.com/vladdoster/neovim-configuration/commit/171b10221a9ffa0cb6f18a9c263f80e03973c76f))
+
 # [5.2.0](https://github.com/vladdoster/neovim-configuration/compare/v5.1.0...v5.2.0) (2022-10-14)
 
 
