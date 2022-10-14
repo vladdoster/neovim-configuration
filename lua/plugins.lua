@@ -84,7 +84,7 @@ return packer.startup(function(use)
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
-    'folke/lua-dev.nvim',
+    'folke/neodev.nvim',
     'b0o/SchemaStore.nvim',
     'ray-x/lsp_signature.nvim',
     'j-hui/fidget.nvim',
