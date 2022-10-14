@@ -1,3 +1,11 @@
+# [5.2.0](https://github.com/vladdoster/neovim-configuration/compare/v5.1.0...v5.2.0) (2022-10-14)
+
+
+### maint
+
+* update plugin name lua-dev -> neodev ([6950391](https://github.com/vladdoster/neovim-configuration/commit/69503913d6dd67b7a4605ee35a1a5ae1a72a8802))
+* update plugin reference lua-dev -> neodev ([019e277](https://github.com/vladdoster/neovim-configuration/commit/019e277534e9fc9ebed5d18606b07246a5b79a89))
+
 # [5.1.0](https://github.com/vladdoster/neovim-configuration/compare/v5.0.0...v5.1.0) (2022-10-05)
 
 
