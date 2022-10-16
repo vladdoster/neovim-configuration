@@ -1,3 +1,15 @@
+# [6.1.0](https://github.com/vladdoster/neovim-configuration/compare/v6.0.0...v6.1.0) (2022-10-16)
+
+
+### fix
+
+* add autocmd to refresh treesitter parser ([066a0c8](https://github.com/vladdoster/neovim-configuration/commit/066a0c8aecd7bda5aa2cc0c1b6750cc95fad3a6c))
+* LSP related plugins re-configured ([26b314d](https://github.com/vladdoster/neovim-configuration/commit/26b314d5221e74f45ebd02fdcb8d2ef495a2db38))
+
+### maint
+
+* remove broken window_picker plugin ([d1451c3](https://github.com/vladdoster/neovim-configuration/commit/d1451c3b199f214ebe820fe2bcc84941f989785a))
+
 # [6.0.0](https://github.com/vladdoster/neovim-configuration/compare/v5.2.1...v6.0.0) (2022-10-16)
 
 
