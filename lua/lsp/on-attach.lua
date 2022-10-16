@@ -49,31 +49,42 @@ local function find_and_run_codelens()
   vim.api.nvim_win_set_cursor(0, {row, col}) -- restore cursor, TODO: also restore position
 end
 
-local function buf_set_keymaps(bufnr)
-  local function buf_set_keymap(mode, lhs, rhs) vim.keymap.set(mode, lhs, rhs, {buffer=bufnr, silent=true}) end
-
-  buf_set_keymap('n', '<leader>p', vim.lsp.buf.format)
-  -- Code actions
-  buf_set_keymap('n', '<leader>r', vim.lsp.buf.rename)
-  buf_set_keymap('n', '<space>f', vim.lsp.buf.code_action)
-  buf_set_keymap('v', '<space>f', vim.lsp.buf.range_code_action)
-  buf_set_keymap('n', '<leader>l', find_and_run_codelens)
-  -- Movement
-  buf_set_keymap('n', 'gD', vim.lsp.buf.declaration)
-  buf_set_keymap('n', 'gd', telescope_lsp.definitions)
-  buf_set_keymap('n', 'gr', telescope_lsp.references)
-  buf_set_keymap('n', 'gbr', telescope_lsp.buffer_references)
-  buf_set_keymap('n', 'gI', telescope_lsp.implementations)
-  -- Docs
-  buf_set_keymap('n', '<M-p>', vim.lsp.buf.signature_help)
-  buf_set_keymap('i', '<M-p>', vim.lsp.buf.signature_help)
-  buf_set_keymap('n', '<C-p>ws', telescope_lsp.workspace_symbols)
-  buf_set_keymap('n', '<C-p>wd', telescope_lsp.workspace_diagnostics)
-end
-
 return function(client, bufnr)
+  local nmap = function(keys, func, desc)
+    if desc then desc = 'LSP: ' .. desc end
+    vim.keymap.set('n', keys, func, {buffer=bufnr, desc=desc})
+  end
+
+  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  nmap('gr', require('telescope.builtin').lsp_references)
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+  -- See `:help K` for why this keymap
+  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+  -- Lesser used LSP functionality
+  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  nmap('<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+       '[W]orkspace [L]ist Folders')
+  -- :Format command local to LSP buffer
+  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    if vim.lsp.buf.format then
+      vim.lsp.buf.format()
+    elseif vim.lsp.buf.formatting then
+      vim.lsp.buf.formatting()
+    end
+  end, {desc='Format current buffer with LSP'})
+
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  buf_set_keymaps(bufnr)
   if client.config.flags then client.config.flags.allow_incremental_sync = true end
   if client.supports_method 'textDocument/documentHighlight' then buf_autocmd_document_highlight(bufnr) end
   if client.supports_method 'textDocument/codeLens' then
