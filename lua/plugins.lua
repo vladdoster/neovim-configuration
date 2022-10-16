@@ -21,7 +21,7 @@ local setup = function(name) return string.format([[require('%s').setup{}]], nam
 return packer.startup(function(use)
   use {'lewis6991/impatient.nvim'}
   use { -- UI
-    'olimorris/onedarkpro.nvim',
+    {'folke/tokyonight.nvim', config=function() vim.cmd [[colorscheme tokyonight]] end},
     'lukas-reineke/headlines.nvim',
     'lukas-reineke/indent-blankline.nvim',
     {'norcalli/nvim-colorizer.lua', config=function() require'colorizer'.setup() end}
@@ -40,7 +40,6 @@ return packer.startup(function(use)
     'stevearc/dressing.nvim',
     'windwp/nvim-autopairs',
     {'lewis6991/gitsigns.nvim', config=function() require('gitsigns').setup() end},
-    {'s1n7ax/nvim-window-picker'},
     {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true},
     {'vladdoster/remember.nvim', config=[[require 'remember']]},
     {
@@ -84,10 +83,9 @@ return packer.startup(function(use)
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
-    'folke/neodev.nvim',
+    {'folke/neodev.nvim', config=function() require('neodev').setup({}) end},
     'b0o/SchemaStore.nvim',
     'ray-x/lsp_signature.nvim',
-    'j-hui/fidget.nvim',
     'SmiteshP/nvim-navic',
     {'jose-elias-alvarez/null-ls.nvim', requires={'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig'}}
   }
