@@ -1,3 +1,23 @@
+# [6.0.0](https://github.com/vladdoster/neovim-configuration/compare/v5.2.1...v6.0.0) (2022-10-16)
+
+
+### fix
+
+* instantiate nvim-colorizer correctly ([940e9f3](https://github.com/vladdoster/neovim-configuration/commit/940e9f366f74f3f5ec21e72cf5621c557abf7f69))
+* remove broken colorscheme onedarkpro.nvim ([080a224](https://github.com/vladdoster/neovim-configuration/commit/080a224704aa4f4c55a27d72e457f0af0c0852e1))
+* remove broken plugin fidget.nvim ([518a583](https://github.com/vladdoster/neovim-configuration/commit/518a583cef47844ebc01a6d6c2806653be13b127))
+
+### maint
+
+* add beautysh formatter to null-ls config ([6ca2b61](https://github.com/vladdoster/neovim-configuration/commit/6ca2b61becff8e8c413eae443c8b0c8c70a01f6c))
+* change colorscheme and remove broken/deprecated plugins ([36eafef](https://github.com/vladdoster/neovim-configuration/commit/36eafef5d2dfa852c64027665a229268c85a49b7))
+* remove win/tab line in favor of plugins ([c15daaf](https://github.com/vladdoster/neovim-configuration/commit/c15daaf95530f587a246484c39ab3d4579af4a17))
+
+### refactor
+
+* majority of neovim option values modified ([b5fcc4b](https://github.com/vladdoster/neovim-configuration/commit/b5fcc4b207ed9dd9233a8d9ef8d83f5ecded6f5c))
+* use std API and remove broken magic Keymap func ([fc61d98](https://github.com/vladdoster/neovim-configuration/commit/fc61d98c49bb0ce44786b9610bae99bf1bf23f82))
+
 ## [5.2.1](https://github.com/vladdoster/neovim-configuration/compare/v5.2.0...v5.2.1) (2022-10-14)
 
 
