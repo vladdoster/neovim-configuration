@@ -1,3 +1,15 @@
+# [6.2.0](https://github.com/vladdoster/neovim-configuration/compare/v6.1.0...v6.2.0) (2022-10-29)
+
+
+### fix
+
+* toggleterm autocmd logic ([5c42e9f](https://github.com/vladdoster/neovim-configuration/commit/5c42e9fd9087b51694bd5d1b2fcdb0dc01cf65a8))
+
+### style
+
+* format treesitter config ([918899b](https://github.com/vladdoster/neovim-configuration/commit/918899b784dbda2e6a487a573527031981a88c9c))
+* tweak nvim option values ([43d5c11](https://github.com/vladdoster/neovim-configuration/commit/43d5c11f0cc9cc90b03a37ff7df384ce5aaaa568))
+
 # [6.1.0](https://github.com/vladdoster/neovim-configuration/compare/v6.0.0...v6.1.0) (2022-10-16)
 
 
