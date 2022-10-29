@@ -3,17 +3,17 @@ local ok_1, parser_cfg = pcall(require, 'nvim-treesitter.parsers')
 if not ok or not ok_1 then return end
 
 treesitter_cfg.setup {
-  auto_install = true,
-  ensure_installed = { 'bash', 'dockerfile', 'go', 'hcl', 'json', 'lua', 'python', 'toml', 'yaml' },
-  highlight = { enable = true, disable = { 'c', 'rust' }, additional_vim_regex_highlighting = true },
-  ignore_install = { 'javascript' },
-  indent = { enable = true },
-  matchup = { enable = true },
-  rainbow = { enable = true },
-  sync_install = false
+  auto_install=true,
+  ensure_installed={'bash', 'dockerfile', 'go', 'hcl', 'json', 'lua', 'python', 'toml', 'yaml'},
+  highlight={enable=true, disable={'c', 'rust'}, additional_vim_regex_highlighting=true},
+  ignore_install={'javascript'},
+  indent={enable=true},
+  matchup={enable=true},
+  rainbow={enable=true},
+  sync_install=false
 }
 
-parser_cfg.get_parser_configs().hcl = { filetype = 'hcl', 'terraform' }
+parser_cfg.get_parser_configs().hcl = {filetype='hcl', 'terraform'}
 
 -- Make sure TS syntax tree is updated when needed by plugin (with some throttling)
 -- even if the `highlight` module is not enabled.
@@ -51,5 +51,5 @@ if not (treesitter_cfg.get_module('highlight') or {}).enable then
 end
 
 -- Folding support
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.o.foldmethod = 'expr'
+-- vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
