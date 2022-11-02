@@ -30,7 +30,6 @@ return packer.startup(function(use)
   use {'kylechui/nvim-surround', tag='*'}
   use {
     'airblade/vim-rooter',
-    'junegunn/vim-easy-align',
     'akinsho/toggleterm.nvim',
     'lewis6991/hover.nvim',
     'lewis6991/satellite.nvim',
@@ -39,7 +38,9 @@ return packer.startup(function(use)
     'stevearc/aerial.nvim',
     'stevearc/dressing.nvim',
     'windwp/nvim-autopairs',
-    {'lewis6991/gitsigns.nvim', config=function() require('gitsigns').setup() end},
+    {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true},
+    {'lewis6991/gitsigns.nvim', config=setup('gitsigns')},
+    {'obreitwi/vim-sort-folds', cmd='SortFolds', opt=true, run='python3 -m pip install --upgrade pynvim'},
     {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true},
     {'vladdoster/remember.nvim', config=[[require 'remember']]},
     {
@@ -83,25 +84,24 @@ return packer.startup(function(use)
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
-    {'folke/neodev.nvim', config=function() require('neodev').setup({}) end},
     'b0o/SchemaStore.nvim',
     'ray-x/lsp_signature.nvim',
     'SmiteshP/nvim-navic',
+    {'folke/neodev.nvim', config=setup('neodev')},
     {'jose-elias-alvarez/null-ls.nvim', requires={'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig'}}
   }
   use { -- Telescope
     'nvim-telescope/telescope.nvim',
     requires={
-      'ptethng/telescope-makefile',
       'cljoly/telescope-repo.nvim',
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-project.nvim',
+      'ptethng/telescope-makefile',
       'smartpde/telescope-recent-files',
       {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
     }
   }
-
-  use {'dstein64/vim-startuptime', cmd={'StartupTime'}}
+  use {'dstein64/vim-startuptime', cmd='StartupTime'}
   -- use {'wakatime/vim-wakatime'}
   if not warm_boot then packer.sync() end
 end)
