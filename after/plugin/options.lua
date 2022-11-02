@@ -1,5 +1,29 @@
--- Set options {{{
-local g, indent = vim.g, 2
+--  Disable built-in vim plugins {{{
+local default_plugins = {
+  '2html_plugin',
+  'fzf',
+  'getscript',
+  'getscriptPlugin',
+  'gzip',
+  'logiPat',
+  'matchit',
+  'matchparen',
+  'netrw',
+  'netrwFileHandlers',
+  'netrwPlugin',
+  'netrwSettings',
+  'rrhelper',
+  'tar',
+  'tarPlugin',
+  'vimball',
+  'vimballPlugin',
+  'zip',
+  'zipPlugin'
+}
+for _, plugin in pairs(default_plugins) do vim.g['loaded_' .. plugin] = 1 end
+-- }}}
+-- Options {{{
+local indent = 2
 
 vim.notify = function(...)
   local args = {...}
@@ -78,43 +102,14 @@ vim.wo.relativenumber = true
 vim.wo.signcolumn = 'yes'
 vim.wo.wrap = false
 -- }}}
-
--- Set file extensions {{{
--- vim.filetype.add({extension={tf='hcl'}, pattern={['.*%.env.*']='sh', ['ignore$']='conf'}})
--- }}}
-
---  Disable built-in vim plugins {{{
-local default_plugins = {
-  'gzip',
-  'zip',
-  'zipPlugin',
-  'fzf',
-  'tar',
-  'tarPlugin',
-  'getscript',
-  'getscriptPlugin',
-  'vimball',
-  'vimballPlugin',
-  '2html_plugin',
-  'matchit',
-  'matchparen',
-  'logiPat',
-  'rrhelper',
-  'netrw',
-  'netrwPlugin',
-  'netrwSettings',
-  'netrwFileHandlers'
-}
-
-for _, plugin in pairs(default_plugins) do g['loaded_' .. plugin] = 1 end
--- }}}
-
--- Set default langiage providers {{{
+-- Default language providers {{{
 local default_providers = {'node', 'perl', 'python3', 'ruby'}
 for _, provider in ipairs(default_providers) do vim.g['loaded_' .. provider .. '_provider'] = 0 end
 -- }}}
-
--- Use proper syntax highlighting in code blocks {{{
+-- File extensions {{{
+vim.filetype.add({extension={tf='hcl'}, pattern={['.*%.env.*']='sh', ['ignore$']='conf'}})
+-- }}}
+-- Code block syntax highlighting {{{
 local fences = {'console=sh', 'javascript', 'js=javascript', 'json', 'lua', 'python', 'sh', 'shell=sh'}
 vim.g.markdown_fenced_languages = fences
 -- }}}
