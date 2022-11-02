@@ -1,3 +1,15 @@
+# [6.3.0](https://github.com/vladdoster/neovim-configuration/compare/v6.2.0...v6.3.0) (2022-11-02)
+
+
+### maint
+
+* add SortFolds plugin & misc. tweaks ([7efad6a](https://github.com/vladdoster/neovim-configuration/commit/7efad6aa9f54e3ec9855a35ba352ca8763afefbb))
+* helper func to wrap key cmd w/ "<cmd> <cr> ([b40d41c](https://github.com/vladdoster/neovim-configuration/commit/b40d41c6035a04c29bfaf01908df0b12809c7cb6))
+
+### style
+
+* clean up fold markers and comments ([fb19740](https://github.com/vladdoster/neovim-configuration/commit/fb197407adfb811333c3b40f5190391f94e2e7bf))
+
 # [6.2.0](https://github.com/vladdoster/neovim-configuration/compare/v6.1.0...v6.2.0) (2022-10-29)
 
 
