@@ -1,6 +1,7 @@
 -- Set <space> as the leader key (see `:help mapleader`)
 -- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 local keymap = vim.keymap.set
+local cmd = function(str) return string.format([[<cmd>%s<cr>]], str) end
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 keymap({'n', 'v'}, '<Space>', '<Nop>', {silent=true})
@@ -18,35 +19,35 @@ keymap('n', '<right>', '<C-w>l')
 -- ╭──────────────╮
 -- │ NORMAL ⮕ 'n' │
 -- ╰──────────────╯
-local function search(backward)
-  vim.cmd([[echo "1> "]])
-  local first = vim.fn.getcharstr()
-  vim.fn.search(first, 's' .. (backward and 'b' or ''))
-  vim.schedule(function()
-    vim.cmd([[echo "2> "]])
-    local second = vim.fn.getcharstr()
-    vim.fn.search(first .. second, 'c' .. (backward and 'b' or ''))
+-- local function search(backward)
+--   vim.cmd([[echo "1> "]])
+--   local first = vim.fn.getcharstr()
+--   vim.fn.search(first, 's' .. (backward and 'b' or ''))
+--   vim.schedule(function()
+--     vim.cmd([[echo "2> "]])
+--     local second = vim.fn.getcharstr()
+--     vim.fn.search(first .. second, 'c' .. (backward and 'b' or ''))
 
-    vim.fn.setreg('/', first .. second)
-  end)
-end
+--     vim.fn.setreg('/', first .. second)
+--   end)
+-- end
 
-keymap('n', 's', search)
-keymap('n', 'S', function() search(true) end)
+-- keymap('n', 's', search)
+-- keymap('n', 'S', function() search(true) end)
 -- neotree
-keymap('n', '<C-a>', '<cmd>Neotree reveal left<cr>')
-keymap('n', '<C-b>', '<cmd>Neotree toggle show buffers right<cr>')
-keymap('n', '<C-n>', '<cmd>Neotree toggle left<cr>')
+keymap('n', '<C-a>', cmd('Neotree reveal left'))
+keymap('n', '<C-b>', cmd('Neotree toggle show buffers right'))
+keymap('n', '<C-n>', cmd('Neotree toggle left'))
 -- aerial
-keymap('n', '<leader>s', '<cmd>AerialToggle<CR>')
+keymap('n', '<leader>S', cmd('AerialToggle'))
 -- buffer navigation
-keymap('n', '<C-w>e', '<cmd>tab split<cr>')
-keymap('n', '<C-x>', '<cmd>bd<cr>')
+keymap('n', '<C-w>e', cmd('tab split'))
+keymap('n', '<C-x>', cmd('bd'))
 keymap('n', '<S-h>', ':bprevious<cr>')
 keymap('n', '<S-l>', ':bnext<cr>')
--- Clear search with <esc>
+-- Clear search
 keymap('n', '<Esc>', '<cmd>:noh<cr>')
--- Disable ex mode
+-- Disable 'ex' mode
 keymap('n', 'Q', '<Nop>')
 -- Disable command-line window
 keymap('n', 'q:', '<Nop>')
@@ -68,22 +69,21 @@ keymap('x', 'gw', '*N')
 -- +───────────+
 -- │ telescope │
 -- +───────────+
-keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
-keymap('n', '<leader>ff', '<cmd>Telescope find_files {previewer=false}<cr>')
-keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
-keymap('n', '<leader>fo', '<cmd>Telescope oldfiles<cr>')
-keymap('n', '<leader>fw', '<cmd>Telescope live_grep<cr>')
-keymap('n', '<leader>gb', '<cmd>Telescope git_branches<cr>')
-keymap('n', '<leader>gc', '<cmd>Telescope git_commits<cr>')
-keymap('n', '<leader>ld', '<cmd>Telescope diagnostics<cr>')
-keymap('n', '<leader>lr', '<cmd>Telescope lsp_references<cr>')
-keymap('n', '<leader>ls', '<cmd>Telescope lsp_document_symbols<cr>')
-keymap('n', '<leader>p', '<cmd>Telescope project<cr>')
-keymap('n', '<leader>sc', '<cmd>Telescope commands<cr>')
-keymap('n', '<leader>sk', '<cmd>Telescope keymaps<cr>')
-keymap('n', '<leader>sm', '<cmd>Telescope man_pages<cr>')
-keymap('n', '<leader>sn', '<cmd>Telescope notifications<cr>')
-keymap('n', '<leader>sr', '<cmd>Telescope registers<cr>')
+keymap('n', '<leader>fb', cmd('Telescope buffers'))
+keymap('n', '<leader>ff', cmd('Telescope find_files {previewer=false}'))
+keymap('n', '<leader>fo', cmd('Telescope oldfiles'))
+keymap('n', '<leader>fw', cmd('Telescope live_grep'))
+keymap('n', '<leader>gb', cmd('Telescope git_branches'))
+keymap('n', '<leader>gc', cmd('Telescope git_commits'))
+keymap('n', '<leader>ld', cmd('Telescope diagnostics'))
+keymap('n', '<leader>lr', cmd('Telescope lsp_references'))
+keymap('n', '<leader>ls', cmd('Telescope lsp_document_symbols'))
+keymap('n', '<leader>p', cmd('Telescope project'))
+keymap('n', '<leader>sc', cmd('Telescope commands'))
+keymap('n', '<leader>sk', cmd('Telescope keymaps'))
+keymap('n', '<leader>sm', cmd('Telescope man_pages'))
+keymap('n', '<leader>sn', cmd('Telescope notifications'))
+keymap('n', '<leader>sr', cmd('Telescope registers'))
 -- keymap('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 -- keymap('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 -- keymap('n', '<leader>/', function()
@@ -102,10 +102,10 @@ keymap('n', '<leader>sr', '<cmd>Telescope registers<cr>')
 -- +──────────+
 -- │ terminal │
 -- +──────────+
-keymap('n', '<C-\\>', '<cmd>ToggleTerm<cr>')
-keymap('n', '<leader>tf', '<cmd>ToggleTerm direction=float<cr>')
-keymap('n', '<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>')
-keymap('n', '<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
+keymap('n', '<C-\\>', cmd('ToggleTerm'))
+keymap('n', '<leader>tf', cmd('ToggleTerm direction=float'))
+keymap('n', '<leader>th', cmd('ToggleTerm size=10 direction=horizontal'))
+keymap('n', '<leader>tv', cmd('ToggleTerm size=80 direction=vertical'))
 -- Navigation
 keymap('t', '<C-h>', '<C-\\><C-N><C-w>h')
 keymap('t', '<C-j>', '<C-\\><C-N><C-w>j')
@@ -120,10 +120,10 @@ keymap('n', '<C-j>', '<C-w>j')
 keymap('n', '<C-k>', '<C-w>k')
 keymap('n', '<C-l>', '<C-w>l')
 -- Resize windows with arrows
-keymap('n', '<S-Up>', '<cmd>resize +2<CR>')
-keymap('n', '<S-Down>', '<cmd>resize -2<CR>')
-keymap('n', '<S-Left>', '<cmd>vertical resize -2<CR>')
-keymap('n', '<S-Right>', '<cmd>vertical resize +2<CR>')
+keymap('n', '<S-Up>', cmd('resize +2'))
+keymap('n', '<S-Down>', cmd('resize -2'))
+keymap('n', '<S-Left>', cmd('vertical resize -2'))
+keymap('n', '<S-Right>', cmd('vertical resize +2'))
 -- ╭──────────────╮
 -- │ VISUAL ⮕ 'v' │
 -- ╰──────────────╯
