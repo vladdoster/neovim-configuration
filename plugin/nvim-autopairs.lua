@@ -1,8 +1,8 @@
-local ok, npairs = pcall(require, 'nvim-autopairs')
+local ok, autopairs = pcall(require, 'nvim-autopairs')
 if not ok then return end
 
-local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-local cmp = require 'cmp'
+autopairs.setup({
+  enable_check_bracket_line = true,
+  ignored_next_char = "[%w%.]" -- will ignore alphanumeric and `.` symbol
 
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done {map_char={tex=''}})
-npairs.setup {check_ts=true, fast_wrap={}}
+})
