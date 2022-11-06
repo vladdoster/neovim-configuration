@@ -1,3 +1,10 @@
+## [6.3.1](https://github.com/vladdoster/neovim-configuration/compare/v6.3.0...v6.3.1) (2022-11-06)
+
+
+### fix
+
+* autopair rules ([23100d0](https://github.com/vladdoster/neovim-configuration/commit/23100d0e1e7290563363cff26d1b0592c1a1cea2))
+
 # [6.3.0](https://github.com/vladdoster/neovim-configuration/compare/v6.2.0...v6.3.0) (2022-11-02)
 
 
