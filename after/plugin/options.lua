@@ -1,25 +1,33 @@
 --  Disable built-in vim plugins {{{
 local default_plugins = {
   '2html_plugin',
-  'fzf',
+  'bugreport',
+  'compiler',
+  'ftplugin',
   'getscript',
   'getscriptPlugin',
   'gzip',
-  'logiPat',
+  'logipat',
   'matchit',
-  'matchparen',
   'netrw',
   'netrwFileHandlers',
   'netrwPlugin',
   'netrwSettings',
+  'optwin',
+  'rplugin',
   'rrhelper',
+  'spellfile_plugin',
+  'synmenu',
+  'syntax',
   'tar',
   'tarPlugin',
+  'tutor',
   'vimball',
   'vimballPlugin',
   'zip',
   'zipPlugin'
 }
+
 for _, plugin in pairs(default_plugins) do vim.g['loaded_' .. plugin] = 1 end
 -- }}}
 -- Options {{{
@@ -58,7 +66,7 @@ vim.o.errorbells = false
 vim.o.expandtab = true -- Use spaces instead of tabs
 vim.o.grepformat = '%f:%l:%c:%m'
 vim.o.grepprg = 'rg --vimgrep --no-heading --smart-case'
-vim.o.guifont = 'FiraCode Nerd Font:h12'
+vim.o.guifont = 'BlexMono Nerd Font Mono:h20'
 vim.o.hidden = true
 vim.o.hlsearch = true
 vim.o.ignorecase = false
@@ -79,7 +87,7 @@ vim.o.shiftwidth = indent -- Size of an indent
 vim.o.showcmd = true
 vim.o.showmode = false -- dont show mode since we have a statusline
 vim.o.sidescrolloff = 8 -- Columns of context
-vim.o.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
+vim.o.signcolumn = 'yes' -- Always show the signcolumn otherwise it would shift the text each time
 vim.o.smartcase = true -- Don't ignore case with capitals
 vim.o.smartindent = true -- Insert indents automatically
 vim.o.splitbelow = true -- Put new windows below current
@@ -96,6 +104,11 @@ vim.o.wildmenu = true
 vim.o.wildmode = 'longest:full,full' -- Command-line completion mode
 vim.o.wrap = false -- Disable line wrap
 
+vim.o.foldmethod = 'indent'
+vim.o.foldlevelstart = 1000
+vim.o.foldnestmax = 3
+vim.o.foldminlines = 1
+
 vim.wo.cursorline = true
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -108,10 +121,6 @@ for _, provider in ipairs(default_providers) do vim.g['loaded_' .. provider .. '
 -- }}}
 -- File extensions {{{
 vim.filetype.add({extension={tf='hcl'}, pattern={['.*%.env.*']='sh', ['ignore$']='conf'}})
--- }}}
--- Code block syntax highlighting {{{
-local fences = {'console=sh', 'javascript', 'js=javascript', 'json', 'lua', 'python', 'sh', 'shell=sh'}
-vim.g.markdown_fenced_languages = fences
 -- }}}
 
 -- vim: set ft=lua fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
