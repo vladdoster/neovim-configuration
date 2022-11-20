@@ -116,7 +116,7 @@ vim.wo.signcolumn = 'yes'
 vim.wo.wrap = false
 -- }}}
 -- Default language providers {{{
-local default_providers = {'node', 'perl', 'python3', 'ruby'}
+local default_providers = {'node', 'perl', 'ruby'}
 for _, provider in ipairs(default_providers) do vim.g['loaded_' .. provider .. '_provider'] = 0 end
 -- }}}
 -- File extensions {{{
