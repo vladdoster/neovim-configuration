@@ -1,3 +1,12 @@
+## [6.3.2](https://github.com/vladdoster/neovim-configuration/compare/v6.3.1...v6.3.2) (2022-11-20)
+
+
+### Bug Fixes
+
+* enable python3 provider for sortFolds plugin ([9b3e669](https://github.com/vladdoster/neovim-configuration/commit/9b3e669ac312cf8d4fc1f4854d0589937631c794))
+* remove nvim-autopairs plugin ([88a4759](https://github.com/vladdoster/neovim-configuration/commit/88a4759774de23f996f07ad2def59ffa1c3ea842))
+* remove prefix from VERSION ([72d059b](https://github.com/vladdoster/neovim-configuration/commit/72d059bd843bec1135e554d0e4ff6169158ce450))
+
 ## [6.3.1](https://github.com/vladdoster/neovim-configuration/compare/v6.3.0...v6.3.1) (2022-11-06)
 
 
