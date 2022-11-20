@@ -29,18 +29,19 @@ return packer.startup(function(use)
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
   use {'kylechui/nvim-surround', tag='*'}
   use {
-    'airblade/vim-rooter',
+    -- 'airblade/vim-rooter',
     'akinsho/toggleterm.nvim',
+    'godlygeek/tabular',
     'lewis6991/hover.nvim',
     'lewis6991/satellite.nvim',
     'numToStr/Comment.nvim',
     'nvim-lualine/lualine.nvim',
     'stevearc/aerial.nvim',
     'stevearc/dressing.nvim',
-    'windwp/nvim-autopairs',
+    -- 'windwp/nvim-autopairs',
     {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true},
     {'lewis6991/gitsigns.nvim', config=setup('gitsigns')},
-    {'obreitwi/vim-sort-folds', cmd='SortFolds', opt=true, run='python3 -m pip install --upgrade pynvim'},
+    {'obreitwi/vim-sort-folds', cmd='SortFolds', run='python3 -m pip install --upgrade pynvim'},
     {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true},
     {'vladdoster/remember.nvim', config=[[require 'remember']]},
     {
@@ -50,6 +51,7 @@ return packer.startup(function(use)
         vim.g.matchup_matchparen_offscreen = {method='popup', fullwidth=1, highlight='OffscreenMatchPopup'}
       end
     },
+    -- Markdown
     -- Treesitter
     {'nvim-treesitter/nvim-treesitter', run=function() require('nvim-treesitter.install').update({with_sync=true}) end},
     {
