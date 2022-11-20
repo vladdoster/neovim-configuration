@@ -1,6 +1,9 @@
 [vim]
 any = true
 
+[hs]
+any = true
+
 [[describe.args]]
 type = "string"
 [[describe.args]]
