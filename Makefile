@@ -19,13 +19,11 @@ format: ## Run lua-formatter using .lua_format.yml config
 
 update: clean ## Run clean target, pull git changes, and re-install plugins
 	git pull --autostash --quiet
-	nvim --headless -c "autocmd User PackerComplete :qall"
 	$(info --- fetched latest changes)
-	nvim --headless \
-    -c 'autocmd User PackerComplete quitall' \
-    -c 'PackerSync' \
-    -c 'MasonInstallAll' \
-    -c 'qall'
+	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	nvim --headless -c ':MasonInstallAll'
 
 .PHONY: all clean deps format test update
 .SILENT: all clean deps format update
+
+# vim: set fenc=utf8 ffs=unix ft=make list noet sw=4 ts=4 tw=72:
