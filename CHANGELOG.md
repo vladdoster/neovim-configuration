@@ -1,3 +1,11 @@
+## [6.3.3](https://github.com/vladdoster/neovim-configuration/compare/v6.3.2...v6.3.3) (2022-11-30)
+
+
+### Bug Fixes
+
+* add .luarc.json to .gitignore ([e709504](https://github.com/vladdoster/neovim-configuration/commit/e7095047ab6e3e0c15783d72c286ecc55820afe8))
+* Makefile vim modeline options ([75b0fcd](https://github.com/vladdoster/neovim-configuration/commit/75b0fcd5bc7b6bdd89b390fc6285ce34b4edd308))
+
 ## [6.3.2](https://github.com/vladdoster/neovim-configuration/compare/v6.3.1...v6.3.2) (2022-11-20)
 
 
