@@ -1,3 +1,14 @@
+## [6.3.4](https://github.com/vladdoster/neovim-configuration/compare/v6.3.3...v6.3.4) (2022-12-04)
+
+
+### Bug Fixes
+
+* add option to disable startup message ([a43cdce](https://github.com/vladdoster/neovim-configuration/commit/a43cdce89233aeefa20df8c9dbde84de72ad5e6d))
+* aerial configuration ([f864f97](https://github.com/vladdoster/neovim-configuration/commit/f864f97efd3246c960e5566f7f51c2689755bde5))
+* MasonInstallAll call in update Make target ([2dd19b2](https://github.com/vladdoster/neovim-configuration/commit/2dd19b23dbb7adb66cbe9c05ed4168d4f2e9fae0))
+* nvim-autopairs configuration ([afeaaed](https://github.com/vladdoster/neovim-configuration/commit/afeaaeda34cca5d757a4fc71680722b03df7374a))
+* re-enable nvim-autopairs.nvim plugin ([7bab935](https://github.com/vladdoster/neovim-configuration/commit/7bab935e4a6e09ce865d9f7cc9803db84b2f85ec))
+
 ## [6.3.3](https://github.com/vladdoster/neovim-configuration/compare/v6.3.2...v6.3.3) (2022-11-30)
 
 
