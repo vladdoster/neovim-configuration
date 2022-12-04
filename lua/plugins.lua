@@ -29,7 +29,6 @@ return packer.startup(function(use)
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
   use {'kylechui/nvim-surround', tag='*'}
   use {
-    -- 'airblade/vim-rooter',
     'akinsho/toggleterm.nvim',
     'godlygeek/tabular',
     'lewis6991/hover.nvim',
@@ -38,7 +37,7 @@ return packer.startup(function(use)
     'nvim-lualine/lualine.nvim',
     'stevearc/aerial.nvim',
     'stevearc/dressing.nvim',
-    -- 'windwp/nvim-autopairs',
+    'windwp/nvim-autopairs',
     {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true},
     {'lewis6991/gitsigns.nvim', config=setup('gitsigns')},
     {'obreitwi/vim-sort-folds', cmd='SortFolds', run='python3 -m pip install --upgrade pynvim'},
