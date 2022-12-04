@@ -21,7 +21,7 @@ update: clean ## Run clean target, pull git changes, and re-install plugins
 	git pull --autostash --quiet
 	$(info --- fetched latest changes)
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-	nvim --headless -c ':MasonInstallAll'
+	nvim --headless -c ':MasonInstallAll' -c ':quitall'
 
 .PHONY: all clean deps format test update
 .SILENT: all clean deps format update
