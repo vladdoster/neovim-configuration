@@ -1,3 +1,4 @@
+vim.opt.shortmess:append { s = true, I = true } -- disable startup message
 --  Disable built-in vim plugins {{{
 local default_plugins = {
   '2html_plugin',
