@@ -1,3 +1,11 @@
+## [6.3.5](https://github.com/vladdoster/neovim-configuration/compare/v6.3.4...v6.3.5) (2022-12-06)
+
+
+### Bug Fixes
+
+* rm vim-peekabo plugin ([03785dd](https://github.com/vladdoster/neovim-configuration/commit/03785dd7e998292a3de4661a899cedacbc2538e5))
+* update deprecated dressing.nvim options ([057a132](https://github.com/vladdoster/neovim-configuration/commit/057a1329a211ad7e8da1486d93f1c6d6d8fbbc0e))
+
 ## [6.3.4](https://github.com/vladdoster/neovim-configuration/compare/v6.3.3...v6.3.4) (2022-12-04)
 
 
