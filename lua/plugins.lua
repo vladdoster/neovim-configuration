@@ -67,7 +67,6 @@ return packer.startup(function(use)
         {'L3MON4D3/LuaSnip', requires={'rafamadriz/friendly-snippets'}}
       }
     },
-    {'junegunn/vim-peekaboo', setup=function() vim.g.peekaboo_compact = 0 end},
     {
       'nvim-neo-tree/neo-tree.nvim',
       branch='v2.x',
