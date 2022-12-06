@@ -96,9 +96,7 @@ return packer.startup(function(use)
       'cljoly/telescope-repo.nvim',
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-project.nvim',
-      'ptethng/telescope-makefile',
       'smartpde/telescope-recent-files',
-      {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
     }
   }
   use {'dstein64/vim-startuptime', cmd='StartupTime'}

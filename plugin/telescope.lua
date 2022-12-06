@@ -53,15 +53,14 @@ require('telescope').setup {
     winblend=5
   },
   extensions={
-    fzf={fuzzy=true, override_generic_sorter=true, override_file_sorter=true, case_mode='smart_case'},
     project={
-      base_dirs={'~/.config/dotfiles/', '~/.config/nvim/', '~/.hammerspoon/', {path='~/code/', max_depth=2}},
+      base_dirs={'~/.config/dotfiles/', '~/.config/nvim/', {path='~/code/', max_depth=2}},
       hidden_files=true
     },
     recent_files={},
-    repo={list={fd_opts={'--no-ignore-vcs'}, search_dirs={'~/.hammerspoon/', '~/.local/share/', '~/code'}}}
+    repo={list={fd_opts={'--no-ignore-vcs'}, search_dirs={'~/.local/share/', '~/code'}}}
   }
 }
 
-local extensions = {'fzf', 'make', 'project', 'recent_files', 'repo'}
-for _, ext in pairs(extensions) do telescope.load_extension(ext) end
+local extensions = {'project', 'recent_files', 'repo'}
+for _, ext in pairs(extensions) do require('telescope').load_extension(ext) end
