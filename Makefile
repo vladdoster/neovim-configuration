@@ -11,7 +11,7 @@ clean: ## Remove installed plugins & packer artifacts
 
 deps: ## Install lua-formatter system-wide
 	$(info --- Installing lua-formatter)
-	nohup luarocks install --server https://luarocks.org/dev luaformatter & &>/dev/null
+	luarocks install --local --server https://luarocks.org/dev luaformatter
 
 format: ## Run lua-formatter using .lua_format.yml config
 	find . -name '*.lua' -print -exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
