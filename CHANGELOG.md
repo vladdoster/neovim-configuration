@@ -1,3 +1,10 @@
+# [6.4.0](https://github.com/vladdoster/neovim-configuration/compare/v6.3.5...v6.4.0) (2022-12-19)
+
+
+### Features
+
+* update-readme make target ([b115eb8](https://github.com/vladdoster/neovim-configuration/commit/b115eb82c97371509be8a08c7bd1f5c43bbaa2af))
+
 ## [6.3.5](https://github.com/vladdoster/neovim-configuration/compare/v6.3.4...v6.3.5) (2022-12-06)
 
 
