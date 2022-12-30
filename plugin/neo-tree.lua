@@ -2,19 +2,18 @@ local ok, neotree = pcall(require, 'neo-tree')
 if not ok then return end
 
 neotree.setup {
-  close_if_last_window=false, -- Close Neo-tree if it is the last window left in the tab
-  popup_border_style='rounded',
-  enable_git_status=true,
+  close_if_last_window=true, -- Close Neo-tree if it is the last window left in the tab
   enable_diagnostics=false,
+  enable_git_status=true,
+  popup_border_style='rounded',
   sort_case_insensitive=false, -- used when sorting files and directories in the tree
-  sort_function=nil, -- use a custom function for sorting files and directories in the tree
-  -- sort_function = function (a,b)
-  --       if a.type == b.type then
-  --           return a.path > b.path
-  --       else
-  --           return a.type > b.type
-  --       end
-  --   end , -- this sorts files and directories descendantly
+  sort_function=function(a, b) -- use a custom function for sorting files and directories in the tree
+    if a.type == b.type then
+      return a.path > b.path
+    else
+      return a.type > b.type
+    end
+  end, -- this sorts files and directories descendantly
   default_component_configs={
     container={enable_character_fade=true},
     indent={
