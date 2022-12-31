@@ -1,3 +1,12 @@
+## [6.4.1](https://github.com/vladdoster/neovim-configuration/compare/v6.4.0...v6.4.1) (2022-12-31)
+
+
+### Bug Fixes
+
+* mason.nvim log level & icons ([6546f6a](https://github.com/vladdoster/neovim-configuration/commit/6546f6a0caea851df2564889845c5c50df68c276))
+* packer bootstrap & plugin install order ([5057a4a](https://github.com/vladdoster/neovim-configuration/commit/5057a4ab23b2b31dd2fe9812d19efdf013db0644))
+* sorting logic & closing behavior ([9eb7550](https://github.com/vladdoster/neovim-configuration/commit/9eb75506d239f064ba5da080a3590ba80f14475d))
+
 # [6.4.0](https://github.com/vladdoster/neovim-configuration/compare/v6.3.5...v6.4.0) (2022-12-19)
 
 
