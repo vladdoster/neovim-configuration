@@ -35,14 +35,14 @@ keymap('n', '<right>', '<C-w>l')
 -- keymap('n', 's', search)
 -- keymap('n', 'S', function() search(true) end)
 -- neotree
-keymap('n', '<C-a>', cmd('Neotree reveal left'))
 keymap('n', '<C-b>', cmd('Neotree toggle show buffers right'))
 keymap('n', '<C-n>', cmd('Neotree toggle left'))
+keymap('n', '<C-f>', cmd('Neotree reveal left'))
 -- aerial
 keymap('n', '<leader>S', cmd('AerialToggle'))
 -- buffer navigation
 keymap('n', '<C-w>e', cmd('tab split'))
-keymap('n', '<C-x>', cmd('bd'))
+-- keymap('n', '<C-x>', cmd('bd'))
 keymap('n', '<S-h>', ':bprevious<cr>')
 keymap('n', '<S-l>', ':bnext<cr>')
 -- Clear search
@@ -84,21 +84,6 @@ keymap('n', '<leader>sk', cmd('Telescope keymaps'))
 keymap('n', '<leader>sm', cmd('Telescope man_pages'))
 keymap('n', '<leader>sn', cmd('Telescope notifications'))
 keymap('n', '<leader>sr', cmd('Telescope registers'))
--- keymap('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
--- keymap('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
--- keymap('n', '<leader>/', function()
---   -- You can pass additional configuration to telescope to change theme, layout, etc.
---   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
---     winblend = 10,
---     previewer = false,
---   })
--- end, { desc = '[/] Fuzzily search in current buffer]' })
-
--- keymap('n', '<leader>sf', require('telescope.builtin').find_files, {desc='[S]earch [F]iles'})
--- keymap('n', '<leader>sh', require('telescope.builtin').help_tags, {desc='[S]earch [H]elp'})
--- keymap('n', '<leader>sw', require('telescope.builtin').grep_string, {desc='[S]earch current [W]ord'})
--- keymap('n', '<leader>sg', require('telescope.builtin').live_grep, {desc='[S]earch by [G]rep'})
--- keymap('n', '<leader>sd', require('telescope.builtin').diagnostics, {desc='[S]earch [D]iagnostics'})
 -- +──────────+
 -- │ terminal │
 -- +──────────+
