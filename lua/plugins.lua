@@ -50,9 +50,15 @@ return packer.startup(function(use)
     'stevearc/aerial.nvim',
     'stevearc/dressing.nvim',
     'windwp/nvim-autopairs',
+    'monaqa/dial.nvim',
     {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true},
     {'lewis6991/gitsigns.nvim', config=setup('gitsigns')},
-    {'obreitwi/vim-sort-folds', cmd='SortFolds', run='python3 -m pip install --upgrade pynvim'},
+    {
+      'obreitwi/vim-sort-folds',
+      cmd='SortFolds',
+      cond=vim.fn.executable 'python3' == 1,
+      run='python3 -m pip install --upgrade pynvim'
+    },
     {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true},
     {'vladdoster/remember.nvim', config=[[require 'remember']]},
     {
