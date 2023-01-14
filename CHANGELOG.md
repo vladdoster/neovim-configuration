@@ -1,3 +1,16 @@
+# [6.5.0](https://github.com/vladdoster/neovim-configuration/compare/v6.4.1...v6.5.0) (2023-01-14)
+
+
+### Bug Fixes
+
+* incrementing keymaps (e.g., <c-{a,x}>) ([bf1e75d](https://github.com/vladdoster/neovim-configuration/commit/bf1e75dfb4e21e85497d2fe7fc0d698217babe0c))
+* remove duplicate plugin ([94b9ad5](https://github.com/vladdoster/neovim-configuration/commit/94b9ad52b8383cf7a5aa2a9b97b44ff1ae86424c))
+
+
+### Features
+
+* improved incrementing via dial.nvim ([37868ba](https://github.com/vladdoster/neovim-configuration/commit/37868bafe77b60e69259ea38c6a62c3ceed2d4c4))
+
 ## [6.4.1](https://github.com/vladdoster/neovim-configuration/compare/v6.4.0...v6.4.1) (2022-12-31)
 
 
