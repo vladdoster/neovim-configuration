@@ -32,7 +32,6 @@ return packer.startup(function(use)
   use { -- UI
     {'folke/tokyonight.nvim', config=function() vim.cmd [[colorscheme tokyonight]] end},
     'lukas-reineke/headlines.nvim',
-    'lukas-reineke/indent-blankline.nvim',
     {'norcalli/nvim-colorizer.lua', config=function() require'colorizer'.setup() end}
   }
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
