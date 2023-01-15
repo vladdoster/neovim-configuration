@@ -125,11 +125,11 @@ return packer.startup(function(use)
   -- if not warm_boot then packer.sync() end
   if not warm_boot then
     packer.sync()
-    print '=================================='
-    print '    Plugins are being installed   '
-    print '    Wait until Packer completes,  '
-    print '       then restart nvim          '
-    print '=================================='
+    print '================================='
+    print '   Plugins are being installed   '
+    print '   Wait until Packer completes,  '
+    print '      then restart nvim          '
+    print '================================='
     print '\n'
     return
   end
