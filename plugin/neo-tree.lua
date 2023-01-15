@@ -191,3 +191,9 @@ require('neo-tree.ui.inputs').input = function(message, default_value, callback,
   end
   callback(input)
 end
+
+local keymap = vim.keymap.set
+local cmd = function(str) return string.format([[<cmd>%s<cr>]], str) end
+keymap('n', '<C-b>', cmd('Neotree toggle show buffers right'))
+keymap('n', '<C-n>', cmd('Neotree toggle left'))
+keymap('n', '<C-f>', cmd('Neotree reveal left'))

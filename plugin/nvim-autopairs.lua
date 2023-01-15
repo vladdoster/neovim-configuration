@@ -1,22 +1,20 @@
 local ok, autopairs = pcall(require, 'nvim-autopairs')
 if not ok then return end
 autopairs.setup({
-  check_ts = true,
-  ts_config = { java = false },
-  fast_wrap = {
-    map = "<M-e>",
-    chars = { "{", "[", "(", '"', "'" },
-    pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-    offset = 0,
-    end_key = "$",
-    keys = "qwertyuiopzxcvbnmasdfghjkl",
-    check_comma = true,
-    highlight = "PmenuSel",
-    highlight_grey = "LineNr",
-  },
+  check_ts=true,
+  ts_config={java=false},
+  fast_wrap={
+    map='<M-e>',
+    chars={'{', '[', '(', '"', '\''},
+    pattern=string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
+    offset=0,
+    end_key='$',
+    keys='qwertyuiopzxcvbnmasdfghjkl',
+    check_comma=true,
+    highlight='PmenuSel',
+    highlight_grey='LineNr'
+  }
 })
 
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if cmp_status_ok then
-  cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done { tex = false })
-end
+local cmp_status_ok, cmp = pcall(require, 'cmp')
+if cmp_status_ok then cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done {tex=false}) end

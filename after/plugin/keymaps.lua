@@ -34,10 +34,6 @@ keymap('n', '<right>', '<C-w>l')
 
 -- keymap('n', 's', search)
 -- keymap('n', 'S', function() search(true) end)
--- neotree
-keymap('n', '<C-b>', cmd('Neotree toggle show buffers right'))
-keymap('n', '<C-n>', cmd('Neotree toggle left'))
-keymap('n', '<C-f>', cmd('Neotree reveal left'))
 -- aerial
 keymap('n', '<leader>S', cmd('AerialToggle'))
 -- buffer navigation
@@ -53,6 +49,10 @@ keymap('n', 'Q', '<Nop>')
 keymap('n', 'q:', '<Nop>')
 keymap('n', 'q/', '<Nop>')
 keymap('n', 'q?', '<Nop>')
+-- quickly save the current buffer or all buffers
+keymap('n', '<leader>w', '<cmd>update<cr>')
+keymap('n', '<leader>W', '<cmd>wall<cr>')
+keymap('n', '<C-q>', '<cmd>q<cr>')
 -- Diagnostic keymaps
 keymap('n', '[d', vim.diagnostic.goto_prev)
 keymap('n', ']d', vim.diagnostic.goto_next)
@@ -66,27 +66,7 @@ keymap('v', '<leader>?', ':S/')
 
 keymap('n', 'gw', '*N')
 keymap('x', 'gw', '*N')
--- +───────────+
--- │ telescope │
--- +───────────+
-keymap('n', '<leader>fb', cmd('Telescope buffers'))
-keymap('n', '<leader>ff', cmd('Telescope find_files {previewer=false}'))
-keymap('n', '<leader>fo', cmd('Telescope oldfiles'))
-keymap('n', '<leader>fw', cmd('Telescope live_grep'))
-keymap('n', '<leader>gb', cmd('Telescope git_branches'))
-keymap('n', '<leader>gc', cmd('Telescope git_commits'))
-keymap('n', '<leader>ld', cmd('Telescope diagnostics'))
-keymap('n', '<leader>lr', cmd('Telescope lsp_references'))
-keymap('n', '<leader>ls', cmd('Telescope lsp_document_symbols'))
-keymap('n', '<leader>p', cmd('Telescope project'))
-keymap('n', '<leader>sc', cmd('Telescope commands'))
-keymap('n', '<leader>sk', cmd('Telescope keymaps'))
-keymap('n', '<leader>sm', cmd('Telescope man_pages'))
-keymap('n', '<leader>sn', cmd('Telescope notifications'))
-keymap('n', '<leader>sr', cmd('Telescope registers'))
--- +──────────+
--- │ terminal │
--- +──────────+
+
 keymap('n', '<C-\\>', cmd('ToggleTerm'))
 keymap('n', '<leader>tf', cmd('ToggleTerm direction=float'))
 keymap('n', '<leader>th', cmd('ToggleTerm size=10 direction=horizontal'))
@@ -109,6 +89,24 @@ keymap('n', '<S-Up>', cmd('resize +2'))
 keymap('n', '<S-Down>', cmd('resize -2'))
 keymap('n', '<S-Left>', cmd('vertical resize -2'))
 keymap('n', '<S-Right>', cmd('vertical resize +2'))
+-- +───────────+
+-- │ telescope │
+-- +───────────+
+keymap('n', '<leader>fb', cmd('Telescope buffers'))
+keymap('n', '<leader>ff', cmd('Telescope find_files {previewer=false}'))
+keymap('n', '<leader>fo', cmd('Telescope oldfiles'))
+keymap('n', '<leader>fw', cmd('Telescope live_grep'))
+keymap('n', '<leader>gb', cmd('Telescope git_branches'))
+keymap('n', '<leader>gc', cmd('Telescope git_commits'))
+keymap('n', '<leader>ld', cmd('Telescope diagnostics'))
+keymap('n', '<leader>lr', cmd('Telescope lsp_references'))
+keymap('n', '<leader>ls', cmd('Telescope lsp_document_symbols'))
+keymap('n', '<leader>p', cmd('Telescope project'))
+keymap('n', '<leader>sc', cmd('Telescope commands'))
+keymap('n', '<leader>sk', cmd('Telescope keymaps'))
+keymap('n', '<leader>sm', cmd('Telescope man_pages'))
+keymap('n', '<leader>sn', cmd('Telescope notifications'))
+keymap('n', '<leader>sr', cmd('Telescope registers'))
 -- ╭──────────────╮
 -- │ VISUAL ⮕ 'v' │
 -- ╰──────────────╯

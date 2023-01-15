@@ -53,10 +53,7 @@ require('telescope').setup {
     winblend=5
   },
   extensions={
-    project={
-      base_dirs={'~/.config/dotfiles/', '~/.config/nvim/', {path='~/code/', max_depth=2}},
-      hidden_files=true
-    },
+    project={base_dirs={'~/.config/dotfiles/', '~/.config/nvim/', {path='~/code/', max_depth=2}}, hidden_files=true},
     recent_files={},
     repo={list={fd_opts={'--no-ignore-vcs'}, search_dirs={'~/.local/share/', '~/code'}}}
   }

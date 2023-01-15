@@ -30,8 +30,9 @@ return packer.startup(function(use)
   use {'lewis6991/impatient.nvim'}
   use 'wbthomason/packer.nvim'
   use { -- UI
-    {'folke/tokyonight.nvim', config=function() vim.cmd [[colorscheme tokyonight]] end},
     'lukas-reineke/headlines.nvim',
+    'lukas-reineke/indent-blankline.nvim',
+    {'folke/tokyonight.nvim', config=function() vim.cmd [[colorscheme tokyonight]] end},
     {'norcalli/nvim-colorizer.lua', config=function() require'colorizer'.setup() end}
   }
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
@@ -40,7 +41,6 @@ return packer.startup(function(use)
     'akinsho/toggleterm.nvim',
     'godlygeek/tabular',
     'navarasu/onedark.nvim', -- theme inspired by atom
-    'lukas-reineke/indent-blankline.nvim', -- add indentation guides even on blank lines
     'tpope/vim-sleuth', -- detect tabstop and shiftwidth automatically
     'lewis6991/hover.nvim',
     'lewis6991/satellite.nvim',
@@ -126,10 +126,11 @@ return packer.startup(function(use)
   if not warm_boot then
     packer.sync()
     print '=================================='
-    print '    Plugins are being installed'
-    print '    Wait until Packer completes,'
-    print '       then restart nvim'
+    print '    Plugins are being installed   '
+    print '    Wait until Packer completes,  '
+    print '       then restart nvim          '
     print '=================================='
+    print '\n'
     return
   end
 end)
