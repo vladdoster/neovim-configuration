@@ -6,8 +6,6 @@ end
 
 if pcall(require, 'impatient') then
   require'impatient'.enable_profile()
-else
-  print '--- failed to load impatient'
 end
 
 vim.o.termguicolors = true
