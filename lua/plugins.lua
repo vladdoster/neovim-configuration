@@ -1,136 +1,104 @@
-local warm_boot, packer = pcall(require, 'packer')
-if not warm_boot then
-  local packer_path = ('%s/site/pack/packer-lib/opt/packer.nvim'):format(vim.fn.stdpath 'data')
-  vim.fn.delete(packer_path, 'rf')
-  vim.fn.system {'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_path}
-  vim.cmd [[packadd packer.nvim]]
-  packer = require 'packer'
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
--- packer.init {
---   auto_clean=true,
---   auto_reload_compiled=true,
---   autoremove=false,
---   compile_on_sync=true,
---   -- display={non_interactive=true},
---   git={clone_timeout=6000, subcommands={update='pull --ff-only --progress --rebase'}},
---   profile={enable=true, threshold=0.0001},
---   transitive_disable=false,
---   transitive_opt=false
--- }
-local setup = function(name) return string.format([[require('%s').setup{}]], name) end
-
-local packer_group = vim.api.nvim_create_augroup('Packer', {clear=true})
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command='source <afile> | PackerCompile',
-  group=packer_group,
-  pattern=vim.fn.expand '$MYVIMRC'
-})
-
-return packer.startup(function(use)
-  use {'lewis6991/impatient.nvim'}
+local packer_bootstrap = ensure_packer()
+return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use { -- UI
+  use 'lewis6991/impatient.nvim'
+  use {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch='v2.x',
+    requires={'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim'}
+  }
+  use {
     'lukas-reineke/headlines.nvim',
     'lukas-reineke/indent-blankline.nvim',
-    {'folke/tokyonight.nvim', config=function() vim.cmd [[colorscheme tokyonight]] end},
-    {'norcalli/nvim-colorizer.lua', config=function() require'colorizer'.setup() end}
+    {'folke/tokyonight.nvim', config=function() vim.cmd('colorscheme tokyonight') end}
   }
   use {'tpope/vim-repeat', 'tpope/vim-surround', 'tpope/vim-fugitive', 'tpope/vim-unimpaired'}
   use {'kylechui/nvim-surround', tag='*'}
   use {
+    'SmiteshP/nvim-navic',
     'akinsho/toggleterm.nvim',
     'godlygeek/tabular',
-    'navarasu/onedark.nvim', -- theme inspired by atom
-    'tpope/vim-sleuth', -- detect tabstop and shiftwidth automatically
     'lewis6991/hover.nvim',
     'lewis6991/satellite.nvim',
+    'monaqa/dial.nvim',
     'numToStr/Comment.nvim',
     'nvim-lualine/lualine.nvim',
-    'stevearc/aerial.nvim',
     'stevearc/dressing.nvim',
-    'windwp/nvim-autopairs',
-    'monaqa/dial.nvim',
-    {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true},
-    {'lewis6991/gitsigns.nvim', config=setup('gitsigns')},
-    {
-      'obreitwi/vim-sort-folds',
-      cmd='SortFolds',
-      cond=vim.fn.executable 'python3' == 1,
-      run='python3 -m pip install --upgrade pynvim'
-    },
-    {'sQVe/sort.nvim', cmd='Sort', config=setup('sort'), opt=true},
-    {'vladdoster/remember.nvim', config=[[require 'remember']]},
-    {
-      'andymass/vim-matchup',
-      event={'Bufenter', 'BufRead'},
-      setup=function()
-        vim.g.matchup_matchparen_offscreen = {method='popup', fullwidth=1, highlight='OffscreenMatchPopup'}
-      end
-    },
-    { -- Highlight, edit, and navigate code
-      'nvim-treesitter/nvim-treesitter',
-      run=function() pcall(require('nvim-treesitter.install').update {with_sync=true}) end
-    },
-    { -- Additional text objects via treesitter
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      after='nvim-treesitter'
-    },
-    { -- Autocompletion
-      'hrsh7th/nvim-cmp',
-      requires={
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-calc',
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-omni',
-        'hrsh7th/cmp-path',
-        'onsails/lspkind-nvim',
-        'petertriho/cmp-git',
-        'saadparwaiz1/cmp_luasnip',
-        {'L3MON4D3/LuaSnip', requires={'rafamadriz/friendly-snippets'}}
-      }
-    },
-    {
-      'nvim-neo-tree/neo-tree.nvim',
-      branch='v2.x',
-      requires={'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons'}
+    'tpope/vim-sleuth',
+    'windwp/nvim-autopairs'
+  }
+  use {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true}
+  use {'lewis6991/gitsigns.nvim', disable=vim.fn.executable 'git' == 0, config=function() require('gitsigns') end}
+  use {'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable 'python3' == 1}
+  use {'sQVe/sort.nvim', cmd='Sort', config=function() require 'sort' end, opt=true}
+  use {'vladdoster/remember.nvim', config=function() require 'remember' end}
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run=function()
+      local ts_update = require('nvim-treesitter.install').update({with_sync=true})
+      ts_update()
+    end
+  }
+  use {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'}
+  use { -- Autocompletion
+    'hrsh7th/nvim-cmp',
+    requires={
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-calc',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-omni',
+      'hrsh7th/cmp-path',
+      'onsails/lspkind-nvim',
+      'petertriho/cmp-git',
+      'saadparwaiz1/cmp_luasnip',
+      {'L3MON4D3/LuaSnip', requires={'rafamadriz/friendly-snippets'}}
     }
   }
+  -- use {
+  --   "williamboman/mason.nvim",
+  --   "williamboman/mason-lspconfig.nvim",
+  --   "neovim/nvim-lspconfig",
+  -- }
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires={
-      -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'b0o/SchemaStore.nvim',
       'ray-x/lsp_signature.nvim',
-      'SmiteshP/nvim-navic',
-      {'folke/neodev.nvim', config=setup('neodev')},
+      {'folke/neodev.nvim', config=function() require('neodev').setup() end},
       'jose-elias-alvarez/null-ls.nvim',
-      -- Useful status updates for LSP
       'j-hui/fidget.nvim'
     }
   }
   use { -- Telescope
     'nvim-telescope/telescope.nvim',
-    requires={
-      'cljoly/telescope-repo.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-project.nvim',
-      'smartpde/telescope-recent-files',
-      {'nvim-telescope/telescope-fzf-native.nvim', run='make', cond=vim.fn.executable 'make' == 1}
-    }
+    requires={'cljoly/telescope-repo.nvim', 'nvim-telescope/telescope-project.nvim', 'smartpde/telescope-recent-files'}
+  }
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    after='telescope.nvim',
+    config=function() require('telescope').load_extension 'fzf' end,
+    disable=vim.fn.executable 'make' == 0,
+    run='make'
   }
   use {'dstein64/vim-startuptime', cmd='StartupTime'}
-  -- use {'wakatime/vim-wakatime'}
-  -- if not warm_boot then packer.sync() end
-  if not warm_boot then
-    packer.sync()
+  if packer_bootstrap then
     print '================================='
     print '   Plugins are being installed   '
     print '   Wait until Packer completes,  '
     print '      then restart nvim          '
     print '================================='
-    print '\n'
-    return
+    require('packer').sync()
   end
 end)
