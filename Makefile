@@ -17,7 +17,7 @@ deps: ## Install lua-formatter system-wide
 	$(info --- installed lua-formatter)
 
 format: ## Run lua-formatter using .lua_format.yml config
-	find . -name '*.lua' -type f -not -path '**/packer_compiled.lua' -print -exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
+	find . -name '*.lua' -type f -not -path '**/packer_compiled.lua' -exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
 	$(info --- formatted files)
 
 update: | clean ## Run clean target, pull git changes, and re-install plugins
