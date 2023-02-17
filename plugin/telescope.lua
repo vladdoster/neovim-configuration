@@ -21,19 +21,17 @@ require('telescope').setup {
     layout_strategy='flex',
     mappings={
       i={
-        ['<C-j>']=actions.toggle_selection + actions.move_selection_next,
-        ['<C-k>']=actions.toggle_selection + actions.move_selection_previous,
         ['<C-l>']=layout_actions.toggle_preview,
         ['<C-n>']=actions.cycle_history_next,
         ['<C-p>']=actions.cycle_history_prev,
         ['<C-q>']=actions.smart_send_to_qflist + actions.open_qflist,
-        ['<C-w>']=function() vim.api.nvim_input '<c-s-w>' end,
-        ['<Esc>']=actions.close,
         ['<S-Tab>']=actions.move_selection_previous,
         ['<Tab>']=actions.move_selection_next
-      }
+      },
+      n={['q']=actions.close, ['<Esc>']=actions.close}
     },
     prompt_prefix='  ',
+    path_display={'truncate'},
     qflist_previewer=require('telescope.previewers').vim_buffer_qflist.new,
     selection_caret='  ',
     selection_strategy='reset',
