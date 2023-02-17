@@ -3,10 +3,8 @@ function P(...)
   for i = 1, args.n do args[i] = vim.inspect(args[i]) end
   print(table.unpack(args))
 end
-
-if pcall(require, 'impatient') then
-  require'impatient'.enable_profile()
-end
+local impatient_ok, impatient = pcall(require, 'impatient')
+if impatient_ok then impatient.enable_profile() end
 
 vim.o.termguicolors = true
 require 'plugins'
