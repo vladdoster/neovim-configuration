@@ -1,3 +1,19 @@
+## [6.5.1](https://github.com/vladdoster/neovim-configuration/compare/v6.5.0...v6.5.1) (2023-02-27)
+
+
+### Bug Fixes
+
+* dont print files in format make target ([1540009](https://github.com/vladdoster/neovim-configuration/commit/1540009431549b0e420d3ad95518b553e72b43af))
+* exclude packer_compiled.lua in make format ([8aba2e1](https://github.com/vladdoster/neovim-configuration/commit/8aba2e1598fb7980bf9a2cbf68a83b0c549a8d78))
+* format lua via lua-formatter ([b508faa](https://github.com/vladdoster/neovim-configuration/commit/b508faa9c75fed8a7edc94c69b323f028c1fdb11))
+* lsp related plugin configuration ([8e0f22d](https://github.com/vladdoster/neovim-configuration/commit/8e0f22d686e593157d6b9cedbe5754b890051025))
+* make log stmt symmetrical ([21e875b](https://github.com/vladdoster/neovim-configuration/commit/21e875bab76bd721e4392d534ed05d04e0111e09))
+* remove cruft from telescope.nvim config ([82cff0c](https://github.com/vladdoster/neovim-configuration/commit/82cff0cfce9b6abb821c19f0082ff03075e4acba))
+* remove fragile mason cmd ([545872e](https://github.com/vladdoster/neovim-configuration/commit/545872e0bca13f18da17e8a96580057989843dc0))
+* remove logging when loading impatient fails ([71fbd36](https://github.com/vladdoster/neovim-configuration/commit/71fbd36b793636804f09da69ba9ebbeed5d91062))
+* remove unused plugin aerial.nvim ([9067d8c](https://github.com/vladdoster/neovim-configuration/commit/9067d8cbe3beee31bd77a9a44f77ec5aba331926))
+* typo in mason.lua configuration ([326e84c](https://github.com/vladdoster/neovim-configuration/commit/326e84c6361c59a1495db5f17dba601752fffb48))
+
 # [6.5.0](https://github.com/vladdoster/neovim-configuration/compare/v6.4.1...v6.5.0) (2023-01-14)
 
 
