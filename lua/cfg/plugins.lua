@@ -88,7 +88,6 @@ return require('packer').startup({
     })
     -- Editing to the MOON --
     use({'numToStr/Comment.nvim', event='BufRead', config=function() require('cfg.plugins.comment') end})
-    use('numToStr/prettierrc.nvim')
     use({'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}})
     use({'wellle/targets.vim', event='BufRead'})
     use({'AndrewRadev/splitjoin.vim', event='CursorHold'})
