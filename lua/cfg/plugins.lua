@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern='plugins.lua',
   command='source <afile> | PackerCompile'
 })
-pcall(require, "impatient")
+pcall(require, 'impatient')
 return require('packer').startup({
   function(use)
     use('lewis6991/impatient.nvim')
@@ -62,7 +62,13 @@ return require('packer').startup({
     -- })
     use({'sindrets/diffview.nvim', event='BufRead', config=function() require('cfg.plugins.diffview') end})
     -- Navigation and Fuzzy Search --
-    use({'nvim-tree/nvim-tree.lua', event='CursorHold', config=function() require('cfg.plugins.nvim-tree') end})
+    use {
+      'nvim-neo-tree/neo-tree.nvim',
+      branch='v2.x',
+      event='CursorHold',
+      config=function() require('cfg.plugins.neo-tree') end,
+      requires={'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}
+    }
     use({
       {'nvim-telescope/telescope.nvim', event='CursorHold', config=function() require('cfg.plugins.telescope') end},
       {
