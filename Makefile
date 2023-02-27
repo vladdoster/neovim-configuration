@@ -1,6 +1,9 @@
+SHELL := $(shell which zsh)
+.ONESHELL:
 .PHONY: all clean deps format update
 .SILENT: all clean deps format update
 
+log=\e[32m==>\e[0m
 all: help
 
 help: ## Display all Makfile targets
@@ -9,21 +12,25 @@ help: ## Display all Makfile targets
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $$1, $$2}'
 
 clean: ## Remove installed plugins & packer artifacts
-	rm -rf ./plugin/packer_compiled.lua ~/.local/share/nvim ~/.local/state/nvim
-	$(info --- cleaned neovim artifacts)
+	rm -rf plugin/packer_compiled.lua ~/.local/share/nvim ~/.local/state/nvim
+	echo "${log} cleaned neovim"
 
 deps: ## Install lua-formatter system-wide
 	luarocks install --local --server https://luarocks.org/dev luaformatter
-	$(info --- installed lua-formatter)
+	echo "${log} installed lua-formatter"
 
 format: ## Run lua-formatter using .lua_format.yml config
 	find . -name '*.lua' -type f -not -path '**/packer_compiled.lua' -exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
-	$(info --- formatted files)
+	echo "${log} formatted files"
 
 update: | clean ## Run clean target, pull git changes, and re-install plugins
-	git pull --autostash --quiet
-	$(info --- fetched latest changes)
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	echo "${log} pulling upstream" && \
+	git pull --autostash --quiet && \
+	echo "${log} installing plugins" && \
+	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'silent exe "normal PackerSync<CR>"' && \
+	echo "${log} installing formatters & linters" && \
+	nvim --headless -c 'autocmd User MasonToolsUpdateCompleted quitall' -c 'silent exe "MasonToolsInstall"' && \
+	echo "${log} setup neovim configuration"
 
 targets-table:
 	@printf "|Target|Descripton|\n|---|---|\n"
