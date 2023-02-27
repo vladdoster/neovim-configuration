@@ -1,3 +1,15 @@
+# [6.6.0](https://github.com/vladdoster/neovim-configuration/compare/v6.5.1...v6.6.0) (2023-02-27)
+
+
+### Bug Fixes
+
+* update target more verbose in makefile ([66ef5a6](https://github.com/vladdoster/neovim-configuration/commit/66ef5a656554e0d20f3a3374693c0021c422a735))
+
+
+### Features
+
+* replace nvim-tree.nvim with neo-tree.nvim ([0c56568](https://github.com/vladdoster/neovim-configuration/commit/0c56568c9540ccd6a1260e2f283256462c61956c))
+
 ## [6.5.1](https://github.com/vladdoster/neovim-configuration/compare/v6.5.0...v6.5.1) (2023-02-27)
 
 
