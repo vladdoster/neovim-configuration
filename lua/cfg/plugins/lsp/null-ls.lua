@@ -6,7 +6,6 @@ nls.setup({
   sources={
     dgn.selene.with({extra_args={'--config', vim.fn.expand('~/.config/nvim/selene.toml')}}),
     dgn.shellcheck,
-
     fmt.beautysh.with({extra_args={'-i', 2, '-ci', '-sr'}, filetypes={'bash', 'sh', 'zsh'}}),
     fmt.black,
     fmt.gofmt,
