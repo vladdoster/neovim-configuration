@@ -1,9 +1,4 @@
--- Treesitter folds
--- vim.o.foldmethod = 'expr'
--- vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
--- vim.o.foldlevelstart = 99
 require('nvim-treesitter.configs').setup({
-  -- nvim-treesitter/nvim-treesitter (self config)
   auto_install=true,
   ensure_installed={'bash', 'go', 'json', 'lua', 'markdown', 'markdown_inline'},
   highlight={enable=true, additional_vim_regex_highlighting=false},
@@ -43,19 +38,6 @@ require('nvim-treesitter.configs').setup({
       goto_previous_end={['[F']='@function.outer', ['[]']='@class.outer'}
     }
   },
-  -- windwp/nvim-ts-autotag
-  autotag={enable=true},
-  -- nvim-treesitter/playground
-  playground={
-    enable=true,
-    disable={},
-    updatetime=25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries=false -- Whether the query persists across vim sessions
-  },
-  -- nvim-treesitter/nvim-treesitter-refactor
-  refactor={
-    highlight_definitions={enable=true}
-    -- highlight_current_scope = { enable = false },
-  },
-  context_commentstring={enable=true, enable_autocmd=false}
+  refactor={highlight_definitions={enable=true}},
+  context_commentstring={enable_autocmd=false, enable=true}
 })

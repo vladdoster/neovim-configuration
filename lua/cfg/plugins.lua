@@ -38,11 +38,14 @@ return require('packer').startup({
         run=':TSUpdate',
         config=function() require('cfg.plugins.treesitter') end
       },
-      {'nvim-treesitter/playground', after='nvim-treesitter'},
-      {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'},
+      {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'},
+      {
+        'nvim-treesitter/nvim-treesitter-context',
+        after='nvim-treesitter',
+        config=function() require('treesitter-context').setup() end
+      },
       {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'},
-      {'windwp/nvim-ts-autotag', after='nvim-treesitter'},
-      {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'}
+      {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'}
     })
     -- Editor UI Niceties --
     use({
@@ -51,15 +54,7 @@ return require('packer').startup({
       config=function() require('cfg.plugins.indentline') end
     })
     use({'norcalli/nvim-colorizer.lua', event='CursorHold', config=function() require('colorizer').setup() end})
-    -- Git Stuff --
     use({'lewis6991/gitsigns.nvim', event='BufRead', config=function() require('cfg.plugins.gitsigns') end})
-    -- use({
-    -- 	"rhysd/git-messenger.vim",
-    -- 	event = "BufRead",
-    -- 	config = function()
-    -- 		require("cfg.plugins.git-messenger")
-    -- 	end,
-    -- })
     use({'sindrets/diffview.nvim', event='BufRead', config=function() require('cfg.plugins.diffview') end})
     -- Navigation and Fuzzy Search --
     use {
