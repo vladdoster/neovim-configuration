@@ -1,3 +1,16 @@
+# [6.7.0](https://github.com/vladdoster/neovim-configuration/compare/v6.6.0...v6.7.0) (2023-03-03)
+
+
+### Bug Fixes
+
+* clean up mason and null-ls configs ([3d73d8b](https://github.com/vladdoster/neovim-configuration/commit/3d73d8b6d1baf257d4cbd03de16155aaa8af734b))
+* remove prettier.nvim plugin ([34c0319](https://github.com/vladdoster/neovim-configuration/commit/34c03196ab0689a6c38b2945ffed3fb403938ab7))
+
+
+### Features
+
+* add treesitter-context plugin ([f7ea715](https://github.com/vladdoster/neovim-configuration/commit/f7ea715b304e80a4202245e1b52ea148ddda2878))
+
 # [6.6.0](https://github.com/vladdoster/neovim-configuration/compare/v6.5.1...v6.6.0) (2023-02-27)
 
 
