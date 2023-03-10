@@ -1,8 +1,11 @@
 local g, o = vim.g, vim.o
+
 vim.cmd('syntax on')
 vim.api.nvim_command('filetype plugin indent on')
+
 g.mapleader = ' '
 g.maplocalleader = ' '
+
 o.background = 'dark'
 o.backup = false
 o.cindent = true
@@ -15,9 +18,9 @@ o.jumpoptions = 'view'
 o.list = true
 o.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂'
 o.number = true
-o.numberwidth = 5
+o.numberwidth = 2
 o.relativenumber = true
-o.scrolloff = 8
+o.scrolloff = 10
 o.shiftwidth = 0
 o.signcolumn = 'yes:2'
 o.smartcase = true
@@ -32,6 +35,5 @@ o.textwidth = 300
 o.timeoutlen = 500
 o.undofile = true
 o.updatetime = 200
-o.wrap = true
+o.wrap = false
 o.writebackup = false
-vim.opt.diffopt:append('linematch:60')
