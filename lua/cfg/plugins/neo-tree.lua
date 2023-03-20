@@ -1,6 +1,5 @@
 local ok, neotree = pcall(require, 'neo-tree')
 if not ok then return end
-
 neotree.setup {
   close_if_last_window=true,
   enable_diagnostics=false,
@@ -65,6 +64,8 @@ neotree.setup {
       ['P']={'toggle_preview', config={use_float=true}},
       ['R']='refresh',
       ['S']='open_split',
+      ['Z']='expand_all_nodes',
+
       ['a']={'add', config={show_path='none'}},
       ['c']='copy', -- takes text input for destination, also accepts the optional config.show_path option like "add":
       ['d']='delete',
@@ -89,19 +90,22 @@ neotree.setup {
   nesting_rules={},
   filesystem={
     filtered_items={
-      visible=false,
-      hide_dotfiles=true,
-      hide_gitignored=true,
+      always_show={},
       hide_by_name={'node_modules'},
       hide_by_pattern={},
-      always_show={},
+      hide_dotfiles=false,
+      hide_gitignored=true,
       never_show={'.DS_Store', 'thumbs.db'},
-      never_show_by_pattern={}
+      never_show_by_pattern={},
+      visible=false
     },
-    follow_current_file=false,
-    group_empty_dirs=false,
-    hijack_netrw_behavior='open_default',
-    use_libuv_file_watcher=false,
+    follow_current_file=true,
+    hijack_netrw_behavior='open_current',
+    use_libuv_file_watcher=true,
+    -- follow_current_file=true,
+    -- group_empty_dirs=false,
+    -- hijack_netrw_behavior='open_default',
+    -- use_libuv_file_watcher=false,
     window={
       mappings={
         ['.']='set_root',
@@ -113,7 +117,9 @@ neotree.setup {
         ['[g']='prev_git_modified',
         [']g']='next_git_modified',
         ['f']='filter_on_submit',
-        ['o']='system_open'
+        ['o']='system_open',
+        ['P']={'toggle_preview', config={use_float=true}}
+
       }
     },
     commands={
@@ -145,12 +151,9 @@ neotree.setup {
       }
     }
   }
-
 }
-
 require('neo-tree.ui.inputs').confirm =
   function(message, callback) callback(vim.fn.confirm(message, '&Yes\n&No') == 1) end
-
 require('neo-tree.ui.inputs').input = function(message, default_value, callback, options, completion)
   local input
   if completion then
@@ -161,8 +164,17 @@ require('neo-tree.ui.inputs').input = function(message, default_value, callback,
   callback(input)
 end
 
-local keymap = vim.keymap.set
-local cmd = function(str) return string.format([[<cmd>%s<cr>]], str) end
-keymap('n', '<C-b>', cmd('Neotree toggle show buffers right'))
-keymap('n', '<C-n>', cmd('Neotree toggle left'))
-keymap('n', '<C-f>', cmd('Neotree reveal left'))
+local k = vim.keymap.set
+local c = function(str) return string.format([[<cmd>%s<cr>]], str) end
+k('n', '<leader>o', function()
+  if vim.bo.filetype == 'neo-tree' then
+    vim.cmd.wincmd 'p'
+  else
+    vim.cmd.Neotree 'focus'
+  end
+end)
+k('n', '<leader>n', c('Neotree toggle left'))
+k('n', '<leader>gd', c(':Neotree float reveal_file=<cfile> reveal_force_cwd'))
+k('n', '<leader>b', c(':Neotree toggle show buffers right'))
+k('n', '<leader>s', c(':Neotree float git_status'))
+
