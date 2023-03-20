@@ -1,51 +1,66 @@
 local function map(m, k, v) vim.keymap.set(m, k, v, {silent=true}) end
 
--- Fix * (Keep the cursor position, don't move to next match)
+-- fix * (keep the cursor position, don't move to next match)
 map('n', '*', '*N')
 
--- Fix n and N. Keeping cursor in center
+-- fix n and N. keeping cursor in center
 map('n', 'n', 'nzz')
 map('n', 'N', 'Nzz')
 
--- Mimic shell movements
+-- mimic shell movements
 map('i', '<C-E>', '<C-o>$')
 map('i', '<C-A>', '<C-o>^')
 
--- Quickly save the current buffer or all buffers
+-- quickly save the current buffer or all buffers
 map('n', '<leader>w', '<CMD>update<CR>')
 map('n', '<leader>W', '<CMD>wall<CR>')
 
--- Quit neovim
+-- quit neovim
 map('n', '<C-Q>', '<CMD>q<CR>')
 
--- leader-o/O inserts blank line below/above
+-- leader-o/o inserts blank line below/above
 map('n', '<leader>o', 'o<ESC>')
 map('n', '<leader>O', 'O<ESC>')
 
--- Shortcut to yank register
+-- shortcut to yank register
 map({'n', 'x'}, '<leader>p', '"0p')
 
--- Move to the next/previous buffer
+-- move to the next/previous buffer
 map('n', '<leader>[', '<CMD>bp<CR>')
 map('n', '<leader>]', '<CMD>bn<CR>')
 
--- Move to last buffer
+-- move to last buffer
 map('n', '\'\'', '<CMD>b#<CR>')
 
--- Copying the vscode behaviour of making tab splits
+-- copying the vscode behaviour of making tab splits
 map('n', '<C-\\>', '<CMD>vsplit<CR>')
 map('n', '<A-\\>', '<CMD>split<CR>')
 
--- Move line up and down in NORMAL and VISUAL modes
--- Reference: https://vim.fandom.com/wiki/Moving_lines_up_or_down
+-- delete blank lines
+-- vim.api.nvim_create_user_command('deleteblanklines', function()
+--   print('deleting blank lines')
+--   vim.cmd(':%g/^$/d')
+-- end, {})
+
+-- move line up and down in normal and visual modes
+-- reference: https://vim.fandom.com/wiki/moving_lines_up_or_down
 map('n', '<C-j>', '<CMD>move .+1<CR>')
 map('n', '<C-k>', '<CMD>move .-2<CR>')
 map('x', '<C-j>', ':move \'>+1<CR>gv=gv')
 map('x', '<C-k>', ':move \'<-2<CR>gv=gv')
 
--- Use operator pending mode to visually select the whole buffer
--- e.g. dA = delete buffer ALL, yA = copy whole buffer ALL
+-- use operator pending mode to visually select the whole buffer
+-- e.g. da = delete buffer all, ya = copy whole buffer all
 map('o', 'A', ':<C-U>normal! mzggVG<CR>`z')
 map('x', 'A', ':<C-U>normal! ggVG<CR>')
 
 map('n', '<ESC>', '<CMD>nohlsearch<CR>')
+
+-- vertically resize window
+map('n', '=', [[<cmd>vertical resize +5<cr>]])
+map('n', '-', [[<cmd>vertical resize -5<cr>]])
+
+-- horizontally resize window
+map('n', '+', [[<cmd>horizontal resize +2<cr>]])
+map('n', '_', [[<cmd>horizontal resize -2<cr>]])
+
