@@ -35,13 +35,14 @@ return require('packer').startup({
       {
         'nvim-treesitter/nvim-treesitter',
         event='CursorHold',
-        run=':TSUpdate',
+        run=function() pcall(require('nvim-treesitter.install').update {with_sync=true}) end,
         config=function() require('cfg.plugins.treesitter') end
       },
       {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'},
       {
         'nvim-treesitter/nvim-treesitter-context',
         after='nvim-treesitter',
+
         config=function() require('treesitter-context').setup() end
       },
       {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'},
@@ -56,6 +57,7 @@ return require('packer').startup({
     use({'norcalli/nvim-colorizer.lua', event='CursorHold', config=function() require('colorizer').setup() end})
     use({'lewis6991/gitsigns.nvim', event='BufRead', config=function() require('cfg.plugins.gitsigns') end})
     use({'sindrets/diffview.nvim', event='BufRead', config=function() require('cfg.plugins.diffview') end})
+    use({'monaqa/dial.nvim', event='BufRead', config=function() require('cfg.plugins.dial') end})
     -- Navigation and Fuzzy Search --
     use {
       'nvim-neo-tree/neo-tree.nvim',
@@ -120,10 +122,10 @@ return require('packer').startup({
       {'hrsh7th/cmp-path', after='nvim-cmp'},
       {'hrsh7th/cmp-buffer', after='nvim-cmp'}
     })
+    use {'echasnovski/mini.move', config=function() require('mini.move').setup() end, opt=true}
     use {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true}
     use {'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable 'python3' == 1}
-    use {'sQVe/sort.nvim', cmd='Sort', config=function() require 'sort' end, opt=true}
-    use {'vladdoster/remember.nvim', config=function() require 'remember' end}
+    use {'sQVe/sort.nvim', cmd='Sort', config=function() require('sort') end, opt=true}
     -- NOTE: nvim-autopairs needs to be loaded after nvim-cmp, so that <CR> would work properly
     use({
       'windwp/nvim-autopairs',
