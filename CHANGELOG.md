@@ -1,3 +1,20 @@
+# [6.8.0](https://github.com/vladdoster/neovim-configuration/compare/v6.7.0...v6.8.0) (2023-03-20)
+
+
+### Bug Fixes
+
+* fterm keybinds ([050cd8e](https://github.com/vladdoster/neovim-configuration/commit/050cd8efeaddd394c43509c8005a6263b9040da1))
+* neotree configuration and keybinds ([b3d0887](https://github.com/vladdoster/neovim-configuration/commit/b3d08873f402bd595adacb34e3ccde2b502a09b6))
+* null-ls sources ([8387597](https://github.com/vladdoster/neovim-configuration/commit/83875979b4a77a1ff3d8ed6ae888c9ffd0ddf110))
+* remove `vim.opt.diffopt:append` setting ([440a6a1](https://github.com/vladdoster/neovim-configuration/commit/440a6a1655414515121fe576752a215f9eda6886))
+
+
+### Features
+
+* add dial.nvim configration ([e0d1c40](https://github.com/vladdoster/neovim-configuration/commit/e0d1c404884995c1ca60be67a236f21b4d3cea57))
+* add mini.move and dial plugins ([1060dfc](https://github.com/vladdoster/neovim-configuration/commit/1060dfcc33a5a30b241bf980b171739774e707ec))
+* add window resize keybinds ([5420fee](https://github.com/vladdoster/neovim-configuration/commit/5420fee573c9657d5ac01b1217e518d8aa91dc9b))
+
 # [6.7.0](https://github.com/vladdoster/neovim-configuration/compare/v6.6.0...v6.7.0) (2023-03-03)
 
 
