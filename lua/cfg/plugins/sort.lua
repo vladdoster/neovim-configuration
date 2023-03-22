@@ -1,0 +1,25 @@
+-- use {'sQVe/sort.nvim', cmd='Sort', config=function() require 'sort' end, opt=true}
+--
+-- require('sort').setup({auto_save='current'})
+-- vim.keymap.set({'n', 't'}:, '<A-h>', '<CMD>NavigatorLeft<CR>')
+-- vim.keymap.set({'n', 't'}, '<A-l>', '<CMD>NavigatorRight<CR>')
+-- vim.keymap.set({'n', 't'}, '<A-k>', '<CMD>NavigatorUp<CR>')
+-- vim.keymap.set({'n', 't'}, '<A-j>', '<CMD>NavigatorDown<CR>')
+-- local map = vim.keymap.set
+-- require('gitsigns').setup({
+--   signs={add={text='+'}, change={text='~'}, changedelete={text='='}},
+--   on_attach=function(buf)
+--     local gs = package.loaded.gitsigns
+--     local opts = {buffer=buf, expr=true, replace_keycodes=false}
+--     -- Navigation
+--     map('n', ']c', '&diff ? \']c\' : \'<CMD>Gitsigns next_hunk<CR>\'', opts)
+--     map('n', '[c', '&diff ? \'[c\' : \'<CMD>Gitsigns prev_hunk<CR>\'', opts)
+--     -- Actions
+--     map({'n', 'v'}, '<leader>hr', gs.reset_hunk, {buffer=buf})
+--     map({'n', 'v'}, '<leader>hs', gs.stage_hunk)
+--     map('n', '<leader>hS', gs.stage_buffer, {buffer=buf})
+--     map('n', '<leader>hp', gs.preview_hunk, {buffer=buf})
+--     -- Text object
+--     map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', {buffer=buf})
+--   end
+-- })

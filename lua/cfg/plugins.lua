@@ -123,6 +123,8 @@ return require('packer').startup({
       {'hrsh7th/cmp-buffer', after='nvim-cmp'}
     })
     use {'echasnovski/mini.move', config=function() require('mini.move').setup() end, opt=true}
+    use {'echasnovski/mini.splitjoin',config=function() require('mini.splitjoin').setup() end, opt=true}
+
     use {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true}
     use {'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable 'python3' == 1}
     use {'sQVe/sort.nvim', cmd='Sort', config=function() require('sort') end, opt=true}
