@@ -1,3 +1,16 @@
+# [6.9.0](https://github.com/vladdoster/neovim-configuration/compare/v6.8.0...v6.9.0) (2023-03-26)
+
+
+### Bug Fixes
+
+* add zsh & lua null-ls diagnostic checks ([a7f4598](https://github.com/vladdoster/neovim-configuration/commit/a7f459801f8a6b3a21d0072c7a35f3c05deb9d21))
+* turn off cim syntax highlighting ([b07f784](https://github.com/vladdoster/neovim-configuration/commit/b07f7844a72333fd390ccc49334ce8334b59f55a))
+
+
+### Features
+
+* add mini.split plugin ([4cb6064](https://github.com/vladdoster/neovim-configuration/commit/4cb6064ad8adb9d789d1a5e7d52c73bc1c8834be))
+
 # [6.8.0](https://github.com/vladdoster/neovim-configuration/compare/v6.7.0...v6.8.0) (2023-03-20)
 
 
