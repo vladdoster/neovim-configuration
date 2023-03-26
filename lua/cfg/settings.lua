@@ -1,6 +1,5 @@
 local g, o = vim.g, vim.o
 
-vim.cmd('syntax on')
 vim.api.nvim_command('filetype plugin indent on')
 
 g.mapleader = ' '
