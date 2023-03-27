@@ -1,3 +1,19 @@
+# [6.10.0](https://github.com/vladdoster/neovim-configuration/compare/v6.9.0...v6.10.0) (2023-03-27)
+
+
+### Bug Fixes
+
+* add lsp servers and null-ls sources ([3d9036c](https://github.com/vladdoster/neovim-configuration/commit/3d9036c1ace4b539727e8ffe97095c75f6784463))
+* add vim modelines ([c89eea8](https://github.com/vladdoster/neovim-configuration/commit/c89eea80e81dfafa178a269d3fe1effceadd9384))
+* add vim modelines ([d2d989b](https://github.com/vladdoster/neovim-configuration/commit/d2d989ba1accd24de10eba0bdaaf9f8601db5eb0))
+* indent and sort keybinds ([386d7d2](https://github.com/vladdoster/neovim-configuration/commit/386d7d296155b613447fdcd0ed6353a854ed6f61))
+* reduce install failures due to too many open files ([f2c0faf](https://github.com/vladdoster/neovim-configuration/commit/f2c0fafbb9394c97e0c4360fe68919f0339846d3))
+
+
+### Features
+
+* sort.nvim plugin configuration ([f44c2ae](https://github.com/vladdoster/neovim-configuration/commit/f44c2aec9d42efbd137c9365b85d91266ec5d6b4))
+
 # [6.9.0](https://github.com/vladdoster/neovim-configuration/compare/v6.8.0...v6.9.0) (2023-03-26)
 
 
