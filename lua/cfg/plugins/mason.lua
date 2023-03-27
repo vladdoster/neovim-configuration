@@ -1,6 +1,6 @@
 require('mason').setup({
   log_level=vim.log.levels.WARN,
-  max_concurrent_installers=100,
+  max_concurrent_installers=10,
   ui={icons={package_installed='+', package_pending='~', package_uninstalled='-'}}
 })
 require('mason-tool-installer').setup({
