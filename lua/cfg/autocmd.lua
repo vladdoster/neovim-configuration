@@ -28,3 +28,5 @@ A.nvim_create_autocmd('BufReadPost', {
     if last_pos[1] > 0 and last_pos[1] <= A.nvim_buf_line_count(data.buf) then A.nvim_win_set_cursor(0, last_pos) end
   end
 })
+
+-- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:

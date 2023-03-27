@@ -16,3 +16,5 @@ map('v', '<C-a>', require('dial.map').inc_visual(), {noremap=true})
 map('v', '<C-x>', require('dial.map').dec_visual(), {noremap=true})
 map('v', 'g<C-a>', require('dial.map').inc_gvisual(), {noremap=true})
 map('v', 'g<C-x>', require('dial.map').dec_gvisual(), {noremap=true})
+
+-- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:
