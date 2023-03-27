@@ -49,12 +49,17 @@ map('n', '<C-k>', '<CMD>move .-2<CR>')
 map('x', '<C-j>', ':move \'>+1<CR>gv=gv')
 map('x', '<C-k>', ':move \'<-2<CR>gv=gv')
 
+map('v', '<', '<gv')
+map('v', '>', '>gv')
+
 -- use operator pending mode to visually select the whole buffer
 -- e.g. da = delete buffer all, ya = copy whole buffer all
 map('o', 'A', ':<C-U>normal! mzggVG<CR>`z')
 map('x', 'A', ':<C-U>normal! ggVG<CR>')
 
 map('n', '<ESC>', '<CMD>nohlsearch<CR>')
+
+map('v', '<C-s>', ':Sort<CR>')
 
 -- vertically resize window
 map('n', '=', [[<cmd>vertical resize +5<cr>]])
@@ -64,3 +69,4 @@ map('n', '-', [[<cmd>vertical resize -5<cr>]])
 map('n', '+', [[<cmd>horizontal resize +2<cr>]])
 map('n', '_', [[<cmd>horizontal resize -2<cr>]])
 
+-- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:
