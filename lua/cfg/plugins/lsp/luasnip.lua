@@ -16,3 +16,5 @@ require('luasnip.loaders.from_vscode').lazy_load()
 -- Mappins to move around inside snippets
 vim.keymap.set({'i', 's'}, '<C-j>', '<CMD>lua require("luasnip").jump(1)<CR>')
 vim.keymap.set({'i', 's'}, '<C-k>', '<CMD>lua require("luasnip").jump(-1)<CR>')
+
+-- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:

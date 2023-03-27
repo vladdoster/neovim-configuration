@@ -37,3 +37,5 @@ function U.mappings(buf)
   map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 end
 return U
+
+-- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:
