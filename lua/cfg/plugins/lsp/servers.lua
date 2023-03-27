@@ -37,14 +37,18 @@ lsp.lua_ls.setup({
   }
 })
 local servers = {
-  'cssls', -- CSS
-  'emmet_ls', -- emmet-ls
-  'gopls', -- Golang
-  'html', -- HTML
-  'jsonls', -- Json
-  'terraformls', -- Terraform
-  'yamlls', -- YAML
-  'pylsp'
+    'eslint',
+    'cssls',       -- CSS
+    'emmet_ls',    -- emmet-ls
+    'gopls',       -- Golang
+    'html',        -- HTML
+    'jsonls',      -- Json
+    'pylsp',
+    'terraformls', -- Terraform
+    'yamlls',      -- YAML
+    'prettierd',
 }
 local conf = {flags=flags, capabilities=capabilities, on_attach=on_attach}
 for _, server in ipairs(servers) do lsp[server].setup(conf) end
+
+-- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:
