@@ -36,18 +36,7 @@ lsp.lua_ls.setup({
     }
   }
 })
-local servers = {
-    'eslint',
-    'cssls',       -- CSS
-    'emmet_ls',    -- emmet-ls
-    'gopls',       -- Golang
-    'html',        -- HTML
-    'jsonls',      -- Json
-    'pylsp',
-    'terraformls', -- Terraform
-    'yamlls',      -- YAML
-    'prettierd',
-}
+local servers = {'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls'}
 local conf = {flags=flags, capabilities=capabilities, on_attach=on_attach}
 for _, server in ipairs(servers) do lsp[server].setup(conf) end
 

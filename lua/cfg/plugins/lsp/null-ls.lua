@@ -5,13 +5,13 @@ local dgn = nls.builtins.diagnostics
 local fmt = nls.builtins.formatting
 nls.setup({
   sources={
-cac.eslint,
-dgn.eslint,
-dgn.selene,
-dgn.zsh,
-fmt.fixjson,
-fmt.prettierd,
-fmt.trim_whitespace.with({filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text','tmux','toml','zsh'}}),
+    cac.eslint,
+    dgn.eslint,
+    dgn.selene,
+    dgn.zsh,
+    fmt.fixjson,
+    fmt.prettierd,
+    fmt.trim_whitespace.with({filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text', 'tmux', 'toml', 'zsh'}})
   },
   on_attach=function(client, bufnr)
     U.fmt_on_save(client, bufnr)
