@@ -124,7 +124,7 @@ return require('packer').startup({
     use {'echasnovski/mini.move', config=function() require('mini.move').setup() end, opt=true}
     use {'echasnovski/mini.splitjoin', config=function() require('mini.splitjoin').setup() end, opt=true}
 
-    use {'junegunn/vim-easy-align', cmd='EasyAlign', opt=true}
+    use {'junegunn/vim-easy-align', cmd='EasyAlign',confg=function() require('cfg.plugins.easyalign')end, opt=true}
     use {'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable 'python3' == 1}
     use {'sQVe/sort.nvim', cmd='Sort', config=function()  require('cfg.plugins.sort') end, opt=true}
     -- NOTE: nvim-autopairs needs to be loaded after nvim-cmp, so that <CR> would work properly
