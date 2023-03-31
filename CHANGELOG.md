@@ -1,3 +1,17 @@
+# [6.11.0](https://github.com/vladdoster/neovim-configuration/compare/v6.10.0...v6.11.0) (2023-03-31)
+
+
+### Bug Fixes
+
+* format files ([f5eece5](https://github.com/vladdoster/neovim-configuration/commit/f5eece5193fb9716cb3ca1ce4072b9259f4b887c))
+
+
+### Features
+
+* add EasyAlign configuration ([c375491](https://github.com/vladdoster/neovim-configuration/commit/c375491a9d92659b8400995b878f4f96cbe7b427))
+* update autocmds ([81375d4](https://github.com/vladdoster/neovim-configuration/commit/81375d41069a9ecd2d5fff4a748dc2491c500b2e))
+* update lsp servers ([ea2657e](https://github.com/vladdoster/neovim-configuration/commit/ea2657ecc4a4c6ec95c6d150b8a4fb89eddffe80))
+
 # [6.10.0](https://github.com/vladdoster/neovim-configuration/compare/v6.9.0...v6.10.0) (2023-03-27)
 
 
