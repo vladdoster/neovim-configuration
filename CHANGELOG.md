@@ -1,3 +1,11 @@
+## [6.11.1](https://github.com/vladdoster/neovim-configuration/compare/v6.11.0...v6.11.1) (2023-04-01)
+
+
+### Bug Fixes
+
+* disable hop plugin ([6b836b8](https://github.com/vladdoster/neovim-configuration/commit/6b836b836b31822f361e5900c1fc195cb8b584f1))
+* vim-easy-align keymaps and configuration ([32273b5](https://github.com/vladdoster/neovim-configuration/commit/32273b5ab0fe1403ccd25919833773eb96a04ac9))
+
 # [6.11.0](https://github.com/vladdoster/neovim-configuration/compare/v6.10.0...v6.11.0) (2023-03-31)
 
 
