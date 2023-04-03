@@ -4,7 +4,9 @@ local U = require('cfg.plugins.lsp.utils')
 local flags = {allow_incremental_sync=true, debounce_text_changes=200}
 ---Common capabilities including lsp snippets and autocompletion
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 ---Common `on_attach` function for LSP servers
 ---@param client table
 ---@param buf integer
@@ -29,14 +31,14 @@ lsp.lua_ls.setup({
   settings={
     Lua={
       completion={enable=true, showWord='Disable'},
-      runtime={version='LuaJIT'},
       diagnostics={globals={'vim'}},
-      workspace={library={os.getenv('VIMRUNTIME')}},
-      telemetry={enable=false}
+      runtime={version='LuaJIT'},
+      telemetry={enable=false},
+      workspace={checkThirdParty=true,library={os.getenv('VIMRUNTIME')}},
     }
   }
 })
-local servers = {'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls'}
+local servers = {'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls', 'lua_ls'}
 local conf = {flags=flags, capabilities=capabilities, on_attach=on_attach}
 for _, server in ipairs(servers) do lsp[server].setup(conf) end
 

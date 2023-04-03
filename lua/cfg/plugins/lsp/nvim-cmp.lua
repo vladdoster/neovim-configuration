@@ -27,6 +27,10 @@ local icons = {
   Variable=''
 }
 local aliases = {nvim_lsp='lsp', luasnip='snippet'}
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
 cmp.setup({
   mapping=cmp.mapping.preset.insert({
     ['<C-Space>']=cmp.mapping.complete(),
@@ -36,10 +40,10 @@ cmp.setup({
     ['<C-y>']=cmp.mapping.confirm({select=true})
   }),
   sources=cmp.config.sources({
-    {name='nvim_lsp', max_item_count=10},
-    {name='luasnip', max_item_count=10},
+    {name='nvim_lsp', max_item_count=30},
+    {name='buffer', max_item_count=20},
     {name='path', max_item_count=10},
-    {name='buffer', max_item_count=10}
+		{name='luasnip', max_item_count=10},
   }),
   snippet={expand=function(args) require('luasnip').lsp_expand(args.body) end},
   formatting={

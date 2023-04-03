@@ -94,10 +94,14 @@ return require('packer').startup({
     -- LSP, Completions and Snippets --
     use({'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=function() require('cfg.plugins.lsp.null-ls') end})
     use({
-      'williamboman/mason.nvim',
-      config=function() require('cfg.plugins.mason') end,
-      requires={'WhoIsSethDaniel/mason-tool-installer.nvim'}
+      'jay-babu/mason-null-ls.nvim',
+      event={'BufReadPre', 'BufNewFile'},
+      requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim'},
+      config=function()
+        require('cfg.plugins.lsp.null-ls') -- require your null-ls config here (example below)
+      end
     })
+
     use({
       'neovim/nvim-lspconfig',
       event='BufRead',
