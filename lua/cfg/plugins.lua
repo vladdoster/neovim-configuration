@@ -101,7 +101,6 @@ return require('packer').startup({
         require('cfg.plugins.lsp.null-ls') -- require your null-ls config here (example below)
       end
     })
-
     use({
       'neovim/nvim-lspconfig',
       event='BufRead',
@@ -122,9 +121,15 @@ return require('packer').startup({
           }
         }
       },
-      {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
+      {'ray-x/cmp-treesitter', after='nvim-cmp'},
+      {
+        'tamago324/cmp-zsh',
+        after='nvim-cmp',
+        config=function() require'cmp_zsh'.setup {zshrc=true, filetypes={'zsh'}} end
+      },
+      {'hrsh7th/cmp-buffer', after='nvim-cmp'},
       {'hrsh7th/cmp-path', after='nvim-cmp'},
-      {'hrsh7th/cmp-buffer', after='nvim-cmp'}
+      {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'}
     })
     use {'echasnovski/mini.move', config=function() require('mini.move').setup() end, opt=true}
     use {'echasnovski/mini.splitjoin', config=function() require('mini.splitjoin').setup() end, opt=true}

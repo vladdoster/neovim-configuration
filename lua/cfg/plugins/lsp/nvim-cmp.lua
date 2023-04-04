@@ -40,10 +40,12 @@ cmp.setup({
     ['<C-y>']=cmp.mapping.confirm({select=true})
   }),
   sources=cmp.config.sources({
-    {name='nvim_lsp', max_item_count=30},
-    {name='buffer', max_item_count=20},
+    {name='nvim_lsp'},
+    {name='treesitter'},
+    {name='buffer'},
     {name='path', max_item_count=10},
-		{name='luasnip', max_item_count=10},
+    {name='luasnip', max_item_count=10},
+    {name='zsh'}
   }),
   snippet={expand=function(args) require('luasnip').lsp_expand(args.body) end},
   formatting={
@@ -54,5 +56,4 @@ cmp.setup({
     end
   }
 })
-
 -- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:

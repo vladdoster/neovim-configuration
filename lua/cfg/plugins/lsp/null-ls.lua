@@ -15,10 +15,9 @@ nls.setup({
     dgn.commitlint,
     dgn.eslint,
     dgn.hadolint,
-    dgn.selene,
     dgn.zsh,
     fmt.fixjson,
-		fmt.luaformatter,
+    fmt.luaformatter,
     fmt.prettierd,
     fmt.trim_whitespace.with({filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text', 'tmux', 'toml', 'zsh'}})
   },
@@ -28,14 +27,14 @@ nls.setup({
   end
 })
 require('mason-null-ls').setup({
-  ensure_installed={
-    'bash-language-server',
-    'editorconfig-checker',
-    'lua-language-server',
-    'luaformatter',
-  },
+  ensure_installed={'bash-language-server', 'editorconfig-checker', 'lua-language-server', 'luaformatter'},
   automatic_installation=true,
   automatic_setup=false
 })
+
+local servers = {
+  "cssls", "lua_ls", "rust_analyzer", "eslint", "html", "jsonls", "tsserver",
+  "julials", "marksman"
+}
 
 -- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:

@@ -30,15 +30,17 @@ lsp.lua_ls.setup({
   on_attach=on_attach,
   settings={
     Lua={
+      runtime={version='Lua 5.3', path={'?.lua', '?/init.lua'}},
+      -- runtime={version='LuaJIT'},
       completion={enable=true, showWord='Disable'},
       diagnostics={globals={'vim'}},
-      runtime={version='LuaJIT'},
       telemetry={enable=false},
-      workspace={checkThirdParty=true,library={os.getenv('VIMRUNTIME')}},
+      workspace={checkThirdParty=true, library={os.getenv('VIMRUNTIME')}}
     }
   }
 })
-local servers = {'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls', 'lua_ls'}
+
+local servers = {'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls'}
 local conf = {flags=flags, capabilities=capabilities, on_attach=on_attach}
 for _, server in ipairs(servers) do lsp[server].setup(conf) end
 
