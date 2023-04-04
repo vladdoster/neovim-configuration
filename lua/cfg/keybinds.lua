@@ -4,8 +4,8 @@ local keymap = vim.keymap.set
 map('n', '*', '*N')
 
 -- Remap for dealing with word wrap
-keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', {expr=true, silent=true})
+keymap('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', {expr=true, silent=true})
 
 -- fix n and N. keeping cursor in center
 map('n', 'n', 'nzz')
