@@ -27,8 +27,9 @@ update: | clean ## Run clean target, pull git changes, and re-install plugins
 	echo "${log} pulling upstream" && \
 	git pull --autostash --quiet && \
 	echo "${log} installing plugins" && \
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c ':PackerSync' && \
-	echo "${log} setup neovim configuration"
+	nvim --headless -c 'autocmd User PackerComplete quitall' -c ':PackerSync'
+	# nvim --headless -c 'autocmd User MasonToolsUpdateCompleted quitall' -c 'MasonToolsInstall' && \
+	# echo "${log} setup neovim configuration"
 
 targets-table:
 	@printf "|Target|Descripton|\n|---|---|\n"

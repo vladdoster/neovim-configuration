@@ -40,11 +40,11 @@ cmp.setup({
     ['<C-y>']=cmp.mapping.confirm({select=true})
   }),
   sources=cmp.config.sources({
-    {name='nvim_lsp'},
-    {name='treesitter'},
     {name='buffer'},
-    {name='path', max_item_count=10},
-    {name='luasnip', max_item_count=10},
+    {name='luasnip'},
+    {name='nvim_lsp'},
+    {name='path'},
+    {name='treesitter'},
     {name='zsh'}
   }),
   snippet={expand=function(args) require('luasnip').lsp_expand(args.body) end},
