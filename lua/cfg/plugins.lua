@@ -92,11 +92,11 @@ return require('packer').startup({
     -- Terminal --
     use({'numToStr/FTerm.nvim', event='CursorHold', config=function() require('cfg.plugins.fterm') end})
     -- LSP, Completions and Snippets --
-    use({'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=function() require('cfg.plugins.lsp.null-ls') end})
+    -- use({'jose-elias-alvarez/null-ls.nvim', event='BufRead', config=function() require('cfg.plugins.lsp.null-ls') end})
     use({
       'jay-babu/mason-null-ls.nvim',
       event={'BufReadPre', 'BufNewFile'},
-      requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim'},
+      requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim', 'williamboman/mason-lspconfig.nvim'},
       config=function()
         require('cfg.plugins.lsp.null-ls') -- require your null-ls config here (example below)
       end
@@ -105,7 +105,7 @@ return require('packer').startup({
       'neovim/nvim-lspconfig',
       event='BufRead',
       config=function() require('cfg.plugins.lsp.servers') end,
-      requires={{'hrsh7th/cmp-nvim-lsp'}}
+      requires={'hrsh7th/cmp-nvim-lsp', {'folke/neodev.nvim', config=function() require('neodev').setup({}) end}}
     })
     use({
       {

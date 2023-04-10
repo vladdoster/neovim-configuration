@@ -1,3 +1,7 @@
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require('neodev').setup({
+  -- add any options here, or leave empty to use the default settings
+})
 local lsp = require('lspconfig')
 local U = require('cfg.plugins.lsp.utils')
 ---Common perf related flags for all the LSP servers
@@ -40,7 +44,7 @@ lsp.lua_ls.setup({
   }
 })
 
-local servers = {'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls'}
+local servers = {'lua_ls', 'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls'}
 local conf = {flags=flags, capabilities=capabilities, on_attach=on_attach}
 for _, server in ipairs(servers) do lsp[server].setup(conf) end
 
