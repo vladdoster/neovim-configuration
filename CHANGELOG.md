@@ -1,3 +1,20 @@
+# [6.12.0](https://github.com/vladdoster/neovim-configuration/compare/v6.11.1...v6.12.0) (2023-04-10)
+
+
+### Bug Fixes
+
+* changes for v2.x & install all servers ([b0e52f0](https://github.com/vladdoster/neovim-configuration/commit/b0e52f0bd838f7581d63a6fd9d62cb6b13a77d5f))
+* keybinds to handle line wrapping ([5080ca6](https://github.com/vladdoster/neovim-configuration/commit/5080ca67f7a9d14ba4651e73d341b01135287beb))
+* line wrapping keybinds ([66fb6b2](https://github.com/vladdoster/neovim-configuration/commit/66fb6b25a1e9cc7c1c6037b10241ddec7f4b72de))
+* nvim-cmp sources and lsp servers ([c1d573e](https://github.com/vladdoster/neovim-configuration/commit/c1d573e3eb8d18be1681cbd209a4a00e3d5bb022))
+* remove lsp server install in makefile ([f27329d](https://github.com/vladdoster/neovim-configuration/commit/f27329d6af4a685facb2655a122e4450074333a7))
+
+
+### Features
+
+* add neodev.nvim for better lua lsp ([8b5b236](https://github.com/vladdoster/neovim-configuration/commit/8b5b2360d3ed4e9e6dd2ddc5cb25123b1e066321))
+* use mason-null-ls plugin & update cmp config ([5ba889e](https://github.com/vladdoster/neovim-configuration/commit/5ba889ece7cbb6077d1dc274fca9ec316db83c0f))
+
 ## [6.11.1](https://github.com/vladdoster/neovim-configuration/compare/v6.11.0...v6.11.1) (2023-04-01)
 
 
