@@ -1,5 +1,11 @@
 require('lualine').setup({
-  options={theme='tokyonight', component_separators='', section_separators='', icons_enabled=false, globalstatus=true},
+  options={
+    theme='tokyonight',
+    component_separators='',
+    section_separators='',
+    icons_enabled=false,
+    globalstatus=true
+  },
   sections={
     lualine_a={{'mode', color={gui='bold'}}},
     lualine_b={{'branch'}, {'diff', colored=false}},

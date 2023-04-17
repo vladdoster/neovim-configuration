@@ -21,7 +21,9 @@ nls.setup({
     dgn.zsh,
     fmt.fixjson,
     fmt.prettierd,
-    fmt.trim_whitespace.with({filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text', 'tmux', 'toml', 'zsh'}})
+    fmt.trim_whitespace.with({
+      filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text', 'tmux', 'toml', 'zsh'}
+    })
   },
   on_attach=function(client, bufnr)
     U.fmt_on_save(client, bufnr)
@@ -32,9 +34,10 @@ nls.setup({
 -- 	automatic_installation = true,
 -- })
 -- ensure_installed={'bash-language-server', 'editorconfig-checker', 'lua-language-server'},
+-- equire('mason-lspconfig').get_available_servers(),
+
 require('mason-null-ls').setup({
-  -- TODO: narrow down list if performance suffers
-  ensure_installed=require('mason-lspconfig').get_available_servers(),
+  ensure_installed={'lua-language-server'},
   max_concurrent_installers=50,
   automatic_installation=true,
   handlers={function() end}

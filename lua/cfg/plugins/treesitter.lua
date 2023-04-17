@@ -5,7 +5,12 @@ require('nvim-treesitter.configs').setup({
   indent={enable=true},
   incremental_selection={
     enable=true,
-    keymaps={init_selection='gs', node_incremental='gs', node_decremental='gS', scope_incremental='<leader>gc'}
+    keymaps={
+      init_selection='gs',
+      node_incremental='gs',
+      node_decremental='gS',
+      scope_incremental='<leader>gc'
+    }
   },
   -- nvim-treesitter/nvim-treesitter-textobjects
   textobjects={
@@ -26,8 +31,16 @@ require('nvim-treesitter.configs').setup({
     },
     swap={
       enable=true,
-      swap_next={['<leader>a']='@parameter.inner', ['<leader>f']='@function.outer', ['<leader>e']='@element'},
-      swap_previous={['<leader>A']='@parameter.inner', ['<leader>F']='@function.outer', ['<leader>E']='@element'}
+      swap_next={
+        ['<leader>a']='@parameter.inner',
+        ['<leader>f']='@function.outer',
+        ['<leader>e']='@element'
+      },
+      swap_previous={
+        ['<leader>A']='@parameter.inner',
+        ['<leader>F']='@function.outer',
+        ['<leader>E']='@element'
+      }
     },
     move={
       enable=true,

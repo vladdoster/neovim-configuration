@@ -1,6 +1,6 @@
 align_args: true
 align_parameter: true
-align_table_field: true
+align_table_field: false
 break_after_functioncall_lp: false
 break_after_functiondef_lp: false
 break_after_operator: false
@@ -11,9 +11,7 @@ break_before_table_rb: false
 chop_down_kv_table: true
 chop_down_parameter: false
 chop_down_table: true
-column_limit: 120
 column_table_limit: 120
-continuation_indent_width: 2
 double_quote_to_single_quote: true
 extra_sep_at_table_end: false
 indent_width: 2
@@ -23,7 +21,6 @@ line_breaks_after_function_body: 1
 no_spaces_around_equals_in_field: true
 single_quote_to_double_quote: false
 spaces_around_equals_in_field: false
-spaces_before_call: 1
-tab_width: 2
-table_sep: ','
+spaces_before_call: 0
+table_sep: ","
 use_tab: false

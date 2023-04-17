@@ -51,7 +51,8 @@ cmp.setup({
   formatting={
     format=function(entry, item)
       item.kind = string.format('%s %s', icons[item.kind], item.kind)
-      item.menu = string.format('[%s]', aliases[entry.source.name] or entry.source.name)
+      item.menu = string.format('[%s]',
+                                aliases[entry.source.name] or entry.source.name)
       return item
     end
   }
