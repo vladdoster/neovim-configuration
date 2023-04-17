@@ -1,3 +1,10 @@
+## [6.12.1](https://github.com/vladdoster/neovim-configuration/compare/v6.12.0...v6.12.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* formatting favors readability over LOC ([31644ae](https://github.com/vladdoster/neovim-configuration/commit/31644ae282213def380706c01039125562a67ad7))
+
 # [6.12.0](https://github.com/vladdoster/neovim-configuration/compare/v6.11.1...v6.12.0) (2023-04-10)
 
 
