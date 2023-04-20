@@ -1,5 +1,7 @@
 local ok, neotree = pcall(require, 'neo-tree')
-if not ok then return end
+if not ok then
+  return
+end
 neotree.setup{
   close_if_last_window=true,
   enable_diagnostics=false,
@@ -27,19 +29,9 @@ neotree.setup{
       expander_expanded='',
       expander_highlight='NeoTreeExpander'
     },
-    icon={
-      folder_closed='',
-      folder_open='',
-      folder_empty='ﰊ',
-      default='*',
-      highlight='NeoTreeFileIcon'
-    },
+    icon={folder_closed='', folder_open='', folder_empty='ﰊ', default='*', highlight='NeoTreeFileIcon'},
     modified={symbol='[+]', highlight='NeoTreeModified'},
-    name={
-      trailing_slash=false,
-      use_git_status_colors=true,
-      highlight='NeoTreeFileName'
-    },
+    name={trailing_slash=false, use_git_status_colors=true, highlight='NeoTreeFileName'},
     git_status={
       symbols={
         added='',
@@ -145,9 +137,7 @@ neotree.setup{
     follow_current_file=true, -- This will find and focus the file in the active buffer every
     group_empty_dirs=true, -- when true, empty folders will be grouped together
     show_unloaded=true,
-    window={
-      mappings={['bd']='buffer_delete', ['<bs>']='navigate_up', ['.']='set_root'}
-    }
+    window={mappings={['bd']='buffer_delete', ['<bs>']='navigate_up', ['.']='set_root'}}
   },
   git_status={
     window={
@@ -167,8 +157,7 @@ neotree.setup{
 require('neo-tree.ui.inputs').confirm = function(message, callback)
   callback(vim.fn.confirm(message, '&Yes\n&No') == 1)
 end
-require('neo-tree.ui.inputs').input = function(message, default_value, callback,
-                                               options, completion)
+require('neo-tree.ui.inputs').input = function(message, default_value, callback, options, completion)
   local input
   if completion then
     input = vim.fn.input(message .. ' ', default_value or '', completion)
@@ -179,7 +168,9 @@ require('neo-tree.ui.inputs').input = function(message, default_value, callback,
 end
 
 local k = vim.keymap.set
-local c = function(str) return string.format([[<cmd>%s<cr>]], str) end
+local c = function(str)
+  return string.format([[<cmd>%s<cr>]], str)
+end
 k('n', '<leader>o', function()
   if vim.bo.filetype == 'neo-tree' then
     vim.cmd.wincmd'p'

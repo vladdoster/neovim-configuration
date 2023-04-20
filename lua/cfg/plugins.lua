@@ -1,23 +1,14 @@
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')
-                           .. '/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({
-      'git',
-      'clone',
-      '--depth',
-      '1',
-      'https://github.com/wbthomason/packer.nvim',
-      install_path
-    })
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd('packadd packer.nvim')
     return true
   end
   return false
 end
 ensure_packer()
-
 -- Automatically run :PackerCompile whenever plugins.lua is updated with an autocommand:
 vim.api.nvim_create_autocmd('BufWritePost', {
   group=vim.api.nvim_create_augroup('PACKER', {clear=true}),
@@ -31,24 +22,26 @@ return require('packer').startup({
     use('wbthomason/packer.nvim')
     use('nvim-lua/plenary.nvim')
     -- Theme, Icons, Statusbar, Bufferbar --
-    use({
-      'vladdoster/remember.nvim',
-      event='BufRead',
-      config=[[ require('remember') ]]
-    })
+    use({'vladdoster/remember.nvim', event='BufRead', config=[[ require('remember') ]]})
     use({
       'kyazdani42/nvim-web-devicons',
-      config=function() require('nvim-web-devicons').setup() end
+      config=function()
+        require('nvim-web-devicons').setup()
+      end
     })
     use({
       'folke/tokyonight.nvim',
-      config=function() require('cfg.plugins.tokyonight') end
+      config=function()
+        require('cfg.plugins.tokyonight')
+      end
     })
     use({
       'nvim-lualine/lualine.nvim',
       after='tokyonight.nvim',
       event='BufEnter',
-      config=function() require('cfg.plugins.lualine') end
+      config=function()
+        require('cfg.plugins.lualine')
+      end
     })
     -- Treesitter: Better Highlights --
     use({
@@ -56,16 +49,19 @@ return require('packer').startup({
         'nvim-treesitter/nvim-treesitter',
         event='CursorHold',
         run=function()
-          pcall(require('nvim-treesitter.install').update{with_sync=true})
+          pcall(require('nvim-treesitter.install').update{with_sync=false})
         end,
-        config=function() require('cfg.plugins.treesitter') end
+        config=function()
+          require('cfg.plugins.treesitter')
+        end
       },
       {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'},
       {
         'nvim-treesitter/nvim-treesitter-context',
         after='nvim-treesitter',
-
-        config=function() require('treesitter-context').setup() end
+        config=function()
+          require('treesitter-context').setup()
+        end
       },
       {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'},
       {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'}
@@ -74,22 +70,30 @@ return require('packer').startup({
     use({
       'lukas-reineke/indent-blankline.nvim',
       event='BufRead',
-      config=function() require('cfg.plugins.indentline') end
+      config=function()
+        require('cfg.plugins.indentline')
+      end
     })
     use({
       'norcalli/nvim-colorizer.lua',
       event='CursorHold',
-      config=function() require('colorizer').setup() end
+      config=function()
+        require('colorizer').setup()
+      end
     })
     use({
       'lewis6991/gitsigns.nvim',
       event='BufRead',
-      config=function() require('cfg.plugins.gitsigns') end
+      config=function()
+        require('cfg.plugins.gitsigns')
+      end
     })
     use({
       'monaqa/dial.nvim',
       event='BufRead',
-      config=function() require('cfg.plugins.dial') end
+      config=function()
+        require('cfg.plugins.dial')
+      end
     })
     use({
       'andymass/vim-matchup',
@@ -103,95 +107,116 @@ return require('packer').startup({
       'nvim-neo-tree/neo-tree.nvim',
       branch='v2.x',
       event='CursorHold',
-      config=function() require('cfg.plugins.neo-tree') end,
+      config=function()
+        require('cfg.plugins.neo-tree')
+      end,
       requires={'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}
     })
     use({
       {
         'nvim-telescope/telescope.nvim',
         event='CursorHold',
-        config=function() require('cfg.plugins.telescope') end
+        config=function()
+          require('cfg.plugins.telescope')
+        end
       },
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         after='telescope.nvim',
         run='make',
-        config=function() require('telescope').load_extension('fzf') end
+        config=function()
+          require('telescope').load_extension('fzf')
+        end
+      },
+      {
+        'nvim-telescope/telescope-ui-select.nvim',
+        after='telescope.nvim',
+        config=function()
+          require('telescope').load_extension('ui-select')
+        end
       },
       {'nvim-telescope/telescope-symbols.nvim', after='telescope.nvim'}
     })
     use({
       'numToStr/Navigator.nvim',
       event='CursorHold',
-      config=function() require('cfg.plugins.navigator') end
+      config=function()
+        require('cfg.plugins.navigator')
+      end
     })
     use({
       'phaazon/hop.nvim',
       event='BufRead',
-      config=function() require('cfg.plugins.hop') end
+      config=function()
+        require('cfg.plugins.hop')
+      end
     })
     use({
       'karb94/neoscroll.nvim',
       event='WinScrolled',
-      config=function() require('neoscroll').setup({hide_cursor=false}) end
+      config=function()
+        require('neoscroll').setup({hide_cursor=false})
+      end
     })
     -- Editing to the MOON --
     use({
       'numToStr/Comment.nvim',
       event='BufRead',
-      config=function() require('cfg.plugins.comment') end
+      config=function()
+        require('cfg.plugins.comment')
+      end
     })
-    use({
-      'tpope/vim-surround',
-      event='BufRead',
-      requires={{'tpope/vim-repeat', event='BufRead'}}
-    })
+    use({'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}})
+    use({'ludovicchabant/vim-gutentags'})
     use({'wellle/targets.vim', event='BufRead'})
     use({'AndrewRadev/splitjoin.vim', event='CursorHold'})
     use({
       'numToStr/Buffers.nvim',
       event='BufRead',
-      config=function() require('cfg.plugins.buffers') end
+      config=function()
+        require('cfg.plugins.buffers')
+      end
     })
-
     -- Terminal --
     use({
       'numToStr/FTerm.nvim',
       event='CursorHold',
-      config=function() require('cfg.plugins.fterm') end
+      config=function()
+        require('cfg.plugins.fterm')
+      end
     })
     -- LSP, Completions and Snippets --
     use({
       'jay-babu/mason-null-ls.nvim',
       event={'BufReadPre', 'BufNewFile'},
-      requires={
-        'williamboman/mason.nvim',
-        'jose-elias-alvarez/null-ls.nvim',
-        'williamboman/mason-lspconfig.nvim'
-      },
-      config=function() require('cfg.plugins.lsp.null-ls') end
+      requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim', 'williamboman/mason-lspconfig.nvim'},
+      config=function()
+        require('cfg.plugins.lsp.null-ls')
+      end
     })
     use({
       'neovim/nvim-lspconfig',
       event='BufRead',
-      config=function() require('cfg.plugins.lsp.servers') end,
-      requires={
-        'hrsh7th/cmp-nvim-lsp',
-        {'folke/neodev.nvim', config=function()
-          require('neodev').setup({})
-        end}
-      }
+      config=function()
+        require('neodev').setup({})
+        require('cfg.plugins.lsp.servers')
+      end,
+      requires={'hrsh7th/cmp-nvim-lsp', 'folke/neodev.nvim'}
     })
     use({
       {
         'hrsh7th/nvim-cmp',
-        event='InsertEnter',
-        config=function() require('cfg.plugins.lsp.nvim-cmp') end,
+        event='BufRead',
+        config=function()
+          require('cfg.plugins.lsp.nvim-cmp')
+        end,
         requires={
           {
             'L3MON4D3/LuaSnip',
-            event='InsertEnter',
-            config=function() require('cfg.plugins.lsp.luasnip') end,
+            event='BufRead',
+            config=function()
+              require('cfg.plugins.lsp.luasnip')
+            end,
             requires={{'rafamadriz/friendly-snippets', event='CursorHold'}}
           }
         }
@@ -210,27 +235,31 @@ return require('packer').startup({
     })
     use{
       'echasnovski/mini.move',
-      config=function() require('mini.move').setup() end,
+      config=function()
+        require('mini.move').setup()
+      end,
       opt=true
     }
     use{
       'echasnovski/mini.splitjoin',
-      config=function() require('mini.splitjoin').setup() end,
+      config=function()
+        require('mini.splitjoin').setup()
+      end,
       opt=true
     }
     use({
       'junegunn/vim-easy-align',
-      config=function() require('cfg.plugins.vim-easy-align') end
+      config=function()
+        require('cfg.plugins.vim-easy-align')
+      end
     })
-    use{
-      'obreitwi/vim-sort-folds',
-      cmd='SortFolds',
-      cond=vim.fn.executable'python3' == 1
-    }
+    use{'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable'python3' == 1}
     use{
       'sQVe/sort.nvim',
       cmd='Sort',
-      config=function() require('cfg.plugins.sort') end,
+      config=function()
+        require('cfg.plugins.sort')
+      end,
       opt=true
     }
     -- NOTE: nvim-autopairs needs to be loaded after nvim-cmp, so that <CR> would work properly
@@ -238,10 +267,17 @@ return require('packer').startup({
       'windwp/nvim-autopairs',
       event='InsertCharPre',
       after='nvim-cmp',
-      config=function() require('cfg.plugins.pairs') end
+      config=function()
+        require('cfg.plugins.pairs')
+      end
     })
     use({'dstein64/vim-startuptime', cmd='StartupTime'})
-    use({'j-hui/fidget.nvim', config=function() require('fidget').setup() end})
+    use({
+      'j-hui/fidget.nvim',
+      config=function()
+        require('fidget').setup()
+      end
+    })
   end,
   config={
     display={

@@ -9,7 +9,9 @@ function U.fmt_on_save(client, buf)
     vim.api.nvim_create_autocmd('BufWritePre', {
       group=fmt_group,
       buffer=buf,
-      callback=function() vim.lsp.buf.format({timeout_ms=3000, buffer=buf}) end
+      callback=function()
+        vim.lsp.buf.format({timeout_ms=3000, buffer=buf})
+      end
     })
   end
 end

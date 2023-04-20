@@ -21,9 +21,7 @@ nls.setup({
     dgn.zsh,
     fmt.fixjson,
     fmt.prettierd,
-    fmt.trim_whitespace.with({
-      filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text', 'tmux', 'toml', 'zsh'}
-    })
+    fmt.trim_whitespace.with({filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text', 'tmux', 'toml', 'zsh'}})
   },
   on_attach=function(client, bufnr)
     U.fmt_on_save(client, bufnr)
@@ -40,6 +38,9 @@ require('mason-null-ls').setup({
   ensure_installed={'lua-language-server'},
   max_concurrent_installers=50,
   automatic_installation=true,
-  handlers={function() end}
+  handlers={
+    function()
+    end
+  }
 })
 -- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:

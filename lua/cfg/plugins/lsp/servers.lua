@@ -44,9 +44,10 @@ lsp.lua_ls.setup({
   }
 })
 
-local servers =
-    {'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls'}
+local servers = {'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls'}
 local conf = {flags=flags, capabilities=capabilities, on_attach=on_attach}
-for _, server in ipairs(servers) do lsp[server].setup(conf) end
+for _, server in ipairs(servers) do
+  lsp[server].setup(conf)
+end
 
 -- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:

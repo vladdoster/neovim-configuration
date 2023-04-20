@@ -1,4 +1,6 @@
-local function map(m, k, v) vim.keymap.set(m, k, v, {silent=true}) end
+local function map(m, k, v)
+  vim.keymap.set(m, k, v, {silent=true})
+end
 local keymap = vim.keymap.set
 -- fix * (keep the cursor position, don't move to next match)
 map('n', '*', '*N')
