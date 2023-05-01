@@ -1,3 +1,6 @@
+local ensure_impatient = function()
+  pcall(require, 'impatient')
+end
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -8,6 +11,7 @@ local ensure_packer = function()
   end
   return false
 end
+ensure_impatient()
 ensure_packer()
 -- Automatically run :PackerCompile whenever plugins.lua is updated with an autocommand:
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -15,72 +19,74 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern='plugins.lua',
   command='source <afile> | PackerCompile'
 })
-pcall(require, 'impatient')
 return require('packer').startup({
   function(use)
     use('lewis6991/impatient.nvim')
     use('wbthomason/packer.nvim')
-    use('nvim-lua/plenary.nvim')
+    -- use('nvim-lua/plenary.nvim')
     -- Theme, Icons, Statusbar, Bufferbar --
+    use({
+      {
+        'folke/tokyonight.nvim',
+        config=function()
+          vim.cmd('colorscheme tokyonight')
+        end
+      },
+      {
+        'nvim-lualine/lualine.nvim',
+        config=function()
+          require('cfg.plugins.lualine')
+        end
+      }
+    })
     use({'vladdoster/remember.nvim', event='BufRead', config=[[ require('remember') ]]})
-    use({
-      'kyazdani42/nvim-web-devicons',
-      config=function()
-        require('nvim-web-devicons').setup()
-      end
-    })
-    use({
-      'folke/tokyonight.nvim',
-      config=function()
-        require('cfg.plugins.tokyonight')
-      end
-    })
-    use({
-      'nvim-lualine/lualine.nvim',
-      after='tokyonight.nvim',
-      event='BufEnter',
-      config=function()
-        require('cfg.plugins.lualine')
-      end
-    })
     -- Treesitter: Better Highlights --
     use({
       {
         'nvim-treesitter/nvim-treesitter',
         event='CursorHold',
-        run=function()
-          pcall(require('nvim-treesitter.install').update{with_sync=false})
-        end,
+        run=':TSUpdate',
         config=function()
           require('cfg.plugins.treesitter')
         end
       },
-      {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'},
-      {
-        'nvim-treesitter/nvim-treesitter-context',
-        after='nvim-treesitter',
-        config=function()
-          require('treesitter-context').setup()
-        end
-      },
+      {'nvim-treesitter/playground', after='nvim-treesitter'},
+      {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'},
       {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'},
-      {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'}
+      {'windwp/nvim-ts-autotag', after='nvim-treesitter'},
+      {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'}
     })
+    -- use({
+    --   {
+    --     'nvim-treesitter/nvim-treesitter',
+    --     event='CursorHold',
+    --     run=function()
+    --       pcall(require('nvim-treesitter.install').update{with_sync=false})
+    --     end,
+    --     config=function()
+    --       require('cfg.plugins.treesitter')
+    --     end
+    --   },
+    --   {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'},
+    --   {
+    --     'nvim-treesitter/nvim-treesitter-context',
+    --     after='nvim-treesitter',
+    --     config=function()
+    --       require('treesitter-context').setup()
+    --     end
+    --   },
+    --   {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'},
+    --   {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'}
+    -- })
     -- Editor UI Niceties --
-    use({
-      'lukas-reineke/indent-blankline.nvim',
-      event='BufRead',
-      config=function()
-        require('cfg.plugins.indentline')
-      end
-    })
-    use({
-      'norcalli/nvim-colorizer.lua',
-      event='CursorHold',
-      config=function()
-        require('colorizer').setup()
-      end
-    })
+    use({'lukas-reineke/indent-blankline.nvim', config=[[require('cfg.plugins.indentline')]], event='BufReadPost'})
+    -- use({
+    --   'norcalli/nvim-colorizer.lua',
+    --   event='CursorHold',
+    --   config=function()
+    --     require('colorizer').setup()
+    --   end
+    -- })
     use({
       'lewis6991/gitsigns.nvim',
       event='BufRead',
@@ -90,14 +96,14 @@ return require('packer').startup({
     })
     use({
       'monaqa/dial.nvim',
-      event='BufRead',
+      event='CursorHold',
       config=function()
         require('cfg.plugins.dial')
       end
     })
     use({
       'andymass/vim-matchup',
-      event='BufReadPost',
+      event='CursorHold',
       config=function()
         vim.g.matchup_matchparen_offscreen = {method='status_manual'}
       end
@@ -188,7 +194,7 @@ return require('packer').startup({
     -- LSP, Completions and Snippets --
     use({
       'jay-babu/mason-null-ls.nvim',
-      event={'BufReadPre', 'BufNewFile'},
+      event={'BufReadPre'},
       requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim', 'williamboman/mason-lspconfig.nvim'},
       config=function()
         require('cfg.plugins.lsp.null-ls')
@@ -198,28 +204,32 @@ return require('packer').startup({
       'neovim/nvim-lspconfig',
       event='BufRead',
       config=function()
-        require('neodev').setup({})
         require('cfg.plugins.lsp.servers')
       end,
-      requires={'hrsh7th/cmp-nvim-lsp', 'folke/neodev.nvim'}
+      requires={'hrsh7th/cmp-nvim-lsp'}
+    }, {
+      'folke/neodev.nvim',
+      config=function()
+        require('neodev').setup({})
+      end,
+      after='lspconfig'
+    })
+    use({
+      'L3MON4D3/LuaSnip',
+      event='InsertEnter',
+      config=function()
+        require('cfg.plugins.lsp.luasnip')
+      end,
+      requires={'rafamadriz/friendly-snippets'}
     })
     use({
       {
         'hrsh7th/nvim-cmp',
-        event='BufRead',
+        event='InsertEnter',
         config=function()
           require('cfg.plugins.lsp.nvim-cmp')
         end,
-        requires={
-          {
-            'L3MON4D3/LuaSnip',
-            event='BufRead',
-            config=function()
-              require('cfg.plugins.lsp.luasnip')
-            end,
-            requires={{'rafamadriz/friendly-snippets', event='CursorHold'}}
-          }
-        }
+        after='LuaSnip'
       },
       {'ray-x/cmp-treesitter', after='nvim-cmp'},
       {
