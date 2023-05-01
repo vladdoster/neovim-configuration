@@ -1,16 +1,21 @@
-require('lualine').setup({
-  options={theme='tokyonight', component_separators='', section_separators='', icons_enabled=false, globalstatus=true},
+require('lualine').setup{
+  options={
+    always_divide_middle=true,
+    component_separators='',
+    globalstatus=true,
+    icons_enabled=false,
+    refresh={statusline=1000, tabline=1000, winbar=1000},
+    section_separators='',
+    theme='auto'
+  },
   sections={
-    lualine_a={{'mode', color={gui='bold'}}},
-    lualine_b={{'branch'}, {'diff', colored=false}},
-    lualine_c={{'filename', file_status=true}, {'diagnostics'}},
-    lualine_x={'filetype', 'encoding', 'fileformat'},
-    lualine_y={'progress'},
-    lualine_z={{'location', color={gui='bold'}}}
+    lualine_a={'filename'},
+    lualine_b={'branch', 'diff', 'diagnostics'},
+    lualine_c={},
+    lualine_x={'progress', 'location'},
+    lualine_y={'encoding', 'fileformat', 'filetype'},
+    lualine_z={'mode'}
   },
-  tabline={
-    lualine_a={{'buffers', buffers_color={active='lualine_b_normal'}}},
-    lualine_z={{'tabs', tabs_color={active='lualine_b_normal'}}}
-  },
-  extensions={'quickfix', 'nvim-tree'}
-})
+  tabline={lualine_a={'tabs'}, lualine_b={'buffers'}},
+  extensions={'neo-tree'}
+}
