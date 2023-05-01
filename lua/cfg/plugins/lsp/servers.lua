@@ -1,31 +1,18 @@
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-require('neodev').setup({
-  -- add any options here, or leave empty to use the default settings
-})
 local lsp = require('lspconfig')
 local U = require('cfg.plugins.lsp.utils')
 ---Common perf related flags for all the LSP servers
 local flags = {allow_incremental_sync=true, debounce_text_changes=200}
----Common capabilities including lsp snippets and autocompletion
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
----Common `on_attach` function for LSP servers
----@param client table
----@param buf integer
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
+vim.diagnostic.config({virtual_text={source='always'}, float={source='always'}})
 local function on_attach(client, buf)
-  ---Disable formatting for servers (Handled by null-ls)
-  ---@see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
-  ---Disable |lsp-semantic_tokens| (conflicting with TS highlights)
   client.server_capabilities.semanticTokensProvider = nil
   U.mappings(buf)
 end
--- No LSP logging
 vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
--- Native diagnostics
 vim.diagnostic.config({virtual_text={source='always'}, float={source='always'}})
 -- Lua
 lsp.lua_ls.setup({
@@ -34,12 +21,19 @@ lsp.lua_ls.setup({
   on_attach=on_attach,
   settings={
     Lua={
-      runtime={version='Lua 5.3', path={'?.lua', '?/init.lua'}},
-      -- runtime={version='LuaJIT'},
-      completion={enable=true, showWord='Disable'},
-      diagnostics={globals={'vim'}},
-      telemetry={enable=false},
-      workspace={checkThirdParty=true, library={os.getenv('VIMRUNTIME')}}
+      diagnostics={globals={'vim', 'hs'}},
+      runtime={version='Lua 5.4', path={'?.lua', '?/init.lua', '/opt/homebrew/opt/lua/include/lua5.4/?.lua'}},
+      workspace={
+        library={
+          vim.fn.expand'~/.luarocks/share/lua/5.4',
+          '/opt/hs/',
+          '/opt/homebrew/opt/lua/lib',
+          '/opt/homebrew/opt/lua/include/lua5.4',
+          os.getenv('VIMRUNTIME')
+        },
+        checkThirdParty=true
+      },
+      telemetry={enable=false}
     }
   }
 })
