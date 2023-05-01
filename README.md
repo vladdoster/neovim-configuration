@@ -1,4 +1,5 @@
 # Neovim configuration
+
 [![Release Version](https://img.shields.io/github/v/release/vladdoster/neovim-configuration)](https://github.com/vladdoster/neovim-configuration/releases/latest)
 [![Release](https://github.com/vladdoster/neovim-configuration/actions/workflows/release.yml/badge.svg)](https://github.com/vladdoster/neovim-configuration/actions/workflows/release.yml)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/vladdoster/neovim-configuration)](https://github.com/vladdoster/neovim-configuration/graphs/contributors)
