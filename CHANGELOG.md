@@ -1,3 +1,25 @@
+# [6.13.0](https://github.com/vladdoster/neovim-configuration/compare/v6.12.1...v6.13.0) (2023-05-01)
+
+
+### Bug Fixes
+
+* format indent_blankline config ([2eab282](https://github.com/vladdoster/neovim-configuration/commit/2eab282a57d1b7949108369501c36bf2480157ba))
+* formatting ([fe6b8be](https://github.com/vladdoster/neovim-configuration/commit/fe6b8befc6c432cffb5750c41494185f22260af7))
+* gitcommit filetype cleanup ([40971af](https://github.com/vladdoster/neovim-configuration/commit/40971af8b35f254c3887d06c845638913024a2eb))
+* gitsigns delete sign ([9b49ae4](https://github.com/vladdoster/neovim-configuration/commit/9b49ae4180c89fbb7076c0f9fa7ce664d7d6f600))
+* lsp server and luasnip configs ([98b2b01](https://github.com/vladdoster/neovim-configuration/commit/98b2b01d8f31cdcc26179fd6ab62383e9fa47b22))
+* lua-line configuration ([fa6cc66](https://github.com/vladdoster/neovim-configuration/commit/fa6cc66c923e9b1b335c37ef0c7031fc56472620))
+* plugin load order & cleanup ([8f8de46](https://github.com/vladdoster/neovim-configuration/commit/8f8de46856178ddfeb74c5f42bb8fd31b41b34cd))
+* readme markdown spacing ([e75e7c8](https://github.com/vladdoster/neovim-configuration/commit/e75e7c8d09d4bb957aded8e9c29b8bb7394d8bc7))
+* remove unused autocmd ([df0fc14](https://github.com/vladdoster/neovim-configuration/commit/df0fc14245945c082729cbd413cf38c4f9b68c69))
+
+
+### Features
+
+* remove diffview & git-messenger configs ([7e10167](https://github.com/vladdoster/neovim-configuration/commit/7e10167f0a1761b4e3b44f4ea973c319e04d4e14))
+* remove tokyonight colorscheme config ([aab6ddf](https://github.com/vladdoster/neovim-configuration/commit/aab6ddfe1966d846ead8b4756290a4800364b3ae))
+* remove tokyonight colorscheme config ([d768397](https://github.com/vladdoster/neovim-configuration/commit/d768397acb77d24f0321f9dfbf722051b25402be))
+
 ## [6.12.1](https://github.com/vladdoster/neovim-configuration/compare/v6.12.0...v6.12.1) (2023-04-17)
 
 
