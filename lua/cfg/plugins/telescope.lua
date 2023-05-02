@@ -1,6 +1,5 @@
 local actions = require('telescope.actions')
 local lactions = require('telescope.actions.layout')
-local finders = require('telescope.builtin')
 require('telescope').setup({
   defaults={
     prompt_prefix=' ᐳ ',
@@ -9,15 +8,19 @@ require('telescope').setup({
     layout_config={prompt_position='top'},
     mappings={
       i={
-        ['<ESC>']=actions.close,
-        ['<TAB>']=actions.move_selection_next,
-        ['<S-TAB>']=actions.move_selection_previous,
+        ['<C-h>']=lactions.toggle_preview,
         ['<C-j>']=actions.toggle_selection + actions.move_selection_next,
-        ['<C-s>']=actions.send_selected_to_qflist,
         ['<C-q>']=actions.send_to_qflist,
-        ['<C-h>']=lactions.toggle_preview
+        ['<C-s>']=actions.send_selected_to_qflist,
+        ['<ESC>']=actions.close,
+        ['<S-TAB>']=actions.move_selection_previous,
+        ['<TAB>']=actions.move_selection_next,
       }
     }
+  },
+  pickers = {
+    find_files = {theme='ivy'},
+    git_files = {theme='ivy'}
   },
   extensions={
     fzf={
@@ -28,13 +31,9 @@ require('telescope').setup({
     }
   }
 })
-local map = vim.api.nvim_set_keymap
 
--- LuaFormatter off
-local btm = require('telescope.themes').get_ivy()
-local silent, tbl = {silent=true, noremap=true}, table.unpack
-map('n', '\'b', [[<cmd>Telescope buffers show_all_buffers=true<cr>]], silent)
-map('n', '\'g', '', {tbl(silent), callback=function() finders.git_files(btm) end})
-map('n', '\'f', '', {tbl(silent), callback=function() finders.find_files(btm) end})
+local map = vim.api.nvim_set_keymap
+local silent = {silent=true, noremap=true}
+map('n', '\'f', [[<cmd>Telescope find_files<cr>]], silent)
+map('n', '\'g', [[<cmd>Telescope git_files<cr>]], silent)
 map('n', '\'r', [[<cmd>Telescope live_grep<cr>]], silent)
--- LuaFormatter on
