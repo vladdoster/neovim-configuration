@@ -1,3 +1,13 @@
+## [6.13.1](https://github.com/vladdoster/neovim-configuration/compare/v6.13.0...v6.13.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* format telescope config ([314b602](https://github.com/vladdoster/neovim-configuration/commit/314b60265fd77da0330c1cb6ca3fab9e257ab888))
+* luaformatter ignores telescope keymaps ([f7daf34](https://github.com/vladdoster/neovim-configuration/commit/f7daf34aa9d1e9995532846a21fa62f284fb68a2))
+* telescope file and git file keymaps ([69f7467](https://github.com/vladdoster/neovim-configuration/commit/69f74677390fa5ba06bf15a8419fc571c8f0fc0c))
+* telescope keymaps & themes ([9bb5078](https://github.com/vladdoster/neovim-configuration/commit/9bb5078bd6b1f5523cd030107b6974e2a4849a06))
+
 # [6.13.0](https://github.com/vladdoster/neovim-configuration/compare/v6.12.1...v6.13.0) (2023-05-01)
 
 
