@@ -30,9 +30,11 @@ require('telescope').setup({
 })
 local map = vim.api.nvim_set_keymap
 
+-- LuaFormatter off
 local btm = require('telescope.themes').get_ivy()
 local silent, tbl = {silent=true, noremap=true}, table.unpack
 map('n', '\'b', [[<cmd>Telescope buffers show_all_buffers=true<cr>]], silent)
 map('n', '\'g', '', {tbl(silent), callback=function() finders.git_files(btm) end})
 map('n', '\'f', '', {tbl(silent), callback=function() finders.find_files(btm) end})
 map('n', '\'r', [[<cmd>Telescope live_grep<cr>]], silent)
+-- LuaFormatter on
