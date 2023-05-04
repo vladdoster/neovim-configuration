@@ -23,8 +23,7 @@ return require('packer').startup({
   function(use)
     use('lewis6991/impatient.nvim')
     use('wbthomason/packer.nvim')
-    use('nvim-lua/plenary.nvim')
-    -- Theme, Icons, Statusbar, Bufferbar --
+    -- UI
     use({
       {
         'folke/tokyonight.nvim',
@@ -39,8 +38,14 @@ return require('packer').startup({
         end
       }
     })
-    use({'vladdoster/remember.nvim', event='BufRead', config=[[ require('remember') ]]})
-    -- Treesitter: Better Highlights --
+    use({
+      'vladdoster/remember.nvim',
+      config=function()
+        require('remember')
+      end,
+      event='BufReadPost'
+    })
+    -- Treesitter for better highlights
     use({
       {
         'nvim-treesitter/nvim-treesitter',
@@ -58,65 +63,74 @@ return require('packer').startup({
       {
         'nvim-treesitter/nvim-treesitter-context',
         after='nvim-treesitter',
-        config=function() require('treesitter-context').setup() end
-      },
+        config=function()
+          require('treesitter-context').setup()
+        end
+      }
     })
     -- Editor UI Niceties --
-    use({'lukas-reineke/indent-blankline.nvim', config=[[require('cfg.plugins.indentline')]], event='BufReadPost'})
     use({
-      'norcalli/nvim-colorizer.lua',
-      event='CursorHold',
-      config=function()
-        require('colorizer').setup()
-      end
+      {
+        'lukas-reineke/indent-blankline.nvim',
+        config=function()
+          require('cfg.plugins.indentline')
+        end,
+        event='BufReadPost'
+      },
+      {
+        'lewis6991/gitsigns.nvim',
+        config=function()
+          require('cfg.plugins.gitsigns')
+        end,
+        event='BufReadPost'
+      },
+      {
+        'norcalli/nvim-colorizer.lua',
+        config=function()
+          require('colorizer').setup()
+        end,
+        event='BufReadPost'
+      },
+      {
+        'monaqa/dial.nvim',
+        config=function()
+          require('cfg.plugins.dial')
+        end,
+        event='CursorHold'
+      },
+      {
+        'andymass/vim-matchup',
+        config=function()
+          vim.g.matchup_matchparen_offscreen = {method='status_manual'}
+        end,
+        event='CursorHold'
+      }
     })
-    use({
-      'lewis6991/gitsigns.nvim',
-      event='BufRead',
-      config=function()
-        require('cfg.plugins.gitsigns')
-      end
-    })
-    use({
-      'monaqa/dial.nvim',
-      event='CursorHold',
-      config=function()
-        require('cfg.plugins.dial')
-      end
-    })
-    use({
-      'andymass/vim-matchup',
-      event='CursorHold',
-      config=function()
-        vim.g.matchup_matchparen_offscreen = {method='status_manual'}
-      end
-    })
+    -- use({
+    --   'nvim-neo-tree/neo-tree.nvim',
+    --   branch='v2.x',
+    --   event='CursorHold',
+    --   config=function()
+    --     require('cfg.plugins.neo-tree')
+    --   end,
+    --   requires={'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}
+    -- })
     -- Navigation and Fuzzy Search --
-    use({
-      'nvim-neo-tree/neo-tree.nvim',
-      branch='v2.x',
-      event='CursorHold',
-      config=function()
-        require('cfg.plugins.neo-tree')
-      end,
-      requires={'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}
-    })
-
     use({
       {
         'nvim-telescope/telescope.nvim',
-        event='CursorHold',
         config=function()
           require('cfg.plugins.telescope')
-        end
+        end,
+        event='CursorHold'
       },
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         after='telescope.nvim',
-        run='make',
         config=function()
           require('telescope').load_extension('fzf')
-        end
+        end,
+        run='make'
       },
       {
         'nvim-telescope/telescope-ui-select.nvim',
@@ -125,43 +139,43 @@ return require('packer').startup({
           require('telescope').load_extension('ui-select')
         end
       },
-			{
-				"nvim-telescope/telescope-file-browser.nvim",
-				after='telescope.nvim',
-				config=function()
-					require('telescope').load_extension('file_browser')
-				end
-			},
-      {'nvim-telescope/telescope-symbols.nvim', after='telescope.nvim'},
-			})
+      {
+        "nvim-telescope/telescope-file-browser.nvim",
+        after='telescope.nvim',
+        config=function()
+          require('telescope').load_extension('file_browser')
+        end
+      },
+      {'nvim-telescope/telescope-symbols.nvim', after='telescope.nvim'}
+    })
     use({
       'numToStr/Navigator.nvim',
-      event='CursorHold',
       config=function()
         require('cfg.plugins.navigator')
-      end
+      end,
+      event='CursorHold'
     })
     use({
       'phaazon/hop.nvim',
-      event='BufRead',
       config=function()
         require('cfg.plugins.hop')
-      end
+      end,
+      event='BufRead'
     })
     use({
       'karb94/neoscroll.nvim',
-      event='WinScrolled',
       config=function()
-        require('neoscroll').setup({hide_cursor=false})
-      end
+        require('neoscroll').setup({hide_cursor=true})
+      end,
+      event='WinScrolled'
     })
     -- Editing to the MOON --
     use({
       'numToStr/Comment.nvim',
-      event='BufRead',
       config=function()
         require('cfg.plugins.comment')
-      end
+      end,
+      event='BufRead'
     })
     use({'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}})
     use({'ludovicchabant/vim-gutentags'})
@@ -169,58 +183,58 @@ return require('packer').startup({
     use({'AndrewRadev/splitjoin.vim', event='CursorHold'})
     use({
       'numToStr/Buffers.nvim',
-      event='BufRead',
       config=function()
         require('cfg.plugins.buffers')
-      end
+      end,
+      event='BufRead'
     })
     -- Terminal --
     use({
       'numToStr/FTerm.nvim',
-      event='CursorHold',
       config=function()
         require('cfg.plugins.fterm')
-      end
+      end,
+      event='CursorHold'
     })
     -- LSP, Completions and Snippets --
     use({
       'jay-babu/mason-null-ls.nvim',
-      event={'BufReadPre'},
-      requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim', 'williamboman/mason-lspconfig.nvim'},
       config=function()
         require('cfg.plugins.lsp.null-ls')
-      end
+      end,
+      event='CursorHold',
+      requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim', 'williamboman/mason-lspconfig.nvim'}
     })
     use({
       'neovim/nvim-lspconfig',
-      event='BufRead',
       config=function()
         require('cfg.plugins.lsp.servers')
       end,
+      event='CursorHold',
       requires={'hrsh7th/cmp-nvim-lsp'}
     }, {
       'folke/neodev.nvim',
+      after='lspconfig',
       config=function()
         require('neodev').setup({})
-      end,
-      after='lspconfig'
+      end
     })
     use({
       'L3MON4D3/LuaSnip',
-      event='InsertEnter',
       config=function()
         require('cfg.plugins.lsp.luasnip')
       end,
+      event='BufRead',
       requires={'rafamadriz/friendly-snippets'}
     })
     use({
       {
         'hrsh7th/nvim-cmp',
-        event='InsertEnter',
+        after='LuaSnip',
         config=function()
           require('cfg.plugins.lsp.nvim-cmp')
         end,
-        after='LuaSnip'
+        event='BufRead'
       },
       {'ray-x/cmp-treesitter', after='nvim-cmp'},
       {
@@ -250,11 +264,13 @@ return require('packer').startup({
     }
     use({
       'junegunn/vim-easy-align',
+      cmd='EasyAlign',
       config=function()
         require('cfg.plugins.vim-easy-align')
-      end
+      end,
+      opt=true
     })
-    use{'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable'python3' == 1}
+    use{'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable'python3' == 1, opt=true}
     use{
       'sQVe/sort.nvim',
       cmd='Sort',
@@ -266,13 +282,13 @@ return require('packer').startup({
     -- NOTE: nvim-autopairs needs to be loaded after nvim-cmp, so that <CR> would work properly
     use({
       'windwp/nvim-autopairs',
-      event='InsertCharPre',
       after='nvim-cmp',
       config=function()
         require('cfg.plugins.pairs')
-      end
+      end,
+      event='InsertCharPre'
     })
-    use({'dstein64/vim-startuptime', cmd='StartupTime'})
+    use({'dstein64/vim-startuptime', cmd='StartupTime', opt=true})
     use({
       'j-hui/fidget.nvim',
       config=function()
