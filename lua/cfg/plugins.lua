@@ -23,7 +23,7 @@ return require('packer').startup({
   function(use)
     use('lewis6991/impatient.nvim')
     use('wbthomason/packer.nvim')
-    -- use('nvim-lua/plenary.nvim')
+    use('nvim-lua/plenary.nvim')
     -- Theme, Icons, Statusbar, Bufferbar --
     use({
       {
@@ -54,39 +54,22 @@ return require('packer').startup({
       {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'},
       {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'},
       {'windwp/nvim-ts-autotag', after='nvim-treesitter'},
-      {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'}
+      {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'},
+      {
+        'nvim-treesitter/nvim-treesitter-context',
+        after='nvim-treesitter',
+        config=function() require('treesitter-context').setup() end
+      },
     })
-    -- use({
-    --   {
-    --     'nvim-treesitter/nvim-treesitter',
-    --     event='CursorHold',
-    --     run=function()
-    --       pcall(require('nvim-treesitter.install').update{with_sync=false})
-    --     end,
-    --     config=function()
-    --       require('cfg.plugins.treesitter')
-    --     end
-    --   },
-    --   {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'},
-    --   {
-    --     'nvim-treesitter/nvim-treesitter-context',
-    --     after='nvim-treesitter',
-    --     config=function()
-    --       require('treesitter-context').setup()
-    --     end
-    --   },
-    --   {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'},
-    --   {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'}
-    -- })
     -- Editor UI Niceties --
     use({'lukas-reineke/indent-blankline.nvim', config=[[require('cfg.plugins.indentline')]], event='BufReadPost'})
-    -- use({
-    --   'norcalli/nvim-colorizer.lua',
-    --   event='CursorHold',
-    --   config=function()
-    --     require('colorizer').setup()
-    --   end
-    -- })
+    use({
+      'norcalli/nvim-colorizer.lua',
+      event='CursorHold',
+      config=function()
+        require('colorizer').setup()
+      end
+    })
     use({
       'lewis6991/gitsigns.nvim',
       event='BufRead',
@@ -118,6 +101,7 @@ return require('packer').startup({
       end,
       requires={'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}
     })
+
     use({
       {
         'nvim-telescope/telescope.nvim',
@@ -141,8 +125,15 @@ return require('packer').startup({
           require('telescope').load_extension('ui-select')
         end
       },
-      {'nvim-telescope/telescope-symbols.nvim', after='telescope.nvim'}
-    })
+			{
+				"nvim-telescope/telescope-file-browser.nvim",
+				after='telescope.nvim',
+				config=function()
+					require('telescope').load_extension('file_browser')
+				end
+			},
+      {'nvim-telescope/telescope-symbols.nvim', after='telescope.nvim'},
+			})
     use({
       'numToStr/Navigator.nvim',
       event='CursorHold',
