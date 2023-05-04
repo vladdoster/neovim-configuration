@@ -49,11 +49,12 @@ return require('packer').startup({
     use({
       {
         'nvim-treesitter/nvim-treesitter',
-        event='CursorHold',
-        run=':TSUpdate',
         config=function()
           require('cfg.plugins.treesitter')
-        end
+        end,
+        event='CursorHold',
+        requires={'nvim-lua/plenary.nvim'},
+        run=':TSUpdate',
       },
       {'nvim-treesitter/playground', after='nvim-treesitter'},
       {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'},
