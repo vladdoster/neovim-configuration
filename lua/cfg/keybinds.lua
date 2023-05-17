@@ -74,5 +74,4 @@ map('n', '-', [[<cmd>vertical resize -5<cr>]])
 -- horizontally resize window
 map('n', '+', [[<cmd>horizontal resize +2<cr>]])
 map('n', '_', [[<cmd>horizontal resize -2<cr>]])
-
 -- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:

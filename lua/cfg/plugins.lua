@@ -5,7 +5,14 @@ local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({
+      'git',
+      'clone',
+      '--depth',
+      '1',
+      'https://github.com/wbthomason/packer.nvim',
+      install_path
+    })
     vim.cmd('packadd packer.nvim')
     return true
   end
@@ -54,7 +61,7 @@ return require('packer').startup({
         end,
         event='CursorHold',
         requires={'nvim-lua/plenary.nvim'},
-        run=':TSUpdate',
+        run=':TSUpdate'
       },
       {'nvim-treesitter/playground', after='nvim-treesitter'},
       {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'},
@@ -147,7 +154,13 @@ return require('packer').startup({
           require('telescope').load_extension('file_browser')
         end
       },
-      {'nvim-telescope/telescope-symbols.nvim', after='telescope.nvim'}
+      {
+        'nvim-telescope/telescope-symbols.nvim',
+        after='telescope.nvim',
+        config=function()
+          require('telescope').load_extension('file_browser')
+        end
+      }
     })
     use({
       'numToStr/Navigator.nvim',
@@ -170,24 +183,14 @@ return require('packer').startup({
       end,
       event='WinScrolled'
     })
-    -- Editing to the MOON --
-    use({
-      'numToStr/Comment.nvim',
-      config=function()
-        require('cfg.plugins.comment')
-      end,
-      event='BufRead'
-    })
     use({'tpope/vim-surround', event='BufRead', requires={{'tpope/vim-repeat', event='BufRead'}}})
-    use({'ludovicchabant/vim-gutentags'})
     use({'wellle/targets.vim', event='BufRead'})
     use({'AndrewRadev/splitjoin.vim', event='CursorHold'})
     use({
-      'numToStr/Buffers.nvim',
+      'numToStr/Comment.nvim',
       config=function()
-        require('cfg.plugins.buffers')
-      end,
-      event='BufRead'
+        require('Comment').setup({})
+      end
     })
     -- Terminal --
     use({
@@ -204,7 +207,11 @@ return require('packer').startup({
         require('cfg.plugins.lsp.null-ls')
       end,
       event='CursorHold',
-      requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim', 'williamboman/mason-lspconfig.nvim'}
+      requires={
+        'williamboman/mason.nvim',
+        'jose-elias-alvarez/null-ls.nvim',
+        'williamboman/mason-lspconfig.nvim'
+      }
     })
     use({
       'neovim/nvim-lspconfig',
