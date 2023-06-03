@@ -1,3 +1,14 @@
+## [6.13.2](https://github.com/vladdoster/neovim-configuration/compare/v6.13.1...v6.13.2) (2023-06-03)
+
+
+### Bug Fixes
+
+* add plenary dep to treesitter plugin ([67e65ac](https://github.com/vladdoster/neovim-configuration/commit/67e65ac17197b46b30fcfd91bc310eabc1c8c126))
+* packer config and formatting ([fe597dd](https://github.com/vladdoster/neovim-configuration/commit/fe597dd0a5010b52027bc20e0a4f3771c4356259))
+* rm buffers.nvim & gutentags plugins ([b3264a1](https://github.com/vladdoster/neovim-configuration/commit/b3264a1b661d3c42f662f1dff61db7cb8acd20d0))
+* telescope & treesitter plugins ([14ef4a3](https://github.com/vladdoster/neovim-configuration/commit/14ef4a3568b72b1d8e7fd3e9d3f0d458bd1d7f97))
+* telescope keymaps & themes ([b17fb0c](https://github.com/vladdoster/neovim-configuration/commit/b17fb0cb3238752438516a18c1dc4fa4314cef2e))
+
 ## [6.13.1](https://github.com/vladdoster/neovim-configuration/compare/v6.13.0...v6.13.1) (2023-05-02)
 
 
