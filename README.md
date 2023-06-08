@@ -4,6 +4,26 @@
 [![Release](https://github.com/vladdoster/neovim-configuration/actions/workflows/release.yml/badge.svg)](https://github.com/vladdoster/neovim-configuration/actions/workflows/release.yml)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/vladdoster/neovim-configuration)](https://github.com/vladdoster/neovim-configuration/graphs/contributors)
 
+## Install
+
+```bash
+# required
+mv ~/.config/nvim ~/.config/nvim.bak
+
+# optional but recommended
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+mv ~/.cache/nvim ~/.cache/nvim.bak
+```
+
+```bash
+git clone https://github.com/vladdoster/neovim-configuration ~/.config/nvim
+```
+
+``` bash
+nvim
+```
+
 ## Makefile
 
 | Target        | Descripton                                                 |
