@@ -73,6 +73,7 @@ require('telescope').setup({
 
 local map = vim.api.nvim_set_keymap
 local silent = {silent=true, noremap=true}
-map('n', '\'f', [[<cmd>Telescope file_browser<cr>]], silent)
-map('n', '\'g', [[<cmd>Telescope git_files<cr>]], silent)
+-- open with the path of the current buffer
+map( "n", "<space>fb", ":Telescope file_browser path=%:p:h select_buffer=true <CR>", silent)
+map( "n", "<space>gb", ":Telescope git_files path=%:p:h select_buffer=true <CR>", silent)
 map('n', '\'r', [[<cmd>Telescope live_grep<cr>]], silent)
