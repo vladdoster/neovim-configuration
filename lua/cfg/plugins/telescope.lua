@@ -8,7 +8,7 @@ require('telescope').setup({
     layout_config={prompt_position='top'},
     mappings={
       i={
-        ['<C-h>']=lactions.toggle_preview,
+        ['<A-h>']=lactions.toggle_preview,
         ['<C-n>']=actions.move_selection_next,
         ['<C-p>']=actions.move_selection_previous,
         ['<ESC>']=actions.close,
@@ -33,7 +33,7 @@ require('telescope').setup({
       files = true,
       git_status = true,
       grouped = false,
-      hidden = false,
+      hidden = true,
       hide_parent_dir = false,
       hijack_netrw = true,
       prompt_path = false,
@@ -48,7 +48,7 @@ require('telescope').setup({
           ["<A-y>"] = fb_actions.copy,
           ["<C-f>"] = fb_actions.toggle_browser,
           ["<C-g>"] = fb_actions.goto_parent_dir,
-          ["<C-h>"] = fb_actions.goto_home_dir,
+          ["<C-h>"] = fb_actions.toggle_hidden,
           ["<C-o>"] = fb_actions.open,
           ["<C-s>"] = fb_actions.toggle_all,
           ["<C-t>"] = fb_actions.change_cwd,
