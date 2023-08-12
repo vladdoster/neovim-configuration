@@ -1,3 +1,11 @@
+## [6.13.3](https://github.com/vladdoster/neovim-configuration/compare/v6.13.2...v6.13.3) (2023-08-12)
+
+
+### Bug Fixes
+
+* file/git browser keymaps use file path ([2c8a33b](https://github.com/vladdoster/neovim-configuration/commit/2c8a33b8675dff1c1a8172864e2d64d98ee00b62))
+* show hidden files by default in telescope file browser ([9341fc2](https://github.com/vladdoster/neovim-configuration/commit/9341fc26396499660d0f3ccd785e5a8028029fb4))
+
 ## [6.13.2](https://github.com/vladdoster/neovim-configuration/compare/v6.13.1...v6.13.2) (2023-06-03)
 
 
