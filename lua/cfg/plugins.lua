@@ -107,15 +107,19 @@ return require('packer').startup({
         event='CursorHold'
       }
     })
-    -- use({
-    --   'nvim-neo-tree/neo-tree.nvim',
-    --   branch='v2.x',
-    --   event='CursorHold',
-    --   config=function()
-    --     require('cfg.plugins.neo-tree')
-    --   end,
-    --   requires={'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}
-    -- })
+    use{
+      "nvim-neo-tree/neo-tree.nvim",
+      branch="v3.x",
+      config=function()
+        require('cfg.plugins.neo-tree')
+      end,
+      event='CursorHold',
+      requires={
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim"
+      }
+    }
     -- Navigation and Fuzzy Search --
     use({
       {
