@@ -5,14 +5,7 @@ local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({
-      'git',
-      'clone',
-      '--depth',
-      '1',
-      'https://github.com/wbthomason/packer.nvim',
-      install_path
-    })
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd('packadd packer.nvim')
     return true
   end
@@ -207,11 +200,7 @@ return require('packer').startup({
         require('cfg.plugins.lsp.null-ls')
       end,
       event='CursorHold',
-      requires={
-        'williamboman/mason.nvim',
-        'jose-elias-alvarez/null-ls.nvim',
-        'williamboman/mason-lspconfig.nvim'
-      }
+      requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim', 'williamboman/mason-lspconfig.nvim'}
     })
     use({
       'neovim/nvim-lspconfig',
@@ -288,21 +277,22 @@ return require('packer').startup({
       opt=true
     }
     -- NOTE: nvim-autopairs needs to be loaded after nvim-cmp, so that <CR> would work properly
-    use({
+    use{
       'windwp/nvim-autopairs',
       after='nvim-cmp',
       config=function()
         require('cfg.plugins.pairs')
       end,
       event='InsertCharPre'
-    })
-    use({'dstein64/vim-startuptime', cmd='StartupTime', opt=true})
-    use({
+    }
+    use{'dstein64/vim-startuptime', cmd='StartupTime', opt=true}
+    use{
       'j-hui/fidget.nvim',
+      tag='legacy',
       config=function()
-        require('fidget').setup()
+        require("fidget").setup{}
       end
-    })
+    }
   end,
   config={
     display={
