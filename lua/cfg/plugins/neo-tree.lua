@@ -183,3 +183,14 @@ k('n', '<leader>gd', c(':Neotree float reveal_file=<cfile> reveal_force_cwd'))
 k('n', '<leader>b', c(':Neotree toggle show buffers right'))
 k('n', '<leader>s', c(':Neotree float git_status'))
 
+local function map(mode, lhs, rhs, opts)
+  local options = {noremap=true, silent=true}
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+-- NvimTree
+map('n', '<C-n>', ':Neotree toggle left<CR>') -- open/close
+-- map('n', '<leader>f', ':NvimTreeRefresh<CR>')       -- refresh
+-- map('n', '<leader>n', ':NvimTreeFindFile<CR>')      -- search file
