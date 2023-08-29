@@ -17,9 +17,11 @@ nls.setup({
     dgn.checkmake,
     dgn.commitlint,
     dgn.eslint,
+    dgn.flake8,
     dgn.hadolint,
     dgn.zsh,
     fmt.fixjson,
+    fmt.autopep8,
     fmt.prettierd,
     fmt.trim_whitespace.with({filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text', 'tmux', 'toml', 'zsh'}})
   },
@@ -36,7 +38,7 @@ nls.setup({
 
 require('mason-null-ls').setup({
   ensure_installed={'lua-language-server'},
-  max_concurrent_installers=50,
+  max_concurrent_installers=10,
   automatic_installation=true,
   handlers={
     function()

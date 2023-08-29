@@ -14,6 +14,7 @@ local function on_attach(client, buf)
 end
 vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
 vim.diagnostic.config({virtual_text={source='always'}, float={source='always'}})
+require'lspconfig'.pylsp.setup{settings={pylsp={plugins={pycodestyle={ignore={'W391'}, maxLineLength=100}}}}}
 -- Lua
 lsp.lua_ls.setup({
   flags=flags,
