@@ -1,3 +1,17 @@
+# [6.14.0](https://github.com/vladdoster/neovim-configuration/compare/v6.13.3...v6.14.0) (2023-09-02)
+
+
+### Bug Fixes
+
+* add back neo-tree.nvim file browser ([ffc73bf](https://github.com/vladdoster/neovim-configuration/commit/ffc73bf11ff6c209d7c7fd94c772dfaf1e0e36e3))
+* follow_current_files option type neotree ([577406d](https://github.com/vladdoster/neovim-configuration/commit/577406d50ae9d6ca4d85f8585fce1511adc85f20))
+* neotree open keymap to `ctrl+n` ([b38eb0b](https://github.com/vladdoster/neovim-configuration/commit/b38eb0b83ded304bb42caa25fbbc5854227f1628))
+
+
+### Features
+
+* configure python lsp servers and formatters ([c6e272f](https://github.com/vladdoster/neovim-configuration/commit/c6e272fa4477e04b6084286883b67cff265c8a40))
+
 ## [6.13.3](https://github.com/vladdoster/neovim-configuration/compare/v6.13.2...v6.13.3) (2023-08-12)
 
 
