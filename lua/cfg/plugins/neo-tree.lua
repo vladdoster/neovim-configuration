@@ -101,7 +101,7 @@ neotree.setup{
       never_show_by_pattern={},
       visible=false
     },
-    follow_current_file=true,
+    follow_current_file={enabled=true},
     hijack_netrw_behavior='open_current',
     use_libuv_file_watcher=true,
     -- follow_current_file=true,
@@ -134,7 +134,9 @@ neotree.setup{
     }
   },
   buffers={
-    follow_current_file=true, -- This will find and focus the file in the active buffer every
+    follow_current_file={
+      enabled=true -- This will find and focus the file in the active buffer every
+    },
     group_empty_dirs=true, -- when true, empty folders will be grouped together
     show_unloaded=true,
     window={mappings={['bd']='buffer_delete', ['<bs>']='navigate_up', ['.']='set_root'}}
