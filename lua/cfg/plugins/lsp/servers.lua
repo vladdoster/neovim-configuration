@@ -39,7 +39,7 @@ lsp.lua_ls.setup({
   }
 })
 
-local servers = {'eslint', 'gopls', 'html', 'jsonls', 'pylsp', 'terraformls', 'yamlls'}
+local servers = {'eslint', 'gopls', 'html', 'jsonls', 'pyright', 'terraformls', 'yamlls'}
 local conf = {flags=flags, capabilities=capabilities, on_attach=on_attach}
 for _, server in ipairs(servers) do
   lsp[server].setup(conf)
