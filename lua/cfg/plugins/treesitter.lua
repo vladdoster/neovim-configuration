@@ -1,6 +1,7 @@
 require('nvim-treesitter.configs').setup({
   auto_install=true,
-  ensure_installed={'bash', 'go', 'json', 'lua', 'markdown', 'markdown_inline'},
+  ensure_installed={'css', 'graphql', 'html', 'java', 'javascript', 'lua', 'python', 'tsx', 'twig', 'typescript', 'vim'},
+  context_commentstring={enable=true},
   highlight={enable=true, additional_vim_regex_highlighting=false},
   indent={enable=true},
   incremental_selection={
@@ -38,6 +39,5 @@ require('nvim-treesitter.configs').setup({
       goto_previous_end={['[F']='@function.outer', ['[]']='@class.outer'}
     }
   },
-  refactor={highlight_definitions={enable=true}},
-  context_commentstring={enable_autocmd=false, enable=true}
+  refactor={highlight_definitions={enable=true}}
 })
