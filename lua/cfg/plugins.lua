@@ -56,10 +56,8 @@ return require('packer').startup({
         requires={'nvim-lua/plenary.nvim'},
         run=':TSUpdate'
       },
-      {'nvim-treesitter/playground', after='nvim-treesitter'},
       {'nvim-treesitter/nvim-treesitter-textobjects', after='nvim-treesitter'},
       {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'},
-      {'windwp/nvim-ts-autotag', after='nvim-treesitter'},
       {'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'},
       {
         'nvim-treesitter/nvim-treesitter-context',
@@ -197,76 +195,22 @@ return require('packer').startup({
       end,
       event='CursorHold'
     })
-		use {
-  'VonHeikemen/lsp-zero.nvim',
-  branch = 'v2.x',
+    use{
+      'VonHeikemen/lsp-zero.nvim',
+      branch='v2.x',
       config=function()
         require('cfg.plugins.lsp-zero')
       end,
-  requires = {
-    -- LSP Support
-    {'neovim/nvim-lspconfig'},             -- Required
-    {'williamboman/mason.nvim'},           -- Optional
-    {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
-    -- Autocompletion
-    {'hrsh7th/nvim-cmp'},     -- Required
-    {'hrsh7th/cmp-nvim-lsp'}, -- Required
-    {'L3MON4D3/LuaSnip'},     -- Required
-  }
-}
-    -- -- LSP, Completions and Snippets --
-    -- use({
-    --   'jay-babu/mason-null-ls.nvim',
-    --   config=function()
-    --     require('cfg.plugins.lsp.null-ls')
-    --   end,
-    --   event='CursorHold',
-    --   requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim', 'williamboman/mason-lspconfig.nvim'}
-    -- })
-    -- use({
-    --   'neovim/nvim-lspconfig',
-    --   config=function()
-    --     require('cfg.plugins.lsp.servers')
-    --   end,
-    --   event='CursorHold',
-    --   requires={'hrsh7th/cmp-nvim-lsp'}
-    -- }, {
-    --   'folke/neodev.nvim',
-    --   after='lspconfig',
-    --   config=function()
-    --     require('neodev').setup({})
-    --   end
-    -- })
-    -- use({
-    --   'L3MON4D3/LuaSnip',
-    --   config=function()
-    --     require('cfg.plugins.lsp.luasnip')
-    --   end,
-    --   event='BufRead',
-    --   requires={'rafamadriz/friendly-snippets'}
-    -- })
-    -- use({
-    --   {
-    --     'hrsh7th/nvim-cmp',
-    --     after='LuaSnip',
-    --     config=function()
-    --       require('cfg.plugins.lsp.nvim-cmp')
-    --     end,
-    --     event='BufRead'
-    --   },
-    --   {'ray-x/cmp-treesitter', after='nvim-cmp'},
-    --   {
-    --     'tamago324/cmp-zsh',
-    --     after='nvim-cmp',
-    --     config=function()
-    --       require'cmp_zsh'.setup{zshrc=true, filetypes={'zsh'}}
-    --     end
-    --   },
-    --   {'hrsh7th/cmp-buffer', after='nvim-cmp'},
-    --   {'hrsh7th/cmp-path', after='nvim-cmp'},
-    --   {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'}
-    -- })
+      requires={
+        {'neovim/nvim-lspconfig'},
+        {'williamboman/mason.nvim'},
+        {'williamboman/mason-lspconfig.nvim'},
+        -- Autocompletion
+        {'hrsh7th/nvim-cmp'},
+        {'hrsh7th/cmp-nvim-lsp'},
+        {'L3MON4D3/LuaSnip'}
+      }
+    }
     use{
       'echasnovski/mini.move',
       config=function()
