@@ -1,3 +1,20 @@
+# [6.15.0](https://github.com/vladdoster/neovim-configuration/compare/v6.14.0...v6.15.0) (2023-09-21)
+
+
+### Bug Fixes
+
+* keymaps for moving lines and tab navigation ([4f838f2](https://github.com/vladdoster/neovim-configuration/commit/4f838f2fd959836eda91195e16ebe98cb441a403))
+* lsp plugin configurations ([2311d78](https://github.com/vladdoster/neovim-configuration/commit/2311d782ef6f63dd616686f98551bf24c3838829))
+* remove telescope file browser configuration ([0c8953a](https://github.com/vladdoster/neovim-configuration/commit/0c8953a437c99073cfa226bee6ff2bed3a8200ba))
+* remove treesitter cruft ([e827ee6](https://github.com/vladdoster/neovim-configuration/commit/e827ee689f2b83f93f37ec8f32dfbc3df64cb410))
+
+
+### Features
+
+* add lsp-zero plugin configuration ([1210207](https://github.com/vladdoster/neovim-configuration/commit/1210207ca1c97a3b7ca4d7a877efd1936f6e2500))
+* configure lsp via lsp-zero plugin ([72c17fd](https://github.com/vladdoster/neovim-configuration/commit/72c17fd3e3b83b3de288cb32ab4cbbfb0d15497e))
+* set smoothscrolling option ([6a6fb42](https://github.com/vladdoster/neovim-configuration/commit/6a6fb42783eef17e96360d69b693cb8fd05cd377))
+
 # [6.14.0](https://github.com/vladdoster/neovim-configuration/compare/v6.13.3...v6.14.0) (2023-09-02)
 
 
