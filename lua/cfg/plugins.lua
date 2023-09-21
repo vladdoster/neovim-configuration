@@ -105,19 +105,19 @@ return require('packer').startup({
         event='CursorHold'
       }
     })
-    use{
-      "nvim-neo-tree/neo-tree.nvim",
-      branch="v3.x",
+    use({
+      'nvim-neo-tree/neo-tree.nvim',
+      branch='v3.x',
       config=function()
         require('cfg.plugins.neo-tree')
       end,
       event='CursorHold',
       requires={
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-        "MunifTanjim/nui.nvim"
+        'nvim-lua/plenary.nvim',
+        'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+        'MunifTanjim/nui.nvim'
       }
-    }
+    })
     -- Navigation and Fuzzy Search --
     use({
       {
@@ -141,21 +141,21 @@ return require('packer').startup({
         config=function()
           require('telescope').load_extension('ui-select')
         end
-      },
-      {
-        "nvim-telescope/telescope-file-browser.nvim",
-        after='telescope.nvim',
-        config=function()
-          require('telescope').load_extension('file_browser')
-        end
-      },
-      {
-        'nvim-telescope/telescope-symbols.nvim',
-        after='telescope.nvim',
-        config=function()
-          require('telescope').load_extension('file_browser')
-        end
       }
+      -- {
+      --   "nvim-telescope/telescope-file-browser.nvim",
+      --   after = "telescope.nvim",
+      --   config = function()
+      --     require("telescope").load_extension("file_browser")
+      --   end,
+      -- },
+      -- {
+      --   "nvim-telescope/telescope-symbols.nvim",
+      --   after = "telescope.nvim",
+      --   config = function()
+      --     require("telescope").load_extension("file_browser")
+      --   end,
+      -- },
     })
     use({
       'numToStr/Navigator.nvim',
@@ -195,36 +195,75 @@ return require('packer').startup({
       end,
       event='CursorHold'
     })
-    use{
-      'VonHeikemen/lsp-zero.nvim',
-      branch='v2.x',
+    use({
+      'neovim/nvim-lspconfig',
+      event='BufRead',
       config=function()
-        require('cfg.plugins.lsp-zero')
+        require('cfg.plugins.lsp.servers')
       end,
-      requires={
-        {'neovim/nvim-lspconfig'},
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'},
-        -- Autocompletion
-        {'hrsh7th/nvim-cmp'},
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'L3MON4D3/LuaSnip'}
-      }
-    }
-    use{
+      requires={{'hrsh7th/cmp-nvim-lsp'}}
+    })
+    use({
+      'jay-babu/mason-null-ls.nvim',
+      event={'BufReadPre', 'BufNewFile'},
+      requires={'williamboman/mason.nvim', 'jose-elias-alvarez/null-ls.nvim'},
+      config=function()
+        require('cfg.plugins.lsp.null-ls')
+      end
+    })
+    -- use({
+    --   'jose-elias-alvarez/null-ls.nvim',
+    --   event='BufRead',
+    --   config=function()
+    --     require('cfg.plugins.lsp.null-ls')
+    --   end
+    -- })
+
+    use({
+      {
+        'hrsh7th/nvim-cmp',
+        event='InsertEnter',
+        config=function()
+          require('cfg.plugins.lsp.nvim-cmp')
+        end,
+        requires={
+          {
+            'L3MON4D3/LuaSnip',
+            event='InsertEnter',
+            config=function()
+              require('cfg.plugins.lsp.luasnip')
+            end,
+            requires={{'rafamadriz/friendly-snippets', event='CursorHold'}}
+          }
+        }
+      },
+      {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
+      {'hrsh7th/cmp-path', after='nvim-cmp'},
+      {'hrsh7th/cmp-buffer', after='nvim-cmp'}
+    })
+    -- NOTE: nvim-autopairs needs to be loaded after nvim-cmp, so that <CR> would work properly
+    use({
+      'windwp/nvim-autopairs',
+      event='InsertCharPre',
+      after='nvim-cmp',
+      config=function()
+        require('cfg.plugins.pairs')
+      end
+    })
+    use({
       'echasnovski/mini.move',
       config=function()
         require('mini.move').setup()
       end,
       opt=true
-    }
-    use{
+    })
+    use({
       'echasnovski/mini.splitjoin',
       config=function()
         require('mini.splitjoin').setup()
       end,
       opt=true
-    }
+    })
     use({
       'junegunn/vim-easy-align',
       cmd='EasyAlign',
@@ -233,32 +272,34 @@ return require('packer').startup({
       end,
       opt=true
     })
-    use{'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable'python3' == 1, opt=true}
-    use{
+    use({'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable('python3') == 1, opt=true})
+    use({
       'sQVe/sort.nvim',
       cmd='Sort',
       config=function()
         require('cfg.plugins.sort')
       end,
       opt=true
-    }
-    -- NOTE: nvim-autopairs needs to be loaded after nvim-cmp, so that <CR> would work properly
-    use{
-      'windwp/nvim-autopairs',
-      after='nvim-cmp',
+    })
+    use({ -- auto-resize windows
+      'anuvyklack/windows.nvim',
+      event='WinNew',
+      requires={'anuvyklack/middleclass', 'anuvyklack/animation.nvim'},
       config=function()
-        require('cfg.plugins.pairs')
-      end,
-      event='InsertCharPre'
-    }
-    use{'dstein64/vim-startuptime', cmd='StartupTime', opt=true}
-    use{
+        vim.o.winwidth = 5
+        vim.o.equalalways = false
+        require('windows').setup({animation={enable=false, duration=150}})
+        require('cfg.keybinds').map('n', '<leader>m', '<cmd>WindowsMaximize<cr>')
+      end
+    })
+    use({'dstein64/vim-startuptime', cmd='StartupTime', opt=true})
+    use({
       'j-hui/fidget.nvim',
       tag='legacy',
       config=function()
-        require("fidget").setup{}
+        require('fidget').setup({})
       end
-    }
+    })
   end,
   config={
     display={

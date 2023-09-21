@@ -53,12 +53,11 @@ cmp.setup({
     ['<C-y>']=cmp.mapping.confirm({select=true})
   }),
   sources=cmp.config.sources({
-    {name='nvim_lsp'},
-    {name='treesitter'},
-    {name='buffer'},
-    {name='luasnip'},
-    {name='path'},
-    {name='zsh'}
+    {name='nvim_lsp', max_item_count=10},
+    {name='treesitter', max_item_count=10},
+    {name='buffer', max_item_count=10},
+    {name='luasnip', max_item_count=10},
+    {name='path', max_item_count=10}
   }),
   formatting={
     format=function(entry, item)
