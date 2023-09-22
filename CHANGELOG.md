@@ -1,3 +1,10 @@
+## [6.15.1](https://github.com/vladdoster/neovim-configuration/compare/v6.15.0...v6.15.1) (2023-09-22)
+
+
+### Bug Fixes
+
+* update keymaps to use new module ([1e399e8](https://github.com/vladdoster/neovim-configuration/commit/1e399e8ebe61b337e7464ff66fd0cb48de8da588))
+
 # [6.15.0](https://github.com/vladdoster/neovim-configuration/compare/v6.14.0...v6.15.0) (2023-09-21)
 
 
