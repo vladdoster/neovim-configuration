@@ -88,12 +88,12 @@ M.map("n", "<leader><tab>]", "<cmd>tabnext<cr>")
 M.map("n", "<leader><tab>d", "<cmd>tabclose<cr>")
 M.map("n", "<leader><tab>[", "<cmd>tabprevious<cr>")
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map("n", "n", "'Nn'[v:searchforward]", {expr=true})
-map("x", "n", "'Nn'[v:searchforward]", {expr=true})
-map("o", "n", "'Nn'[v:searchforward]", {expr=true})
-map("n", "N", "'nN'[v:searchforward]", {expr=true})
-map("x", "N", "'nN'[v:searchforward]", {expr=true})
-map("o", "N", "'nN'[v:searchforward]", {expr=true})
+M.map("n", "n", "'Nn'[v:searchforward]", {expr=true})
+M.map("x", "n", "'Nn'[v:searchforward]", {expr=true})
+M.map("o", "n", "'Nn'[v:searchforward]", {expr=true})
+M.map("n", "N", "'nN'[v:searchforward]", {expr=true})
+M.map("x", "N", "'nN'[v:searchforward]", {expr=true})
+M.map("o", "N", "'nN'[v:searchforward]", {expr=true})
 
 M.map("v", "<C-s>", "<cmd>Sort<cr>", {remap=true})
 -- save the current buffer or all buffers
