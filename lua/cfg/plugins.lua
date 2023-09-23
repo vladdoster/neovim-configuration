@@ -218,7 +218,12 @@ return require('packer').startup({
     --     require('cfg.plugins.lsp.null-ls')
     --   end
     -- })
-
+    use({
+      'akinsho/toggleterm.nvim',
+      config=function()
+        require('cfg.plugins.toggleterm')
+      end
+    })
     use({
       {
         'hrsh7th/nvim-cmp',

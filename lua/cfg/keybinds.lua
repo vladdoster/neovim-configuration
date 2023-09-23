@@ -73,6 +73,14 @@ M.map("t", "<C-l>", "<cmd>wincmd l<cr>")
 M.map("t", "<C-/>", "<cmd>close<cr>")
 M.map("t", "<c-_>", "<cmd>close<cr>")
 
+M.map('n', "<leader>tf", "<cmd>ToggleTerm direction=float<cr>")
+M.map('n', "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>")
+M.map('n', "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>")
+-- M.map('n', "<F7>" "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" }
+-- M.map('n', "<F7>"] = maps.n["<F7>"]
+-- M.map('n', "<C-'>"] = maps.n["<F7>"] -- requires terminal that supports binding <C-'>
+-- M.map('n', "<C-'>"] = maps.n["<F7>"] -- requires terminal that supports binding <C-'>
+
 -- windows
 M.map("n", "<leader>ww", "<C-W>p", {remap=true})
 M.map("n", "<leader>wd", "<C-W>c", {remap=true})
