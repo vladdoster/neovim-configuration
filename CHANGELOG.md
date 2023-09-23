@@ -1,3 +1,10 @@
+# [6.16.0](https://github.com/vladdoster/neovim-configuration/compare/v6.15.1...v6.16.0) (2023-09-23)
+
+
+### Features
+
+* add toggleterm plugin & keybinds ([c3a5430](https://github.com/vladdoster/neovim-configuration/commit/c3a5430d17982959c765c85c329dc1a8fa060c65))
+
 ## [6.15.1](https://github.com/vladdoster/neovim-configuration/compare/v6.15.0...v6.15.1) (2023-09-22)
 
 
