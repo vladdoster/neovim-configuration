@@ -38,7 +38,7 @@ lsp.lua_ls.setup({
   }
 })
 
-local servers = {'pyright', 'terraformls', 'yamlls'}
+local servers = {'pylsp', 'pyright', 'terraformls', 'yamlls'}
 local conf = {flags=flags, capabilities=capabilities, on_attach=on_attach}
 for _, server in ipairs(servers) do
   lsp[server].setup(conf)

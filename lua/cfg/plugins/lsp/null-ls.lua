@@ -2,8 +2,8 @@ local U = require('cfg.plugins.lsp.utils')
 
 require("mason").setup({})
 require("mason-null-ls").setup({
-  ensure_installed={'lua-language-server', 'pylsp', 'pylint'},
-  max_concurrent_installers=10,
+  ensure_installed={'lua-language-server', 'pyright', 'black'},
+  max_concurrent_installers=5,
   automatic_installation=true,
   handlers={}
 })
@@ -16,7 +16,9 @@ nls.setup({
   sources={
     dgn.commitlint,
     dgn.hadolint,
-    fmt.trim_whitespace.with({filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text', 'tmux', 'toml', 'zsh', 'py'}})
+    fmt.trim_whitespace.with({filetypes={'conf', 'lua', 'make', 'md', 'mdx', 'text', 'tmux', 'toml', 'zsh', 'py'}}),
+    fmt.black,
+    fmt.isort
   },
   on_attach=function(client, bufnr)
     U.fmt_on_save(client, bufnr)
