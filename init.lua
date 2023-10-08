@@ -1,6 +1,11 @@
-require('cfg.settings')
-require('cfg.autocmd')
-require('cfg.plugins')
-require('cfg.keybinds')
-
--- vim: set fenc=utf8 ffs=unix ft=lua list noet sw=2 ts=2 tw=72:
+-- Import Lua modules
+require('core/lazy')
+require('core/autocmds')
+require('core/keymaps')
+require('core/statusline')
+require('core/options')
+require('lsp/lspconfig')
+require('plugins/neo-tree')
+require('plugins/indent-blankline')
+require('plugins/nvim-cmp')
+require('plugins/nvim-treesitter')
