@@ -1,3 +1,10 @@
+# [6.17.0](https://github.com/vladdoster/neovim-configuration/compare/v6.16.0...v6.17.0) (2023-10-08)
+
+
+### Features
+
+* configure python lsps ([ce0e4d0](https://github.com/vladdoster/neovim-configuration/commit/ce0e4d04d980900fef368a8df70fa6624e584966))
+
 # [6.16.0](https://github.com/vladdoster/neovim-configuration/compare/v6.15.1...v6.16.0) (2023-09-23)
 
 
