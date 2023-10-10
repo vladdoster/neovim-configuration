@@ -82,7 +82,7 @@ lazy.setup({
         require('nvim-autopairs').setup{}
       end
     },
-
+    {'vladdoster/remember.nvim', config=[[ require('remember') ]]},
     {
       "numToStr/Comment.nvim",
       config=function()
@@ -93,7 +93,12 @@ lazy.setup({
         {"gb", mode={"n", "v"}, desc="Comment toggle blockwise"}
       }
     },
-
+    {
+      "folke/neodev.nvim",
+      config=function()
+        require('neodev').setup{}
+      end
+    },
     {
       'williamboman/mason.nvim',
       config=function()
@@ -116,6 +121,12 @@ lazy.setup({
         'hrsh7th/cmp-buffer',
         'saadparwaiz1/cmp_luasnip'
       }
+    },
+    {
+      "nvim-telescope/telescope.nvim",
+      cmd="Telescope",
+      dependencies={{"nvim-telescope/telescope-fzf-native.nvim", enabled=vim.fn.executable"make" == 1, build="make"}}
+
     },
     {
       "dstein64/vim-startuptime",
