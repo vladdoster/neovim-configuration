@@ -1,86 +1,80 @@
------------------------------------------------------------
--- General Neovim settings and configuration
------------------------------------------------------------
--- Default options are not included
--- See: https://neovim.io/doc/user/vim_diff.html
--- [2] Defaults - *nvim-defaults*
-local g = vim.g -- Global variables
-local opt = vim.opt -- Set options (global/buffer/windows-scoped)
+local g = vim.g
+local opt = vim.opt
 
------------------------------------------------------------
--- General
------------------------------------------------------------
-opt.mouse = 'a' -- Enable mouse support
-opt.clipboard = 'unnamedplus' -- Copy/paste to system clipboard
-opt.swapfile = false -- Don't use swapfile
-opt.completeopt = 'menuone,noinsert,noselect' -- Autocomplete options
+g.mapleader = ' '
+g.maplocalleader = ' '
 
------------------------------------------------------------
--- Neovim UI
------------------------------------------------------------
-opt.number = true -- Show line number
-opt.showmatch = true -- Highlight matching parenthesis
-opt.foldmethod = 'marker' -- Enable folding (default 'foldmarker')
-opt.colorcolumn = '80' -- Line lenght marker at 80 columns
-opt.splitright = true -- Vertical split to the right
-opt.splitbelow = true -- Horizontal split to the bottom
-opt.ignorecase = true -- Ignore case letters when search
-opt.smartcase = true -- Ignore lowercase for the whole pattern
-opt.linebreak = true -- Wrap on word boundary
-opt.termguicolors = true -- Enable 24-bit RGB colors
+opt.autowrite = true
 opt.background = 'dark'
-opt.laststatus = 3 -- Set global statusline
+opt.clipboard = 'unnamedplus'
+opt.completeopt = 'menu,menuone,noselect'
+opt.conceallevel = 3
+opt.confirm = true
+opt.cursorline = true
+opt.expandtab = true
+opt.formatoptions = 'jcroqlnt'
+opt.grepformat = '%f:%l:%c:%m'
+opt.grepprg = 'rg'
+opt.ignorecase = true
+opt.inccommand = 'nosplit'
+opt.laststatus = 0
+opt.list = true
+opt.mouse = 'a'
+opt.number = true
+opt.pumblend = 10
+opt.pumheight = 10
+opt.relativenumber = true
+opt.scrolloff = 4
+opt.sessionoptions = {'buffers', 'curdir', 'tabpages', 'winsize'}
+opt.shiftround = true
+opt.shiftwidth = 2
+opt.shortmess:append{W=true, I=true, c=true}
+opt.showmode = false
+opt.sidescrolloff = 8
+opt.signcolumn = 'yes'
+opt.smartcase = true
+opt.smartindent = true
+opt.smoothscroll = true
+opt.spelllang = {'en'}
+opt.splitbelow = true
+opt.splitright = true
+opt.tabstop = 2
+opt.termguicolors = true
+opt.timeoutlen = 300
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200
+opt.wildmode = 'longest:full,full'
+opt.winminwidth = 5
+opt.wrap = false
 
------------------------------------------------------------
--- Tabs, indent
------------------------------------------------------------
-opt.expandtab = true -- Use spaces instead of tabs
-opt.shiftwidth = 4 -- Shift 4 spaces when tab
-opt.tabstop = 4 -- 1 tab == 4 spaces
-opt.smartindent = true -- Autoindent new lines
-
------------------------------------------------------------
--- Memory, CPU
------------------------------------------------------------
-opt.hidden = true -- Enable background buffers
-opt.history = 100 -- Remember N lines in history
-opt.lazyredraw = true -- Faster scrolling
-opt.synmaxcol = 240 -- Max column for syntax highlight
-opt.updatetime = 250 -- ms to wait for trigger an event
-
------------------------------------------------------------
--- Startup
------------------------------------------------------------
--- Disable nvim intro
-opt.shortmess:append 'sI'
-
--- -- Disable builtin plugins
+-- Disable builtin plugins
 local disabled_built_ins = {
   '2html_plugin',
+  'bugreport',
+  'compiler',
+  'ftplugin',
   'getscript',
   'getscriptPlugin',
   'gzip',
   'logipat',
+  'matchit',
   'netrw',
+  'netrwFileHandlers',
   'netrwPlugin',
   'netrwSettings',
-  'netrwFileHandlers',
-  'matchit',
-  'tar',
-  'tarPlugin',
+  'optwin',
+  'rplugin',
   'rrhelper',
   'spellfile_plugin',
+  'synmenu',
+  'tar',
+  'tarPlugin',
+  'tutor',
   'vimball',
   'vimballPlugin',
   'zip',
-  'zipPlugin',
-  'tutor',
-  'rplugin',
-  'synmenu',
-  'optwin',
-  'compiler',
-  'bugreport',
-  'ftplugin'
+  'zipPlugin'
 }
 
 for _, plugin in pairs(disabled_built_ins) do
