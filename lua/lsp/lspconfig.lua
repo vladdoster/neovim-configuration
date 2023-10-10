@@ -1,12 +1,6 @@
 -----------------------------------------------------------
 -- Neovim LSP configuration file
 -----------------------------------------------------------
--- Plugin: nvim-lspconfig
--- url: https://github.com/neovim/nvim-lspconfig
--- For configuration see the Wiki: https://github.com/neovim/nvim-lspconfig/wiki
--- Autocompletion settings of "nvim-cmp" are defined in plugins/nvim-cmp.lua
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
--- Ensure the servers above are installed
 local lsp_status_ok, lspconfig = pcall(require, 'lspconfig')
 if not lsp_status_ok then
   return
@@ -22,20 +16,12 @@ if not cmp_status_ok then
   return
 end
 
--- Add additional capabilities supported by nvim-cmp
--- See: https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Highlighting references.
-  -- See: https://sbulav.github.io/til/til-neovim-highlight-references/
-  -- for the highlight trigger time see: `vim.opt.updatetime`
   if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_augroup('lsp_document_highlight', {clear=true})
     vim.api.nvim_clear_autocmds{buffer=bufnr, group='lsp_document_highlight'}
@@ -53,8 +39,6 @@ local on_attach = function(client, bufnr)
     })
   end
 
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = {noremap=true, silent=true, buffer=bufnr}
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -75,69 +59,36 @@ local on_attach = function(client, bufnr)
   end, bufopts)
 end
 
--- Diagnostic settings:
--- see: `:help vim.diagnostic.config`
--- Customizing how diagnostics are displayed
 vim.diagnostic.config({
   update_in_insert=true,
   float={focusable=false, style='minimal', border='rounded', source='always', header='', prefix=''}
 })
 
--- Show line diagnostics automatically in hover window
 vim.cmd([[
   autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus = false })
 ]])
 
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = {noremap=true, silent=true}
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
---[[
-Language servers setup:
-
-For language servers list see:
-https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-
-Language server installed:
-
-Bash          -> bashls
-Python        -> pyright
-C-C++         -> clangd
-HTML/CSS/JSON -> vscode-html-languageserver
-JavaScript/TypeScript -> tsserver
---]]
-
--- Define `root_dir` when needed
--- See: https://github.com/neovim/nvim-lspconfig/issues/320
--- This is a workaround, maybe not work with some servers.
 local root_dir = function()
   return vim.fn.getcwd()
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches.
--- Add your language server below:
-local servers = {}
-local servers = {
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-  bashls={},
-  lua_ls={Lua={workspace={checkThirdParty=false}, telemetry={enable=false}}},
-  pyright={}
-}
+local servers = {bashls={}, lua_ls={Lua={workspace={checkThirdParty=true}, telemetry={enable=false}}}, pyright={}}
 
 mason_lspconfig.setup{ensure_installed=vim.tbl_keys(servers)}
-
 mason_lspconfig.setup_handlers{
   function(server_name)
-    require('lspconfig')[server_name].setup{
+    lspconfig[server_name].setup{
       capabilities=capabilities,
+      filetypes=(servers[server_name] or {}).filetypes,
       on_attach=on_attach,
-      settings=servers[server_name],
-      filetypes=(servers[server_name] or {}).filetypes
+      root_dir=root_dir,
+      settings=servers[server_name]
     }
   end
 }
