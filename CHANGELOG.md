@@ -1,3 +1,20 @@
+# [6.18.0](https://github.com/vladdoster/neovim-configuration/compare/v6.17.0...v6.18.0) (2023-10-10)
+
+
+### Bug Fixes
+
+* enable undofile option ([e8c7a58](https://github.com/vladdoster/neovim-configuration/commit/e8c7a58e29c377e6b8227beb71124155dad0e1a0))
+* enable use of arrow keys ([8ade441](https://github.com/vladdoster/neovim-configuration/commit/8ade44189d8b1a95a9ddf535850675542cdcf032))
+* remove verbose comments in lspconfig ([4079ae9](https://github.com/vladdoster/neovim-configuration/commit/4079ae969539fbd10962f3a89285e1164eadb51f))
+* update lazy-lock.json ([f46ba03](https://github.com/vladdoster/neovim-configuration/commit/f46ba0317c4807f52bf2ca781d2525c086140084))
+* use previous lualine configuration ([8a39c37](https://github.com/vladdoster/neovim-configuration/commit/8a39c375c4cb6fd6be88dc349747ee5a0420fc90))
+
+
+### Features
+
+* add neodev, remember, and telescope plugins ([df08ecf](https://github.com/vladdoster/neovim-configuration/commit/df08ecfe2f76c24e9f5948528f02efd579a2fd69))
+* add telescope configuration ([dd69236](https://github.com/vladdoster/neovim-configuration/commit/dd692365ff454e063d2635851540daf5d8503c63))
+
 # [6.17.0](https://github.com/vladdoster/neovim-configuration/compare/v6.16.0...v6.17.0) (2023-10-08)
 
 
