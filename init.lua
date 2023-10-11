@@ -2,7 +2,6 @@
 require('core/lazy')
 require('core/autocmds')
 require('core/keymaps')
-require('core/statusline')
 require('core/options')
 require('lsp/lspconfig')
 require('plugins/indent-blankline')
