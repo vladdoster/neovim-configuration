@@ -1,22 +1,24 @@
------------------------------------------------------------
--- Treesitter configuration file
-----------------------------------------------------------
--- Plugin: nvim-treesitter
--- url: https://github.com/nvim-treesitter/nvim-treesitter
-local status_ok, nvim_treesitter = pcall(require, 'nvim-treesitter.configs')
-if not status_ok then
-  return
-end
-
--- See: https://github.com/nvim-treesitter/nvim-treesitter#quickstart
 vim.defer_fn(function()
+  local status_ok, nvim_treesitter = pcall(require, 'nvim-treesitter.configs')
+  if not status_ok then
+    return
+  end
   nvim_treesitter.setup{
-    -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed={'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim'},
-
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+    ensure_installed={
+      'c',
+      'cpp',
+      'go',
+      'lua',
+      'python',
+      'rust',
+      'tsx',
+      'javascript',
+      'typescript',
+      'vimdoc',
+      'vim',
+      'bash'
+    },
     auto_install=false,
-
     highlight={enable=true},
     indent={enable=true},
     incremental_selection={
