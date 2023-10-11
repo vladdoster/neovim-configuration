@@ -1,3 +1,17 @@
+# [6.19.0](https://github.com/vladdoster/neovim-configuration/compare/v6.18.0...v6.19.0) (2023-10-11)
+
+
+### Bug Fixes
+
+* remove cruft in treesitter configuration ([4bcef97](https://github.com/vladdoster/neovim-configuration/commit/4bcef97111fa220ceaf39a3fe3638dcc56b6fd62))
+* update lazy plugins configuration ([1229abd](https://github.com/vladdoster/neovim-configuration/commit/1229abd3d847235e47a06b27f5b3686f0cd86008))
+* update lazy-lock.json ([c6b05ad](https://github.com/vladdoster/neovim-configuration/commit/c6b05ad0751d9340c957f357ae14a0263241e940))
+
+
+### Features
+
+* add telescope-project extension ([0dc6584](https://github.com/vladdoster/neovim-configuration/commit/0dc6584d86e6ec96a16e9ef3c4d2ddde10bff9f9))
+
 # [6.18.0](https://github.com/vladdoster/neovim-configuration/compare/v6.17.0...v6.18.0) (2023-10-10)
 
 
