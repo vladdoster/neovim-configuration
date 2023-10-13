@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
+    '--branch=stable',
     lazypath
   }
 end
@@ -30,16 +30,24 @@ lazy.setup({
     {
       'nvim-neo-tree/neo-tree.nvim',
       branch='v3.x',
-      event='CursorHold',
-      dependencies={'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}
+      dependencies={'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'},
+      event='CursorHold'
     },
     {'akinsho/toggleterm.nvim', cmd={'ToggleTerm', 'TermExec'}, opts={}},
-    {'junegunn/vim-easy-align', cmd='EasyAlign', lazy=true},
+    {'junegunn/vim-easy-align', cmd='EasyAlign', event='VeryLazy'},
     {'obreitwi/vim-sort-folds', cmd='SortFolds', cond=vim.fn.executable('python3') == 1, lazy=true},
-    {'sQVe/sort.nvim', cmd='Sort', lazy=true},
+    {'sQVe/sort.nvim', cmd='Sort', event='VeryLazy'},
+    -- {
+    --   "nvim-lualine/lualine.nvim",
+    --   event = "VeryLazy",
+    --    opts = function() return { {component_separators='|', icons_enabled=false, section_separators='', theme='onedark' }} end,
+    -- },
     {
-      'nvim-lualine/lualine.nvim',
-      opts={options={icons_enabled=false, theme='onedark', component_separators='|', section_separators=''}}
+      "nvim-lualine/lualine.nvim",
+      event="VeryLazy",
+      opts=function()
+        return { --[[add your custom lualine config here]] }
+      end
     },
 
     {'nvim-treesitter/nvim-treesitter', dependencies={'nvim-treesitter/nvim-treesitter-textobjects'}, build=':TSUpdate'},
@@ -78,9 +86,26 @@ lazy.setup({
       },
       lazy=true
     },
+    {'tpope/vim-repeat', event='VeryLazy'},
+    {'AndrewRadev/splitjoin.vim', event='VeryLazy'},
+    {
+      'Wansmer/treesj',
+      dependencies={'nvim-treesitter/nvim-treesitter'},
+      event='VeryLazy',
+      keys={
+        {
+          "<leader>m",
+          function()
+            require('treesj').toggle()
+          end,
+          mode={'n', 'v', 'x'}
+        }
+      }
+    },
     {
       "dstein64/vim-startuptime",
       cmd="StartupTime",
+      event="VeryLazy",
       init=function()
         vim.g.startuptime_tries = 10
       end

@@ -120,3 +120,5 @@ map('n', "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>")
 map('n', "<leader>tf", "<cmd>ToggleTerm direction=float<cr>")
 map('n', "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>")
 map('n', "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>")
+-- For use default preset and it work with dot
+map('n', '<leader>m', require('treesj').toggle)

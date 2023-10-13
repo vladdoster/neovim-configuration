@@ -1,4 +1,5 @@
 -- Import Lua modules
+vim.loader.enable()
 require('core/lazy')
 require('core/autocmds')
 require('core/keymaps')
