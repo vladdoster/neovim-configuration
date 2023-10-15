@@ -1,3 +1,18 @@
+# [7.0.0](https://github.com/vladdoster/neovim-configuration/compare/v6.19.0...v7.0.0) (2023-10-15)
+
+
+### Bug Fixes
+
+* refactor lazy plugin structure ([e0b3eb1](https://github.com/vladdoster/neovim-configuration/commit/e0b3eb10cd96dc0bdde07d7c0109d07b11794720))
+
+
+### BREAKING CHANGES
+
+* The stucture changes can result in borking Lazy.
+Run "make clean" once will ensure no configuration conflicts.
+
+Signed-off-by: Vladislav Doster <mvdoster@gmail.com>
+
 # [6.19.0](https://github.com/vladdoster/neovim-configuration/compare/v6.18.0...v6.19.0) (2023-10-11)
 
 
