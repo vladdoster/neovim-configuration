@@ -1,8 +1,7 @@
-local g = vim.g
-local opt = vim.opt
+require"helpers/globals"
 
-g.mapleader = ' '
-g.maplocalleader = ' '
+cmd[[filetype plugin on]]
+cmd[[autocmd FileType * setlocal formatoptions-=cro]]
 
 opt.autowrite = true
 opt.background = 'dark'
@@ -12,6 +11,7 @@ opt.conceallevel = 3
 opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
+opt.fixeol = false
 opt.formatoptions = 'jcroqlnt'
 opt.grepformat = '%f:%l:%c:%m'
 opt.grepprg = 'rg'
@@ -29,6 +29,7 @@ opt.sessionoptions = {'buffers', 'curdir', 'tabpages', 'winsize'}
 opt.shiftround = true
 opt.shiftwidth = 2
 opt.shortmess:append{W=true, I=true, c=true}
+opt.showmatch = true
 opt.showmode = false
 opt.sidescrolloff = 8
 opt.signcolumn = 'yes'
@@ -44,11 +45,11 @@ opt.timeoutlen = 300
 opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200
+opt.wildmenu = true
 opt.wildmode = 'longest:full,full'
 opt.winminwidth = 5
 opt.wrap = false
 
--- Disable builtin plugins
 local disabled_built_ins = {
   '2html_plugin',
   'bugreport',
@@ -80,3 +81,5 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
   g['loaded_' .. plugin] = 1
 end
+
+-- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua

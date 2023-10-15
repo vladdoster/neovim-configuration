@@ -12,7 +12,7 @@ help: ## Display all Makfile targets
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $$1, $$2}'
 
 clean: ## Remove installed plugins & packer artifacts
-	rm -rf plugin/packer_compiled.lua ~/.local/share/nvim ~/.local/state/nvim
+	$(SHELL) -c "rm -rf ~/.local/s[ht]*/nvim"
 	echo "${log} cleaned neovim"
 
 deps: ## Install lua-formatter system-wide
@@ -20,16 +20,17 @@ deps: ## Install lua-formatter system-wide
 	echo "${log} installed lua-formatter"
 
 format: ## Run lua-formatter using .lua_format.yml config
-	find . -name '*.lua' -type f -not -path '**/packer_compiled.lua' -exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
+	find . \
+		-name '*.lua' \
+		-type f \
+		-exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
 	echo "${log} formatted files"
 
 update: | clean ## Run clean target, pull git changes, and re-install plugins
 	echo "${log} pulling upstream" && \
 	git pull --autostash --quiet && \
 	echo "${log} installing plugins" && \
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c ':PackerSync'
-	# nvim --headless -c 'autocmd User MasonToolsUpdateCompleted quitall' -c 'MasonToolsInstall' && \
-	# echo "${log} setup neovim configuration"
+	nvim --headless "+Lazy! sync" +qa
 
 targets-table:
 	@printf "|Target|Descripton|\n|---|---|\n"

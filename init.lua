@@ -1,11 +1,8 @@
--- Import Lua modules
-require('core/lazy')
-require('core/autocmds')
-require('core/keymaps')
-require('core/options')
-require('lsp/lspconfig')
-require('plugins/indent-blankline')
-require('plugins/neo-tree')
-require('plugins/nvim-cmp')
-require('plugins/nvim-treesitter')
-require('plugins/telescope')
+require"lazy-bootstrap"
+
+require"settings"
+require"keybindings"
+
+require("lazy").setup("plugins")
+
+-- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua

@@ -1,10 +1,10 @@
 local telescope_status_ok, telescope = pcall(require, 'telescope')
 if not telescope_status_ok then
-  return
-end
+   return
+ end
 local actions = require('telescope.actions')
 local project_actions = require("telescope._extensions.project.actions")
-telescope.setup({
+require"telescope".setup({
   defaults={
     initial_mode='insert',
     layout_config={prompt_position='top'},
@@ -34,10 +34,10 @@ telescope.setup({
   extensions={
     project={
       base_dirs={
-        {path='~/.config/nvim/', max_depth=1},
-        {path='~/.config/zsh', max_depth=1},
-        {path='~/.local/share/zinit', max_depth=1},
-        {path='~/code', max_depth=2}
+        {path='~/.config/nvim/', max_depth=2},
+        {path='~/.config/zsh', max_depth=2},
+        {path='~/.local/share/zinit', max_depth=2},
+        {path='~/code', max_depth=3}
       },
       hidden_files=true,
       theme="ivy",
@@ -56,7 +56,9 @@ telescope.setup({
 local map = vim.api.nvim_set_keymap
 local silent = {silent=true, noremap=true}
 -- open with the path of the current buffer
-map("n", "<space>gb", ":Telescope git_files path=%:p:h select_buffer=true <CR>", {noremap=true, silent=true})
-map('n', '\'r', ":Telescope live_grep<CR>", {noremap=true, silent=true})
-map('n', '<C-p>', ":lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
-    {noremap=true, silent=true})
+map("n", "<space>gb", ":Telescope git_files path=%:p:h select_buffer=true <CR>", silent)
+map('n', '\'r', ":Telescope live_grep<CR>", silent)
+map('n', '<C-p>', ":lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", silent)
+
+-- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua
+

@@ -1,6 +1,29 @@
------------------------------------------------------------
--- Define keymaps of Neovim and installed plugins.
------------------------------------------------------------
+require"helpers/globals"
+require"helpers/keyboard"
+
+g.mapleader = ' '
+
+nm('K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+nm('ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+nm('gR', '<cmd>lua vim.lsp.buf.rename()<CR>')
+nm('gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+
+nm('gd', '<cmd>Telescope lsp_definitions<CR>')
+nm('<leader>p', '<cmd>Telescope oldfiles<CR>')
+nm('<leader>O', '<cmd>Telescope git_files<CR>')
+nm('<leader>o', '<cmd>Telescope find_files<CR>')
+nm('<leader>i', '<cmd>Telescope jumplist<CR>')
+nm('<leader>b', '<cmd>Telescope git_branches<CR>')
+nm('<leader>f', '<cmd>Telescope live_grep<CR>')
+nm('<leader>q', '<cmd>Telescope buffers<CR>')
+nm('<leader>a', '<cmd>Telescope<CR>')
+nm('<leader>t', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>')
+
+nm('<leader>x', '<cmd>TroubleToggle<CR>')
+nm('gr', '<cmd>Trouble lsp_references<CR>')
+
+nm('<C-n>', '<cmd>Neotree toggle reveal_force_cwd<CR>')
+
 local function map(mode, lhs, rhs, opts)
   opts = opts or {}
   opts.silent = opts.silent ~= false
@@ -9,19 +32,13 @@ local function map(mode, lhs, rhs, opts)
   end
   vim.keymap.set(mode, lhs, rhs, opts)
 end
--- Change leader to a comma
+
 vim.g.mapleader = ' '
 
------------------------------------------------------------
--- Neovim shortcuts
------------------------------------------------------------
--- Map Esc to kk
 map('i', 'kk', '<Esc>')
 
--- Clear search highlighting with <leader> and c
 map('n', '<leader>c', ':nohl<CR>')
 
--- Change split orientation
 map('n', '<leader>tk', '<C-w>t<C-w>K') -- change vertical to horizontal
 map('n', '<leader>th', '<C-w>t<C-w>H') -- change horizontal to vertical
 
@@ -41,14 +58,6 @@ map('n', '<leader>s', ':w<CR>')
 map({"i", "x", "n", "s"}, "<leader>s", "<cmd>w<cr><esc>", {desc="Save file"})
 -- Close all windows and exit from Neovim with <leader> and q
 map('n', '<leader>q', ':qa!<CR>')
-
------------------------------------------------------------
--- Applications and Plugins shortcuts
------------------------------------------------------------
-
--- Terminal mappings
-map('n', '<C-t>', ':Term<CR>', {noremap=true}) -- open
-map('t', '<Esc>', '<C-\\><C-n>') -- exit
 
 -- better up/down
 map({"n", "x"}, "j", "v:count == 0 ? 'gj' : 'j'", {expr=true, silent=true})
@@ -97,14 +106,14 @@ map("n", "<leader>w|", "<C-W>v", {remap=true})
 map("n", "<leader>-", "<C-W>s", {remap=true})
 map("n", "<leader>|", "<C-W>v", {remap=true})
 
--- tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>")
 map("n", "<leader><tab>f", "<cmd>tabfirst<cr>")
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>")
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>")
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>")
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>")
--- Terminal Mappings
+
+-- terminal mappings
 map("t", "<esc><esc>", "<c-\\><c-n>")
 map("t", "<C-h>", "<cmd>wincmd h<cr>")
 map("t", "<C-j>", "<cmd>wincmd j<cr>")
@@ -117,6 +126,4 @@ map('n', "<leader>tf", "<cmd>ToggleTerm direction=float<cr>")
 map('n', "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>")
 map('n', "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>")
 
-map('n', "<leader>tf", "<cmd>ToggleTerm direction=float<cr>")
-map('n', "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>")
-map('n', "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>")
+-- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua
