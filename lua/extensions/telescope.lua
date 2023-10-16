@@ -1,7 +1,7 @@
 local telescope_status_ok, telescope = pcall(require, 'telescope')
 if not telescope_status_ok then
-   return
- end
+  return
+end
 local actions = require('telescope.actions')
 local project_actions = require("telescope._extensions.project.actions")
 require"telescope".setup({
