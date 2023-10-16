@@ -17,6 +17,7 @@ return {
       require"extensions.neotree"
     end
   },
+  {"nvim-treesitter/nvim-treesitter-context", lazy=false, opts={mode='cursor'}},
   {
     "nvim-telescope/telescope.nvim",
     cmd="Telescope",
@@ -52,6 +53,16 @@ return {
       require"extensions.lspkind"
     end
   },
+  -- {
+  --   "linux-cultist/venv-selector.nvim",
+  --   config=function()
+  --     require("venv-selector").setup({name={"venv", ".venv", "env", ".env"}, auto_refresh=true})
+  --   end,
+  --   dependencies={"neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python"},
+  --   enabled=vim.fn.executable"fd" == 1,
+  --   keys={{"<leader>vs", "<cmd>:VenvSelect<cr>", "<leader>vc", "<cmd>:VenvSelectCached<cr>"}},
+  --   lazy=true
+  -- },
   {
     'nvim-lualine/lualine.nvim',
     config=function()
@@ -60,7 +71,7 @@ return {
   },
   {
     'lewis6991/gitsigns.nvim',
-    lazy=false,
+    lazy=true,
     config=function()
       require"extensions.gitsigns"
     end
@@ -87,7 +98,7 @@ return {
     "dstein64/vim-startuptime",
     cmd="StartupTime",
     init=function()
-      vim.g.startuptime_tries = 10
+      vim.g.startuptime_tries = 50
     end
   },
   {"monaqa/dial.nvim", keys={"<C-a>", {"<C-x>", mode="n"}}},
@@ -96,6 +107,7 @@ return {
   {'numToStr/Comment.nvim', opts={}},
   {'obreitwi/vim-sort-folds', cmd='SortFolds', enabled=vim.fn.executable"pip3" == 1, build="pip3 install pynvim"},
   {'sQVe/sort.nvim', cmd='Sort'},
+  {"kylechui/nvim-surround", opts={}},
   {
     'vladdoster/remember.nvim',
     config=function()
