@@ -1,6 +1,8 @@
-cmd = vim.cmd; -- Command function
-api = vim.api; -- Neovim API
-lsp = vim.lsp; -- LSP API
-fn = vim.fn; -- Vim function
-g = vim.g; -- Vim globals
-opt = vim.opt; -- Vim optionals
+api = vim.api;
+augroup = vim.api.nvim_create_augroup;
+autocmd = vim.api.nvim_create_autocmd;
+cmd = vim.cmd;
+fn = vim.fn;
+g = vim.g;
+lsp = vim.lsp;
+opt = vim.opt;
