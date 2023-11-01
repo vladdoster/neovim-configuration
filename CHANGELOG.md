@@ -1,3 +1,17 @@
+# [7.1.0](https://github.com/vladdoster/neovim-configuration/compare/v7.0.0...v7.1.0) (2023-11-01)
+
+
+### Bug Fixes
+
+* add bak "q" escape autocmd ([4bc1109](https://github.com/vladdoster/neovim-configuration/commit/4bc1109ec664b1b323bcf4fe2d58c50c8973bf7d))
+* plugin config formatting ([44fd927](https://github.com/vladdoster/neovim-configuration/commit/44fd927c099ce4ed44fec758ed1c95d1311457f6))
+* update plugin configs & lazy-lock.json ([fbb5765](https://github.com/vladdoster/neovim-configuration/commit/fbb5765b30a52ab1e1a6ade6b2c0f1df04157a30))
+
+
+### Features
+
+* add auto* to globals ([f3e72a1](https://github.com/vladdoster/neovim-configuration/commit/f3e72a151ce37d08d7c4485f0cef0ad16715e877))
+
 # [7.0.0](https://github.com/vladdoster/neovim-configuration/compare/v6.19.0...v7.0.0) (2023-10-15)
 
 
