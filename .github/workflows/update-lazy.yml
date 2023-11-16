@@ -1,0 +1,62 @@
+name: 'Update lazy-lock.json'
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Installing libraries
+        run: sudo apt install -y git curl wget luajit build-essential libfuse-dev fzf fd-find ripgrep
+
+      - name: setup git config
+        run: |
+          git config user.name "vladdoster"
+          git config user.email "mvdoster@gmail.com"
+      
+      - name: install neovim
+        run: |
+          sudo snap install nvim --classic
+      
+      # - name: Update packages
+      #   shell: bash
+      #   run: |
+      #     export XDG_DATA_HOME=$HOME/data
+      #     export XDG_CONFIG_HOME=$HOME/.config
+      #     mkdir -p $XDG_DATA_HOME
+      #     mkdir -p $XDG_CONFIG_HOME/nvim
+      #     nvim --headless +q
+      #     # run it multiple time just to be safe side
+      #     nvim --headless +q
+      #     # cp -r $XDG_CONFIG_HOME/nvim/lazy-lock.json .
+
+      - name: run lazy update
+        shell: bash
+        run: |
+          nvim --headless +q
+          nvim --headless +q
+          nvim --headless '+checkhealth' -c 'qa'
+          make upate
+          # nvim --headless -u lua/lazy-bootstrap.lua +qa
+          # nvim --headless -u lua/lazy-bootstrap.lua "+Lazy! sync" +qa
+
+      - name: check if update
+        id: lockfile-update-check
+        run: |
+          git diff --exit-code --quiet lazy-lock.json
+
+      - name: commit
+        if: ${{ steps.lockfile-update-check.conclusion == 'failure' }}
+        run: |
+          git add lazy-lock.json
+          git commit --message "build: update lazy-lock.json" --signoff
+          git push origin master
