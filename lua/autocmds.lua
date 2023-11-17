@@ -1,15 +1,12 @@
 require"helpers/globals"
 
--- augroup('YankHighlight', {clear=true})
--- autocmd('TextYankPost', {
---   group='YankHighlight',
---   callback=function()
---     vim.highlight.on_yank({higroup='IncSearch', timeout='1000'})
---   end
--- })
---
--- autocmd('BufWritePre', {pattern='', command=':%s/\\s\\+$//e'})
--- autocmd('BufEnter', {pattern='', command='set fo-=c fo-=r fo-=o'})
+augroup('YankHighlight', {clear=true})
+autocmd('TextYankPost', {
+  group='YankHighlight',
+  callback=function()
+    vim.highlight.on_yank({higroup='IncSearch', timeout='1000'})
+  end
+})
 
 augroup('qClosesBuffer', {clear=true})
 autocmd('Filetype', {
