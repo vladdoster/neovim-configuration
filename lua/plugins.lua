@@ -13,6 +13,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     branch="v3.x",
     dependencies={"nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim"},
+    lazy=true,
     config=function()
       require"extensions.neotree"
     end
@@ -42,6 +43,7 @@ return {
       'hrsh7th/cmp-nvim-lua',
       'rafamadriz/friendly-snippets'
     },
+    lazy=true,
     config=function()
       require"extensions.cmp"
     end
@@ -53,18 +55,9 @@ return {
       require"extensions.lspkind"
     end
   },
-  -- {
-  --   "linux-cultist/venv-selector.nvim",
-  --   config=function()
-  --     require("venv-selector").setup({name={"venv", ".venv", "env", ".env"}, auto_refresh=true})
-  --   end,
-  --   dependencies={"neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python"},
-  --   enabled=vim.fn.executable"fd" == 1,
-  --   keys={{"<leader>vs", "<cmd>:VenvSelect<cr>", "<leader>vc", "<cmd>:VenvSelectCached<cr>"}},
-  --   lazy=true
-  -- },
   {
     'nvim-lualine/lualine.nvim',
+    lazy=true,
     config=function()
       require"extensions.lualine"
     end
@@ -80,9 +73,6 @@ return {
     "folke/trouble.nvim",
     lazy=true,
     dependencies={"kyazdani42/nvim-web-devicons"},
-    config=function()
-      require"extensions.trouble"
-    end
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -93,7 +83,13 @@ return {
       require"extensions.treesitter"
     end
   },
-  {"Wansmer/treesj", cmd='TSJToggle', opts={use_default_keymaps=true, max_join_length=150}},
+  -- {
+  --   'Wansmer/treesj',
+  --   keys={'<space>m', '<space>j', '<space>s'},
+  --   dependencies={'nvim-treesitter/nvim-treesitter'},
+  --   lazy=true,
+  --   opts={max_join_length=100}
+  -- },
   {
     "dstein64/vim-startuptime",
     cmd="StartupTime",
