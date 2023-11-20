@@ -2,15 +2,10 @@ local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
-local servers = {
-  pyright = {},
-  lua_ls={Lua={workspace={checkThirdParty=false}, telemetry={enable=false}}}
-}
+local servers = {pyright={}, lua_ls={Lua={workspace={checkThirdParty=false}, telemetry={enable=false}}}}
 
 mason.setup()
-mason_lspconfig.setup({
-  ensure_installed={ "lua_ls", "pyright" }
-});
+mason_lspconfig.setup({ensure_installed={"lua_ls", "pyright"}});
 
 -- Setup every needed language server in lspconfig
 mason_lspconfig.setup_handlers{
