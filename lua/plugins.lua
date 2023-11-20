@@ -12,11 +12,12 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch="v3.x",
-    dependencies={"nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim"},
-    lazy=true,
+    cmd="Neotree",
     config=function()
       require"extensions.neotree"
-    end
+    end,
+    dependencies={"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim"},
+    lazy=true
   },
   {"nvim-treesitter/nvim-treesitter-context", lazy=false, opts={mode='cursor'}},
   {
@@ -43,53 +44,44 @@ return {
       'hrsh7th/cmp-nvim-lua',
       'rafamadriz/friendly-snippets'
     },
-    lazy=true,
     config=function()
       require"extensions.cmp"
     end
   },
   {
     'onsails/lspkind-nvim',
-    lazy=true,
     config=function()
       require"extensions.lspkind"
     end
   },
   {
     'nvim-lualine/lualine.nvim',
-    lazy=true,
     config=function()
       require"extensions.lualine"
     end
   },
   {
     'lewis6991/gitsigns.nvim',
-    lazy=true,
     config=function()
       require"extensions.gitsigns"
     end
   },
-  {
-    "folke/trouble.nvim",
-    lazy=true,
-    dependencies={"kyazdani42/nvim-web-devicons"},
-  },
+  {"folke/trouble.nvim", dependencies={"kyazdani42/nvim-web-devicons"}},
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy=true,
     build=":TSUpdate",
-    event={"BufReadPost", "BufNewFile"},
     config=function()
       require"extensions.treesitter"
-    end
+    end,
+    event={"BufNewFile", "BufReadPost"},
+    lazy=true
   },
-  -- {
-  --   'Wansmer/treesj',
-  --   keys={'<space>m', '<space>j', '<space>s'},
-  --   dependencies={'nvim-treesitter/nvim-treesitter'},
-  --   lazy=true,
-  --   opts={max_join_length=100}
-  -- },
+  {
+    'Wansmer/treesj',
+    dependencies={'nvim-treesitter/nvim-treesitter'},
+    keys={'<space>j', '<space>m', '<space>s'},
+    opts={max_join_length=100}
+  },
   {
     "dstein64/vim-startuptime",
     cmd="StartupTime",
@@ -98,12 +90,26 @@ return {
     end
   },
   {"monaqa/dial.nvim", keys={"<C-a>", {"<C-x>", mode="n"}}},
-  {'akinsho/toggleterm.nvim', cmd={'ToggleTerm', 'TermExec'}, opts={}},
-  {'junegunn/vim-easy-align', cmd='EasyAlign'},
+  {'akinsho/toggleterm.nvim', cmd={'TermExec', 'ToggleTerm'}, opts={}},
+  {'junegunn/vim-easy-align', cmd='EasyAlign', lazy=true},
   {'numToStr/Comment.nvim', opts={}},
-  {'obreitwi/vim-sort-folds', cmd='SortFolds', enabled=vim.fn.executable"pip3" == 1, build="pip3 install pynvim"},
+  {
+    'obreitwi/vim-sort-folds',
+    build="pip3 install pynvim",
+    cmd='SortFolds',
+    enabled=vim.fn.executable"pip3" == 1,
+    lazy=true
+  },
   {'sQVe/sort.nvim', cmd='Sort'},
   {"kylechui/nvim-surround", opts={}},
+  {
+    "folke/tokyonight.nvim",
+    config=function()
+      vim.cmd([[colorscheme tokyonight]])
+    end,
+    lazy=false,
+    priority=1000
+  },
   {
     'vladdoster/remember.nvim',
     config=function()
@@ -111,14 +117,6 @@ return {
     end,
     lazy=false,
     priority=2000
-  },
-  {
-    "folke/tokyonight.nvim",
-    lazy=false, -- make sure we load this during startup if it is your main colorscheme
-    priority=1000, -- make sure to load this before all the other start plugins
-    config=function()
-      vim.cmd([[colorscheme tokyonight]])
-    end
   }
 }
 
