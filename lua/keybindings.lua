@@ -55,7 +55,7 @@ map('n', '<leader>r', ':so %<CR>')
 map('n', '<leader>s', ':w<CR>')
 
 -- save file
-map({"i", "x", "n", "s"}, "<leader>s", "<cmd>w<cr><esc>", {desc="Save file"})
+-- map({"i", "x", "n", "s"}, "<leader>s", "<cmd>w<cr><esc>")
 -- Close all windows and exit from Neovim with <leader> and q
 map('n', '<leader>q', ':qa!<CR>')
 
@@ -125,5 +125,10 @@ map("t", "<c-_>", "<cmd>close<cr>")
 map('n', "<leader>tf", "<cmd>ToggleTerm direction=float<cr>")
 map('n', "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>")
 map('n', "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>")
+
+-- map('n', "<C-s>", "<cmd>Sort<cr>")
+-- map('n', "<C-s>sf", "<cmd>SortFolds<cr>")
+
+map({"i", "n", "s", "v", "x"}, "<C-s>", ":Sort<cr>")
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua
