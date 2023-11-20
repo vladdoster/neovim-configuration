@@ -6,3 +6,4 @@ fn = vim.fn;
 g = vim.g;
 lsp = vim.lsp;
 opt = vim.opt;
+keymap = vim.keymap
