@@ -1,39 +1,15 @@
 require"helpers/globals"
-require"helpers/keyboard"
-
-g.mapleader = ' '
-
-nm('K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-nm('ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-nm('gR', '<cmd>lua vim.lsp.buf.rename()<CR>')
-nm('gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-
-nm('gd', '<cmd>Telescope lsp_definitions<CR>')
-nm('<leader>p', '<cmd>Telescope oldfiles<CR>')
-nm('<leader>O', '<cmd>Telescope git_files<CR>')
-nm('<leader>o', '<cmd>Telescope find_files<CR>')
-nm('<leader>i', '<cmd>Telescope jumplist<CR>')
-nm('<leader>b', '<cmd>Telescope git_branches<CR>')
-nm('<leader>f', '<cmd>Telescope live_grep<CR>')
-nm('<leader>q', '<cmd>Telescope buffers<CR>')
-nm('<leader>a', '<cmd>Telescope<CR>')
-nm('<leader>t', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>')
-
-nm('<leader>x', '<cmd>TroubleToggle<CR>')
-nm('gr', '<cmd>Trouble lsp_references<CR>')
-
-nm('<C-n>', '<cmd>Neotree toggle reveal_force_cwd<CR>')
 
 local function map(mode, lhs, rhs, opts)
   opts = opts or {}
   opts.silent = opts.silent ~= false
-  if opts.remap and not vim.g.vscode then
+  if opts.remap and not g.vscode then
     opts.remap = nil
   end
-  vim.keymap.set(mode, lhs, rhs, opts)
+  keymap.set(mode, lhs, rhs, opts)
 end
 
-vim.g.mapleader = ' '
+g.mapleader = ' '
 
 map('i', 'kk', '<Esc>')
 
@@ -58,6 +34,21 @@ map('n', '<leader>s', ':w<CR>')
 -- map({"i", "x", "n", "s"}, "<leader>s", "<cmd>w<cr><esc>")
 -- Close all windows and exit from Neovim with <leader> and q
 map('n', '<leader>q', ':qa!<CR>')
+
+map("n", '<C-n>', '<cmd>Neotree toggle reveal_force_cwd<CR>')
+
+map("n", '<leader>O', '<cmd>Telescope git_files<CR>')
+map("n", '<leader>a', '<cmd>Telescope<CR>')
+map("n", '<leader>b', '<cmd>Telescope git_branches<CR>')
+map("n", '<leader>f', '<cmd>Telescope live_grep<CR>')
+map("n", '<leader>gd', '<cmd>Telescope lsp_definitions<CR>')
+map("n", '<leader>gr', '<cmd>Trouble lsp_references<CR>')
+map("n", '<leader>i', '<cmd>Telescope jumplist<CR>')
+map("n", '<leader>o', '<cmd>Telescope find_files<CR>')
+map("n", '<leader>p', '<cmd>Telescope oldfiles<CR>')
+map("n", '<leader>q', '<cmd>Telescope buffers<CR>')
+map("n", '<leader>t', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>')
+map("n", '<leader>x', '<cmd>TroubleToggle<CR>')
 
 -- better up/down
 map({"n", "x"}, "j", "v:count == 0 ? 'gj' : 'j'", {expr=true, silent=true})
@@ -94,9 +85,6 @@ map({"i", "n"}, "<esc>", "<cmd>noh<cr><esc>")
 map("n", "<leader>qq", "<cmd>qa<cr>")
 map("n", "<leader>W", "<cmd>wall<Cr>")
 map("n", "<leader>w", "<cmd>update<cr>")
-
--- highlights under cursor
-map("n", "<leader>ui", vim.show_pos)
 
 -- windows
 map("n", "<leader>ww", "<C-W>p", {remap=true})
