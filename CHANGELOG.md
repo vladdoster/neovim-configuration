@@ -1,3 +1,22 @@
+# [7.2.0](https://github.com/vladdoster/neovim-configuration/compare/v7.1.0...v7.2.0) (2023-11-20)
+
+
+### Bug Fixes
+
+* gitsigns configuration ([45a26f6](https://github.com/vladdoster/neovim-configuration/commit/45a26f60b2c70f0386ec59e21f6f9ffe4224d53b))
+* remove lazy loading for misc. plugins ([45f9227](https://github.com/vladdoster/neovim-configuration/commit/45f922710d04d5bf3e6229a55d04ee84435688b7))
+
+
+### Features
+
+* sort lines via <C-s> ([822696e](https://github.com/vladdoster/neovim-configuration/commit/822696ed26ac97362531c00557b26130aa7773fa))
+
+
+### Performance Improvements
+
+* improve startup time ([3de98b0](https://github.com/vladdoster/neovim-configuration/commit/3de98b0be03d6b710bd7618e4287d86f0a27aa1b))
+* remove aucmd that killed performance ([41c0e87](https://github.com/vladdoster/neovim-configuration/commit/41c0e87f237cf81854dc10e7482dd0ee1c8d843d))
+
 # [7.1.0](https://github.com/vladdoster/neovim-configuration/compare/v7.0.0...v7.1.0) (2023-11-01)
 
 
