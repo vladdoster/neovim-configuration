@@ -17,3 +17,8 @@ autocmd('Filetype', {
     vim.keymap.set('n', 'q', '<cmd>close<cr>', {buffer=event.buf, silent=true})
   end
 })
+
+vim.api.nvim_create_user_command('TrimWhitespace', function()
+  vim.cmd":%s/\\s\\+$//e"
+  print("Trimmed whitespace")
+end, {nargs=0})
