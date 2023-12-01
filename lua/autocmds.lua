@@ -18,6 +18,8 @@ autocmd('Filetype', {
   end
 })
 
+vim.api.nvim_create_autocmd('BufEnter', {pattern='', command=":checktime"})
+
 autocmd("BufEnter", {
   desc="Open Neo-Tree on startup with directory",
   group=augroup("neotree_start", {clear=true}),
