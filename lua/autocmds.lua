@@ -13,12 +13,29 @@ autocmd('Filetype', {
   group='qClosesBuffer',
   pattern={'PlenaryTestPopup', 'help', 'lspinfo', 'man', 'qf', 'startuptime'},
   callback=function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', '<cmd>close<cr>', {buffer=event.buf, silent=true})
+    bo[event.buf].buflisted = false
+    keymap.set('n', 'q', '<cmd>close<cr>', {buffer=event.buf, silent=true})
   end
 })
 
-vim.api.nvim_create_user_command('TrimWhitespace', function()
-  vim.cmd":%s/\\s\\+$//e"
+autocmd("BufEnter", {
+  desc="Open Neo-Tree on startup with directory",
+  group=augroup("neotree_start", {clear=true}),
+  callback=function()
+    local neotree_loaded, _ = pcall(require, 'neo-tree')
+    if not neotree_loaded then
+      api.nvim_del_augroup_by_name"neotree_start"
+    else
+      local stats = (vim.uv or vim.loop).fs_stat(vim.api.nvim_buf_get_name(0)) -- TODO: REMOVE vim.loop WHEN DROPPING SUPPORT FOR Neovim v0.9
+      if stats and stats.type == "directory" then
+        api.nvim_del_augroup_by_name"neotree_start"
+        require"neo-tree"
+      end
+    end
+  end
+})
+
+api.nvim_create_user_command('TrimWhitespace', function()
+  cmd":%s/\\s\\+$//e"
   print("Trimmed whitespace")
 end, {nargs=0})
