@@ -1,3 +1,20 @@
+# [7.3.0](https://github.com/vladdoster/neovim-configuration/compare/v7.2.0...v7.3.0) (2023-12-02)
+
+
+### Bug Fixes
+
+* lsp-config configuration ([f9e2eec](https://github.com/vladdoster/neovim-configuration/commit/f9e2eeca0c3d76e46ed4d2816b9206ca3aa01234))
+* neo-tree configuration ([1f060a2](https://github.com/vladdoster/neovim-configuration/commit/1f060a2322b301b69a8e6d6dfb16a657b8a2d0e7))
+* simplify & deduplicate keybindings ([5730302](https://github.com/vladdoster/neovim-configuration/commit/5730302e43f9b294abfb6dc6e9a81266409dd0a6))
+* simplify helper files ([2105390](https://github.com/vladdoster/neovim-configuration/commit/210539012134b1e0f600d71101f08e9b7261edaa))
+
+
+### Features
+
+* open neo-tree when buffer is a directory ([1fb3eb8](https://github.com/vladdoster/neovim-configuration/commit/1fb3eb89028bc34a9310da884a1a6e9676e23d5e))
+* reload file when changed ([cfd770a](https://github.com/vladdoster/neovim-configuration/commit/cfd770ad5028f7250f4d8230796659e59c6a4e72))
+* TrimWhitespace command ([a2f88bd](https://github.com/vladdoster/neovim-configuration/commit/a2f88bd44bf3c7d5b1e71fe632a5e24cf6bb3d8d))
+
 # [7.2.0](https://github.com/vladdoster/neovim-configuration/compare/v7.1.0...v7.2.0) (2023-11-20)
 
 
