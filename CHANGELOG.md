@@ -1,3 +1,11 @@
+## [7.3.2](https://github.com/vladdoster/neovim-configuration/compare/v7.3.1...v7.3.2) (2024-01-09)
+
+
+### Bug Fixes
+
+* dial.nvim config & add mini.surround plugin ([4e5b3d8](https://github.com/vladdoster/neovim-configuration/commit/4e5b3d819be9997b5d0be379615453fa13267081))
+* set smoothscroll opt if nvim version >= 0.10.x ([9520f83](https://github.com/vladdoster/neovim-configuration/commit/9520f83bd452ff650b1aee5e9c01be73ceb79875))
+
 ## [7.3.1](https://github.com/vladdoster/neovim-configuration/compare/v7.3.0...v7.3.1) (2024-01-02)
 
 
