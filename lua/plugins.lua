@@ -89,7 +89,25 @@ return {
       vim.g.startuptime_tries = 50
     end
   },
-  {"monaqa/dial.nvim", keys={"<C-a>", {"<C-x>", mode="n"}}},
+  {
+    "monaqa/dial.nvim",
+    config=function()
+      local augend = require("dial.augend")
+      require("dial.config").augends:register_group({
+        default={ augend.constant.alias.bool, augend.integer.alias.decimal, augend.semver.alias.semver }
+      })
+    end,
+    keys={
+      {"<C-a>", expr=true, function() return require("dial.map").inc_normal() end},
+      {"<C-x>", expr=true, function() return require("dial.map").dec_normal() end}
+    }
+  },
+  {
+    "echasnovski/mini.surround",
+    opts={
+      mappings={add="gsa", delete="gsd", replace="gsr", update_n_lines="gsn"}
+    }
+  },
   {'akinsho/toggleterm.nvim', cmd={'TermExec', 'ToggleTerm'}, opts={}},
   {'junegunn/vim-easy-align', cmd='EasyAlign', lazy=true},
   {'numToStr/Comment.nvim', opts={}},
