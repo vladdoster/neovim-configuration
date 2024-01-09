@@ -35,7 +35,9 @@ opt.sidescrolloff = 8
 opt.signcolumn = 'yes'
 opt.smartcase = true
 opt.smartindent = true
-opt.smoothscroll = true
+if vim.fn.has("nvim-0.10") == 1 then
+     opt.smoothscroll = true
+end
 opt.spelllang = {'en'}
 opt.splitbelow = true
 opt.splitright = true
