@@ -1,11 +1,9 @@
-require"helpers/globals"
+require "helpers/globals"
 
 local function map(mode, lhs, rhs, opts)
   opts = opts or {}
   opts.silent = opts.silent ~= false
-  if opts.remap and not g.vscode then
-    opts.remap = nil
-  end
+  if opts.remap and not g.vscode then opts.remap = nil end
   keymap.set(mode, lhs, rhs, opts)
 end
 
@@ -51,14 +49,14 @@ map("n", '<leader>t', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>')
 map("n", '<leader>x', '<cmd>TroubleToggle<CR>')
 
 -- better up/down
-map({"n", "x"}, "j", "v:count == 0 ? 'gj' : 'j'", {expr=true, silent=true})
-map({"n", "x"}, "k", "v:count == 0 ? 'gk' : 'k'", {expr=true, silent=true})
+map({"n", "x"}, "j", "v:count == 0 ? 'gj' : 'j'", {expr = true, silent = true})
+map({"n", "x"}, "k", "v:count == 0 ? 'gk' : 'k'", {expr = true, silent = true})
 
 -- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", {remap=true})
-map("n", "<C-j>", "<C-w>j", {remap=true})
-map("n", "<C-k>", "<C-w>k", {remap=true})
-map("n", "<C-l>", "<C-w>l", {remap=true})
+map("n", "<C-h>", "<C-w>h", {remap = true})
+map("n", "<C-j>", "<C-w>j", {remap = true})
+map("n", "<C-k>", "<C-w>k", {remap = true})
+map("n", "<C-l>", "<C-w>l", {remap = true})
 
 map("n", "<S-h>", "<cmd>bprevious<cr>")
 map("n", "<S-l>", "<cmd>bnext<cr>")
@@ -87,12 +85,12 @@ map("n", "<leader>W", "<cmd>wall<Cr>")
 map("n", "<leader>w", "<cmd>update<cr>")
 
 -- windows
-map("n", "<leader>ww", "<C-W>p", {remap=true})
-map("n", "<leader>wd", "<C-W>c", {remap=true})
-map("n", "<leader>w-", "<C-W>s", {remap=true})
-map("n", "<leader>w|", "<C-W>v", {remap=true})
-map("n", "<leader>-", "<C-W>s", {remap=true})
-map("n", "<leader>|", "<C-W>v", {remap=true})
+map("n", "<leader>ww", "<C-W>p", {remap = true})
+map("n", "<leader>wd", "<C-W>c", {remap = true})
+map("n", "<leader>w-", "<C-W>s", {remap = true})
+map("n", "<leader>w|", "<C-W>v", {remap = true})
+map("n", "<leader>-", "<C-W>s", {remap = true})
+map("n", "<leader>|", "<C-W>v", {remap = true})
 
 map("n", "<leader><tab>l", "<cmd>tablast<cr>")
 map("n", "<leader><tab>f", "<cmd>tabfirst<cr>")

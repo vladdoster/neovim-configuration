@@ -1,7 +1,7 @@
-require"helpers/globals"
+require "helpers/globals"
 
-cmd[[filetype plugin on]]
-cmd[[autocmd FileType * setlocal formatoptions-=cro]]
+cmd [[filetype plugin on]]
+cmd [[autocmd FileType * setlocal formatoptions-=cro]]
 
 opt.autowrite = true
 opt.background = 'dark'
@@ -28,16 +28,14 @@ opt.scrolloff = 4
 opt.sessionoptions = {'buffers', 'curdir', 'tabpages', 'winsize'}
 opt.shiftround = true
 opt.shiftwidth = 2
-opt.shortmess:append{W=true, I=true, c=true}
+opt.shortmess:append{W = true, I = true, c = true}
 opt.showmatch = true
 opt.showmode = false
 opt.sidescrolloff = 8
 opt.signcolumn = 'yes'
 opt.smartcase = true
 opt.smartindent = true
-if vim.fn.has("nvim-0.10") == 1 then
-     opt.smoothscroll = true
-end
+if vim.fn.has("nvim-0.10") == 1 then opt.smoothscroll = true end
 opt.spelllang = {'en'}
 opt.splitbelow = true
 opt.splitright = true
@@ -53,35 +51,12 @@ opt.winminwidth = 5
 opt.wrap = false
 
 local disabled_built_ins = {
-  '2html_plugin',
-  'bugreport',
-  'compiler',
-  'ftplugin',
-  'getscript',
-  'getscriptPlugin',
-  'gzip',
-  'logipat',
-  'matchit',
-  'netrw',
-  'netrwFileHandlers',
-  'netrwPlugin',
-  'netrwSettings',
-  'optwin',
-  'rplugin',
-  'rrhelper',
-  'spellfile_plugin',
-  'synmenu',
-  'tar',
-  'tarPlugin',
-  'tutor',
-  'vimball',
-  'vimballPlugin',
-  'zip',
-  'zipPlugin'
+  '2html_plugin', 'bugreport', 'compiler', 'ftplugin', 'getscript', 'getscriptPlugin', 'gzip',
+  'logipat', 'matchit', 'netrw', 'netrwFileHandlers', 'netrwPlugin', 'netrwSettings', 'optwin',
+  'rplugin', 'rrhelper', 'spellfile_plugin', 'synmenu', 'tar', 'tarPlugin', 'tutor', 'vimball',
+  'vimballPlugin', 'zip', 'zipPlugin'
 }
 
-for _, plugin in pairs(disabled_built_ins) do
-  g['loaded_' .. plugin] = 1
-end
+for _, plugin in pairs(disabled_built_ins) do g['loaded_' .. plugin] = 1 end
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua

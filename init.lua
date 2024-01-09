@@ -1,8 +1,8 @@
-require"lazy-bootstrap"
+require "lazy-bootstrap"
 
-require"settings"
-require"keybindings"
-require"autocmds"
+require "settings"
+require "keybindings"
+require "autocmds"
 
 require("lazy").setup("plugins")
 
