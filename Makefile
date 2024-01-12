@@ -12,7 +12,8 @@ help: ## Display all Makfile targets
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $$1, $$2}'
 
 clean: ## Remove installed plugins & packer artifacts
-	$(SHELL) -c "rm -rf ~/.local/s[ht]*/nvim"
+	$(SHELL) -c 'print -f "==> %s\n" ~/.local/*/nvim(/N)'
+	$(SHELL) -c 'rm -rf ~/.local/s[ht]*/nvim'
 	echo "${log} cleaned neovim"
 
 deps: ## Install lua-formatter system-wide
