@@ -1,3 +1,15 @@
+# [7.4.0](https://github.com/vladdoster/neovim-configuration/compare/v7.3.2...v7.4.0) (2024-01-20)
+
+
+### Bug Fixes
+
+* **mason:** remove unused keymap descriptions ([90894d4](https://github.com/vladdoster/neovim-configuration/commit/90894d466681e10f4f903f551694d3d7fb5a1465))
+
+
+### Features
+
+* clean target prints what is removed ([15081e6](https://github.com/vladdoster/neovim-configuration/commit/15081e6d7046e47cc6cba7bc7c0353fc2e988b70))
+
 ## [7.3.2](https://github.com/vladdoster/neovim-configuration/compare/v7.3.1...v7.3.2) (2024-01-09)
 
 
