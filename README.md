@@ -8,10 +8,6 @@
 
 ```bash
 mv ~/.config/nvim ~/.config/nvim.bak
-
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-mv ~/.local/state/nvim ~/.local/state/nvim.bak
-mv ~/.cache/nvim ~/.cache/nvim.bak
 ```
 
 ```bash
@@ -19,6 +15,7 @@ git clone https://github.com/vladdoster/neovim-configuration ~/.config/nvim
 ```
 
 ```bash
+make clean
 nvim
 ```
 
@@ -28,7 +25,7 @@ nvim
 | ------------- | ---------------------------------------------------------- |
 | clean         | Remove installed plugins & packer artifacts                |
 | deps          | Install lua-formatter system-wide                          |
-| format        | Run lua-formatter using .lua_format.yml config             |
+| format        | Run lua-formatter using `.lua_format.yml` config            |
 | help          | Display all Makfile targets                                |
 | update-readme | Update Make targets table in README                        |
 | update        | Run clean target, pull git changes, and re-install plugins |

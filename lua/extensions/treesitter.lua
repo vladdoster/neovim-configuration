@@ -1,8 +1,8 @@
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"lua", "typescript", "javascript", "go", "python"},
+require('nvim-treesitter.configs').setup({
+  ensure_installed = { 'go', 'lua', 'python' },
   sync_install = false,
-  highlight = {enable = true, disable = {}},
-  indent = {enable = false, disable = {}}
-}
+  highlight = { enable = true, disable = {} },
+  indent = { enable = true, disable = {} },
+})
 
--- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua
+--  vim: set expandtab filetype=lua shiftwidth=4 tabstop=4 :

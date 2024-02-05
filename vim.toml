@@ -11,6 +11,9 @@ any = true
 [jit]
 any = true
 
+[spoon]
+any = true
+
 [[describe.args]]
 type = "string"
 [[describe.args]]
