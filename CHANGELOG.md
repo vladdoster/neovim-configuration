@@ -1,3 +1,10 @@
+# [7.5.0](https://github.com/vladdoster/neovim-configuration/compare/v7.4.0...v7.5.0) (2024-02-05)
+
+
+### Features
+
+* **lsp:** simplify lsp via lsp-zero plugin ([#4](https://github.com/vladdoster/neovim-configuration/issues/4)) ([8bdeb1b](https://github.com/vladdoster/neovim-configuration/commit/8bdeb1b334061957d0e4d955e47e18803f81a363))
+
 # [7.4.0](https://github.com/vladdoster/neovim-configuration/compare/v7.3.2...v7.4.0) (2024-01-20)
 
 
