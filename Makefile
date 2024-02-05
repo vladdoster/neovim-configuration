@@ -21,11 +21,15 @@ deps: ## Install lua-formatter system-wide
 	echo "${log} installed lua-formatter"
 
 format: ## Run lua-formatter using .lua_format.yml config
-	find . \
-		-name '*.lua' \
-		-type f \
-		-exec lua-format --config $(CURDIR)/.lua_format.yml --in-place {} \+
-	echo "${log} formatted files"
+	stylua \
+	--call-parentheses Input \
+	--collapse-simple-statement Always \
+	--column-width 120 \
+	--glob **/*.lua \
+	--indent-type Spaces \
+	--line-endings Unix \
+	--quote-style AutoPreferSingle \
+	--verbose
 
 update: | clean ## Run clean target, pull git changes, and re-install plugins
 	echo "${log} pulling upstream" && \

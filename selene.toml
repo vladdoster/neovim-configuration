@@ -1,1 +1,3 @@
 std="vim"
+
+#  vim: set expandtab filetype=toml shiftwidth=4 tabstop=4 :

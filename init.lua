@@ -1,9 +1,7 @@
-require "lazy-bootstrap"
+require 'keybindings'
+require 'lazy-bootstrap'
+require('lazy').setup 'plugins'
+require 'settings'
+require 'autocmds'
 
-require "settings"
-require "keybindings"
-require "autocmds"
-
-require("lazy").setup("plugins")
-
--- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua
+--  vim: set expandtab filetype=lua shiftwidth=4 tabstop=4 :
