@@ -8,7 +8,7 @@ return {
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason.nvim', opts = { max_concurrent_installers = 20 } },
       { 'williamboman/mason-lspconfig.nvim' },
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
@@ -49,7 +49,6 @@ return {
     },
     lazy = false,
   },
-
   {
     'onsails/lspkind-nvim',
     config = function() require('extensions.lspkind') end,

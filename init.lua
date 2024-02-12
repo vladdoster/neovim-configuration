@@ -1,6 +1,9 @@
-require 'keybindings'
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 require 'lazy-bootstrap'
 require('lazy').setup 'plugins'
+require 'keybindings'
 require 'settings'
 require 'autocmds'
 
