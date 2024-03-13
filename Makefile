@@ -22,13 +22,15 @@ deps: ## Install lua-formatter system-wide
 
 format: ## Run lua-formatter using .lua_format.yml config
 	stylua \
-	--call-parentheses Input \
-	--collapse-simple-statement Always \
-	--column-width 120 \
+	--call-parentheses=Input \
+	--collapse-simple-statement=Always \
+	--column-width=120 \
 	--glob **/*.lua \
-	--indent-type Spaces \
-	--line-endings Unix \
-	--quote-style AutoPreferSingle \
+	--indent-type=Spaces \
+	--indent-width=2 \
+	--line-endings=Unix \
+	--quote-style=AutoPreferSingle \
+	--sort-requires \
 	--verbose
 
 update: | clean ## Run clean target, pull git changes, and re-install plugins
