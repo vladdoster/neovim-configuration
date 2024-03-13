@@ -8,7 +8,8 @@ return {
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim', opts = { max_concurrent_installers = 20 } },
+      { 'williamboman/mason.nvim', opts = { max_concurrent_installers = 50 } },
+      { 'j-hui/fidget.nvim', opts = {} },
       { 'williamboman/mason-lspconfig.nvim' },
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
@@ -18,9 +19,13 @@ return {
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
       -- Snippets
-      { 'L3MON4D3/LuaSnip' },
+      { 'L3MON4D3/LuaSnip', build = (function() return 'make install_jsregexp' end)() },
       { 'rafamadriz/friendly-snippets' },
     },
+  },
+  {
+    'sheerun/vim-polyglot',
+    init = function() vim.g.polyglot_disabled = { 'autoindent', 'sensible' } end,
   },
   {
     'nvim-neo-tree/neo-tree.nvim',
@@ -63,6 +68,13 @@ return {
   },
 
   -- { 'folke/trouble.nvim', dependencies = { 'kyazdani42/nvim-web-devicons' } },
+
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function() require('extensions.indentlines') end,
+    event = 'User FileOpened',
+  },
+
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -142,11 +154,16 @@ return {
     enabled = vim.fn.executable('pip3') == 1,
     lazy = true,
   },
-  { 'sQVe/sort.nvim', cmd = 'Sort' },
+  {
+    'sQVe/sort.nvim',
+    cmd = 'Sort',
+    keys = { { '<C-s>', ':Sort<cr>', mode = 'n', remap = true }, { '<C-s>', ':Sort<cr>', mode = 'v', remap = true } },
+    lazy = true,
+  },
   { 'kylechui/nvim-surround', opts = {} },
   {
     'folke/tokyonight.nvim',
-    config = function() vim.cmd([[colorscheme tokyonight]]) end,
+    config = function() vim.cmd.colorscheme('tokyonight') end,
     lazy = false,
     priority = 1000,
   },

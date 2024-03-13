@@ -1,13 +1,20 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 require('helpers/globals')
 
-local function map(mode, lhs, rhs, opts)
-  opts = opts or {}
-  opts.silent = opts.silent ~= false
-  if opts.remap and not g.vscode then opts.remap = nil end
-  keymap.set(mode, lhs, rhs, opts)
+local function map(mode, l, r, opts)
+  if type(mode) == table then
+    for _, m in ipairs(m) do
+      print('-- mapped: ' .. m .. ' -> ' .. l)
+      map(m, l, r, opts)
+    end
+  else
+    opts = opts or {}
+    opts.buffer = bufnr
+    vim.keymap.set(mode, l, r, opts)
+  end
 end
-
-g.mapleader = ' '
 
 map('i', 'kk', '<Esc>')
 
@@ -33,7 +40,7 @@ map('n', '<leader>s', ':w<CR>')
 -- Close all windows and exit from Neovim with <leader> and q
 map('n', '<leader>q', ':qa!<CR>')
 
-map('n', '<C-n>', '<cmd>Neotree toggle reveal_force_cwd<CR>')
+map({ 'n', 'i' }, '<leader>n', '<cmd>Neotree toggle reveal_force_cwd<CR>')
 
 map('n', '<leader>O', '<cmd>Telescope git_files<CR>')
 map('n', '<leader>a', '<cmd>Telescope<CR>')
@@ -64,10 +71,10 @@ map('n', '[b', '<cmd>bprevious<cr>')
 map('n', ']b', '<cmd>bnext<cr>')
 
 -- Resize window using <ctrl> arrow keys
-map('n', '<C-Up>', '<cmd>resize +2<cr>')
-map('n', '<C-Down>', '<cmd>resize -2<cr>')
-map('n', '<C-Left>', '<cmd>vertical resize -2<cr>')
-map('n', '<C-Right>', '<cmd>vertical resize +2<cr>')
+map('n', '<A-Up>', '<cmd>resize +2<cr>')
+map('n', '<A-Down>', '<cmd>resize -2<cr>')
+map('n', '<A-Left>', '<cmd>vertical resize -2<cr>')
+map('n', '<A-Right>', '<cmd>vertical resize +2<cr>')
 
 -- Move Lines
 map('n', '<A-j>', '<cmd>m .+1<cr>==')
@@ -115,6 +122,12 @@ map('n', '<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>')
 -- map('n', "<C-s>", "<cmd>Sort<cr>")
 -- map('n', "<C-s>sf", "<cmd>SortFolds<cr>")
 
-map({ 'i', 'n', 's', 'v', 'x' }, '<C-s>', ':Sort<cr>')
+-- map('n', '<C-s>', ':Sort<cr>', { remap = true })
+
+-- map({ 'n', 'x' }, '<leader>s', ':Sort<cr>', { silent = true })
+-- vim.cmd([[
+--   nnoremap <silent> go <Cmd>Sort<CR>
+--   vnoremap <silent> go <Esc><Cmd>Sort<CR>
+-- ]])
 
 --  vim: set expandtab filetype=lua shiftwidth=4 tabstop=4 :

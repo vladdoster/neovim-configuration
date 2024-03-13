@@ -6,7 +6,7 @@
 -- })
 
 vim.defer_fn(function()
-  require('nvim-treesitter.configs').setup {
+  require('nvim-treesitter.configs').setup({
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = {
       'c',
@@ -38,7 +38,7 @@ vim.defer_fn(function()
       keymaps = {
         init_selection = '<c-space>',
         node_incremental = '<c-space>',
-        scope_incremental = '<c-s>',
+        -- scope_incremental = '<c-s>',
         node_decremental = '<M-space>',
       },
     },
@@ -86,7 +86,7 @@ vim.defer_fn(function()
         },
       },
     },
-  }
+  })
 end, 0)
 
 --  vim: set expandtab filetype=lua shiftwidth=4 tabstop=4 :
