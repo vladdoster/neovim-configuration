@@ -75,13 +75,37 @@ return {
     event = 'User FileOpened',
   },
 
+  -- Treesitter
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    config = function() require('extensions.treesitter') end,
-    event = { 'BufNewFile', 'BufReadPost' },
-    lazy = true,
+    -- run = ":TSUpdate",
+    config = function()
+      local path = table.concat({ vim.call('stdpath', 'data'), 'site', 'pack', 'lazy', 'opt', 'nvim-treesitter' }, '/')
+      vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
+      require('extensions.treesitter')
+    end,
+    cmd = {
+      'TSInstall',
+      'TSUninstall',
+      'TSUpdate',
+      'TSUpdateSync',
+      'TSInstallInfo',
+      'TSInstallSync',
+      'TSInstallFromGrammar',
+    },
+    event = 'User FileOpened',
   },
+  -- {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   build = ':TSUpdate',
+  --   config = function()
+  --       local path=table.concat({vim.call("stdpath", "data"), "site", "pack", "lazy", "opt", "nvim-treesitter"},'/')
+  --       vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
+  --       require('extensions.treesitter')
+  --   end,
+  --   event = { 'BufNewFile', 'BufReadPost' },
+  --   lazy = true,
+  -- },
   -- {
   --   'stevearc/aerial.nvim',
   --   lazy = true,

@@ -47,7 +47,7 @@ COPY . /root/.config/nvim/
 # Install plugins
 RUN nvim --headless +"Lazy! sync" +qa
 # Install tree-sitter parsers
-# RUN nvim --headless +"TSUpdateSync" +qa
+RUN nvim --headless +"TSUpdateSync" +qa
 # Finish
 WORKDIR /root/.config/nvim
 CMD ["nvim"]
