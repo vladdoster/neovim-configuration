@@ -28,6 +28,7 @@ map('n', '<C-h>', '<C-w>h')
 map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
+vim.keymap.set("n", "X", "<Cmd>:x<CR>", { noremap = true, silent = true })
 
 -- Reload configuration without restart nvim
 map('n', '<leader>r', ':so %<CR>')
