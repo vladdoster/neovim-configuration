@@ -29,6 +29,7 @@ format: ## Run lua-formatter using .lua_format.yml config
 	--indent-type Spaces \
 	--line-endings Unix \
 	--quote-style AutoPreferSingle \
+	--sort-requires \
 	--verbose
 
 update: | clean ## Run clean target, pull git changes, and re-install plugins
