@@ -60,10 +60,6 @@ local disabled_built_ins = {
   'gzip',
   'logipat',
   'matchit',
-  'netrw',
-  'netrwFileHandlers',
-  'netrwPlugin',
-  'netrwSettings',
   'optwin',
   'rplugin',
   'rrhelper',
@@ -82,4 +78,4 @@ for _, plugin in pairs(disabled_built_ins) do
   g['loaded_' .. plugin] = 1
 end
 
---  vim: expandtab filetype=lua shiftwidth=4 tabstop=4
+-- vim: set ft=lua:

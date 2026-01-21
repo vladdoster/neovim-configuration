@@ -1,3 +1,4 @@
+--  vim: set expandtab filetype=lua shiftwidth=4 tabstop=4 :
 require('helpers/globals')
 
 return {
@@ -24,16 +25,31 @@ return {
   },
   {
     'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    cmd = 'Neotree',
     config = function() require('extensions.neotree') end,
     dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
-    lazy = true,
+    lazy = false,
+    version = '*',
+  },
+  -- {
+  -- 'nvim-treesitter/nvim-treesitter-context',
+  -- lazy = false,
+  -- opts = { mode = 'cursor' },
+  -- },
+  {
+    'cappyzawa/trim.nvim',
+    config = function()
+      require('trim').setup({
+        ft_blocklist = { 'markdown' },
+        highlight = true,
+        patterns = { [[%s/\(\n\n\)\n\+/\1/]] },
+        trim_current_line = false,
+        trim_on_write = false,
+      })
+    end,
   },
   {
-    'nvim-treesitter/nvim-treesitter-context',
-    lazy = false,
-    opts = { mode = 'cursor' },
+    'vladdoster/org-modeline.nvim',
+    config = function() require('org-modeline').setup() end,
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -136,13 +152,12 @@ return {
   { 'akinsho/toggleterm.nvim', cmd = { 'TermExec', 'ToggleTerm' }, opts = {} },
   { 'junegunn/vim-easy-align', cmd = 'EasyAlign', lazy = true },
   { 'numToStr/Comment.nvim', opts = {} },
-  {
-    'obreitwi/vim-sort-folds',
-    build = 'pip3 install pynvim',
-    cmd = 'SortFolds',
-    enabled = vim.fn.executable('pip3') == 1,
-    lazy = true,
-  },
+  -- {
+  --   'vladdoster/sort-folds.nvim',
+  --   opts = {},
+  --   cmd = 'SortFolds',
+  -- },
+    { 'vladdoster/sort-folds' , opts={}},
   { 'sQVe/sort.nvim', cmd = 'Sort' },
   { 'kylechui/nvim-surround', opts = {} },
   {
@@ -159,4 +174,4 @@ return {
   },
 }
 
---  vim: set expandtab filetype=lua shiftwidth=4 tabstop=4 :
+-- vim: set ft=lua:
