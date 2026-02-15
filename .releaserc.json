@@ -1,7 +1,7 @@
 {
   "repositoryUrl": "https://github.com/vladdoster/neovim-configuration",
   "branches": [
-    "master"
+    "main"
   ],
   "plugins": [
     "@semantic-release/commit-analyzer",
