@@ -1,3 +1,10 @@
+## [7.5.1](https://github.com/vladdoster/neovim-configuration/compare/v7.5.0...v7.5.1) (2026-02-15)
+
+
+### Bug Fixes
+
+* blink-cmp configuration for completion options ([6fab0fb](https://github.com/vladdoster/neovim-configuration/commit/6fab0fb169c7fab9bea5c2ecf53dfa814f3b1085))
+
 # [7.5.0](https://github.com/vladdoster/neovim-configuration/compare/v7.4.0...v7.5.0) (2024-02-05)
 
 
