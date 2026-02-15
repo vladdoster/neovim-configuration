@@ -1,3 +1,11 @@
+## [7.5.2](https://github.com/vladdoster/neovim-configuration/compare/v7.5.1...v7.5.2) (2026-02-15)
+
+
+### Bug Fixes
+
+* Add lazy loading option for Treesitter plugin ([d35d1c7](https://github.com/vladdoster/neovim-configuration/commit/d35d1c71d768b008809a0662800c17c42b9a379a))
+* update default branch in release config to 'main' ([d112f25](https://github.com/vladdoster/neovim-configuration/commit/d112f25d7b1203eca7aba6ac5f64d63a41b6778e))
+
 ## [7.5.1](https://github.com/vladdoster/neovim-configuration/compare/v7.5.0...v7.5.1) (2026-02-15)
 
 
