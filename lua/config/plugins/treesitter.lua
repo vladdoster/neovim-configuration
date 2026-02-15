@@ -2,7 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.config',
+    lazy = false,
     opts = {
       ensure_installed = {
         'bash',
@@ -30,4 +30,4 @@ return {
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 }
--- vim: ts=2 sts=2 sw=2 et
+-- vim: ft=lua ts=2 sts=2 sw=2 et
