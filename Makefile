@@ -36,7 +36,7 @@ update: | clean ## Run clean target, pull git changes, and re-install plugins
 	echo "${log} pulling upstream" && \
 	git pull --autostash --quiet && \
 	echo "${log} installing plugins" && \
-	nvim --headless "+Lazy! sync" +qa
+	nvim --headless "+PackSync" +qa
 
 targets-table:
 	@printf "|Target|Descripton|\n|---|---|\n"

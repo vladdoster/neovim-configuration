@@ -6,6 +6,8 @@
 
 ## Install
 
+Requires **Neovim ≥ 0.12** (uses the built-in `vim.pack` plugin manager).
+
 ```bash
 mv ~/.config/nvim ~/.config/nvim.bak
 ```
@@ -18,6 +20,23 @@ git clone https://github.com/vladdoster/neovim-configuration ~/.config/nvim
 make clean
 nvim
 ```
+
+## Plugin management
+
+Plugins are managed by the built-in `vim.pack` (Neovim 0.12+). Revisions are
+pinned in `nvim-pack-lock.json`.
+
+| Command            | Description                                                   |
+| ------------------ | ------------------------------------------------------------- |
+| `:PackUpdate`      | Update all packages (opens the built-in confirmation buffer). |
+| `:PackClean`       | Remove plugins no longer listed in the orchestrator.          |
+| `:PackStatus`      | Print installed plugin status.                                |
+| `:PackLockWrite`   | Capture current installed revisions into the lockfile.        |
+| `:PackLockRestore` | Roll back to the revisions in the lockfile.                   |
+| `:PackSync`        | `update` → `clean` → `lock write`.                            |
+
+After running an update, run `:PackLockWrite` to refresh
+`nvim-pack-lock.json`.
 
 ## Makefile
 

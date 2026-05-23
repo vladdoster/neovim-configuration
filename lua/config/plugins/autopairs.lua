@@ -1,8 +1,4 @@
--- autopairs
--- https://github.com/windwp/nvim-autopairs
-
 return {
-  'windwp/nvim-autopairs',
-  event = 'InsertEnter',
-  opts = {},
+  spec = { src = 'https://github.com/windwp/nvim-autopairs', name = 'nvim-autopairs' },
+  setup = function() require('nvim-autopairs').setup({}) end,
 }
