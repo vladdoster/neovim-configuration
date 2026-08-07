@@ -19,14 +19,17 @@ map('i', 'kk', '<Esc>')
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
---  See `:help vim.hl.on_yank()`
+--  See `:help vim.hl.hl_op()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function() vim.hl.on_yank() end,
+  callback = function() vim.hl.hl_op() end,
 })
 
-map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- `<leader>ql`, not `<leader>q`: a bare mapping that is also the prefix of another
+-- (`<leader>qq`) stalls for the full `timeoutlen` on every press while Neovim waits
+-- to see if more keys are coming.
+map('n', '<leader>ql', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix [L]ist' })
 
 -- Move Lines
 map('n', '<A-j>', '<cmd>m .+1<cr>==')
@@ -90,9 +93,10 @@ map('t', '<c-_>', '<cmd>close<cr>')
 map('n', '<C-n>', '<cmd>Neotree toggle reveal_force_cwd<CR>')
 
 -- Quit / save / reload
+--  Saving lives on <leader>W alone. Bare <leader>s and <leader>w each prefixed a
+--  larger namespace (Telescope's <leader>s* and the window <leader>w* set), so both
+--  stalled for `timeoutlen` on every press to do what `:w` already does.
 map('n', '<leader>qq', '<cmd>qa<cr>')
-map('n', '<leader>s', ':w<CR>')
-map('n', '<leader>w', '<cmd>update<cr>')
 map('n', '<leader>W', '<cmd>wall<Cr>')
 map('n', '<leader>r', ':so %<CR>')
 
@@ -105,6 +109,7 @@ map('n', '<leader>gd', '<cmd>Telescope lsp_definitions<CR>')
 map('n', '<leader>i', '<cmd>Telescope jumplist<CR>')
 map('n', '<leader>o', '<cmd>Telescope find_files<CR>')
 map('n', '<leader>p', '<cmd>Telescope oldfiles<CR>')
-map('n', '<leader>t', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>')
+-- <leader>ts, not <leader>t: gitsigns and the LSP attach both add <leader>t* toggles.
+map('n', '<leader>ts', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>')
 
 -- vim: ts=2 sts=2 sw=2 et
