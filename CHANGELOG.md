@@ -1,3 +1,28 @@
+# [7.6.0](https://github.com/vladdoster/neovim-configuration/compare/v7.5.2...v7.6.0) (2026-08-07)
+
+
+### Bug Fixes
+
+* add missing comma in blink-cmp opts table ([0f7b0b6](https://github.com/vladdoster/neovim-configuration/commit/0f7b0b62598aa3f4634292c80c285b67f65a3b6f))
+* **blink-cmp:** make the completion menu reachable ([dd4e4ae](https://github.com/vladdoster/neovim-configuration/commit/dd4e4ae687a617484dff33ac38c1299529088323))
+* **conform:** surface formatter errors ([5c4d6af](https://github.com/vladdoster/neovim-configuration/commit/5c4d6af2c31af66c615b4ef4e63fbfee88c95628))
+* **gitsigns:** diff against the previous commit, not HEAD ([81893c3](https://github.com/vladdoster/neovim-configuration/commit/81893c3c4645329c8be1d0f09e04362de3508748))
+* **keymaps:** replace deprecated vim.hl.on_yank and resolve leader stalls ([c3ab379](https://github.com/vladdoster/neovim-configuration/commit/c3ab37947ab60fd3f8e55a8fc21d12ed2d9b1625))
+* **neo-tree:** nest name options under default_component_configs ([926e999](https://github.com/vladdoster/neovim-configuration/commit/926e999907bb14500441c34611959d9f7f1b8e39))
+* **options:** correct broken settings and drop duplicate assignments ([6b195ee](https://github.com/vladdoster/neovim-configuration/commit/6b195ee11773b8372835170a433220c63b7bf50a))
+* **treesitter:** migrate to main-branch API so parsers install ([bab2ea2](https://github.com/vladdoster/neovim-configuration/commit/bab2ea2880a008e30538404bf0b89b5cce3d46ba))
+
+
+### Features
+
+* **sort:** add sort.nvim with a <C-s> mapping ([ff1cbd0](https://github.com/vladdoster/neovim-configuration/commit/ff1cbd0c616d4f03835cfff4760b57348af260b3))
+* **ui:** turn off nerd font glyphs ([5e8ad8c](https://github.com/vladdoster/neovim-configuration/commit/5e8ad8c76bd247ed8d27dc8e839a14ed4d3ffb0d))
+
+
+### Performance Improvements
+
+* **lazy:** lazy-load by default and auto-import plugin specs ([817fbba](https://github.com/vladdoster/neovim-configuration/commit/817fbba5e9e82fada75f4c973e2625eb4d051649))
+
 ## [7.5.2](https://github.com/vladdoster/neovim-configuration/compare/v7.5.1...v7.5.2) (2026-02-15)
 
 
