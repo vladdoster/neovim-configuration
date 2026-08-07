@@ -50,8 +50,18 @@ for _, dir in ipairs({
   { key = 'k', desc = 'upper' },
   { key = 'l', desc = 'right' },
 }) do
-  map('n', '<C-' .. dir.key .. '>', '<C-w>' .. dir.key, { remap = true, desc = 'Move focus to the ' .. dir.desc .. ' window' })
-  map('t', '<C-' .. dir.key .. '>', '<cmd>wincmd ' .. dir.key .. '<cr>', { desc = 'Move focus to the ' .. dir.desc .. ' window' })
+  map(
+    'n',
+    '<C-' .. dir.key .. '>',
+    '<C-w>' .. dir.key,
+    { remap = true, desc = 'Move focus to the ' .. dir.desc .. ' window' }
+  )
+  map(
+    't',
+    '<C-' .. dir.key .. '>',
+    '<cmd>wincmd ' .. dir.key .. '<cr>',
+    { desc = 'Move focus to the ' .. dir.desc .. ' window' }
+  )
 end
 
 -- Resize window using <ctrl> arrow keys

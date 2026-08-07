@@ -1,18 +1,16 @@
-require("lazy").setup({
-  { "NMAC427/guess-indent.nvim", lazy = false }, -- Detect tabstop and shiftwidth automatically
+require('lazy').setup({
+  { 'NMAC427/guess-indent.nvim', lazy = false }, -- Detect tabstop and shiftwidth automatically
   {
-    "dstein64/vim-startuptime",
-    cmd = "StartupTime",
-    init = function()
-      vim.g.startuptime_tries = 10
-    end,
+    'dstein64/vim-startuptime',
+    cmd = 'StartupTime',
+    init = function() vim.g.startuptime_tries = 10 end,
   },
   {
-    "cappyzawa/trim.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    'cappyzawa/trim.nvim',
+    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
-      require("trim").setup({
-        ft_blocklist = { "markdown" },
+      require('trim').setup({
+        ft_blocklist = { 'markdown' },
         highlight = true,
         patterns = { [[%s/\(\n\n\)\n\+/\1/]] },
         trim_current_line = false,
@@ -21,14 +19,12 @@ require("lazy").setup({
     end,
   },
   {
-    "vladdoster/remember.nvim",
-    config = function()
-      require("remember")
-    end,
+    'vladdoster/remember.nvim',
+    config = function() require('remember') end,
     lazy = false,
     priority = 2000,
   },
-  { import = "config.plugins" },
+  { import = 'config.plugins' },
 }, {
   defaults = { lazy = true },
   ui = {
