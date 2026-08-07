@@ -43,7 +43,7 @@ return {
     --- @type blink.cmp.Config
     opts = {     
       keymap = {
-        preset = 'none',
+        preset = 'default',
         -- If completion hasn't been triggered yet, insert the first suggestion; if it has, cycle to the next suggestion.
         ['<Tab>'] = {
           function(cmp)
@@ -62,23 +62,20 @@ return {
         nerd_font_variant = 'mono',
       },
       completion = {
-        menu = { enabled = false },
         list = { selection = { preselect = false }, cycle = { from_top = false } },
         -- By default, you may press `<c-space>` to show the documentation.
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
       },
       sources = {
-        default = { 'lsp', 'path', 'buffer', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
       },
       snippets = { preset = 'luasnip' },
-      -- By default, we use the Lua implementation instead, but you may enable
-      -- the rust implementation via `'prefer_rust_with_warning'`
+      -- Sort exact matches first; blink's own default is { 'score', 'sort_text' }.
       -- See :h blink-cmp-config-fuzzy for more information
       fuzzy = {
-        implementation = 'lua',
         sorts = {
           'exact',
           'score',
@@ -90,4 +87,4 @@ return {
     },
   },
 }
--- vim: ts=2 sts=2 sw=2 noet
+-- vim: ts=2 sts=2 sw=2 et
