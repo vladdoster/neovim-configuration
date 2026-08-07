@@ -36,6 +36,9 @@ map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi')
 map('v', '<A-j>', ":m '>+1<cr>gv=gv")
 map('v', '<A-k>', ":m '<-2<cr>gv=gv")
 
+-- Sort (sQVe/sort.nvim)
+map({ 'i', 'n', 's', 'v', 'x' }, '<C-s>', ':Sort<cr>')
+
 -- Move focus between windows with Ctrl+{h,j,k,l}; also works from terminal mode.
 --  See `:help wincmd` for a list of all window commands
 for _, dir in ipairs({
