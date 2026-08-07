@@ -15,6 +15,11 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
+    -- lazy.nvim loads a plugin's `dependencies` with it, so this spec's trigger also
+    -- decides when mason, fidget and blink.cmp load. VeryLazy keeps that whole tree
+    -- off the pre-first-draw path while still firing every session, which the
+    -- mason-tool-installer call in config() relies on.
+    event = 'VeryLazy',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
@@ -185,15 +190,6 @@ return {
         virtual_text = {
           source = 'if_many',
           spacing = 2,
-          format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
-          end,
         },
       })
 
@@ -258,22 +254,25 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'markdownlint', -- Used to lint Markdown (config.plugins.lint)
       })
-      require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
+      -- `run_on_start` would defer this to VimEnter, which has already fired by the
+      -- time a lazy-loaded spec gets here. Drive the check directly instead so the
+      -- install runs whenever this config does, however it was triggered.
+      require('mason-tool-installer').setup({ ensure_installed = ensure_installed, run_on_start = false })
+      require('mason-tool-installer').check_install()
+
+      for server_name, server in pairs(servers) do
+        -- This handles overriding only values explicitly passed
+        -- by the server configuration above. Useful when disabling
+        -- certain features of an LSP (for example, turning off formatting for ts_ls)
+        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+        vim.lsp.config(server_name, server)
+      end
 
       require('mason-lspconfig').setup({
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
+        automatic_enable = true, -- calls vim.lsp.enable() per mason-installed server
       })
     end,
   },
