@@ -1,10 +1,11 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     build = ':TSUpdate',
     lazy = false,
-    opts = {
-      ensure_installed = {
+    config = function()
+      local ensure_installed = {
         'bash',
         'c',
         'diff',
@@ -16,18 +17,27 @@ return {
         'query',
         'vim',
         'vimdoc',
-      },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+      }
+      require('nvim-treesitter').install(ensure_installed)
+
+      -- The autocmd matches *filetypes*, which are not the same as parser names
+      -- (`bash` parser -> `sh` filetype, `vimdoc` -> `help`/`checkhealth`, ...).
+      -- Ask Neovim for the mapping instead of hand-maintaining a second list that
+      -- silently drifts whenever `ensure_installed` changes.
+      local filetypes = {}
+      for _, lang in ipairs(ensure_installed) do
+        vim.list_extend(filetypes, vim.treesitter.language.get_filetypes(lang))
+      end
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('treesitter-start', { clear = true }),
+        pattern = filetypes,
+        callback = function(ev)
+          vim.treesitter.start(ev.buf)
+          vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+    end,
   },
 }
 -- vim: ft=lua ts=2 sts=2 sw=2 et
