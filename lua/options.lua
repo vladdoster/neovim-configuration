@@ -1,66 +1,34 @@
-vim.o.number = true
--- vim.o.relativenumber = true
-vim.o.mouse = 'a'
-vim.o.showmode = false
+-- [[ Options ]]
+--  See `:help vim.o` and `:help lua-options-guide`
+--
+--  Single alphabetized block on purpose: this file used to carry a second, partial
+--  copy of these settings above, and the lower one silently won every conflict.
+
 -- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
+--  Scheduled after `UiEnter` because setting it eagerly probes the clipboard
+--  provider and increases startup-time. Do not also set this synchronously.
 --  See `:help 'clipboard'`
 vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
-vim.o.breakindent = true
-vim.o.undofile = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.signcolumn = 'yes'
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
-vim.o.splitright = true
-vim.o.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
---
---  Notice listchars is set using `vim.opt` instead of `vim.o`.
---  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
---   See `:help lua-options`
---   and `:help lua-options-guide`
-vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.o.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.o.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
-
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
-vim.o.confirm = true
-
-vim.cmd([[filetype plugin on]])
-vim.cmd([[autocmd FileType * setlocal formatoptions-=cro]])
 
 vim.o.autowrite = true
 vim.o.background = 'dark'
-vim.o.clipboard = 'unnamedplus'
+vim.o.breakindent = true
 vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.conceallevel = 3
+-- Raise a dialog instead of failing on `:q` with unsaved changes.
 vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.expandtab = true
 vim.o.fixeol = false
-vim.o.formatoptions = 'jcroqlnt'
+vim.o.formatoptions = 'jqlnt'
 vim.o.grepformat = '%f:%l:%c:%m'
-vim.o.grepprg = 'rg'
+vim.o.grepprg = 'rg --vimgrep'
 vim.o.ignorecase = true
 vim.o.inccommand = 'nosplit'
-vim.o.laststatus = 0
+vim.o.laststatus = 3
 vim.o.list = true
+-- `vim.opt` rather than `vim.o`: it accepts tables. See `:help 'listchars'`
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.mouse = 'a'
 vim.o.number = true
 vim.o.pumblend = 10
@@ -87,13 +55,11 @@ vim.o.timeoutlen = 300
 vim.o.undofile = true
 vim.o.undolevels = 10000
 vim.o.updatetime = 200
-vim.o.wildmenu = true
 vim.o.wildmode = 'longest:full,full'
 vim.o.winminwidth = 5
 vim.o.wrap = false
 
 local disabled_built_ins = {
-  '2html_plugin',
   'bugreport',
   'compiler',
   'ftplugin',
@@ -102,6 +68,8 @@ local disabled_built_ins = {
   'gzip',
   'logipat',
   'matchit',
+  'netrw',
+  'netrwPlugin',
   'optwin',
   'rplugin',
   'rrhelper',
@@ -109,6 +77,7 @@ local disabled_built_ins = {
   'synmenu',
   'tar',
   'tarPlugin',
+  'tohtml',
   'tutor',
   'vimball',
   'vimballPlugin',
@@ -119,7 +88,5 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. plugin] = 1
 end
-
--- vim: set ft=lua:
 
 -- vim: ts=2 sts=2 sw=2 et
