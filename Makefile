@@ -1,7 +1,8 @@
-SHELL := $(shell which zsh)
+MAKEFLAGS += --silent
+SHELL := $(shell command -v zsh 2> /dev/null)
 .ONESHELL:
-.PHONY: all clean deps format update
-.SILENT: all clean deps format update
+
+.PHONY: all clean deps format targets-table update update-readme
 
 log=\e[32m==>\e[0m
 all: help
@@ -16,11 +17,7 @@ clean: ## Remove installed plugins & packer artifacts
 	$(SHELL) -c 'rm -rf ~/.local/s[ht]*/nvim'
 	echo "${log} cleaned neovim"
 
-deps: ## Install lua-formatter system-wide
-	luarocks install --local --server https://luarocks.org/dev luaformatter
-	echo "${log} installed lua-formatter"
-
-format: ## Run lua-formatter using .lua_format.yml config
+format: ## Run Stylua formatter
 	stylua \
 	--call-parentheses Input \
 	--collapse-simple-statement Always \
@@ -39,13 +36,13 @@ update: | clean ## Run clean target, pull git changes, and re-install plugins
 	nvim --headless "+Lazy! sync" +qa
 
 targets-table:
-	@printf "|Target|Descripton|\n|---|---|\n"
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+	printf "|Target|Descripton|\n|---|---|\n"
+	grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "| %s| %s |\n", $$1, $$2}'
 
 update-readme: ## Update Make targets table in README
-	sed -i -E '/^|/d' README.md
-	make targets-table | mdformat - >> README.md
+	sed -i '' -e '/^|/d' README.md
+	make targets-table | uvx --with mdformat-gfm mdformat - >> README.md
 
 # vim: set fenc=utf8 ffs=unix ft=make list noet sw=4 ts=4 tw=72:

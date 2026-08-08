@@ -19,13 +19,12 @@ make clean
 nvim
 ```
 
-## Makefile
+## Makefile targets
 
 | Target        | Descripton                                                 |
 | ------------- | ---------------------------------------------------------- |
 | clean         | Remove installed plugins & packer artifacts                |
-| deps          | Install lua-formatter system-wide                          |
-| format        | Run lua-formatter using `.lua_format.yml` config            |
+| format        | Run Stylua formatter                                       |
 | help          | Display all Makfile targets                                |
 | update-readme | Update Make targets table in README                        |
 | update        | Run clean target, pull git changes, and re-install plugins |
