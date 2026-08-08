@@ -1,3 +1,12 @@
+# [7.7.0](https://github.com/vladdoster/neovim-configuration/compare/v7.6.0...v7.7.0) (2026-08-08)
+
+
+### Features
+
+* **conform:** add stylua args and markdown formatting ([dcba67d](https://github.com/vladdoster/neovim-configuration/commit/dcba67d50bd991f2e2b619d29ec9e7149c83652f))
+* **keymaps:** add <C-w>z window zoom mapping ([3df15f8](https://github.com/vladdoster/neovim-configuration/commit/3df15f86dc480c65d09cbb33cbecf3b0ad96d6c2))
+* **telescope:** search hidden files in live grep ([3e60024](https://github.com/vladdoster/neovim-configuration/commit/3e60024f3decd8c9f102c16a74aec7ee711f339f))
+
 # [7.6.0](https://github.com/vladdoster/neovim-configuration/compare/v7.5.2...v7.6.0) (2026-08-07)
 
 
