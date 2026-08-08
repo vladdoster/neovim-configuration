@@ -94,6 +94,9 @@ map('n', '<S-l>', '<cmd>bnext<cr>')
 map('n', '[b', '<cmd>bprevious<cr>')
 map('n', ']b', '<cmd>bnext<cr>')
 
+--
+vim.keymap.set('n', '<C-w>z', '<C-w>_<C-w>|', { desc = 'Zoom window' })
+
 -- Terminal
 map('t', '<esc><esc>', '<c-\\><c-n>', { desc = 'Exit terminal mode' })
 map('t', '<C-/>', '<cmd>close<cr>')
