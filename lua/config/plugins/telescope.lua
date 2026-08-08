@@ -52,6 +52,16 @@ return {
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden', -- This flag forces ripgrep to search hidden files
+          },
           initial_mode = 'insert',
           layout_config = { prompt_position = 'top' },
           mappings = {
