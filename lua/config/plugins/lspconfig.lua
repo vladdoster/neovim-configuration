@@ -185,7 +185,27 @@ return {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        basedpyright = {
+          -- Start only inside a project; loose .py files get no LSP.
+          workspace_required = true,
+          -- basedpyright finds <root>/.venv itself; also use an activated venv or <root>/venv.
+          before_init = function(_, config)
+            for _, venv in ipairs({ vim.env.VIRTUAL_ENV or '', config.root_dir .. '/venv' }) do
+              local python = venv .. '/bin/python'
+              if venv ~= '' and vim.uv.fs_stat(python) then
+                config.settings.python = vim.tbl_extend('force', config.settings.python or {}, { pythonPath = python })
+                return
+              end
+            end
+          end,
+          -- Ruff organizes imports; this turns off the duplicate basedpyright action.
+          settings = { basedpyright = { disableOrganizeImports = true } },
+        },
+        ruff = {
+          workspace_required = true,
+          -- basedpyright gives the full hover; Ruff hover only explains noqa codes.
+          on_attach = function(client) client.server_capabilities.hoverProvider = false end,
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
