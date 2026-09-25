@@ -19,11 +19,11 @@ map('i', 'kk', '<Esc>')
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
---  See `:help vim.hl.hl_op()`
+--  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function() vim.hl.hl_op() end,
+  callback = function() vim.hl.on_yank() end,
 })
 
 -- `<leader>ql`, not `<leader>q`: a bare mapping that is also the prefix of another
