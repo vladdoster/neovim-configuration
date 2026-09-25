@@ -1,12 +1,16 @@
 return {
   {
     'sQVe/sort.nvim',
-    -- VeryLazy, not just `cmd = 'Sort'`: setup() also registers the plugin's own
-    -- `go` operator, `is`/`as` textobjects and `]s`/`[s` motions, which a command
-    -- trigger would leave dead until the first :Sort. Note `]s`/`[s` shadow the
-    -- built-in next/prev-misspelled-word motions.
+    -- VeryLazy, not `cmd = 'Sort'`: setup() also maps the operator, textobjects and motions.
+    -- These keys keep the built-in `go`, `is`/`as` and `]s`/`[s` (next/prev misspelled word).
     event = 'VeryLazy',
-    opts = {},
+    opts = {
+      mappings = {
+        operator = 'gS',
+        textobject = { inner = 'iS', around = 'aS' },
+        motion = { next_delimiter = '],', prev_delimiter = '[,' },
+      },
+    },
   },
 }
 -- vim: ts=2 sts=2 sw=2 et

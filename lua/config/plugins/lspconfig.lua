@@ -15,10 +15,8 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
-    -- lazy.nvim loads a plugin's `dependencies` with it, so this spec's trigger also
-    -- decides when mason, fidget and blink.cmp load. VeryLazy keeps that whole tree
-    -- off the pre-first-draw path while still firing every session, which the
-    -- mason-tool-installer call in config() relies on.
+    -- Dependencies load with this spec, so VeryLazy also delays fidget and blink.cmp.
+    -- mason-tool-installer in config() needs this event, which fires every session.
     event = 'VeryLazy',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -31,7 +29,8 @@ return {
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
 
-      -- Allows extra capabilities provided by blink.cmp
+      -- blink.cmp must load before any server starts: its plugin file adds its
+      -- completion capabilities to vim.lsp.config('*').
       'saghen/blink.cmp',
     },
     config = function()
@@ -60,6 +59,17 @@ return {
       -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
       -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
+      local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+
+      -- When a client detaches, remove its reference highlights and the buffer's highlight autocmds.
+      vim.api.nvim_create_autocmd('LspDetach', {
+        group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+        callback = function(event)
+          vim.lsp.util.buf_clear_references(event.buf)
+          vim.api.nvim_clear_autocmds({ group = highlight_augroup, buffer = event.buf })
+        end,
+      })
+
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -77,13 +87,7 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          -- Rename the variable under your cursor.
-          --  Most Language Servers support renaming across files, etc.
-          map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
-
-          -- Execute a code action, usually your cursor needs to be on top of an error
-          -- or a suggestion from your LSP for this to activate.
-          map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+          -- Neovim 0.12 already maps `grn` (rename) and `gra` (code action) by default.
 
           -- Find references for the word under your cursor.
           map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -103,7 +107,11 @@ return {
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
+          -- Python adds imports, which basedpyright leaves out of its document symbols.
+          local document_symbols = vim.bo[event.buf].filetype == 'python'
+              and require('config.python_symbols').document_symbols
+            or require('telescope.builtin').lsp_document_symbols
+          map('gO', document_symbols, 'Open Document Symbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
@@ -114,30 +122,15 @@ return {
           --  the definition of its *type*, not where it was *defined*.
           map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
-          -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-          ---@param client vim.lsp.Client
-          ---@param method vim.lsp.protocol.Method
-          ---@param bufnr? integer some lsp support methods only in specific files
-          ---@return boolean
-          local function client_supports_method(client, method, bufnr)
-            if vim.fn.has('nvim-0.11') == 1 then
-              return client:supports_method(method, bufnr)
-            else
-              return client.supports_method(method, { bufnr = bufnr })
-            end
-          end
-
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if
-            client
-            and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
-          then
-            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+          if client and client:supports_method('textDocument/documentHighlight', event.buf) then
+            -- Clear first, so that a second client or a re-attach does not add duplicate autocmds.
+            vim.api.nvim_clear_autocmds({ group = highlight_augroup, buffer = event.buf })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               group = highlight_augroup,
@@ -149,26 +142,17 @@ return {
               group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
             })
-
-            vim.api.nvim_create_autocmd('LspDetach', {
-              group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
-              callback = function(event2)
-                vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds({ group = 'kickstart-lsp-highlight', buffer = event2.buf })
-              end,
-            })
           end
 
           -- The following code creates a keymap to toggle inlay hints in your
           -- code, if the language server you are using supports them
           --
           -- This may be unwanted, since they displace some of your code
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map(
-              '<leader>th',
-              function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
-              '[T]oggle Inlay [H]ints'
-            )
+          if client and client:supports_method('textDocument/inlayHint', event.buf) then
+            map('<leader>th', function()
+              local filter = { bufnr = event.buf }
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
+            end, '[T]oggle Inlay [H]ints')
           end
         end,
       })
@@ -193,12 +177,6 @@ return {
         },
       })
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -211,7 +189,27 @@ return {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        basedpyright = {
+          -- Start only inside a project; loose .py files get no LSP.
+          workspace_required = true,
+          -- basedpyright finds <root>/.venv itself; also use an activated venv or <root>/venv.
+          before_init = function(_, config)
+            for _, venv in ipairs({ vim.env.VIRTUAL_ENV or '', config.root_dir .. '/venv' }) do
+              local python = venv .. '/bin/python'
+              if venv ~= '' and vim.uv.fs_stat(python) then
+                config.settings.python = vim.tbl_extend('force', config.settings.python or {}, { pythonPath = python })
+                return
+              end
+            end
+          end,
+          -- Ruff organizes imports; this turns off the duplicate basedpyright action.
+          settings = { basedpyright = { disableOrganizeImports = true } },
+        },
+        ruff = {
+          workspace_required = true,
+          -- basedpyright gives the full hover; Ruff hover only explains noqa codes.
+          on_attach = function(client) client.server_capabilities.hoverProvider = false end,
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -254,7 +252,8 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'markdownlint', -- Used to lint Markdown (config.plugins.lint)
+        'markdownlint-cli2', -- Used to lint Markdown (config.plugins.lint)
+        -- No 'mdformat': Mason's copy has no GFM plugins and would shadow the one on PATH.
       })
       -- `run_on_start` would defer this to VimEnter, which has already fired by the
       -- time a lazy-loaded spec gets here. Drive the check directly instead so the
@@ -262,17 +261,15 @@ return {
       require('mason-tool-installer').setup({ ensure_installed = ensure_installed, run_on_start = false })
       require('mason-tool-installer').check_install()
 
+      -- vim.lsp.config() merges these values over the defaults and the '*' config set by blink.cmp.
       for server_name, server in pairs(servers) do
-        -- This handles overriding only values explicitly passed
-        -- by the server configuration above. Useful when disabling
-        -- certain features of an LSP (for example, turning off formatting for ts_ls)
-        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
         vim.lsp.config(server_name, server)
       end
 
       require('mason-lspconfig').setup({
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_enable = true, -- calls vim.lsp.enable() per mason-installed server
+        -- Enable only the servers above. Other Mason tools, for example stylua, must not start as LSPs.
+        automatic_enable = vim.tbl_keys(servers),
       })
     end,
   },
