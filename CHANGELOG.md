@@ -1,3 +1,31 @@
+# [7.8.0](https://github.com/vladdoster/neovim-configuration/compare/v7.7.0...v7.8.0) (2026-09-25)
+
+
+### Bug Fixes
+
+* **blink:** keep snippet jumps on Tab ([a832eb9](https://github.com/vladdoster/neovim-configuration/commit/a832eb95ab3d58bc3a530c2d0732b7947ed1602d))
+* **core:** configure guess-indent and built-ins ([b83d1cf](https://github.com/vladdoster/neovim-configuration/commit/b83d1cf3cd52b4148eeade5cb66e3f73a2c2df42))
+* **dial:** handle negative and hex numbers ([2243870](https://github.com/vladdoster/neovim-configuration/commit/224387079e147e3ed087d6b23f685e81b610a83c))
+* **keymaps:** call vim.hl.on_yank on yank ([1ca445f](https://github.com/vladdoster/neovim-configuration/commit/1ca445f209dfd410b9a8ddc05fdf663d3f3e3f2a))
+* **keymaps:** fix sort, move and terminal maps ([2c42aa1](https://github.com/vladdoster/neovim-configuration/commit/2c42aa196a0cbcea8e73527b386b6693147513eb))
+* **lint:** load mason before the first lint run ([ddb2af9](https://github.com/vladdoster/neovim-configuration/commit/ddb2af915e9042bf2e45f77ef4414a93ea43917e))
+* **lsp:** enable only configured servers ([31d12f7](https://github.com/vladdoster/neovim-configuration/commit/31d12f7cf4dbeec3b18940ae9e3a1f7963c5a302))
+* **neo-tree:** add ASCII icons and pin v3 ([07ba7f8](https://github.com/vladdoster/neovim-configuration/commit/07ba7f8849c43a860d064483f5008758267e45ed))
+* review config and add Python LSP ([#11](https://github.com/vladdoster/neovim-configuration/issues/11)) ([83fe881](https://github.com/vladdoster/neovim-configuration/commit/83fe88115ddc7c4b09d97a20ec774c553293c88c))
+* **telescope:** skip .git in grep and load lazily ([b5c4aa4](https://github.com/vladdoster/neovim-configuration/commit/b5c4aa481427f01fba460ed2fe8e5fc17caf06d5))
+* **treesitter:** guard parser start and install ([7c1809e](https://github.com/vladdoster/neovim-configuration/commit/7c1809e97acd23ba94c362aef8faec359dff67ce))
+
+
+### Features
+
+* **python:** enable basedpyright and ruff ([f2c2bd1](https://github.com/vladdoster/neovim-configuration/commit/f2c2bd12f368d83636b3808b798d496e3401025b))
+* **python:** list imports in document symbols ([5afc37a](https://github.com/vladdoster/neovim-configuration/commit/5afc37ab55b63448dd584f29d97ed75545dea211))
+
+
+### Reverts
+
+* Revert "fix: review config and add Python LSP ([#11](https://github.com/vladdoster/neovim-configuration/issues/11))" ([#12](https://github.com/vladdoster/neovim-configuration/issues/12)) ([06cc50b](https://github.com/vladdoster/neovim-configuration/commit/06cc50b8c68a613b1fdeee2c8769af386aa96fc2))
+
 # [7.7.0](https://github.com/vladdoster/neovim-configuration/compare/v7.6.0...v7.7.0) (2026-08-08)
 
 
