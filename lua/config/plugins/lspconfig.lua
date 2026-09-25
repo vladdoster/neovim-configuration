@@ -107,7 +107,11 @@ return {
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
+          -- Python adds imports, which basedpyright leaves out of its document symbols.
+          local document_symbols = vim.bo[event.buf].filetype == 'python'
+              and require('config.python_symbols').document_symbols
+            or require('telescope.builtin').lsp_document_symbols
+          map('gO', document_symbols, 'Open Document Symbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
