@@ -18,16 +18,7 @@ clean: ## Remove installed plugins & packer artifacts
 	echo "${log} cleaned neovim"
 
 format: ## Run Stylua formatter
-	stylua \
-	--call-parentheses Input \
-	--collapse-simple-statement Always \
-	--column-width 120 \
-	--glob **/*.lua \
-	--indent-type Spaces \
-	--line-endings Unix \
-	--quote-style AutoPreferSingle \
-	--sort-requires \
-	--verbose
+	stylua --verbose .
 
 update: | clean ## Run clean target, pull git changes, and re-install plugins
 	echo "${log} pulling upstream" && \
