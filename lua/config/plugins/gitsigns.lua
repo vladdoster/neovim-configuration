@@ -39,13 +39,13 @@ return {
         -- Actions
         -- visual mode
         map(
-          'v',
+          'x',
           '<leader>hs',
           function() gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end,
           { desc = 'git [s]tage hunk' }
         )
         map(
-          'v',
+          'x',
           '<leader>hr',
           function() gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end,
           { desc = 'git [r]eset hunk' }
@@ -54,7 +54,6 @@ return {
         map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
         map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
         map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'git [S]tage buffer' })
-        map('n', '<leader>hu', gitsigns.stage_hunk, { desc = 'git [u]ndo stage hunk' })
         map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
         map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
         map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
@@ -62,7 +61,7 @@ return {
         map('n', '<leader>hD', function() gitsigns.diffthis('~') end, { desc = 'git [D]iff against last commit' })
         -- Toggles
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-        map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
+        map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = 'git preview hunk inline' })
       end,
     },
   },
