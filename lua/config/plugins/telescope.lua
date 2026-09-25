@@ -8,7 +8,7 @@
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
-    event = 'VeryLazy',
+    event = 'VimEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -26,8 +26,6 @@ return {
     },
     config = function()
       local actions = require('telescope.actions')
-      local telescope = require('telescope')
-      local themes = require('telescope.themes')
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
       -- many different aspects of Neovim, your workspace, LSP, and more!
@@ -49,7 +47,7 @@ return {
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
-      telescope.setup({
+      require('telescope').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
@@ -63,8 +61,8 @@ return {
             '--column',
             '--smart-case',
             '--hidden', -- This flag forces ripgrep to search hidden files
-            '--glob=!**/.git/*', -- Skip the .git directory
           },
+          initial_mode = 'insert',
           layout_config = { prompt_position = 'top' },
           mappings = {
             i = {
@@ -81,15 +79,14 @@ return {
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
-            themes.get_dropdown(),
+            require('telescope.themes').get_dropdown(),
           },
         },
       })
 
-      -- Enable Telescope extensions if they are installed. Warn if fzf-native is not built.
-      local ok, err = pcall(telescope.load_extension, 'fzf')
-      if not ok and vim.fn.executable('make') == 1 then vim.notify(err, vim.log.levels.WARN) end
-      pcall(telescope.load_extension, 'ui-select')
+      -- Enable Telescope extensions if they are installed
+      pcall(require('telescope').load_extension, 'fzf')
+      pcall(require('telescope').load_extension, 'ui-select')
 
       -- See `:help telescope.builtin`
       local builtin = require('telescope.builtin')
@@ -97,7 +94,7 @@ return {
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set({ 'n', 'x' }, '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
@@ -107,7 +104,7 @@ return {
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(themes.get_dropdown({
+        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
           winblend = 10,
           previewer = false,
         }))

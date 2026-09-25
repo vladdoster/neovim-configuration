@@ -1,32 +1,22 @@
 return {
   { -- Collection of various small independent plugins/modules
-    'nvim-mini/mini.nvim',
+    'echasnovski/mini.nvim',
     event = 'VeryLazy',
     config = function()
       -- Better Around/Inside textobjects
       --
       -- Examples:
       --  - va)  - [V]isually select [A]round [)]paren
-      --  - yiNq - [Y]ank [I]nside [N]ext [Q]uote
+      --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
-      -- aN/iN keep the built-in 0.12 `an`/`in` selection maps.
-      require('mini.ai').setup { n_lines = 500, mappings = { around_next = 'aN', inside_next = 'iN' } }
+      require('mini.ai').setup { n_lines = 500 }
 
-      -- Add/delete/replace surroundings (brackets, quotes, etc.). The `gs` prefix keeps the built-in `s`.
+      -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
-      -- - gsaiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - gsd'   - [S]urround [D]elete [']quotes
-      -- - gsr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup {
-        mappings = {
-          add = 'gsa',
-          delete = 'gsd',
-          find = 'gsf',
-          find_left = 'gsF',
-          highlight = 'gsh',
-          replace = 'gsr',
-        },
-      }
+      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+      -- - sd'   - [S]urround [D]elete [']quotes
+      -- - sr)'  - [S]urround [R]eplace [)] [']
+      require('mini.surround').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -42,7 +32,7 @@ return {
       statusline.section_location = function() return '%2l:%-2v' end
 
       -- ... and there is more!
-      --  Check out: https://github.com/nvim-mini/mini.nvim
+      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
 }
