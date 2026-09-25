@@ -1,6 +1,5 @@
 require('lazy').setup({
-  -- Detect tabstop and shiftwidth automatically
-  { 'NMAC427/guess-indent.nvim', event = { 'BufReadPre', 'BufNewFile' }, opts = {} },
+  { 'NMAC427/guess-indent.nvim', lazy = false }, -- Detect tabstop and shiftwidth automatically
   {
     'dstein64/vim-startuptime',
     cmd = 'StartupTime',
@@ -8,49 +7,43 @@ require('lazy').setup({
   },
   {
     'cappyzawa/trim.nvim',
-    -- Load on buffer events too: with `highlight`, setup() adds the BufEnter autocmds that draw the matches.
     event = { 'BufReadPost', 'BufNewFile' },
-    cmd = { 'Trim', 'TrimToggle' },
-    opts = {
-      ft_blocklist = { 'markdown' },
-      highlight = true,
-      patterns = { [[%s/\(\n\n\)\n\+/\1/]] },
-      trim_current_line = false,
-      trim_on_write = false,
-    },
+    config = function()
+      require('trim').setup({
+        ft_blocklist = { 'markdown' },
+        highlight = true,
+        patterns = { [[%s/\(\n\n\)\n\+/\1/]] },
+        trim_current_line = false,
+        trim_on_write = false,
+      })
+    end,
   },
   {
     'vladdoster/remember.nvim',
     config = function() require('remember') end,
     lazy = false,
+    priority = 2000,
   },
   { import = 'config.plugins' },
 }, {
   defaults = { lazy = true },
-  performance = {
-    rtp = {
-      disabled_plugins = { 'gzip', 'netrwPlugin', 'rplugin', 'spellfile', 'tarPlugin', 'tutor', 'zipPlugin' },
-    },
-  },
-  rocks = { enabled = false },
   ui = {
-    -- A Nerd Font uses lazy.nvim's default icons. Other fonts get plain Unicode symbols.
+    -- If you are using a Nerd Font: set icons to an empty table which will use the
+    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘ ',
-      config = '✎',
-      debug = '● ',
-      event = '◷ ',
-      favorite = '★ ',
-      ft = '▤ ',
-      import = '↳ ',
-      init = '◎ ',
-      keys = '⌥ ',
-      lazy = '☾ ',
-      plugin = '◆ ',
-      require = '☽ ',
-      runtime = '▣ ',
-      source = '§ ',
-      start = '▸ ',
+      -- cmd = '⌘',
+      -- config = '🛠',
+      -- event = '📅',
+      -- ft = '📂',
+      -- init = '⚙',
+      -- keys = '🗝',
+      -- lazy = '💤 ',
+      -- plugin = '🔌',
+      -- require = '🌙',
+      -- runtime = '💻',
+      -- source = '📄',
+      -- start = '🚀',
+      -- task = '📌',
     },
   },
 })
