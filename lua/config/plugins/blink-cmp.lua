@@ -8,7 +8,7 @@ end
 return {
   {
     'saghen/blink.cmp',
-    event = 'VimEnter',
+    event = { 'InsertEnter', 'CmdlineEnter' },
     version = '1.*',
     dependencies = {
       -- Snippet Engine
@@ -35,35 +35,87 @@ return {
         },
         opts = {},
       },
-      'folke/lazydev.nvim',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
     opts = {
       keymap = {
         preset = 'default',
-        -- If completion hasn't been triggered yet, insert the first suggestion; if it has, cycle to the next suggestion.
+        -- Cycle to the next item if the menu is open, else jump to the next snippet placeholder,
+        -- else show the menu and insert the first item after a word.
         ['<Tab>'] = {
           function(cmp)
-            if has_words_before() then return cmp.insert_next() end
+            if cmp.is_menu_visible() then return cmp.insert_next() end
+          end,
+          'snippet_forward',
+          function(cmp)
+            if has_words_before() then return cmp.show_and_insert() end
           end,
           'fallback',
         },
-        -- Navigate to the previous suggestion or cancel completion if currently on the first one.
-        ['<S-Tab>'] = { 'insert_prev' },
+        -- Cycle to the previous item if the menu is open, else jump to the previous snippet placeholder.
+        ['<S-Tab>'] = {
+          function(cmp)
+            if cmp.is_menu_visible() then return cmp.insert_prev() end
+          end,
+          'snippet_backward',
+          'fallback',
+        },
+        -- <C-space> is the WezTerm leader, so <C-d> toggles the documentation window.
+        ['<C-d>'] = {
+          'show_documentation',
+          'hide_documentation',
+          function(cmp) return cmp.is_menu_visible() end,
+          'fallback',
+        },
       },
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono',
+        -- Without a Nerd Font, show short text labels in place of the kind icons.
+        kind_icons = not vim.g.have_nerd_font and {
+          Text = 'Txt',
+          Method = 'Meth',
+          Function = 'Fn',
+          Constructor = 'Ctor',
+
+          Field = 'Fld',
+          Variable = 'Var',
+          Property = 'Prop',
+
+          Class = 'Cls',
+          Interface = 'Intf',
+          Struct = 'Strc',
+          Module = 'Mod',
+
+          Unit = 'Unit',
+          Value = 'Val',
+          Enum = 'Enum',
+          EnumMember = 'EnMb',
+
+          Keyword = 'Kw',
+          Constant = 'Cnst',
+
+          Snippet = 'Snip',
+          Color = 'Clr',
+          File = 'File',
+          Reference = 'Ref',
+          Folder = 'Dir',
+          Event = 'Evt',
+          Operator = 'Op',
+          TypeParameter = 'TPar',
+        } or nil,
       },
       completion = {
         list = { selection = { preselect = false }, cycle = { from_top = false } },
-        -- By default, you may press `<c-space>` to show the documentation.
+        -- Press <C-d> to show or hide the documentation.
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        -- lazydev only serves Lua buffers, so blink loads it on demand there.
+        per_filetype = { lua = { inherit_defaults = true, 'lazydev' } },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
