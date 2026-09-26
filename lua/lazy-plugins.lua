@@ -22,6 +22,7 @@ require('lazy').setup({
   {
     'vladdoster/remember.nvim',
     config = true,
+    lazy = false,
   },
   {
     'jiaoshijie/undotree',
