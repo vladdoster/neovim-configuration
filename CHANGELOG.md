@@ -1,3 +1,15 @@
+# [7.9.0](https://github.com/vladdoster/neovim-configuration/compare/v7.8.0...v7.9.0) (2026-09-26)
+
+
+### Bug Fixes
+
+* **plugins:** load remember.nvim eagerly ([62e8c71](https://github.com/vladdoster/neovim-configuration/commit/62e8c7166198b9f9185a5eaa07ce66d841de9151))
+
+
+### Features
+
+* **plugins:** add undotree and update lock file ([d72eb5c](https://github.com/vladdoster/neovim-configuration/commit/d72eb5cb7848b9f2bf200f419248defab06f7e3a))
+
 # [7.8.0](https://github.com/vladdoster/neovim-configuration/compare/v7.7.0...v7.8.0) (2026-09-25)
 
 
