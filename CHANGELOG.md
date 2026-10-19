@@ -1,3 +1,11 @@
+# [7.10.0](https://github.com/vladdoster/neovim-configuration/compare/v7.9.0...v7.10.0) (2026-10-19)
+
+
+### Features
+
+* **keymaps:** add shared terminal toggles ([212af47](https://github.com/vladdoster/neovim-configuration/commit/212af47679acdb07b3e1f105d14272317d84cd3f))
+* **lsp:** move inlay hint toggle to <leader>ti ([8d988f5](https://github.com/vladdoster/neovim-configuration/commit/8d988f5058aeee43221b8961e6065a43fe751c7e))
+
 # [7.9.0](https://github.com/vladdoster/neovim-configuration/compare/v7.8.0...v7.9.0) (2026-09-26)
 
 
