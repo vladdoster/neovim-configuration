@@ -149,10 +149,11 @@ return {
           --
           -- This may be unwanted, since they displace some of your code
           if client and client:supports_method('textDocument/inlayHint', event.buf) then
-            map('<leader>th', function()
+            -- <leader>ti, not <leader>th: <leader>th opens the horizontal terminal.
+            map('<leader>ti', function()
               local filter = { bufnr = event.buf }
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
-            end, '[T]oggle Inlay [H]ints')
+            end, '[T]oggle [I]nlay hints')
           end
         end,
       })
