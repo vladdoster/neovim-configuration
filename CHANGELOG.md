@@ -1,3 +1,10 @@
+## [7.10.1](https://github.com/vladdoster/neovim-configuration/compare/v7.10.0...v7.10.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* **plugins:** clean up undotree spec ([e37c52c](https://github.com/vladdoster/neovim-configuration/commit/e37c52c872e7684a4749840777234079042ba98c))
+
 # [7.10.0](https://github.com/vladdoster/neovim-configuration/compare/v7.9.0...v7.10.0) (2026-10-19)
 
 
