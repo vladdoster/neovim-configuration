@@ -19,6 +19,8 @@ require('lazy').setup({
       trim_on_write = false,
     },
   },
+  -- Load at startup. setup() adds the VimEnter and BufRead autocmds that find conflicts.
+  { 'akinsho/git-conflict.nvim', version = '*', config = true, lazy = false },
   {
     'vladdoster/remember.nvim',
     config = true,
