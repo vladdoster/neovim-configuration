@@ -1,3 +1,19 @@
+# [7.11.0](https://github.com/vladdoster/neovim-configuration/compare/v7.10.1...v7.11.0) (2026-10-21)
+
+
+### Bug Fixes
+
+* **conform:** skip lua and markdown format on save ([114c4a8](https://github.com/vladdoster/neovim-configuration/commit/114c4a88efe022e74f682afa032b17851b3539e1))
+* **make:** ignore missing dirs in clean ([2d6ed64](https://github.com/vladdoster/neovim-configuration/commit/2d6ed6409cd3f37b7c249cfad8443212b119f100))
+
+
+### Features
+
+* **blink-cmp:** add C-n and C-p keymaps ([715e72b](https://github.com/vladdoster/neovim-configuration/commit/715e72bb694211bfb3bcb75ffdceca90a1914d2e))
+* **lsp:** replace lua_ls with emmylua_ls ([e0c1c7c](https://github.com/vladdoster/neovim-configuration/commit/e0c1c7c495337bae2815f3a4d10d7c450bbd3a30))
+* **neo-tree:** hide cache files, force ascii icons ([4b04aba](https://github.com/vladdoster/neovim-configuration/commit/4b04abae063b60e9419549f26fcd99a806f6ec26))
+* **plugins:** add git-conflict.nvim ([938e1b3](https://github.com/vladdoster/neovim-configuration/commit/938e1b3c07d0bd5c290b14ff749c5732a6c8b272))
+
 ## [7.10.1](https://github.com/vladdoster/neovim-configuration/compare/v7.10.0...v7.10.1) (2026-10-19)
 
 
