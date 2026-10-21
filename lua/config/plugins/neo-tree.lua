@@ -36,9 +36,18 @@ return {
     default_component_configs = vim.tbl_extend(
       'force',
       { name = { trailing_slash = true } },
-      vim.g.have_nerd_font and {} or ascii_components
+      ascii_components
     ),
     window = { width = 25, mappings = { ['l'] = 'open', ['h'] = 'close_node' } },
-    filesystem = { follow_current_file = { enabled = true }, hijack_netrw_behavior = 'open_current' },
+    filesystem = {
+      follow_current_file = { enabled = true },
+      hijack_netrw_behavior = 'open_current',
+      filtered_items = {
+        -- Stay hidden even when `visible` is toggled on.
+        never_show = { '.DS_Store', '.ruff_cache', 'superpowers' },
+        -- Names with `cache` that start or end with `__`, for example `__pycache__`.
+        never_show_by_pattern = { '__*cache*', '*cache*__' },
+      },
+    },
   },
 }

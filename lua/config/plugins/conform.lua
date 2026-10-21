@@ -13,18 +13,16 @@ return {
     },
     opts = {
       format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, python = true }
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          return nil
-        else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
+        -- Do not format these filetypes on save. This includes compound filetypes such as markdown.pandoc.
+        -- Use <leader>f to format them.
+        local disable_filetypes = { c = true, cpp = true, lua = true, markdown = true, python = true }
+        for _, ft in ipairs(vim.split(vim.bo[bufnr].filetype, '.', { plain = true })) do
+          if disable_filetypes[ft] then return nil end
         end
+        return {
+          timeout_ms = 500,
+          lsp_format = 'fallback',
+        }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },

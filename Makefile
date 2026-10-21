@@ -14,7 +14,7 @@ help: ## Display all Makfile targets
 
 clean: ## Remove installed plugins & packer artifacts
 	$(SHELL) -c 'print -f "==> %s\n" ~/.local/*/nvim(/N)'
-	$(SHELL) -c 'rm -rf ~/.local/s[ht]*/nvim'
+	$(SHELL) -c 'rm -rf ~/.local/s[ht]*/nvim(N)'
 	echo "${log} cleaned neovim"
 
 format: ## Run Stylua formatter
