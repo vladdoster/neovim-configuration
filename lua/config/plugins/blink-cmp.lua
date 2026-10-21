@@ -53,13 +53,22 @@ return {
           end,
           'fallback',
         },
-        -- Cycle to the previous item if the menu is open, else jump to the previous snippet placeholder.
+        -- Cycle to the previous item. With no selected item in a snippet, jump to the previous placeholder.
         ['<S-Tab>'] = {
           function(cmp)
-            if cmp.is_menu_visible() then return cmp.insert_prev() end
+            if not cmp.is_menu_visible() then return end
+            if cmp.get_selected_item() or not cmp.snippet_active({ direction = -1 }) then return cmp.insert_prev() end
           end,
           'snippet_backward',
           'fallback',
+        },
+        -- Insert the next or previous item. If the menu is hidden, open it on the first or last item.
+        ['<C-n>'] = { 'insert_next' },
+        ['<C-p>'] = {
+          function(cmp)
+            if not cmp.is_active() then return cmp.show_and_insert({ initial_selected_item_idx = -1 }) end
+          end,
+          'insert_prev',
         },
         -- <C-space> is the WezTerm leader, so <C-d> toggles the documentation window.
         ['<C-d>'] = {
