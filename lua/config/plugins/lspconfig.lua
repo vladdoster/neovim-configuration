@@ -1,16 +1,11 @@
 -- LSP Plugins
 return {
   {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
+    -- `lazydev` adds `require` module completion to blink.
+    -- emmylua_ls ignores the lazydev `Lua` settings. `servers.emmylua_ls` below sets the library.
     'folke/lazydev.nvim',
     ft = 'lua',
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-      },
-    },
+    opts = {},
   },
   {
     -- Main LSP Configuration
@@ -42,7 +37,7 @@ return {
       -- and language tooling communicate in a standardized fashion.
       --
       -- In general, you have a "server" which is some tool built to understand a particular
-      -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
+      -- language (such as `gopls`, `emmylua_ls`, `rust_analyzer`, etc.). These Language Servers
       -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
       -- processes that communicate with some "client" - in this case, Neovim!
       --
@@ -185,7 +180,8 @@ return {
       --  - filetypes (table): Override the default list of associated filetypes for the server
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      --        For example, see the `emmylua_ls` options at:
+      --        https://github.com/EmmyLuaLs/emmylua-analyzer-rust/blob/main/docs/config/emmyrc_json_EN.md
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -220,16 +216,22 @@ return {
         -- ts_ls = {},
         --
 
-        lua_ls = {
-          -- cmd = { ... },
-          -- filetypes = { ... },
-          -- capabilities = {},
+        emmylua_ls = {
+          -- Log only warnings. Without a root folder, the server sends its log to stderr.
+          -- Neovim then writes each stderr line to lsp.log as an error.
+          cmd = { 'emmylua_ls', '--log-level', 'warn' },
           settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
+            emmylua = {
+              completion = { callSnippet = true },
+              runtime = { version = 'LuaJIT' },
+              -- Send the Neovim runtime and the plugin `lua` folders as the library.
+              workspace = {
+                library = vim.list_extend(
+                  { vim.env.VIMRUNTIME .. '/lua' },
+                  vim.fn.globpath(vim.fn.stdpath('data') .. '/lazy', '*/lua', false, true)
+                ),
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+              -- Uncomment to hide the noisy `missing-fields` warnings.
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
