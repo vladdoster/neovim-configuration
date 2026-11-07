@@ -4,6 +4,8 @@ return {
     branch = 'main',
     build = ':TSUpdate',
     lazy = false,
+    -- Mason's setup puts its bin dir on PATH, where the `tree-sitter` CLI lives.
+    dependencies = { 'mason-org/mason.nvim' },
     config = function()
       local ensure_installed = {
         'bash',
@@ -20,9 +22,21 @@ return {
         'vimdoc',
       }
       local ts = require('nvim-treesitter')
-      local installed = ts.get_installed('parsers')
-      local missing = vim.tbl_filter(function(lang) return not vim.list_contains(installed, lang) end, ensure_installed)
-      if #missing > 0 then ts.install(missing) end
+      local function install_missing()
+        local installed = ts.get_installed('parsers')
+        local missing = vim.tbl_filter(function(lang) return not vim.list_contains(installed, lang) end, ensure_installed)
+        if #missing > 0 then ts.install(missing) end
+      end
+
+      -- Building parsers needs the `tree-sitter` CLI; install it through Mason first if absent.
+      if vim.fn.executable('tree-sitter') == 1 then
+        install_missing()
+      else
+        local registry = require('mason-registry')
+        registry.refresh(function()
+          registry.get_package('tree-sitter-cli'):install():once('closed', vim.schedule_wrap(install_missing))
+        end)
+      end
 
       -- Attach to every filetype whose parser loads, so parsers beyond `ensure_installed` work too.
       vim.api.nvim_create_autocmd('FileType', {
