@@ -1,3 +1,19 @@
+# [7.12.0](https://github.com/vladdoster/neovim-configuration/compare/v7.11.0...v7.12.0) (2026-11-07)
+
+
+### Bug Fixes
+
+* **conform:** skip lua and markdown format on save ([4dcb460](https://github.com/vladdoster/neovim-configuration/commit/4dcb460425e1f9ce80bd9aaaccb97fa436bc8027))
+* **make:** ignore missing dirs in clean ([f14d561](https://github.com/vladdoster/neovim-configuration/commit/f14d561382b63fed638ac689c487b613912ad779))
+* **treesitter:** install tree-sitter-cli via mason first ([87980dc](https://github.com/vladdoster/neovim-configuration/commit/87980dc5efcdf210d10fe3a9adf3dec5b236618b))
+
+
+### Features
+
+* **blink-cmp:** add C-n and C-p keymaps ([94a2bf0](https://github.com/vladdoster/neovim-configuration/commit/94a2bf00adf8bbef46d9dca91fb0a183916423d1))
+* **lsp:** replace lua_ls with emmylua_ls ([9f5738f](https://github.com/vladdoster/neovim-configuration/commit/9f5738f64d3f14d446eac8f89ae70ea106253694))
+* **neo-tree:** hide cache files, force ascii icons ([6fccb61](https://github.com/vladdoster/neovim-configuration/commit/6fccb61d45b2a357c670c09990990831762652f5))
+
 # [7.11.0](https://github.com/vladdoster/neovim-configuration/compare/v7.10.1...v7.11.0) (2026-10-21)
 
 
